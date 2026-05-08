@@ -17,11 +17,6 @@ code____________________________________________________________________________
 
 make some videos
 
-midicfg - dbg how drumz get wrecked
-   left drums on.  ok in morning.  then at 4, drums,pedals get wrecked.
-      testing midio had horns for drumz, no piano for cp33
-   somethin is dup'ing devices?
-
 w/recwipe needs to be fixed - dbg
    recwipe erases Lrn tracks...  is that old??  i think rec stuff is in 98,99
    playback recording wrecks stuff
