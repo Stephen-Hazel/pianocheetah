@@ -34,6 +34,9 @@ UCmdDef UCmd [] = {
 };
 ubyte NUCmd = BITS (UCmd);
 
+bool Bye = false;                      // song thread's Quit is slow :/
+
+
 static void UCmdLoad ()
 // load .nt n .ky from device/keycmd.txt for given .cmd
 { TStr fn, s, k;
@@ -318,6 +321,8 @@ void PCheetah::Upd (QString upd)
       }
       return;
    }
+
+   if (! StrCm (u, "bye"))  {Bye = true;   return;}   // song got done closin'
 
    if (! StrCm (u, "ttl"))  _tb.Act (29)->setText (Up.ttl);
 
@@ -670,8 +675,13 @@ TRC("  win,dlg save");
       delete _dQua;   delete _dMov;   delete _dHlp;
    }
    if (_s != nullptr) {
-TRC("  thrEnd");
-      _thrSong.quit ();   _thrSong.wait ();
+TRC("  thrEnd bgn");
+      while (! Bye)  usleep (5);
+TRC("  thrEnd bye was set");
+      _thrSong.quit ();
+TRC("  thrEnd a");
+      _thrSong.wait ();
+TRC("  thrEnd bgn");
    }
 TRC("  kick=`s", Kick);
    if (*Kick)  App.Spinoff (Kick);

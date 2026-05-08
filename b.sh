@@ -14,17 +14,8 @@ echo "...uninstall old one\n";
    system ("$f uninstall -y $app");
 
    if ($arg == 'd') {
-/*    DEBUGGIN !  then go...
-      flatpak run --command=sh --devel --filesystem=$(pwd)
-              app.pianocheetah.pianocheetah
-      gdb /app/bin/pianocheetah
-      set logging enabled on
-      thread apply all backtrace
-      run        (usually gotta type y)
-      (make it blow up)
-      where
-      bt full
-*/    system ("mkdir _build");
+//    DEBUGGIN !
+      system ("mkdir _build");
       system ("$fb --user --force-clean --install _build fpak.dbg", $rc);
       system ("$f install --reinstall --user --assumeyes ".
               "/home/sh/src/pianocheetah/.$fb/cache $app");
@@ -32,6 +23,15 @@ echo "...uninstall old one\n";
               "/home/sh/src/pianocheetah/.$fb/cache $app".".Debug");
       system ("echo x " .
              ">/home/sh/.var/app/app.pianocheetah.pianocheetah/config/dbg.txt");
+      echo "
+flatpak run --command=sh --devel --filesystem=$(pwd) app.pianocheetah.pianocheetah
+gdb /app/bin/pianocheetah
+set logging enabled on
+thread apply all backtrace
+run        (usually gotta type y)
+           (make it blow up)
+where
+bt full\n";
       exit;
    }
 

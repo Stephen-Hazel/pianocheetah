@@ -33,7 +33,7 @@ DBG("Cmd='`s'", c);
       case 23:  EdLrn  (4);  break;         // hearLoop
    }
    else if (! StrCm (c, CC("init")))      Init ();
-   else if (! StrCm (c, CC("quit")))      Quit ();
+   else if (! StrCm (c, CC("quit")))     {Quit ();   return;}
    else if (! StrCm (c, CC("wipe")))      Wipe ();
    else if (! MemCm (c, CC("load "), 5))  Load (& c [5]);
    else if (! StrCm (c, CC("mute")))      EdLrn (6);

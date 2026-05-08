@@ -21,12 +21,17 @@ TRC("Song::Init end");
 }
 
 
+extern bool Bye;
+
 void Song::Quit ()                     // clean up
 {
 TRC("Song::Quit bgn");
-   Wipe ();   ShutMIn ();   Sy.Quit ();   delete _timer;
+   Wipe ();
+   ShutMIn ();
+   Sy.Quit ();
+   delete _timer;
    if (_f.ev)  delete [] _f.ev;
-   emit sgUpd ("bye");
+   Bye = true;                         // main ui already exited event loop :/
 TRC("Song::Quit end");
 }
 
