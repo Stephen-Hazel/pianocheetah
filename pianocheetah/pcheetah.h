@@ -17,18 +17,23 @@
 #include "ctlNt.h"
 #include "song.h"
 
-extern TStr Kick;                      // kick up an app on exit - like MidiCfg
+extern TStr Kick;                      // kick MidiCfg on exit ?
 
-QT_BEGIN_NAMESPACE
-namespace Ui { class DlgFL; }
+QT_BEGIN_NAMESPACE                     // we gotta lotta dang windowz
+namespace Ui { class DlgFL;    class DlgCfg;
+               class DlgTDr;   class DlgCue;
+               class DlgQua;   class DlgChd;
+               class DlgCtl;   class DlgTpo;
+               class DlgTSg;   class DlgKSg;
+               class DlgMov;   class DlgHlp;
+               class PCheetah; }
 QT_END_NAMESPACE
+
 
 class DlgFL: public QDialog {
    Q_OBJECT
-
 public:
-   explicit DlgFL (QWidget *parent = nullptr)
-   : QDialog (parent)
+   explicit DlgFL (QWidget *parent = nullptr): QDialog (parent)
    {  ui = new Ui::DlgFL;   ui->setupUi (this);  }
   ~DlgFL ()         {delete ui;}
 
@@ -53,14 +58,8 @@ private:
 };
 
 
-//______________________________________________________________________________
-QT_BEGIN_NAMESPACE
-namespace Ui { class DlgCfg; }
-QT_END_NAMESPACE
-
 class DlgCfg: public QDialog {
    Q_OBJECT
-
 public:
    explicit DlgCfg (QWidget *parent = nullptr)
    : QDialog (parent)
@@ -78,14 +77,8 @@ private:
 };
 
 
-//______________________________________________________________________________
-QT_BEGIN_NAMESPACE
-namespace Ui { class DlgTDr; }
-QT_END_NAMESPACE
-
 class DlgTDr: public QDialog {
    Q_OBJECT
-
 public:
    explicit DlgTDr (QWidget *parent = nullptr)
    : QDialog (parent)
@@ -107,14 +100,8 @@ private:
 };
 
 
-//______________________________________________________________________________
-QT_BEGIN_NAMESPACE
-namespace Ui { class DlgCue; }
-QT_END_NAMESPACE
-
 class DlgCue: public QDialog {
    Q_OBJECT
-
 public:
    explicit DlgCue (QWidget *parent = nullptr)
    : QDialog (parent)
@@ -135,14 +122,8 @@ private:
 };
 
 
-//______________________________________________________________________________
-QT_BEGIN_NAMESPACE
-namespace Ui { class DlgQua; }
-QT_END_NAMESPACE
-
 class DlgQua: public QDialog {
    Q_OBJECT
-
 public:
    explicit DlgQua (QWidget *parent = nullptr)
    : QDialog (parent)
@@ -164,14 +145,8 @@ private:
 };
 
 
-//______________________________________________________________________________
-QT_BEGIN_NAMESPACE
-namespace Ui { class DlgChd; }
-QT_END_NAMESPACE
-
 class DlgChd: public QDialog {
    Q_OBJECT
-
 public:
    explicit DlgChd (QWidget *parent = nullptr)
    : QDialog (parent)
@@ -198,14 +173,8 @@ private:
 };
 
 
-//______________________________________________________________________________
-QT_BEGIN_NAMESPACE
-namespace Ui { class DlgCtl; }
-QT_END_NAMESPACE
-
 class DlgCtl: public QDialog {
    Q_OBJECT
-
 public:
    explicit DlgCtl (QWidget *parent = nullptr)
    : QDialog (parent)
@@ -227,14 +196,8 @@ private:
 };
 
 
-//______________________________________________________________________________
-QT_BEGIN_NAMESPACE
-namespace Ui { class DlgTpo; }
-QT_END_NAMESPACE
-
 class DlgTpo: public QDialog {
    Q_OBJECT
-
 public:
    explicit DlgTpo (QWidget *parent = nullptr)
    : QDialog (parent)
@@ -253,14 +216,8 @@ private:
 };
 
 
-//______________________________________________________________________________
-QT_BEGIN_NAMESPACE
-namespace Ui { class DlgTSg; }
-QT_END_NAMESPACE
-
 class DlgTSg: public QDialog {
    Q_OBJECT
-
 public:
    explicit DlgTSg (QWidget *parent = nullptr)
    : QDialog (parent)
@@ -279,14 +236,8 @@ private:
 };
 
 
-//______________________________________________________________________________
-QT_BEGIN_NAMESPACE
-namespace Ui { class DlgKSg; }
-QT_END_NAMESPACE
-
 class DlgKSg: public QDialog {
    Q_OBJECT
-
 public:
    explicit DlgKSg (QWidget *parent = nullptr)
    : QDialog (parent)
@@ -305,14 +256,8 @@ private:
 };
 
 
-//______________________________________________________________________________
-QT_BEGIN_NAMESPACE
-namespace Ui { class DlgMov; }
-QT_END_NAMESPACE
-
 class DlgMov: public QDialog {
    Q_OBJECT
-
 public:
    explicit DlgMov (QWidget *parent = nullptr)
    : QDialog (parent)
@@ -327,14 +272,8 @@ private:
 };
 
 
-//______________________________________________________________________________
-QT_BEGIN_NAMESPACE
-namespace Ui { class DlgHlp; }
-QT_END_NAMESPACE
-
 class DlgHlp: public QDialog {
    Q_OBJECT
-
 public:
    explicit DlgHlp (QWidget *parent = nullptr)
    : QDialog (parent)
@@ -350,14 +289,8 @@ private:
 };
 
 
-//______________________________________________________________________________
-QT_BEGIN_NAMESPACE
-namespace Ui { class PCheetah; }
-QT_END_NAMESPACE
-
 class PCheetah: public QMainWindow {
    Q_OBJECT
-
 public:
    PCheetah (QWidget *par = nullptr)
    : QMainWindow (par)
@@ -370,7 +303,7 @@ public:
 
 private:
    Ui::PCheetah *ui;
-   CtlTBar      _tb, _tbFL, _tbCue, _tbChd;
+   CtlTBar      _tb;
    CtlTabl      _tr;
    CtlNt       *_nt;
    DlgFL       *_dFL;

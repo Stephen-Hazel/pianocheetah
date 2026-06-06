@@ -12,36 +12,25 @@ play, study magic singable dumb songs, pick out riffs, make a SONG
 
 try to find all the good rush sounds
 
+controller via joystick
+
 
 code____________________________________________________________________________
 
-make some videos
+_trk [].rec - test it - do they rec n play right?
 
-w/recwipe needs to be fixed - dbg
-   recwipe erases Lrn tracks...  is that old??  i think rec stuff is in 98,99
-   playback recording wrecks stuff
+RELEASE EET  pianocheetah.tar.gz properly
 
-RELEASE EET
+dbg lyr
+   test w single line lyr song - what is one...
 
-dark/light mode flip - pcheetah
-   flip to light - time area bg ok but fg still white from dark mode
-                   and time still lite/dark without red pause showing
-   lyr bg doesnt change but fg prob does?
-   notes need a redraw
-   track table doesn't redraw but midicfg's is ok
-
-FLst
-   make search work within queue,learn,etc too
-   hittin esc w no song should quit pc
-lyr
-   hilight skips last one in line
-   give em better color
 dragNdrop for track table, FLst table, n midicfg tables
 
-keycmd doesn't show on control list
-in track tooltip, show note range, and control list
+bugs w move to LH
 
-colors for sound groups?
+keycmd doesn't show on control list
+
+in track tooltip, show note range, and control list
 
 hook up a track volume
 
@@ -52,7 +41,7 @@ trills goin up down up don't show well
       somehow so they don't overlap when going 1 2 1 2 1
    make BEAT variable h?  (not just bar)
    queue/hmmm/etc/MichelLegrand_BriansSong
-really test notes picked for ez tracks
+test notes HARD
    get that note match "text report" into dbg
       to notice places to make things better
    to zanarkand
@@ -72,20 +61,18 @@ really test notes picked for ez tracks
 
 test out syn's envelopes harder - esp chorus-y things
 
-when drums is dead, you can still pick it in trak's dev and pc crashes
-
 install shouldn't let you get stuck in a loop :(  dbg
 
 when sounds are wrecked cuz a device is off,
    can it fallback to syn? once avail?
-
-restamp pianocheetah.tar.gz with EXACT defaults doc.txt mentions
 
 
 really squish track display (tooltip everything - esp sounds)
 
 
 spec____________________________________________________________________________
+
+colors for sound groups?
 
 in note ev, pass duration so syn can do tricky echoes and stuff
 
@@ -147,6 +134,15 @@ how video   cleanin up a song
 
 later___________________________________________________________________________
 
+dark/light mode flip - pcheetah
+   flip to light - time area bg ok but fg still white from dark mode
+                   and time still lite/dark without red pause showing
+   lyr bg doesnt change but fg prob does?
+   notes need a redraw
+   track table doesn't redraw but midicfg's is ok
+
+FLst - search on 2nd char within queue,learn,etc
+
 if tsig is n/d/*, show _ e & a for /4  or _ & a for /3
 
 pan draws weird lines off to the right on screen
@@ -162,10 +158,6 @@ Info() doesn't seem to work..
 wordwrap in table not workin
 
 put sounds with banks in a tooltip (strip *,bank)
-
-controller via joystick
-
-pc volume setting not set until partway thru
 
 File::Open that's CASE INSENSITIVE
 

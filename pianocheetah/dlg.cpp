@@ -65,12 +65,11 @@ TRC("DlgCfg.Shut");
 }
 
 void DlgCfg::Init ()
-{  Cfg.Load ();   Gui.DlgLoad (this, "DlgCfg");
-   connect (ui->quan, & QPushButton::clicked, this, [this]()
-   {  emit sgCmd (CC("quan"));
-   });
+{  Cfg.Load ();        Gui.DlgLoad (this, "DlgCfg");
+   connect (ui->quan, & QPushButton::clicked,
+            this, [this]() { emit sgCmd (CC("quan")); });
 }
-void DlgCfg::Quit ()  {Cfg.Save ();   Gui.DlgSave (this, "DlgCfg");}
+void DlgCfg::Quit ()  {Gui.DlgSave (this, "DlgCfg");}
 
 
 //______________________________________________________________________________
@@ -163,8 +162,8 @@ void DlgChd::Init ()
    connect (tb.Act (0), & QAction::triggered,  this, [this]() {Cmd (CC("?"));});
    connect (tb.Act (1), & QAction::triggered,  this, [this]() {Cmd (CC("+"));});
    connect (tb.Act (2), & QAction::triggered,  this, [this]() {Cmd (CC("x"));});
-   connect (ui->shhh, & QPushButton::clicked,  this, [this]()
-                                               {emit sgCmd (CC("timePoz"));});
+   connect (ui->shhh, & QPushButton::clicked,
+                                  this, [this]() {emit sgCmd (CC("timePoz"));});
    connect (ui->undo, & QPushButton::clicked,  this, [this]() {UnDo ();});
    connect (ui->pop,  QOverload<int>::of(& QComboBox::currentIndexChanged),
                                                this, [this]() {Pop  ();});
@@ -741,7 +740,7 @@ void DlgFL::Brow ()
 void DlgFL::Open ()  {ReDo ();   show ();   raise ();   activateWindow ();}
 
 void DlgFL::Shut ()
-{  FL.pos = _t.CurRow ();   done (true);   lower ();   hide ();  }
+{   FL.pos = _t.CurRow ();   done (true);   lower ();   hide ();  }
 
 void DlgFL::Init ()
 {  Gui.DlgLoad (this, "DlgFL");
@@ -782,21 +781,17 @@ void DlgFL::Init ()
    connect (ui->fLst, &QTableWidget::itemDoubleClicked, this, & DlgFL::Shut);
    _t.SetColWrapOK (1);
 
-  CtlLine s (ui->srch);
   CtlChek a (ui->all);
   TStr t;
-   App.CfgGet (CC("DlgFL_srch"), t);   if (*t) s.Set (t);
-   App.CfgGet (CC("DlgFL_all"),  t);
+   App.CfgGet (CC("DlgFL_all"), t);
    if (*t)  a.Set ((*t=='y')?true:false);   else a.Set (true);
 
    connect (ui->all, &QCheckBox::checkStateChanged, this, & DlgFL::ReDo);
 }
 
 void DlgFL::Quit ()
-{ CtlLine s (ui->srch);
-  CtlChek a (ui->all);
+{ CtlChek a (ui->all);
   TStr t;
-   StrCp (t, s.Get ());               App.CfgPut (CC("DlgFL_srch"), t);
    StrCp (t, CC(a.Get ()?"y":"n"));   App.CfgPut (CC("DlgFL_all"),  t);
    Gui.DlgSave (this, "DlgFL");
 }

@@ -357,27 +357,12 @@ void PCheetah::Upd (QString upd)
       l.SetBg (poz ? CScl [1][0]     : Color ("bg"));
       l.Set (s);
    }
-   if (! StrCm (u, "bars"))  { CtlLabl l (ui->bars);  l.Set (Up.bars);}
-   if (! StrCm (u, "tmpo"))  { CtlLabl l (ui->tmpo);  l.Set (Up.tmpo);}
-   if (! StrCm (u, "tsig"))  { CtlLabl l (ui->tSig);  l.Set (Up.tsig);}
+   if (! StrCm (u, "bars"))  { CtlLabl l (ui->bars);   l.Set (Up.bars);}
+   if (! StrCm (u, "tmpo"))  { CtlLabl l (ui->tmpo);   l.Set (Up.tmpo);}
+   if (! StrCm (u, "tsig"))  { CtlLabl l (ui->tSig);   l.Set (Up.tsig);}
+   if (! StrCm (u, "lyr"))   { CtlLabl l (ui->lyr );   l.Set (Up.lyr );}
    if (! StrCm (u, "tbPoz"))  _tb.Set (14, Up.uPoz ? 1 : 0);
    if (! StrCm (u, "tbLrn"))  _tb.Set (9,  PLAY ? 1 : (PRAC ? 2 : 0));
-   if (! StrCm (u, "lyr")) {
-     CtlText t (ui->lyr);
-     QColor  fg = t.Fg (), hi = t.Hi ();
-      t.Clr ();
-      if (! Up.lyrHiE)  {t.SetFg (fg);   t.Add (Up.lyr);}
-      else {
-        ubyte b = Up.lyrHiB, e = Up.lyrHiE;
-        TStr  s;
-         StrCp (s, Up.lyr);
-//TRC("lyr='`s' b=`d e=`d", Up.lyr, Up.lyrHiB, Up.lyrHiE);
-         if (b)  {s [b] = '\0';     t.SetFg (fg);   t.Add (s);}
-         StrCp (s, & Up.lyr [b]);   s [e-b] = '\0';
-                                    t.SetFg (hi);   t.Add (s);
-         StrCp (s, & Up.lyr [e]);   t.SetFg (fg);   t.Add (s);
-      }
-   }
 
    if (! StrCm (u, "trk")) {
      char *rp [32];
@@ -412,11 +397,11 @@ void PCheetah::keyPressEvent (QKeyEvent *e)
   ubyte i;
   key   k;
   TStr  s;
-DBG("keyPressEvent raw mod=`d key=`d", e->modifiers (), e->key ());
+//DBG("keyPressEvent raw mod=`d key=`d", e->modifiers (), e->key ());
    if (! (k = km.Map (e->modifiers (), e->key ())))  return;
 
    StrCp (s, km.Str (k));
-DBG("   keystr='`s'", s);
+//DBG("   keystr='`s'", s);
    for (i = 0;  i < NUCmd;  i++)  if (! StrCm (s, UCmd [i].ky))  break;
    if      (i < NUCmd)               Upd (UCmd [i].cmd);
    else if (! StrCm (s, "d"))    emit sgCmd ("dump");
@@ -437,12 +422,12 @@ DBG("dark/light done");
 
 
 void PCheetah::SetPix ()               // all dem bitmaps
-{  Up.bug  = new QPixmap (":/note/bug");
-   Up.cue  = new QPixmap (":/note/cue");
-   Up.dot  = new QPixmap (":/note/dot");
-   Up.fade = new QPixmap (":/note/fade");
-   Up.now  = new QPixmap (":/note/now");
-   Up.oct  = new QPixmap (":/note/oct");
+{  Up.bug     = new QPixmap (":/note/bug");
+   Up.cue     = new QPixmap (":/note/cue");
+   Up.dot     = new QPixmap (":/note/dot");
+   Up.fade    = new QPixmap (":/note/fade");
+   Up.now     = new QPixmap (":/note/now");
+   Up.oct     = new QPixmap (":/note/oct");
    Up.bg  [0] = new QPixmap (":/note/bg");
    Up.bg  [1] = new QPixmap (":/note/bg_d");
    Up.bg2 [0] = new QPixmap (":/note/bg2");
@@ -618,18 +603,18 @@ TRC(" tr,nt control init");
    _nt->Init (ui->nt->width (), ui->nt->height ());
 
 TRC(" dlg init");
-   _dFL   = new DlgFL   (this);     _dFL->Init ();
-   _dCfg  = new DlgCfg  (this);    _dCfg->Init ();
-   _dTDr  = new DlgTDr  (this);    _dTDr->Init ();
-   _dCue  = new DlgCue  (this);    _dCue->Init ();
-   _dChd  = new DlgChd  (this);    _dChd->Init ();
-   _dCtl  = new DlgCtl  (this);    _dCtl->Init ();
-   _dTpo  = new DlgTpo  (this);    _dTpo->Init ();
-   _dTSg  = new DlgTSg  (this);    _dTSg->Init ();
-   _dKSg  = new DlgKSg  (this);    _dKSg->Init ();
-   _dQua  = new DlgQua  (this);    _dQua->Init ();
-   _dMov  = new DlgMov  (this);    _dMov->Init ();
-   _dHlp  = new DlgHlp  (this);    _dHlp->Init ();
+   _dFL   = new DlgFL  (this);    _dFL->Init ();
+   _dCfg  = new DlgCfg (this);   _dCfg->Init ();
+   _dTDr  = new DlgTDr (this);   _dTDr->Init ();
+   _dCue  = new DlgCue (this);   _dCue->Init ();
+   _dChd  = new DlgChd (this);   _dChd->Init ();
+   _dCtl  = new DlgCtl (this);   _dCtl->Init ();
+   _dTpo  = new DlgTpo (this);   _dTpo->Init ();
+   _dTSg  = new DlgTSg (this);   _dTSg->Init ();
+   _dKSg  = new DlgKSg (this);   _dKSg->Init ();
+   _dQua  = new DlgQua (this);   _dQua->Init ();
+   _dMov  = new DlgMov (this);   _dMov->Init ();
+   _dHlp  = new DlgHlp (this);   _dHlp->Init ();
    connect (_dCfg, & DlgCfg::sgCmd, this, [this](char *s)  {emit sgCmd (s);});
    connect (_dTDr, & DlgTDr::sgCmd, this, [this](char *s)  {emit sgCmd (s);});
    connect (_dCue, & DlgCue::sgCmd, this, [this](char *s)  {emit sgCmd (s);});
@@ -640,7 +625,7 @@ TRC(" dlg init");
    connect (_dQua, & DlgQua::sgCmd, this, [this](char *s)  {emit sgCmd (s);});
    connect (_dCtl, & DlgCtl::sgCmd, this, [this](char *s)  {emit sgCmd (s);});
    connect (_dFL,  & QDialog::accepted, this, & PCheetah::LoadGo);
-   connect (_dFL,  & QDialog::rejected, this, & PCheetah::Quit);
+   connect (_dFL,  & QDialog::rejected, this, & PCheetah::LoadGo);
    connect (_dMov, & QDialog::accepted, this, [this]() {emit sgCmd ("mov");});
 
 // parse cmdline arg:  try to load song in dir or turn fn into song to do
@@ -657,13 +642,9 @@ TRC("Init end");
 
 void PCheetah::Quit ()
 {
-TRC("Quit");
-   if (_s != nullptr) {
-TRC("  emit quit");
-      emit sgCmd (CC("quit"));
-   }
+TRC("Quit bgn");
+   if (_s != nullptr)  emit sgCmd (CC("quit"));
    if (_dMov != nullptr) {
-TRC("  win,dlg save");
       Gui.WinSave (ui->spl);
       _dFL->Quit ();    _dCfg->Quit ();   _dTDr->Quit ();
       _dCue->Quit ();   _dChd->Quit ();   _dCtl->Quit ();
@@ -675,15 +656,10 @@ TRC("  win,dlg save");
       delete _dQua;   delete _dMov;   delete _dHlp;
    }
    if (_s != nullptr) {
-TRC("  thrEnd bgn");
       while (! Bye)  usleep (5);
-TRC("  thrEnd bye was set");
       _thrSong.quit ();
-TRC("  thrEnd a");
       _thrSong.wait ();
-TRC("  thrEnd bgn");
    }
-TRC("  kick=`s", Kick);
    if (*Kick)  App.Spinoff (Kick);
 TRC("Quit end");
 }

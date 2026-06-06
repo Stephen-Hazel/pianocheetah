@@ -102,75 +102,93 @@ void Song::PutTs (ubyte n, ubyte d, ubyte sb)
 
 
 void Song::PutLy ()
-// terrible code alert :(
-// b is hilite start pos.  e is hilite OFF pos (not len)
-{ ubyt4 ne, pos, p, b, e, pp, ps, ln, lc;
-  char  buf [1000], *pc, nl = 0;
-  bool  got = false;
-   *Up.lyr = '\0';   Up.lyrHiB = Up.lyrHiE = 0;
+// _f.lyr => Up.lyr for gui.  annoyingly tricky!
+{ bool spl, gotHL;
+  ubyt4  pHL, p, ne, ps, ln, lc;
+  char *pc, nl = 0;
+  BStr  buf;
+  TStr  bb, be, ts;
+   *Up.lyr = '\0';
    if (*Up.hey)  {StrCp (Up.lyr, Up.hey);   *Up.hey = '\0';
-                  emit sgUpd ("lyr");   return;}
-// ain't got none so bail
-   if (! (ne = _f.lyr.Ln))  return;
+                  emit sgUpd ("lyr");   return;}      // gotta Hey override :/
 
-// _pLyr is NEXT pos to check so we're actually AT the previous spot
-   if ((pos = _pLyr))  {pos--;   got = true;}
-//DBG("PutLy _hLyr=`d _pLyr=`d pos=`d ne=`d got=`b _now=`d",
-//_hLyr, _pLyr, pos, ne, got, _now);
-//for (ubyt4 i = 0;  i < _f.lyr.Ln;  i++) DBG(" `d: `d '`s'",
-//i, _f.lyr [i].time, _f.lyr [i].s);
-   if (_hLyr > 1) {                    // stanzaz ta do...
-      if      (! got)                  // nothin
-         {b = e = 0;   *buf = '\0';   p = 0;   got = true;}
-      else if (_f.lyr [pos].s [0] == '/')   // pos starts w /
-         {b = 0;   StrCp (buf, & _f.lyr [pos].s [1]);   e = StrLn (buf);
-          p = pos+1;   got = true;}
-      else {                           // from prv pos back to 0 look for /
-         for (got = false, p = pos;  p;) {
-            p--;                                                   // got /
-            if (StrCh (_f.lyr [p].s, '/'))  {got = true;   break;}
-         }
-         if (p < ne)
-             {pc = got ? (StrCh (_f.lyr [p].s, '/')+1) : _f.lyr [p].s;
-              StrCp (buf, pc);}
-         else *buf = '\0';
-         b = e = 0;   p++;   got = false;
+   if (! (ne = _f.lyr.Ln))  return;    // ain't got none so bail
+
+   StrCp (bb, "<span style='font-size: 14pt; font-weight: bold'>");
+   StrCp (be, "</span>");
+
+// _pLyr is NEXT pos to check so we're actually hiliting the prev spot
+   if ((pHL = _pLyr))  pHL -= 2;
+   for (pc = _f.lyr [pHL+1].s;  *pc;  pc++) // if nonempty, back to just -1
+      if ((*pc != '/') && (*pc != ' '))  {pHL++;  break;}
+
+//TStr t;
+//DBG("PutLy hLyr=`d pLyr=`d/`d pHL=`d now=`s",
+//_hLyr, _pLyr, ne, pHL, TmSt (t, _now));
+//for (ubyt4 i = 0;  i < ((ne<20)?ne:20);  i++)
+//DBG(" `d `s '`s'", i, TmSt (t, _f.lyr [i].time), _f.lyr [i].s);
+   if (_hLyr > 1) {                    // 2 lines  (the usual)
+      for (spl = false, p = pHL;  p;)
+         {p--;   if (StrCh (_f.lyr [p].s, '/'))  {spl = true;   break;}}
+      if (p < ne) {
+         pc = spl ? (StrCh (_f.lyr [p].s, '/')+1)     // split at /
+                  :         _f.lyr [p].s;             // use whole str
+         if (pHL == p)  StrFmt (buf, "`s`s`s", bb, pc, be);
+         else           StrCp  (buf, pc);
       }
+      else
+         *buf = '\0';               // at end past em all
+      p++;   gotHL = false;
+//DBG("init buf='`s' p=`d gotHL=`b", buf, p, gotHL);
+
+   // ok step thru lyr gettin our 2 lines
       for (;  p < ne;  p++) {
-//DBG(" a b=`d e=`d buf='`s' got=`b p=`d pos=`d", b, e, buf, got, p, pos);
-         if ((! got) && (p == pos)) {
-            b = StrLn (buf);   StrAp (buf, _f.lyr [p].s);
-            e = StrLn (buf);   got = true;
-         }
+//DBG(" a buf='`s' p=`d gotHL=`b pHL=`d", buf, p, gotHL, pHL);
+         if (p == pHL) {               // HERE is the hilite
+            StrAp (buf, bb);   StrAp (buf, _f.lyr [p].s);
+            StrAp (buf, be);
+         }                                  // keep buildin them 2 lines
          else                  StrAp (buf, _f.lyr [p].s);
-//DBG(" b b=`d e=`d buf='`s'", b, e, buf);
-         while ((pc = StrCh (buf, '/'))) {
+//DBG(" b buf='`s'", buf);
+
+      // turn / into <br> n see if we're done
+         pc = buf;
+         while ((pc = StrCh (pc, '/'))) {
+            if ((pc > buf) && (*(pc-1) == '<'))
+               {pc++;   continue;}     // got </ - ignore html :/
+
             if (++nl == 2)  {*pc = '\0';   p = ne;   break;}    // DONE !!
-            *pc = '\n';
+
+            StrCp (pc+3, pc);   MemCp (pc, CC("<br>"), 4);      // / => <br>
          }
       }
-//DBG(" c b=`d e=`d buf='`s'", b, e, buf);
-      StrCp (Up.lyr, buf);   Up.lyrHiB = b;   Up.lyrHiE = e;
+//DBG(" lyr='`s'", buf);
+      StrCp (Up.lyr, buf);
       emit sgUpd ("lyr");
       return;
-   }
-
-   StrCp (buf, CC("                    ")); // 20 spaces
-   for (ps = pos, pp = 20;  ps && pp;) {    // copy 20 prev chars
+   }                                   // only 1 line
+   StrCp (buf, CC("                    "));      // 20 spaces (n \0)
+   for (ps = pHL, p = 20;  ps && p;) { // copy 20 prev chars
       ps--;
       lc = ln = StrLn (_f.lyr [ps].s);
-      if (lc > pp)  lc = pp;
-      MemCp (& buf [pp-lc], & _f.lyr [ps].s [ln-lc], lc);
-      pp -= lc;
-   }                                        // copy next 80 chars
-   for (ps = pos, pp = 20;  (ps < ne) && (pp < 100);  ps++) {
+      if (lc > p)  lc = p;
+      MemCp (& buf [p-lc], & _f.lyr [ps].s [ln-lc], lc);
+      p -= lc;
+   }                                   // copy next 80 chars
+   for (ps = pHL, p = 20;  (ps < ne) && (p < 100);  ps++) {
       lc = StrLn (_f.lyr [ps].s);
-      if (lc > (100-pp))  lc = (100-pp);
-      MemCp (& buf [pp], _f.lyr [ps].s, lc);
-      buf [pp += lc] = '\0';
+      if (lc > (100-p))  lc = (100-p);
+      MemCp (& buf [p], _f.lyr [ps].s, lc);
+      buf [p += lc] = '\0';
    }
-   StrCp (Up.lyr, buf);
-   Up.lyrHiB = 20;   Up.lyrHiE = 20 + StrLn (_f.lyr [pos].s);
+
+   ln = StrLn (_f.lyr [pHL].s);
+   MemCp (Up.lyr, buf, 20);   Up.lyr [20] = '\0';
+   StrAp (Up.lyr, bb);
+   StrAp (Up.lyr, & buf [20]);
+   StrAp (& Up.lyr [20+StrLn (bb)+ln], be);
+   StrAp (Up.lyr, & buf [20+ln]);
+//DBG(" lyr='`s'", Up.lyr);
    emit sgUpd ("lyr");
 }
 

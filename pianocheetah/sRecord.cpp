@@ -136,7 +136,6 @@ TRC("    bug ins");
 
 //______________________________________________________________________________
 bool Song::Record (MidiEv *ev)
-// filter lame ntUps due to EdCmd n looping leftovers
 { ubyte  t;
   ubyt4  p, x;
   TrkEv *e;
@@ -144,14 +143,15 @@ bool Song::Record (MidiEv *ev)
    if (_lrn.POZ)  return false;        // poz recording only happens when done
 
 TRC("Record `s", MDR(ev)?"drum":"melo");
-   if (! RCRD) {
+   if (! RCRD) {                       // doin live recording in hear mode?
       for (t = 0;  t < _f.trk.Ln;  t++) {
          if (MDR (ev))  {
-            if (   TDrm (t)  && (MCTRL (ev) || (_f.trk [t].drm == ev->ctrl)))
+            if (   TDrm (t)  && TRec (t) && (MCTRL (ev) ||
+                                             (_f.trk [t].drm == ev->ctrl)))
                                           {EvInsT (t, ev);   break;}
          }
          else {                        // melo notes can go into parallel trks
-            if ((! TDrm (t)) && TLrn (t))  EvInsT (t, ev);
+            if ((! TDrm (t)) && TRec (t))  EvInsT (t, ev);
             if (MCTRL (ev))  break;    // but ctrls just in 1st
          }
       }
@@ -162,6 +162,7 @@ TRC("Record `s", MDR(ev)?"drum":"melo");
    re = MDR (ev) ? (& _recD) : (& _recM);   // got no true "track"
    if (re->Full ())  return false;
    for (p = 0;  p < re->Ln;  p++)  if ((*re) [p].time > ev->time)  break;
+// filter lame ntUps due to EdCmd n looping leftovers
 /* if (MNTUP (ev)) {
 **    x = p;
 **    while (x && ((*re) [x-1].time == ev->time)) {

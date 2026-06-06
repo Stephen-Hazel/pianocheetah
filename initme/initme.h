@@ -11,7 +11,6 @@ extern ubyt4 Len;
 
 class Setup: public QThread {
    Q_OBJECT
-
 public:
    Setup () {start ();}
   ~Setup ()  {}

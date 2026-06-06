@@ -204,7 +204,8 @@ DBG("   dmap `d ctl=`d snd=`s", e, _drm [e].ctl, buf);
 TStr t1;
 DBG("drm shh ctl snd");
 for (t = 0; t < _drm.Ln; t++)  DBG("`d/`d `b `s `s",
-t, _drm.Ln, _drm [t].shh, MDrm2Str(t1,_drm [t].ctl), _drm [t].snd);
+t, _drm.Ln, _drm [t].shh,
+MDrm2Str(t1,_drm [t].ctl), _drm [t].snd);
 
 // tell syn it's sounds
   ubyt4 s, ns = 0;

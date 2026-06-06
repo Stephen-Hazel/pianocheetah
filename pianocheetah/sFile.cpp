@@ -245,12 +245,15 @@ TRC("  top=`d i=`d => set trk `d", t, i, t+i);
             _f.trk [t+i].vol = 127;   _f.trk [t+i].pan = 64;
             _f.trk [t+i].snd = SND_NONE;
             _f.trk [t+i].shh = false;
-            _f.trk [t+i].lrn = _f.trk [t+i].ht = '\0';
+            _f.trk [t+i].lrn = false;
+            _f.trk [t+i].rec = false;
+            _f.trk [t+i].ht  = '\0';
             _f.trk [t+i].din = _f.trk [t+i].drm;
             for (x = 0;  x < _f.mapD.Ln;  x++)
                                       if (_f.mapD [x].ctl == _f.trk [t+i].drm) {
                _f.trk [t+i].shh = _f.mapD [x].shh;
                _f.trk [t+i].lrn = _f.mapD [x].lrn;
+               _f.trk [t+i].rec = _f.mapD [x].rec;
                _f.trk [t+i].ht  = _f.mapD [x].ht;
                _f.trk [t+i].vol = _f.mapD [x].vol;
                _f.trk [t+i].pan = _f.mapD [x].pan;
@@ -304,6 +307,7 @@ TRC("   dTr=`d nD=`d", t, nD);
          _f.mapD [x].ctl = _f.trk [t+x].drm;
          _f.mapD [x].shh = _f.trk [t+x].shh;
          _f.mapD [x].lrn = _f.trk [t+x].lrn;
+         _f.mapD [x].rec = _f.trk [t+x].rec;
          _f.mapD [x].ht  = _f.trk [t+x].ht;
          _f.mapD [x].inp = _f.trk [t+x].din;
          _f.mapD [x].vol = 127;
@@ -534,12 +538,13 @@ TRC(" init _f.ev, _f.trk[].e, build _f.ctl[].s");
       if ((p = StrCh (_f.trk [t].name, '#')))
          {StrCp (_f.trk [t].etc, p);   *p = '\0';}
 
-   // set .grp,.shh,.lrn,.ht outa track mode thingy
+   // set .grp,.shh,.lrn,.rec,.ht outa track mode thingy
       StrCp (buf, st [TB_TRK].Get (t,2));                  // track mode col
       _f.trk [t].grp = (*buf    == '+') ? true : false;
       _f.trk [t].shh = (buf [1] == '#') ? true : false;
       _f.trk [t].lrn = (buf [1] == '?') ? true : false;
-      *buf = buf [StrCh (CC("#?"), buf [1]) ? 2 : 1];
+      _f.trk [t].rec = (buf [1] == '@') ? true : false;
+      *buf = buf [StrCh (CC("#?@"), buf [1]) ? 2 : 1];
       if      (CHUP (*buf) == 'L')  *buf = '3';  // ...old school
       else if (CHUP (*buf) == 'R')  *buf = '4';
       _f.trk [t].ht = *buf;
@@ -596,11 +601,13 @@ TRC(" soundbank init");
       _f.mapD [e].ctl = _f.mapD [e].inp = MDrm (st [TB_DRM].Get (e, 0));
       _f.mapD [e].snd = SND_NONE;   _f.mapD [e].vol = 127;
                                     _f.mapD [e].pan = 64;
-      _f.mapD [e].shh = _f.mapD [e].lrn = false;   _f.mapD [e].ht = '\0';
+      _f.mapD [e].shh = _f.mapD [e].lrn = _f.mapD [e].rec = false;
+      _f.mapD [e].ht = '\0';
    // ok overwrote w drummap
       StrCp (buf, st [TB_DRM].Get (e, 4));
       if      (*buf == '#')  _f.mapD [e].shh = true;
       else if (*buf == '?')  _f.mapD [e].lrn = true;
+      else if (*buf == '@')  _f.mapD [e].rec = true;
       StrCp (buf, st [TB_DRM].Get (e, 5));
       if (*buf != '.')       _f.mapD [e].ht  = *buf;
       StrCp (buf, st [TB_DRM].Get (e, 6));
@@ -622,9 +629,9 @@ TRC(" soundbank init");
 TStr t1, t2;
 TRC("syn=`b", (syn<MAX_DEV)?true:false);
 TRC("mapD shh lrn ht inp ctl vol pan snd");
-for (t = 0; t < _f.mapD.Ln; t++)  TRC("`d/`d `b `c `c `s `s `>3d `>3d `d",
-t, _f.mapD.Ln, _f.mapD [t].shh, _f.mapD [t].lrn ? _f.mapD [t].lrn : ' ',
-                                _f.mapD [t].ht  ? _f.mapD [t].ht  : ' ',
+for (t = 0; t < _f.mapD.Ln; t++)  TRC("`d/`d `b `b `b `c `s `s `>3d `>3d `d",
+t, _f.mapD.Ln, _f.mapD [t].shh, _f.mapD [t].lrn, _f.mapD [t].rec,
+                                _f.mapD [t].ht ? _f.mapD [t].ht  : ' ',
 MDrm2Str(t2,_f.mapD [t].inp), MDrm2Str(t1,_f.mapD [t].ctl),
 _f.mapD [t].vol, _f.mapD [t].pan, _f.mapD [t].snd);
 */
@@ -717,6 +724,7 @@ DBG("fns=`s", fns);
          StrCp (s2, TDrm (t) ? CC("Drum/*") : SndName (t));
          *s3 = s3 [1] = s4 [1] = '\0';
          if (_f.trk [t].shh)  *s3 = '#';
+         if (_f.trk [t].rec)  *s3 = '@';
          if (TLrn (t))        *s3 = '?';
          *s4 = _f.trk [t].ht;
          f.Put (StrFmt (s, "`s  `s  `c`s`s  `s`s\n",
@@ -733,7 +741,8 @@ DBG("fns=`s", fns);
             (_f.mapD [d].snd == SND_NONE) ? "." :
               Up.dvt [Up.dev [_f.trk [dt].dev].dvt].Snd (_f.mapD [d].snd)->name,
             _f.mapD [d].vol, _f.mapD [d].pan,
-            _f.mapD [d].shh ? '#' : (_f.mapD [d].lrn ? '?' : '.'),
+            _f.mapD [d].shh ? '#' : (_f.mapD [d].lrn ? '?' :
+                                    (_f.mapD [d].rec ? '@' : '.')),
             _f.mapD [d].ht  ? _f.mapD [d].ht : '.',
             MDrm2Str (s2,     _f.mapD [d].inp)
          ));

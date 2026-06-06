@@ -158,6 +158,7 @@ void Song::Trk2Ev (ubyte tr, ubyt2 res, ubyt4 l)
   ubyte c, tc, minr, flat, regParm [256*16][5], chopln;
   sbyte num;
   ubyt2 chan;
+  static ubyt4 pLyrTm = 0;
 TRC("{ Trk2Ev tr=`d res=`d trPos=`d trLen=`d", tr, res, MidP, l);
 // remember track name and which kind of name it was (to pick best one)
    trknm [0] = '\0';   ptrknm = 0;
@@ -201,7 +202,9 @@ TRC("{ Trk2Ev tr=`d res=`d trPos=`d trLen=`d", tr, res, MidP, l);
                if (Ly.Full ())   break;     // got room?
                lp = Ly.Ins ();         // starts w our flags?  esc w _
                if (StrCh (CC("!?*"), *s))  {StrCp (& s [1], s);  *s = '_';}
+               if (time && (time == pLyrTm))  time++;      // SHOISH
                Ly [lp].time = time;   StrCp (Ly [lp].s, s);
+               pLyrTm = time;
                break;
             case 6:   //...MARKER text event (put it as cue - ?marker)
                hmmgot = (hmmlen > MAXTSTR) ? MAXTSTR : hmmlen;

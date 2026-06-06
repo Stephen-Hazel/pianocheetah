@@ -72,8 +72,8 @@ ubyte Song::ChkETrk ()                 // be sure eTrk is still ok
 void Song::RecWipe ()
 {  NotesOff ();
    _recM.Ln = _recD.Ln = 0;
-   if (! RCRD)  for (ubyte t = 0;  t < _f.trk.Ln;  t++)
-      if (TLrn (t))  EvDel (t, 0, _f.trk [t].ne);
+   for (ubyte t = 0;  t < _f.trk.Ln;  t++)  if (TRec (t))
+      EvDel (t, 0, _f.trk [t].ne);
    ReDo ();
 }
 
@@ -223,12 +223,14 @@ void Song::EdLrn (char ofs)            // this has gotten pretty hairy :(
       if (_lrn.POZ)  {_lrn.POZ = false;   Poz (false);}
       return;
    }
-   else if (ofs == 6) {                // flip shh (reset lrn)
+   else if (ofs == 6) {                // flip shh=>rec=>off (reset lrn)
       _f.trk [e].lrn = false;
-      _f.trk [e].shh = ! _f.trk [e].shh;
+      if      (_f.trk [e].shh) {_f.trk [e].shh = false; _f.trk [e].rec = true;}
+      else if (_f.trk [e].rec) {_f.trk [e].shh =        _f.trk [e].rec = false;}
+      else                     {_f.trk [e].shh = true;  _f.trk [e].rec = false;}
    }
    else if (ofs == 7) {                // flip lrn (force ht/oct if lrn on)
-      _f.trk [e].shh = false;
+      _f.trk [e].shh = _f.trk [e].rec = false;   // reset shh,rec
       if ((_f.trk [e].lrn = ! _f.trk [e].lrn)) {
          if (TDrm (e))  _f.trk [e].ht = '\0';
          else {

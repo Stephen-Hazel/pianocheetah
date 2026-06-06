@@ -540,6 +540,7 @@ void Song::TrkSplt ()
    _f.trk [t2].grp = true;
    _f.trk [t2].shh = false;
    _f.trk [t2].lrn = true;
+   _f.trk [t2].rec = false;
    _f.trk [t2].ht  = '3';
    _f.trk [t2].dev = _f.trk [t].dev;   _f.trk [t2].chn = _f.trk [t].chn;
    _f.trk [t2].snd = _f.trk [t].snd;   _f.trk [t2].drm = _f.trk [t].drm;
@@ -601,6 +602,7 @@ TRC("TrkIns t=`d/`d nm=`s sn=`s", t, _f.trk.Ln, name?name:"", snd?snd:"");
       _f.trk [t].vol = _f.trk [t+1].vol;   _f.trk [t].pan = _f.trk [t+1].pan;
       _f.trk [t].grp = _f.trk [t+1].grp;   _f.trk [t+1].grp = true;
       _f.trk [t].shh = _f.trk [t+1].shh;   _f.trk [t].lrn = _f.trk [t+1].lrn;
+                                           _f.trk [t].rec = _f.trk [t+1].rec;
       _f.trk [t].ht  = _f.trk [t+1].ht;
    }
    ReTrk ();

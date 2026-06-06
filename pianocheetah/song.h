@@ -89,7 +89,6 @@ struct PagDef  {ColDef *col;   ubyt4 nCol;   ubyt2 w, h;};
 //______________________________________________________________________________
 class Song: public QObject {
    Q_OBJECT
-
 public:
    Song ()                             // prep for 1st Wipe()
    {  _ed = 0;   *_f.fn = '\0';   _f.ev = nullptr;   _nt = nullptr;
@@ -225,7 +224,7 @@ private:
          ShowAll (), HType  (char c);
 
 // sReDo.cpp
-   bool  TSho (ubyte t), TLrn (ubyte t), TDrm (ubyte t);
+   bool  TSho (ubyte t), TLrn (ubyte t), TRec (ubyte t), TDrm (ubyte t);
    void  ReTrk  ();                    // give gui _trk info ta draw
    ubyt4 ReEv   (bool tpo = false);    // redo _tpo,_tSg,_kSg,_tEnd,etccccc
    void  BarH   (ubyt2 *h, ubyte *sb, ubyt2 b);

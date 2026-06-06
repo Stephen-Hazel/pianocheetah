@@ -50,13 +50,13 @@ struct DownRow {ubyt4 time, msec;  ubyt2 tmpo;  char clip;
 struct TrkNt   {ubyt4 dn, up, tm, te;   ubyte nt;   bool ov;};
 
 // drum map cache - use: into drumCon, outa drumExp (Load,Save) n temp in SetBnk
-struct MapDRow {ubyte ctl, inp, vol, pan;   ubyt4 snd;   bool shh, lrn;
+struct MapDRow {ubyte ctl, inp, vol, pan;   ubyt4 snd;   bool shh, rec, lrn;
                                                          char ht;};
 
 //______________________________________________________________________________
 struct TrkRow  {ubyte  dev, chn,   din, drm,   vol, pan;
-                bool   grp, shh;       // these 2^ JUST for syn drum chans
-                char   lrn, ht;
+                bool   grp, lrn, shh, rec;  // these 2^ JUST for syn drum chans
+                char   ht;
                 TStr   name, etc;
                 ubyt4  snd;
                 TrkEv *e;
@@ -145,7 +145,6 @@ struct UpdLst {                        // dlg val passin, etc, etc
    bool  uPoz;                         // user said poz, not just learn mode
    char  lrn;
    TStr  hey, ttl, song, time, bars, tmpo, tsig, lyr;
-   ubyte lyrHiB, lyrHiE;
    Arr<DevTyp,MAX_DEV>  dvt;           // for showin gui
    Arr<DevRow,MAX_DEV>  dev;
    Arr<UTrkRow,MAX_TRK> trk;

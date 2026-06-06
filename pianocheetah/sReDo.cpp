@@ -4,10 +4,11 @@
 
 
 bool Song::TDrm (ubyte t)  {return (_f.trk [t].chn == 9) ? true:false;}
-bool Song::TLrn (ubyte t)  {return _f.trk [t].lrn        ? true:false;}
-bool Song::TSho (ubyte t)  {return (TLrn (t) ||
-                                    ((! SHRCRD) && (_f.trk [t].ht == 'S')))
-                                                         ? true:false;}
+bool Song::TLrn (ubyte t)  {return  _f.trk [t].lrn;}
+bool Song::TRec (ubyte t)  {return  _f.trk [t].rec;}
+bool Song::TSho (ubyte t)  {return (TLrn (t) || ((! SHRCRD) &&
+                                                 (_f.trk [t].ht == 'S')))
+                                   ? true:false;}
 void Song::ReTrk ()
 // give gui what it needs in Up.trk
 { ubyte r, nn, nc;
@@ -22,8 +23,11 @@ void Song::ReTrk ()
       Up.trk.Ins (r);
       Up.trk [r].dvt = Up.dev [_f.trk [r].dev].dvt;
       Up.trk [r].drm = TDrm (r);
-      StrCp (Up.trk [r].lrn, _f.trk [r].shh ? CC("mute")
-                          : (_f.trk [r].lrn ? CC("lrn") : CC("")));
+      *s = '\0';
+      if      (_f.trk [r].shh)  StrCp (s, "mute");
+      else if (_f.trk [r].lrn)  StrCp (s, "lrn");
+      else if (_f.trk [r].rec)  StrCp (s, "rec");
+      StrCp (Up.trk [r].lrn, s);
       *s = _f.trk [r].ht;   s [1] = '\0';
       if (_f.trk [r].lrn)
          {if (! ((*s >= '1') && (*s <= '7')))  *s = '\0';}

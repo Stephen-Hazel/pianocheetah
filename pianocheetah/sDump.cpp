@@ -118,7 +118,7 @@ DBG("DUMP");
        "        p shh lrn ht drm");
    for (t = 0; t < _f.trk.Ln; t++)
       DBG("`>3d `s`<15s "
-           "`>3d `>3d `>8d `08x `>8d `>8d `>8d `>8d `b   `b   `c  `02x",
+           "`>3d `>3d `>8d `08x `>8d `>8d `>8d `>8d `b   `b   `b   `c  `02x",
          t,
          _f.trk [t].grp?"+":".",
          _f.trk [t].name,
@@ -132,6 +132,7 @@ DBG("DUMP");
          _f.trk [t].p,
          _f.trk [t].shh,
          _f.trk [t].lrn,
+         _f.trk [t].rec,
          _f.trk [t].ht ?_f.trk [t].ht :' ',
          _f.trk [t].drm
       );
@@ -165,10 +166,11 @@ DBG("DUMP");
          _f.kSg [s].min,
          _f.kSg [s].flt
       );
-   DBG("mapD shh ht inp ctl vol pan snd");
+   DBG("mapD shh lrn rec ht inp ctl vol pan snd");
    for (t = 0;  t < _mapD.Ln;  t++)
       DBG("`>3d `b `c `s `s `>3d `>3d `d",
-         t, _mapD [t].shh, _mapD [t].ht ? _mapD [t].ht : ' ',
+         t, _mapD [t].shh, _mapD [t].lrn, _mapD [t].rec,
+         _mapD [t].ht ? _mapD [t].ht : ' ',
          MDrm2Str(t2,_mapD [t].inp), MDrm2Str(t1,_mapD [t].ctl),
          _mapD [t].vol, _mapD [t].pan, _mapD [t].snd);
    for (t = 0;  t < _dvt.Ln;  t++)  {DBG("dvt=`02d...", t);   _dvt [t].Dump ();}
