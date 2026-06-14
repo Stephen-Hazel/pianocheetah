@@ -1,3 +1,8 @@
+2026Jun
+   lyrics are hilighted way better
+   found a graphic designer (2nd time) so we'll seee
+
+
 2026Apr
    syn uses pipewire now!  audio shared and midicfg doesn't need to set syn.
 
@@ -2558,7 +2563,7 @@ Takes a while to learn Qt and rewrite
    Dove into the Mac - I didn't want to be a clone...
    got some midi interface code started
    got to the point of debugging a REALLY early start on a sequencer
-   totally GAVE UP and committed myself to CLONEZ.
+   totally GAVE UP and committed myself to CLONEZ.  (windows)
 
 
 1989-94???

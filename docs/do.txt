@@ -13,35 +13,39 @@ play, study magic singable dumb songs, pick out riffs, make a SONG
 try to find all the good rush sounds
 
 controller via joystick
+videos
+   songs playin
+   keyCmd
+   hook up a track volume
+   docs=>videos
 
 
 code____________________________________________________________________________
 
+let's just do case in os.cpp File
+fix /tabl/ into /ctlname/
+
 _trk [].rec - test it - do they rec n play right?
 
-RELEASE EET  pianocheetah.tar.gz properly
+install - stuck in a loop - how tho...
 
-dbg lyr
-   test w single line lyr song - what is one...
+pianocheetah.tar.gz properly
 
-dragNdrop for track table, FLst table, n midicfg tables
+RELEASE EET
 
-bugs w move to LH
+bugs w move to LH (can't do drums yet)
 
-keycmd doesn't show on control list
-
-in track tooltip, show note range, and control list
-
-hook up a track volume
+track ttips - dif per col - show note range, and control list
+   take drum/ outa sngrp, inst,kit in tip
+   really squish track display (tooltip everything - esp sounds)
 
 trills goin up down up don't show well
    need to detect trills versus sloppy chords (play trill vs one chord note)
-   always anchor trill on thumb - pinky trill ain't fun
-   show trills as small connected dots?
-      somehow so they don't overlap when going 1 2 1 2 1
-   make BEAT variable h?  (not just bar)
+   always anchor trill on thumb - pinky trills ain't fun
+   show trills better so no overlap - as small connected dots?
+
+make BEAT variable h?  (not just bar)
    queue/hmmm/etc/MichelLegrand_BriansSong
-test notes HARD
    get that note match "text report" into dbg
       to notice places to make things better
    to zanarkand
@@ -59,15 +63,12 @@ test notes HARD
          16 and 20 lh match, rh diff
          at least a resync so 13 and 17 start at the same place
 
-test out syn's envelopes harder - esp chorus-y things
+dragdrop for midicfg, track, FLst
 
-install shouldn't let you get stuck in a loop :(  dbg
+test out syn's envelopes harder - esp chorus-y things
 
 when sounds are wrecked cuz a device is off,
    can it fallback to syn? once avail?
-
-
-really squish track display (tooltip everything - esp sounds)
 
 
 spec____________________________________________________________________________
