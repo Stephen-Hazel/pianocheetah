@@ -339,12 +339,12 @@ DBG("Init");
       "_input device\0"
       "_type\0"
       "driver description\0",
-      TPop);
+      "", TPop);
    _to.Init  (ui->tblO,
       "_output device\0"
       "_type\0"
       "driver description\0",
-      TPop);
+      "", TPop);
    connect (ui->tblI, & QTableWidget::itemChanged, this, & MidiCfg::Updt);
    connect (ui->tblO, & QTableWidget::itemChanged, this, & MidiCfg::Updt);
    connect (ui->tblO, & QTableWidget::itemClicked, this, & MidiCfg::TestO);

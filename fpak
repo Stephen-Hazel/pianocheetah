@@ -5,7 +5,6 @@
    "runtime": "org.kde.Platform",
    "runtime-version":          "6.10",
    "finish-args": [
-      "--filesystem=host",
       "--filesystem=xdg-run/pipewire-0",
       "--share=ipc",
       "--share=network",

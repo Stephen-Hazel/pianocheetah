@@ -1,26 +1,25 @@
 <RCC>
     <qresource prefix="/">
         <file>app.svg</file>
-        <file>app_d.svg</file>
-        <file>tabl/lrn.svg</file>
-        <file>tabl/mute.svg</file>
-        <file>tabl/rec.svg</file>
-        <file>tabl/S.svg</file>
-        <file>tabl/1.svg</file>
-        <file>tabl/2.svg</file>
-        <file>tabl/3.svg</file>
-        <file>tabl/4.svg</file>
-        <file>tabl/5.svg</file>
-        <file>tabl/6.svg</file>
-        <file>tabl/7.svg</file>
-        <file>tabl/S_d.svg</file>
-        <file>tabl/1_d.svg</file>
-        <file>tabl/2_d.svg</file>
-        <file>tabl/3_d.svg</file>
-        <file>tabl/4_d.svg</file>
-        <file>tabl/5_d.svg</file>
-        <file>tabl/6_d.svg</file>
-        <file>tabl/7_d.svg</file>
+        <file>trak/lrn.svg</file>
+        <file>trak/mute.svg</file>
+        <file>trak/rec.svg</file>
+        <file>trak/S.svg</file>
+        <file>trak/1.svg</file>
+        <file>trak/2.svg</file>
+        <file>trak/3.svg</file>
+        <file>trak/4.svg</file>
+        <file>trak/5.svg</file>
+        <file>trak/6.svg</file>
+        <file>trak/7.svg</file>
+        <file>trak/S_d.svg</file>
+        <file>trak/1_d.svg</file>
+        <file>trak/2_d.svg</file>
+        <file>trak/3_d.svg</file>
+        <file>trak/4_d.svg</file>
+        <file>trak/5_d.svg</file>
+        <file>trak/6_d.svg</file>
+        <file>trak/7_d.svg</file>
         <file>note/bug.png</file>
         <file>note/cue.png</file>
         <file>note/dot.png</file>

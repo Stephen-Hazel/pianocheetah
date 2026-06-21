@@ -258,7 +258,7 @@ void DlgCtl::Init ()
    while (i < NMCC)  ZZApS (MLst, MCC [i++].s);
 
    Gui.DlgLoad (this, "DlgCtl");
-   _t.Init (ui->t, "Device\0DeviceControl\0_SongControl\0Show?\0", CtlPop);
+   _t.Init (ui->t, "Device\0DeviceControl\0_SongControl\0Show?\0", "", CtlPop);
    connect (ui->t, & QTableWidget::itemClicked, this, & DlgCtl::Upd);
 }
 
@@ -776,7 +776,7 @@ void DlgFL::Init ()
    connect (tb.Act (6), & QAction::triggered,  this, & DlgFL::Mod2Song);
    connect (tb.Act (7), & QAction::triggered,  this, & DlgFL::Brow);
 
-   _t.Init (ui->fLst, "Stage\0Song\0", nullptr, "single", "row", 'w');
+   _t.Init (ui->fLst, "Stage\0Song\0", "", nullptr, "single", "row", 'w');
    connect (ui->fLst, &QTableWidget::itemClicked,       this, & DlgFL::Pik);
    connect (ui->fLst, &QTableWidget::itemDoubleClicked, this, & DlgFL::Shut);
    _t.SetColWrapOK (1);
@@ -992,7 +992,7 @@ void DlgTDr::Init ()
    StrAp  (fn,           CC("fill"), 4);
    sa.GetDir (fn, 'f', 1024, 'x');   sa.SetZZ (b);
    ZZAp (FLst, CC("(off)\0"));               ZZAp (FLst, b);
-   _t.Init (ui->t, "Section\0_PatA\0_PatB\0_Fill\0", TDrPop);
+   _t.Init (ui->t, "Section\0_PatA\0_PatB\0_Fill\0", "", TDrPop);
    connect (ui->t, & QTableWidget::itemChanged, this, & DlgTDr::Cmd);
 }
 

@@ -1,6 +1,8 @@
 2026Jun
    lyrics are hilighted way better
    found a graphic designer (2nd time) so we'll seee
+   linux CAN do case sensitive ext4 :O
+   CtlTabl uses _rc now
 
 
 2026Apr

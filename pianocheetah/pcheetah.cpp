@@ -78,11 +78,10 @@ static char *UCmdS (const char *cmd)   // return tooltip as "desc  [key note]"
 }
 
 void PCheetah::Trak ()
-{ QTableWidget *t = ui->tr;
-  QSplitter *sp   = ui->spl;
-  QList<int> sz   = sp->sizes ();
+{ QSplitter *sp = ui->spl;
+  QList<int> sz = sp->sizes ();
   int w  = width ();
-  int wt = _tr.W ();   if (wt == 0) wt = 30;
+  int wt = _tr.W ();   if (wt == 0)  wt = 30;
 DBG("sz0=`d sz1=`d w=`d wt=`d", sz[0], sz[1], w, wt);
    if (sz [0])
         {Gui.FullSc (true);   sp->setSizes (QList<int>() << 0  <<  w    );}
@@ -579,7 +578,7 @@ TRC(" song init");
    SetTBar ();
 
 TRC(" tr,nt control init");
-   _tr.Init (ui->tr,
+   _tr.Init (ui->tr, "trak",
       "+Lrn\0"
      "*_Hand\0"
       "_Track\0"
@@ -670,7 +669,7 @@ int main (int argc, char *argv [])
   QApplication app (argc, argv);
   PCheetah     win;
    App.Init ();                        //TODO scrsaver off.  limit one instance?
-   Gui.Init (& app, & win, "PianoCheetah", 'd');   win.Init ();   RandInit ();
+   Gui.Init (& app, & win, "PianoCheetah");   win.Init ();   RandInit ();
    qRegisterMetaType<ubyte>("ubyte");
    qRegisterMetaType<sbyt2>("sbyt2");
    qRegisterMetaType<Qt::MouseButton >("Qt::MouseButton" );

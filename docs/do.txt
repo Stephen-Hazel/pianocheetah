@@ -22,7 +22,6 @@ videos
 
 code____________________________________________________________________________
 
-let's just do case in os.cpp File
 fix /tabl/ into /ctlname/
 
 _trk [].rec - test it - do they rec n play right?
@@ -149,26 +148,13 @@ if tsig is n/d/*, show _ e & a for /4  or _ & a for /3
 pan draws weird lines off to the right on screen
 
 find cheapest - weighted keyboard to chop  (roland rd64 too spendy)
-                small keyboard - prob my akai
-                small pc
+     smallest keyboard - prob my akai
 
 solo a track?  (mute all others)
 
 Info() doesn't seem to work..
 
-wordwrap in table not workin
-
 put sounds with banks in a tooltip (strip *,bank)
-
-File::Open that's CASE INSENSITIVE
-
-pc in dark mode :(
-   icon needs white outline around main icon for stupid dark mode
-   and gotta fix all the toolbar icons etc etc
-
-master volume per device (us0)
-
-new cmd for erasing rec so you don't wreck prac songs
 
 if Hey!  device is off, it's dead forever...
 
