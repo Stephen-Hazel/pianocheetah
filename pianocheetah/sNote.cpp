@@ -51,7 +51,7 @@ i, CScl[1][i].red (), CScl[1][i].green (), CScl[1][i].blue());
 ubyte Song::DrawRec (bool all, ubyt4 pp)
 // draw rec trk notes (on top) - either all or ONly pNow-1..now
 // very similar to DrawPg, but just a rect instead of DrawSym, etc (read it 1st)
-{ ubyte nt, dnt, t, tt, dPos, c, tp;
+{ ubyte nt, dnt, t, tt, dPos, c, tp, dk = Gui.Dark () ? 1:0;
   ubyt2 nx, cx, h, x, x1, x2, y, y2, w, th = Up.txH, tpMn, tpMx, vl, v2;
   bool  drm, got;
   char  cl;
@@ -204,7 +204,8 @@ TRC("DrawRec all=`b pp=`d", all, pp);
 //TStr db1,db2,db3;
 //DBG("   a nt=`s tDn=`s tUp=`s y=`d h=`d x=`d",
 //MKey2Str(db3,nt), TmSt(db1,ev.time), TmSt(db2,tUp), y, h, x);
-                     qc = GRAY (255-((ev.valu & 0x7F) << 1));
+                     qc = dk ? GRAY (     (ev.valu & 0x7F) << 1 )
+                             : GRAY (255-((ev.valu & 0x7F) << 1));
 //                   qc = CRng [ev.valu & 0x7F];      // velo => color
                      Up.cnv.RectF (   x+5, y,   W_NT-10, h, qc);
                      if (tDn == ev.time) {            // head
@@ -259,7 +260,8 @@ TRC("DrawRec all=`b pp=`d", all, pp);
 //TStr db1,db2,db3;
 //DBG("   b nt=`s tDn=`s tUp=`s y=`d h=`d x=`d",
 //MKey2Str(db3,nt), TmSt(db1,tDn), TmSt(db2,tUp), y, h, x);
-               qc = GRAY (255 - ((e [on [nt]].valu & 0x7F) << 1));
+               qc = dk ? GRAY (       (e [on [nt]].valu & 0x7F) << 1)
+                       : GRAY (255 - ((e [on [nt]].valu & 0x7F) << 1));
                Up.cnv.RectF (   x+5, y,   W_NT-10, h, qc);
                if (tDn == e [on [nt]].time) {    // head
                   Up.cnv.RectF (x+0, y,   W_NT-0,  1, qc);
@@ -282,6 +284,7 @@ void Song::DrawSym (SymDef *s, ColDef *co)
   bool  dr;
   char  ha;
   ubyt2 mo, x, y, w, h, dx, dw, dh;
+  ubyte gr;
   TrkRow *trk;
   TrkNt  *nt;
   QColor  clr, kc;                     // main color, key color (white/black)
@@ -311,8 +314,11 @@ void Song::DrawSym (SymDef *s, ColDef *co)
             for (tc = t = 0;  t < tr;  t++)  if (TSho (t))  tc++;
             clr = CMap (tc);
             break;
-         case 1:                       // velocity
-            clr = CRng [(nt->dn == NONE) ? 64 : (trk->e [nt->dn].valu & 0x7F)];
+         case 1:                       // velocity  (try grey?)
+//          clr = CRng [(nt->dn == NONE) ? 64 : (trk->e [nt->dn].valu & 0x7F)];
+            gr  = (nt->dn == NONE) ? 64 : (trk->e [nt->dn].valu & 0x7F);
+            gr *= 2;   if (! dk)  gr = 255-gr;
+            clr = GRAY (gr);
             break;
          default:                      // scale - pitched per keysig
             key = KSig (nt->tm)->key;
@@ -856,11 +862,13 @@ TRC("DrawPg `d", pp);
          }
       }
    }
-   if (Cfg.ntCo == 1) {                // draw velocity scale?
-      w = Up.w / 128;   if (Up.w % 128)  w++;
-      for (ubyt4 c = 0;  c < 128;  c++)
-         Up.cnv.RectF ((ubyt2)(c * Up.w / 128), Up.h-6, w, 4, CRng [c]);
-   }
+/* old rainbow velo scale - naw
+** if (Cfg.ntCo == 1) {                // draw velocity scale?
+**    w = Up.w / 128;   if (Up.w % 128)  w++;
+**    for (ubyt4 c = 0;  c < 128;  c++)
+**       Up.cnv.RectF ((ubyt2)(c * Up.w / 128), Up.h-6, w, 4, CRng [c]);
+** }
+*/
    DrawRec (true, pp);
 //TRC("DrawPg end");
 }

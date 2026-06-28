@@ -24,10 +24,6 @@ videos
 
 code____________________________________________________________________________
 
-save now before goin into practice mode and restore upon hear mode
-
-try velo display with grey
-
 trills
    MichelLegrand_BriansSong
    detect actual trill vs one chord note slightly too early/late
