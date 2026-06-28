@@ -8,7 +8,7 @@
    $app = "app.pianocheetah.pianocheetah";
    $f = "flatpak";   $fb = "$f-builder";
 
-   system ("rm -fr _build .$fb");      // cleanup
+   system ("rm -fr _build .$fb");      // wipe
 
 echo "...uninstall old one\n";
    system ("$f uninstall -y $app");
@@ -27,17 +27,16 @@ echo "...uninstall old one\n";
 flatpak run --command=sh --devel --filesystem=$(pwd) app.pianocheetah.pianocheetah
 gdb /app/bin/pianocheetah
 set logging enabled on
-thread apply all backtrace
+thread apply all bt
 run        (usually gotta type y)
            (make it blow up)
 where
+thread apply all bt
 bt full\n";
       exit;
    }
 
 // source => _build => install
-   system ("mkdir _build");
-
 echo "...compilin n installin\n";
    system ("$fb --user --install _build fpak", $rc);
    if ($rc != 0)  exit;                // build error :(

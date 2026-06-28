@@ -177,6 +177,7 @@ ofs, _f.tmpo, FIX1, tt, tp);
 void Song::EdLrn (char ofs)            // this has gotten pretty hairy :(
 { ubyte e = ChkETrk (), t;
   char  c;
+  static ubyt4 nowSave = 0;
    if      (ofs == 0) {                // learn - toggle _f.lrn
       for (t = 0;  t < _f.trk.Ln;  t++)  if (TLrn (t))  break;
       if (t >= _f.trk.Ln) {
@@ -185,10 +186,10 @@ void Song::EdLrn (char ofs)            // this has gotten pretty hairy :(
                  "click track's Lrn column into a green arrow "
                  "(practice track)"));
       }
-      else {
-         if      (PLAY)  {Up.lrn = LPRAC;   SetLp ('i');}
-         else if (PRAC)   Up.lrn = LHEAR;
-         else             Up.lrn = LPLAY;
+      else {                           // preserve/restore now around LPRAC
+         if      (PLAY)  {nowSave = _now;   Up.lrn = LPRAC;   SetLp ('i');}
+         else if (PRAC)  {TmHop (nowSave);  Up.lrn = LHEAR;}
+         else                               Up.lrn = LPLAY;
       }
       if (RCRD) {
         ubyt4 i;

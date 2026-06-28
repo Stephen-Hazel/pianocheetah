@@ -238,7 +238,7 @@ void Song::SetDn (char qu)             // qu from DlgCfg quantize button ONLY
 // calc notesets by time - all ntDns across lrn tracks => _dn[]
 { ubyte t, c, d, nn, x, pf, nt, nmin, nmax, pnt, f;
   ubyt2                         nsum, ntrm, pntrm;
-  ubyt4 p, q, tpos [128], tm, ptm, dp, w;
+  ubyt4 p, p2, q, tpos [128], tm, ptm, dp, w;
   bool  got, qd [MAX_TRK], didq, fst;
   char  oc, ht, ch;
   TrkEv *e;
@@ -436,13 +436,13 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
             _dn [pmax].nt [xx [pmax].pos].nt = MKey (k);
             pdir =         xx [pmax].dir;
          // goin down if any
-            for (p = pmax;    c && (p > dp);)          if (xx [p].pos != 99) {
-               c--;  p--;              // decr loops are annoyin :/
+            for (p = pmax;    c && (p > dp);     p--)  if (xx [p].pos != 99) {
+               c--;  p2 = p-1;         // decr loops are annoyin :/
                if      (pdir == '>')  {if (pf-- == 0)  pf = 4;}
                else if (pdir == '<')  {if (pf++ == 4)  pf = 0;}
                k [1] = 'c' + pf;
-               _dn [p].nt [xx [p].pos].nt = MKey (k);
-               pdir =      xx [p].dir;
+               _dn [p2].nt [xx [p2].pos].nt = MKey (k);
+               pdir =       xx [p2].dir;
             }
          // and now regular goin up
             pf = (ht == 'L') ? 0 : 4;

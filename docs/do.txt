@@ -1,5 +1,7 @@
 play____________________________________________________________________________
 
+get good sheet music in;  play good songs;  change em to be better songs
+
 play, study magic singable dumb songs, pick out riffs, make a SONG
    yellowbrickroad
    petshopboys
@@ -22,15 +24,34 @@ videos
 
 code____________________________________________________________________________
 
-fix /tabl/ into /ctlname/
+save now before goin into practice mode and restore upon hear mode
+
+try velo display with grey
+
+trills
+   MichelLegrand_BriansSong
+   detect actual trill vs one chord note slightly too early/late
+      trills are usually single notes, sloppy chords have a set of 2
+   always anchor trill on thumb
+   show trills better somehow - connected dots?
+   before givin min REGular dur, look forward in time across the whole bar
+      not just next dn (is that what's happenin?)
+   there shouldn't be tempo ladybugs at trills only missed notes
 
 _trk [].rec - test it - do they rec n play right?
-
-install - stuck in a loop - how tho...
-
-pianocheetah.tar.gz properly
+   install - stuck in a loop - how tho...
+   pianocheetah.tar.gz properly
 
 RELEASE EET
+
+notes w velo is width at top of note?
+
+when flipping btw hear/play/prac,
+   remember hear/play "now" so prac doesn't reset it to bar 1
+
+little #s in hear mode?  so you can see ez mode a bit?
+
+mid2song - trackname still has ?RH_ in it etc
 
 bugs w move to LH (can't do drums yet)
 
@@ -38,13 +59,9 @@ track ttips - dif per col - show note range, and control list
    take drum/ outa sngrp, inst,kit in tip
    really squish track display (tooltip everything - esp sounds)
 
-trills goin up down up don't show well
-   need to detect trills versus sloppy chords (play trill vs one chord note)
-   always anchor trill on thumb - pinky trills ain't fun
-   show trills better so no overlap - as small connected dots?
+is there a better way to get in sheet music than txt2song?
 
 make BEAT variable h?  (not just bar)
-   queue/hmmm/etc/MichelLegrand_BriansSong
    get that note match "text report" into dbg
       to notice places to make things better
    to zanarkand

@@ -492,7 +492,7 @@ TRC(" tbar init");
 // tempo
    _tb.Btn (18, UCmdS ("tempo<"  ), "d");
    _tb.Btn (19, UCmdS ("tempoHop"), "d");
-   _tb.Btn (20, UCmdS ("tempo<"  ), "d");
+   _tb.Btn (20, UCmdS ("tempo>"  ), "d");
    connect (_tb.Act (18), & QAction::triggered,
                           this, [this]() {emit sgCmd ("tempo<"  );});
    connect (_tb.Act (19), & QAction::triggered,
@@ -578,13 +578,13 @@ TRC(" song init");
    SetTBar ();
 
 TRC(" tr,nt control init");
-   _tr.Init (ui->tr, "trak",
+   _tr.Init (ui->tr,
       "+Lrn\0"
      "*_Hand\0"
       "_Track\0"
       "_SnGrp\0"
       "_Sound\0"
-      "_Dev.Ch\0", TrPop, "none", "row");
+      "_Dev.Ch\0", "trak", TrPop, "none", "row");
    _tr.SetRowH (32);
 
    ui->tr->setContextMenuPolicy (Qt::CustomContextMenu);

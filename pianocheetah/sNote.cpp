@@ -349,7 +349,11 @@ void Song::DrawSym (SymDef *s, ColDef *co)
    mo = 3;                             // middle offset from x for fillin
    dh = 10;   if (h < 12)  dh = (h > 2) ? (h-2) : 2;
    if ((! SHRCRD) && s->top) {         // rounded-ish dot aligned to hand
-      ha = (trk->ht < '4') ? 'L' : 'R';
+      switch (trk->ht) {
+         case '1': case '2': case '3':            ha = 'L';   break;
+         case '4': case '5': case '6': case '7':  ha = 'R';   break;
+         default:                                 ha = 'C';
+      }
       dw = w - mo*2;
       dx = x;   if      (ha == 'R')  dx += (mo*2);
                 else if (ha != 'L')  dx +=  mo;
@@ -394,7 +398,7 @@ void Song::DrawPg (ubyt4 pp)
 TRC("DrawPg `d", pp);
 // load constant-ish stuffs
    trk = & _f.trk [0];   nTrk = _f.trk.Ln;   tw = 8;   th = Up.txH;
-   Up.cnv.RectF (0, 0, Up.w, Up.h, Color ("bg"));     // cls to white
+   Up.cnv.RectF (0, 0, Up.w, Up.h, Color ("bg"));     // cls
   QColor cbar = CBar [dk][0], csbt = CBar [dk][1], csbx = CBar [dk][2];
   ubyte midc = MKey ("4c");
 
@@ -518,10 +522,7 @@ TRC("DrawPg `d", pp);
          }
       }
    //__________________________________
-   // vert line per drum(top),ctl(base) - skip 1st ctl's line
-      for (x = co.dx, t = 0;  t < co.nDrm;  t++) {
-         x += W_NT;    Up.cnv.RectF (x-1, 0, 1, co.h, cbar);
-      }
+   // vert line per ctl - skip 1st ctl's line
       for (x = cx, t = 0;  t < _f.ctl.Ln;  t++)  if (_f.ctl [t].sho != 'n') {
          w = th;
          if (_f.ctl [t].sho == 'y') w = 32+2;
@@ -578,11 +579,8 @@ TRC("DrawPg `d", pp);
          w = th;   if (_f.ctl [t].sho == 'y')  w = 32+2;
          Up.cnv.TextV (x, 3, CtlSt (t));   x += w;
       }
-      if ((x > x1) && (c < pg [pp].nCol-1)) {
-         Up.cnv.RectF (x1, 0,    x-x1-1, 2, cbar);
-         Up.cnv.RectF (x1, co.h, x-x1-1, 2, cbar);
-      }
-
+      if (x > x1)  Up.cnv.RectF (x1, 0, x-x1-1, 2, cbar);
+                                       // ^ hline over ctl,drum labels
    //__________________________________
    // cue n chd
      ubyt2 ve = 0, ch = 0, br = 0;
@@ -682,10 +680,10 @@ TRC("DrawPg `d", pp);
          }
       }
 
-   // bar #s on top
+   // bar #s on top of cue right area
       for (p = 0;  p < co.nBlk;  p++) {
          StrFmt (str, "`d", co.blk [p].bar);
-         Up.cnv.TextC (nx+1, co.blk [p].y+3, str, cbar);
+         Up.cnv.TextC (nx-StrLn (str)*tw-3, co.blk [p].y-th/2+2, str, cbar);
       }
    //__________________________________
    // ok, dump the note symbols

@@ -217,7 +217,7 @@ TRC("PickDev tr=`d snd=`s dev=`s", tr, sndName, devName?devName:"");
          if (StrCm (ty, CC("OFF")) && (*dv != '?'))
             {StrCp (dLst [nD][0], buf);   StrCp (dLst [nD++][1], ty);}
       if (nD == 0)
-Die(CC("Ain't no MIDI output devices?\nConnect one and run MidiCfg."));
+Die (CC("Ain't no MIDI output devices?\nConnect one and run MidiCfg."));
    // if got arg dev, hop it to list's top
       if (devName)
          for (i = 0;  i < nD;  i++)  if (! StrCm (dLst [i][0], devName)) {
@@ -252,14 +252,14 @@ TRC("  i=`d/`d x=`d/2 `s.`s", i, nD, x, dLst [i][0], dLst [i][1]);
       }
       if (! cOk) {                     // NO drum devs?  just use 1st dev
          if (! MemCm (sndName, CC("Drum/"), 5))  {d = 0;   c = 9;}
-         else {                        // no dice - gotta blow...:(
-DBG("PickDev track `d sound `s - out of midi device/channels :(",
-tr+1, sndName);
-            return;
-         }
+         else                          // no dice - gotta blow...:(
+Die (StrFmt (xs, "PickDev track `d sound `s - out of midi device/channels :(",
+tr+1, sndName));
       }
       d = OpenDev (dLst [d][0]);       // HEY!  d changes to pos in Up.dev !!
-      if (d == MAX_DEV)  return;
+      if (d == MAX_DEV) {
+         return;
+      }
    }
    _f.trk [tr].dev = d;   _f.trk [tr].drm = PRG_NONE;
    _f.trk [tr].chn = c;   _f.trk [tr].snd = SND_NONE;
