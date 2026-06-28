@@ -1,8 +1,15 @@
 2026Jun
    lyrics are hilighted way better
-   found a graphic designer (2nd time) so we'll seee
+   found a graphic designer (2nd time) - I think Sophia will do great!
    linux CAN do case sensitive ext4 :O
    CtlTabl uses _rc now
+   fixed CtlTabl to fit last col into window leftover so song list doesn't
+      frickin scroll right - seems ok so far
+   got some of Sophia's first icons - transport controls look GREAT
+   claude found an infinite loop bug in SetDn for me :)  good ole claude.
+   moved old gfx outa this git
+   preserving time across practice mode so play "now" and hear "now" always
+      match as you flip learn mode
 
 
 2026Apr
