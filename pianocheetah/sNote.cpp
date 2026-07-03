@@ -1011,9 +1011,11 @@ void Song::Draw (char all)
   ColDef  co;
    if (Up.pm == nullptr)  return;
    Up.cnv.bgn (Up.pm);   Up.tcnv.bgn (Up.tpm);
-//TRC("Draw _rNow=`s np=`d _pg=`d _tr=`d all=`c",
-//TmSt(d1,_rNow), _pag.Ln, _pg, _tr, all);
+DBG("Draw _rNow=`s np=`d _pg=`d _tr=`d all=`c",
+TmSt(d1,_rNow), _pag.Ln, _pg, _tr, all);
    if (_pag.Ln == 0) {                 // nothin therez yet - cls
+      _pg = 1;   _tr = 0;
+DBG(" no pages: _pg=1 _tr=0");
       Up.cnv.RectF  (0, 0, Up.w, Up.h, Color ("bg"));
       MemSet (& Up.tpos, 0, sizeof (QRect));
       Up.cnv.end ();   Up.tcnv.end ();
@@ -1025,7 +1027,7 @@ void Song::Draw (char all)
    if (p >= np)  --p;
    t = ((p+1 < np) && (n >= Bar2Tm (pg [p+1].col [0].blk [0].bar-1))) ? 1:0;
    if (all || (p+1 != _pg) || (t != _tr)) {
-//TRC(" new pg,tr: _pg=`d _tr=`d p=`d t=`d", _pg, _tr, p, t);
+DBG(" new pg,tr: _pg=`d _tr=`d p=`d t=`d", _pg, _tr, p, t);
       if (all || (p+1 != _pg))  {_pg = p+1;   DrawPg (p);}
       if (t) {                         // trans - draw next pg, last bar on top
          MemCp (& co, & pg [p].col [pg [p].nCol-1], sizeof (co));
@@ -1049,5 +1051,4 @@ void Song::Draw (char all)
    Up.cnv.end ();   Up.tcnv.end ();    // DrawNow sometimes needs em on its own
                                        // and it'll kick nt update
    DrawNow ();
-//TRC("Draw end");
 }

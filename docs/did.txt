@@ -10,6 +10,7 @@
    moved old gfx outa this git
    preserving time across practice mode so play "now" and hear "now" always
       match as you flip learn mode
+   color mode of velocity now in grey - it just makes better sense than rainbow
 
 
 2026Apr

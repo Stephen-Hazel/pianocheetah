@@ -39,6 +39,7 @@ bt full\n";
 // source => _build => install
 echo "...compilin n installin\n";
    system ("$fb --user --install _build fpak", $rc);
+#  system ("$fb --user --install --force-clean --ccache --keep-build-dirs _build fpak", $rc);
    if ($rc != 0)  exit;                // build error :(
 
 echo "...cleanup\n";

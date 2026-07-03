@@ -553,11 +553,11 @@ void Song::Mov ()
   TrkEv  *e, ev, *ins, up, dn;
   TPDef          *del;
   TrkNt  *n;
-   ap = Up.pos.pg;   ac = Up.pos.co;   x1 = Up.pos.x1;   y1 = Up.pos.y1;
-                                       x2 = Up.pos.x2;   y2 = Up.pos.y2;
+   ap = Up.pos.pg1;   ac = Up.pos.co1;   x1 = Up.pos.x1;   y1 = Up.pos.y1;
+                                         x2 = Up.pos.x2;   y2 = Up.pos.y2;
    s = Up.pos.str;
-DBG("Mov ap=`d ac=`d x1=`d y1=`d x2=`d y2=`d s='`s'",
-ap, ac, x1, y1, x2, y2, s);
+DBG("Mov pg=`d co=`d x1=`d x2=`d y1=`d y2=`d s='`s'",
+ap, ac, x1, x2, y1, y2, s);
   PagDef *pg = & _pag [ap];
   ColDef  co;
    MemCp (& co, & pg->col [ac], sizeof (co));
@@ -637,13 +637,18 @@ ap, ac, x1, y1, x2, y2, s);
    if (x2 < x1)  {tp = x1;   x1 = x2;   x2 = tp;}
    if (y2 < y1)  {tp = y1;   y1 = y2;   y2 = tp;}
   ubyt2 dx = co.dx;
+DBG("flipfix co.nx=`d co.dx=`d x1=`d x2=`d y1=`d y2=`d",
+nx, dx, x1, x2, y1, y2);
    if (x1 >= dx)  {Hey (CC("sorry, can't do drums yet :("));   return;}
 
    if (x2 >= dx)  x2 = dx-1;
    if (*s != 'x') {                    // find dest track if not doin del
      bool got [3];
       MemSet (got, 0, sizeof (got));
-      for (i = 0;  i < co.nSym;  i++)
+      for (i = 0;  i < co.nSym;  i++) {
+DBG("sym `d x1=`d x2=`d y1=`d y2=`d",
+i,nx+co.sym [i].x, nx+co.sym [i].x+co.sym [i].w-1,
+     co.sym [i].y,    co.sym [i].y+co.sym [i].h-1);
          if ((((nx+co.sym [i].x                    >= x1) &&
                (nx+co.sym [i].x                    <= x2)) ||
               ((nx+co.sym [i].x + co.sym [i].w - 1 >= x1) &&
@@ -653,10 +658,12 @@ ap, ac, x1, y1, x2, y2, s);
               ((   co.sym [i].y + co.sym [i].h - 1 >= y1) &&
                (   co.sym [i].y + co.sym [i].h - 1 <= y2)))) {
             ht = _f.trk [co.sym [i].tr].ht;
-            if      (ht >  '3')  got [0] = true;
-            else if (ht <  '4')  got [1] = true;
-            else if (ht == 'S')  got [2] = true;
+DBG("   ht=`c", ht);
+            if      (ht >  '3')  got [0] = true; // got RH
+            else if (ht <  '4')  got [1] = true; //     LH
+            else if (ht == 'S')  got [2] = true; //     Show
          }
+      }
       tR = tL = 255;
       for (tr = 0;  tr < _f.trk.Ln;  tr++) {
          ht = _f.trk [tr].ht;   if ((ht < '1') || (ht > '7'))  continue;
@@ -678,6 +685,8 @@ ap, ac, x1, y1, x2, y2, s);
              return;}
          tR++;   tL++;
       }
+DBG("got0=`b 1=`b 2=`b tR=`d tL=`d",
+got[0],got[1],got[2],tR,tL);
    }
    ins = new TrkEv [co.nSym * 2];   del = new TPDef [co.nSym * 2];
    nIns = nDel = 0;                    // may not need ins, but whatever..
@@ -703,10 +712,10 @@ ap, ac, x1, y1, x2, y2, s);
 
       // next, gotta ins em incl making fake 2nd (unless doin del)
          if (*s != 'x') {
-//TStr db1, db2;
-//DBG("move `s `s from tr=`d to tR=`d tL=`d",
-//TmSt    (db1,_f.trk[it->tr].n [it->nt].tm),
-//MKey2Str(db2,_f.trk[it->tr].n [it->nt].nt), it->tr, tR, tL);
+TStr db1, db2;
+DBG("move `s `s from tr=`d to tR=`d tL=`d",
+TmSt    (db1,_f.trk[it->tr].n [it->nt].tm),
+MKey2Str(db2,_f.trk[it->tr].n [it->nt].nt), it->tr, tR, tL);
             if ((p = _f.trk [it->tr].n [it->nt].dn) != NONE)
                MemCp (& dn, & _f.trk [it->tr].e [p], sizeof (dn));
             else {

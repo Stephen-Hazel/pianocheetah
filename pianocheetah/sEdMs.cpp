@@ -5,6 +5,7 @@
 
 void Song::DragRc ()
 { ubyt2 x1, x2, y1, y2, t;
+   Up.pos.pg1 = Up.pos.pg;   Up.pos.co1 = Up.pos.co;
    x1 = Up.pos.x1;   y1 = Up.pos.y1;   x2 = Up.pos.x2;   y2 = Up.pos.y2;
    if (x2 < x1)  {t = x1;   x1 = x2;   x2 = t;}
    if (y2 < y1)  {t = y1;   y1 = y2;   y2 = t;}
@@ -171,7 +172,7 @@ void Song::MsDn (Qt::MouseButton b, sbyt2 x, sbyt2 y)
   TStr    s;
   ubyt2   nx;
    MsPos (x, y);
-//DBG("MsDn x=`d y=`d b=`d", x, y, b);   DbgPos ();
+DBG("MsDn x=`d y=`d b=`d", x, y, b);   DbgPos ();
    if (! Up.pos.at)  return;
 
    if (   b == Qt::RightButton) {           // just for ctl killin

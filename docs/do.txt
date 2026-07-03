@@ -24,6 +24,13 @@ videos
 
 code____________________________________________________________________________
 
+bugs w move to LH (can't do drums yet)
+   sEdMs MsPos() Up.pos.co = ??
+
+   is col 1 extra?
+   is nx not right?
+   for SOME reason it's finding no notes to move
+
 trills
    MichelLegrand_BriansSong
    detect actual trill vs one chord note slightly too early/late
@@ -40,16 +47,7 @@ _trk [].rec - test it - do they rec n play right?
 
 RELEASE EET
 
-notes w velo is width at top of note?
-
-when flipping btw hear/play/prac,
-   remember hear/play "now" so prac doesn't reset it to bar 1
-
-little #s in hear mode?  so you can see ez mode a bit?
-
 mid2song - trackname still has ?RH_ in it etc
-
-bugs w move to LH (can't do drums yet)
 
 track ttips - dif per col - show note range, and control list
    take drum/ outa sngrp, inst,kit in tip

@@ -125,10 +125,14 @@ private:
 struct PosDef {
    char  at, got, drg;                 // sEdit.cpp docs these
    ubyt4 pg, co, tm, sy, p;            // page, column, time, symbol, trk ev pos
-   ubyt4 tmBr, tmBt, hBt;              // trunc'd bar time, nearest beat,
-   sbyt2 x1, y1, x2, y2, xp, yp, xo, yo;               // n half beat dur
+   ubyt4 tmBr, tmBt, hBt;              // trunc'd bar time, nearest beat, n half
    ubyte ct, cp, tr;                   // control, ctl pos, track
-   TStr  str, etc, stp, stn;
+   TStr  str;
+// above are set in MsPos and are constantly written
+// below are for args to various funcs not wrecked by MsMv
+   ubyt4 pg1, co1;
+   sbyt2 x1, y1, x2, y2, xp, yp, xo, yo;
+   TStr  etc, stp, stn;
    KSgRow kSg;
    bool  pPoz;                         // pause prev on
 };
