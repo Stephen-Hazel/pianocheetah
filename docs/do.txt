@@ -24,30 +24,27 @@ videos
 
 code____________________________________________________________________________
 
-bugs w move to LH (can't do drums yet)
-   sEdMs MsPos() Up.pos.co = ??
+trill tangles - when 2+notes at nearly same time that wreck ez playin
+   look at how - probs are
+      notes of other hand jammed in
+      chords played unevenly w 1 5 2 3 4  (check clair,briansSong)
+      splitting across the ez 5
+      clair bar 31 end has 2 notes that prob need quant?
+         check sheet music
+   show trills better somehow - connected dots?    \  \
+                                                   O  O
+   quantize notes near clicked on note's time
+   bugs shouldn't show at trills?
 
-   is col 1 extra?
-   is nx not right?
-   for SOME reason it's finding no notes to move
-
-trills
-   MichelLegrand_BriansSong
-   detect actual trill vs one chord note slightly too early/late
-      trills are usually single notes, sloppy chords have a set of 2
-   always anchor trill on thumb
-   show trills better somehow - connected dots?
-   before givin min REGular dur, look forward in time across the whole bar
-      not just next dn (is that what's happenin?)
-   there shouldn't be tempo ladybugs at trills only missed notes
-
-_trk [].rec - test it - do they rec n play right?
    install - stuck in a loop - how tho...
    pianocheetah.tar.gz properly
 
+weird unshowing notes across column borders
+   brianssong bar 8 (ez mode)
+
 RELEASE EET
 
-mid2song - trackname still has ?RH_ in it etc
+changing device always pickin chan 1
 
 track ttips - dif per col - show note range, and control list
    take drum/ outa sngrp, inst,kit in tip

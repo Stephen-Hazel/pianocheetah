@@ -409,61 +409,18 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
 //DBG(" xx[`d].key=`c s=`s (.pos=`d)",
 //dp, xx [dp].key, _f.cue [p].s, xx [dp].pos);
          }
+
       pf = 0;
       for (dp = 0;  dp < _dn.Ln;  dp++)  if (xx [dp].pos != 99) {
 //DBG(" dp=`d", dp);
-
-      // check for rolled chord/trill (fast stuff - time diff of < 15 ticks)
-      // find max nt within trill notes and align to pinky=4 for rh/0 for lh
-      // then follow <>= back to start of trill, then forward to end of it
-        ulong pmax, pend;              // max dn pos, end of trill pos
-         tm = _dn [dp].time;           // max is actually min for LH
-         pmax = dp;   nmax = _dn [dp].nt [xx [dp].pos].nt;
-         c = 0;                        // count #downs in trill
-         for (p = dp+1;  p < _dn.Ln;  p++)  if (xx [p].pos != 99) {
-            if (_dn [p].time >= tm+15)  break;
-
-            c++;   pend = p;   tm = _dn [p].time;
-            if (ht == 'L') {if (      _dn [       p].nt [xx [p].pos].nt < nmax)
-                               nmax = _dn [pmax = p].nt [xx [p].pos].nt;}
-            else            if (      _dn [       p].nt [xx [p].pos].nt > nmax)
-                               nmax = _dn [pmax = p].nt [xx [p].pos].nt;
-         }
-         if (c) {                      // doin rolled chord/trill
-           char pdir;                  // usin prev dir n goin in reverse
-            pf = (ht == 'L') ? 0 : 4;
-            k [1] = 'c' + pf;
-            _dn [pmax].nt [xx [pmax].pos].nt = MKey (k);
-            pdir =         xx [pmax].dir;
-         // goin down if any
-            for (p = pmax;    c && (p > dp);     p--)  if (xx [p].pos != 99) {
-               c--;  p2 = p-1;         // decr loops are annoyin :/
-               if      (pdir == '>')  {if (pf-- == 0)  pf = 4;}
-               else if (pdir == '<')  {if (pf++ == 4)  pf = 0;}
-               k [1] = 'c' + pf;
-               _dn [p2].nt [xx [p2].pos].nt = MKey (k);
-               pdir =       xx [p2].dir;
-            }
-         // and now regular goin up
-            pf = (ht == 'L') ? 0 : 4;
-            for (p = pmax+1;  c && (p <= pend);  p++)  if (xx [p].pos != 99) {
-               c--;
-               if      (xx [p].dir == '<')  {if (pf-- == 0)  pf = 4;}
-               else if (xx [p].dir == '>')  {if (pf++ == 4)  pf = 0;}
-               k [1] = 'c' + pf;
-               _dn [p].nt [xx [p].pos].nt = MKey (k);
-            }
-            dp = pend;   pf = 0;
-         }
-         else {                        // doin regular next dn
-            if      (xx [dp].dir == '!')  pf = xx [dp].key - 'c';
-            else if (xx [dp].dir == '<')  {if (pf-- == 0)  pf = 4;}
-            else if (xx [dp].dir == '>')  {if (pf++ == 4)  pf = 0;}
-            k [1] = 'c' + pf;
-            _dn [dp].nt [xx [dp].pos].nt = MKey (k);
-         }
+         if      (xx [dp].dir == '!')  pf = xx [dp].key - 'c';
+         else if (xx [dp].dir == '<')  {if (pf-- == 0)  pf = 4;}
+         else if (xx [dp].dir == '>')  {if (pf++ == 4)  pf = 0;}
+         k [1] = 'c' + pf;
+         _dn [dp].nt [xx [dp].pos].nt = MKey (k);
       }
    }
+
 // always need dn[pdn].time >= _now so add a dummy at time=0 if none yet
    if ( (! _dn.Ln) || _dn [0].time )
       {_dn.Ins (0);   _dn [0].time = 0;   _dn [0].nNt = 0;}
@@ -947,7 +904,7 @@ TRC("_col full prob cuz w,h");
                for (i = 0;  i < dr->nNt;  i++) {
                   t   = dr->nt [i].t;
                   nt  = dr->nt [i].nt;
-                  nte = dr->time + (M_WHOLE/16);      // even trills always 16th
+                  nte = dr->time + (M_WHOLE/32);      // even trills always 32nd
                // true nte is next dn in my ht
                   for (got = false, e = d+1;  e < _dn.Ln;  e++) {
                      for (j = 0;  j < _dn [e].nNt;  j++)

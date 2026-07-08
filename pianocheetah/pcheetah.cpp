@@ -82,7 +82,7 @@ void PCheetah::Trak ()
   QList<int> sz = sp->sizes ();
   int w  = width ();
   int wt = _tr.W ();   if (wt == 0)  wt = 30;
-DBG("sz0=`d sz1=`d w=`d wt=`d", sz[0], sz[1], w, wt);
+//DBG("sz0=`d sz1=`d w=`d wt=`d", sz[0], sz[1], w, wt);
    if (sz [0])
         {Gui.FullSc (true);   sp->setSizes (QList<int>() << 0  <<  w    );}
    else {Gui.FullSc (false);  sp->setSizes (QList<int>() << wt << (w-wt));}
@@ -126,7 +126,7 @@ static void XLoad ()
 //TODO recache if FL.xLen hits 0
    if (--FL.xLen == 0)  {Gui.Hey ("_midicache has 0 left - repick midi dir");
                          return;}
-TRC("   xPos=`d xLen=`d xFn=`s dMid=`s", FL.xPos, FL.xLen, FL.xFn, dMid);
+DBG("   xPos=`d xLen=`d xFn=`s dMid=`s", FL.xPos, FL.xLen, FL.xFn, dMid);
 // recreate dest dir
    StrFmt (dFnd, "`s/4_queue/found", App.Path (s, 'd'));
    d.Kill (dFnd);   d.Make (dFnd);
@@ -171,6 +171,7 @@ void PCheetah::SongRand ()
    emit sgCmd ("wipe");
    ln = 0;
    App.CfgGet (CC("DlgFL_dir"), dMid);
+DBG("songRand dir=`s", dMid);
    if (*dMid)  ln = f.Size (StrFmt (fnC, "`s/_midicache.txt", dMid));
    if ((*dMid == '\0') || (! ln)) {
       if (*dMid == '\0')  StrCp (dMid, getenv ("HOME"));
@@ -180,7 +181,7 @@ void PCheetah::SongRand ()
    }
    StrFmt (fnC, "`s/_midicache.txt", dMid);
    if (! f.Size (fnC)) {               // no cache yet so start makin one
-TRC("no _midicache.txt for `s", dMid);
+DBG("no _midicache.txt for `s", dMid);
       App.Run (StrFmt (c, "ll midi `p &", dMid));
       Gui.Hey ("Making midi cache in that dir...\n"
                "Come back when __midicache.txt turns to _midicache.txt");
@@ -189,8 +190,8 @@ TRC("no _midicache.txt for `s", dMid);
 
 // count # undid undeld
    FL.ext = true;   FL.xLen = 0;   f.DoText (fnC, nullptr, LstLen);
-TRC("   init FL.xLen=`d", FL.xLen);
    FL.xPos = Rand (FL.xLen);
+DBG("   FL.xLen=`d .xPos=`d", FL.xLen, FL.xPos);
    XLoad ();
    LoadGo ();
 }
@@ -306,7 +307,7 @@ void PCheetah::Upd (QString upd)
 { TStr  u, s;
   ubyte i;
    StrCp (u, UnQS (upd));
-//TRC("Upd `s", u);
+DBG("Upd `s", u);
    for (i = 0;  i < NUCmd;  i++)  if (! StrCm (u, UCmd [i].cmd))  break;
    if (i < NUCmd) {
       if (i > 5)  emit sgCmd (upd);
@@ -382,7 +383,9 @@ void PCheetah::Upd (QString upd)
      int w  = width ();
      int wt = _tr.W ();
      QSplitter *sp = ui->spl;
-      sp->setSizes (QList<int>() << wt << (w-wt));
+     QList<int> sz = sp->sizes ();
+//DBG("sz0b=`d sz1=`d w=`d wt=`d", sz[0], sz[1], w, wt);
+      if (sz [0])  sp->setSizes (QList<int>() << wt << (w-wt));
    }
 
    if (! MemCm (u, "hey ", 4))   Gui.Hey (& u [4]);
