@@ -11,7 +11,7 @@ UCmdDef UCmd [] = {
    {"song>",     "",           "next song"},
    {"songKill",  "",           "DELETE song  (be careful:)"},
    {"exit",      "",           "quit PianoCheetah"},
-   {"fullScr",   "",           "view:  full screen / tracks"},
+   {"fullScr",   "",           "fullscreen  /  un-full with tracks"},
 // done by thread/song/me
    {"timeBar1",  "time",       "restart"},                           // 6
    {"time<",     "",           "previous bar"},
@@ -84,8 +84,10 @@ void PCheetah::Trak ()
   int wt = _tr.W ();   if (wt == 0)  wt = 30;
 //DBG("sz0=`d sz1=`d w=`d wt=`d", sz[0], sz[1], w, wt);
    if (sz [0])
-        {Gui.FullSc (true);   sp->setSizes (QList<int>() << 0  <<  w    );}
-   else {Gui.FullSc (false);  sp->setSizes (QList<int>() << wt << (w-wt));}
+        {Gui.FullSc (true);   sp->setSizes (QList<int>() << 0  <<  w    );
+         _tb.Set (0, 1);}
+   else {Gui.FullSc (false);  sp->setSizes (QList<int>() << wt << (w-wt));
+         _tb.Set (0, 0);}
 }
 
 void PCheetah::GCfg ()  {_dCfg->Open ();}
@@ -307,7 +309,7 @@ void PCheetah::Upd (QString upd)
 { TStr  u, s;
   ubyte i;
    StrCp (u, UnQS (upd));
-DBG("Upd `s", u);
+//DBG("Upd `s", u);
    for (i = 0;  i < NUCmd;  i++)  if (! StrCm (u, UCmd [i].cmd))  break;
    if (i < NUCmd) {
       if (i > 5)  emit sgCmd (upd);
@@ -444,6 +446,7 @@ TRC(" tbar init");
 
 // global-y
    _tb.Btn (0, UCmdS ("fullScr"));
+   _tb.Ico (0, 1);
    _tb.Btn (1, "configure midi devices", "d");
    _tb.Btn (2, "settings and junk");
    connect (_tb.Act (0), & QAction::triggered,  this, & PCheetah::Trak);
@@ -501,7 +504,7 @@ TRC(" tbar init");
    connect (_tb.Act (19), & QAction::triggered,
                           this, [this]() {emit sgCmd ("tempoHop");});
    connect (_tb.Act (20), & QAction::triggered,
-                          this, [this]() {emit sgCmd ("tempo<"  );});
+                          this, [this]() {emit sgCmd ("tempo>"  );});
    _tb.Sep (21);
 
 // editing stuff

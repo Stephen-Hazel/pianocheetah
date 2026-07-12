@@ -757,7 +757,8 @@ void Song::SetSym ()
 { ubyte nw, ww, nMn, nMx, nd, dmap [128], dpos, td, t, st, bl, sb, i, j, nt,
              o, oMn [7], oMx [7];
   ubyt2 W, H, x, xo, w, th, ch, b, dx, cw, y1, y2, h, oX [7];
-  ubyt4 np, nc, nb, ns, p, q, nn, pc1, cb1, cs1, tb, te, ntb, nte, sn, d, e;
+  ubyt4 np, nc, nb, ns, p, q, nn, pc1, cb1, cs1, tb, tbx, te,
+        ntb, nte, sn, d, e;
   bool  drm, mt, got;
   TStr  smn, smx;
   TrkNt   *n;
@@ -822,12 +823,13 @@ TRC("_col full prob cuz w,h");
          nMn = 127;   nd = nMx = 0;
          for (o = 0;  o < 7;  o++)  {oMn [o] = 127;   oMx [o] = 0;}
          tb = Bar2Tm (_blk [cb1].bar);   te = Bar2Tm (_blk [nb].bar+1);
+         tbx = tb ? (tb - M_WHOLE/32-2) : 0;     // need wiggle room :/
 
          if (SHRCRD) {                 // build limits based on _dn[].nt[].nt
             for (dr = & _dn [0], d = 0;  d < _dn.Ln;  d++, dr++) {
                ntb = dr->time;
-               if (ntb <  tb)  continue;
-               if (ntb >= te)  break;
+               if (ntb <  tbx)  continue;
+               if (ntb >= te)   break;
                for (i = 0;  i < dr->nNt;  i++)
                   if (TDrm (t = dr->nt [i].t)) {
                      for (x = 0;  x < nd;  x++)  if (dmap [x] == t)  break;
@@ -847,8 +849,8 @@ TRC("_col full prob cuz w,h");
             for (t = 0;  t < _f.trk.Ln;  t++)  if (TSho (t))
                for (n = _f.trk [t].n, nn = _f.trk [t].nn,
                     p = 0;  p < nn;  p++) {
-                  if (n [p].te <  tb)  continue;
-                  if (n [p].tm >= te)  break;
+                  if (n [p].te <  tbx)  continue;
+                  if (n [p].tm >= te)   break;
                   if (TDrm (t))  {dmap [nd++] = t;   break;}    // one'll do it
                   if (n [p].nt < nMn)  nMn = n [p].nt;
                   if (n [p].nt > nMx)  nMx = n [p].nt;
@@ -898,8 +900,8 @@ TRC("_col full prob cuz w,h");
          if (SHRCRD) {
             for (dr = & _dn [0], d = 0;  d < _dn.Ln;  d++, dr++) {
                ntb = dr->time;
-               if (ntb <  tb)  continue;
-               if (ntb >= te)  break;
+               if (ntb <  tbx)  continue;
+               if (ntb >= te)   break;
 
                for (i = 0;  i < dr->nNt;  i++) {
                   t   = dr->nt [i].t;
@@ -925,7 +927,7 @@ TRC("_col full prob cuz w,h");
                   _sym [ns].tr = t;   _sym [ns].nt = nt;   // not p !
                   _sym [ns].tm = ntb;
                   _sym [ns].top = _sym [ns].bot = true;
-                  if      (ntb < ((tb < M_WHOLE/32) ? 0 : (tb-M_WHOLE/32))) {
+                  if      (ntb < tbx) {
                      _sym [ns].top = false;   _sym [ns].y = H_KB;
                   }
                   else if (ntb < tb) {
@@ -943,11 +945,18 @@ TRC("_col full prob cuz w,h");
                                            (ntb          - _blk [q].tMn) /
                                            (_blk [q].tMx - _blk [q].tMn));
                   }
-                  if (nte >= te) {
+                  if      (nte >= te) {
                      _sym [ns].bot = false;   _sym [ns].h = ch - _sym [ns].y;
                   }
+                  else if (nte < _blk [cb1].tMn) {
+                     q = cb1;
+                     _sym [ns].h = (ubyt2)(_blk [q].y - _blk [q].h *
+                                           (_blk [q].tMn - nte) /
+                                           (_blk [q].tMx - _blk [q].tMn) -
+                                           _sym [ns].y + 1);
+                  }
                   else {
-                     for (q = cb1;  q < nb;  q++)
+                     for (;  q < nb;  q++)
                         if ((nte >= _blk [q].tMn) &&
                             (nte <  _blk [q].tMx))  break;
                      _sym [ns].h = (ubyt2)(_blk [q].y + _blk [q].h *
@@ -1003,7 +1012,7 @@ TRC("_col full prob cuz w,h");
                      _sym [ns].tr = t;   _sym [ns].nt = p;
                      _sym [ns].top = (n [p].dn != NONE) ? true : false;
                      _sym [ns].bot = (n [p].up != NONE) ? true : false;
-                     if      (ntb < ((tb < M_WHOLE/32) ? 0 : (tb-M_WHOLE/32))) {
+                     if      (ntb < tbx) {
                         _sym [ns].top = false;   _sym [ns].y = H_KB;
                      }
                      else if (ntb < tb) {

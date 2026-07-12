@@ -1,44 +1,30 @@
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M32 27.7778V31H30.3505V27.7778H32Z" fill="url(#paint0_linear_139_515)"/>
-<path d="M8.24742 10.0556L0 2V4.41667L5.93818 10.0556H8.24742Z" fill="url(#paint1_linear_139_515)"/>
-<path d="M15.5048 21.3339L25.4017 21.3337L32 27.7778H22.1033L15.5048 21.3339Z" fill="url(#paint2_linear_139_515)"/>
-<path d="M5.60825 11.6667H18.8041L27.0515 19.7221H13.8557L5.60825 11.6667Z" fill="url(#paint3_linear_139_515)"/>
-<path d="M32 29.3889V31H22.1031V29.3889H32Z" fill="url(#paint4_linear_139_515)"/>
-<path d="M13.8557 19.7221V26.1667L5.60825 18.1111V11.6667L13.8557 19.7221Z" fill="url(#paint5_linear_139_515)"/>
-<path d="M22.1033 27.7778L22.1031 31L15.5052 24.5556V21.3333L22.1033 27.7778Z" fill="url(#paint6_linear_139_515)"/>
-<path d="M10.7217 10.0556H8.24742L0 2H2.47427L10.7217 10.0556Z" fill="url(#paint7_linear_139_515)"/>
-<defs>
-<linearGradient id="paint0_linear_139_515" x1="16" y1="2" x2="16" y2="31" gradientUnits="userSpaceOnUse">
-<stop stop-color="#4E8D60"/>
-<stop offset="1" stop-color="#80ED90"/>
-</linearGradient>
-<linearGradient id="paint1_linear_139_515" x1="16" y1="2" x2="16" y2="31" gradientUnits="userSpaceOnUse">
-<stop stop-color="#4E8D60"/>
-<stop offset="1" stop-color="#80ED90"/>
-</linearGradient>
-<linearGradient id="paint2_linear_139_515" x1="16" y1="2" x2="16" y2="31" gradientUnits="userSpaceOnUse">
-<stop stop-color="#4E8D60"/>
-<stop offset="1" stop-color="#80ED90"/>
-</linearGradient>
-<linearGradient id="paint3_linear_139_515" x1="16" y1="2" x2="16" y2="31" gradientUnits="userSpaceOnUse">
-<stop stop-color="#4E8D60"/>
-<stop offset="1" stop-color="#80ED90"/>
-</linearGradient>
-<linearGradient id="paint4_linear_139_515" x1="16" y1="2" x2="16" y2="31" gradientUnits="userSpaceOnUse">
-<stop stop-color="#4E8D60"/>
-<stop offset="1" stop-color="#80ED90"/>
-</linearGradient>
-<linearGradient id="paint5_linear_139_515" x1="16" y1="2" x2="16" y2="31" gradientUnits="userSpaceOnUse">
-<stop stop-color="#4E8D60"/>
-<stop offset="1" stop-color="#80ED90"/>
-</linearGradient>
-<linearGradient id="paint6_linear_139_515" x1="16" y1="2" x2="16" y2="31" gradientUnits="userSpaceOnUse">
-<stop stop-color="#4E8D60"/>
-<stop offset="1" stop-color="#80ED90"/>
-</linearGradient>
-<linearGradient id="paint7_linear_139_515" x1="16" y1="2" x2="16" y2="31" gradientUnits="userSpaceOnUse">
-<stop stop-color="#4E8D60"/>
-<stop offset="1" stop-color="#80ED90"/>
-</linearGradient>
-</defs>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92.22 92.22">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f37f81;
+      }
+
+      .cls-2 {
+        fill: #d28cbc;
+      }
+
+      .cls-3 {
+        fill: #797cbb;
+      }
+    </style>
+  </defs>
+  <g id="Layer_4" data-name="Layer 4">
+    <g>
+      <path class="cls-3" d="M31.66,28.91c7.33,6.86,40.9,25.68,40.9,25.68l-.29,5.09-31.18-11.6-5.01,12.08L6.79,38.1s9.2-7.5,10.95-10.15l13.92.96Z"/>
+      <path class="cls-3" d="M39.45,60.51l3.09-8.94s23.14,8.81,27.84,10.04l21.83,15.33s.21,5.64-1.16,7.5l-34.11-12.38-17.49-11.56Z"/>
+      <path class="cls-1" d="M57.55,70.04s-.74.94.28,1.37,31.35,11.16,31.35,11.16c0,0,.97.52,1.09-.22s.37-4.36.37-4.36c0,0,0-.28-.67-.53s-30.52-9.44-30.52-9.44c0,0-1-.44-1.44.68s-.47,1.34-.47,1.34Z"/>
+      <path class="cls-3" d="M54.77,19.5S13.09-12.56,3.3,5.54C-.77,13.06-.53,19.07,1.13,23.54l7.8-3.8c-.51-2.55-.32-5.55,1.38-8.82C15.49.91,48.75,24.27,48.75,24.27c0,0,3.92-.93,6.02-4.77Z"/>
+      <path class="cls-2" d="M5.68,31.35c-.77-1-1.63-2.07-2.44-3.05.79,1.2,1.64,2.22,2.44,3.05Z"/>
+      <path class="cls-1" d="M.18,25.07c.54.28,1.74,1.63,3.07,3.23.81.98,1.66,2.05,2.44,3.05,1.5,1.93,2.71,3.55,2.71,3.55l7.28-6.66c-3.26-1.69-4.95-8.32-4.95-8.32l-1.6.78-7.8,3.8-1.15.56Z"/>
+      <path class="cls-1" d="M72.55,54.59s-20.23-4.08-32.38-10.76l-5.49,15.55,1.39.78,5.01-12.08,31.18,11.6.29-5.09Z"/>
+      <path class="cls-1" d="M48.75,24.27s1.22-7.51,6.02-4.77c0,0-2.11,5.17-6.02,4.77"/>
+    </g>
+  </g>
 </svg>

@@ -1,10 +1,20 @@
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M14.4876 6.75992C15.2587 5.81087 16.5204 5.7503 17.3527 6.58079L17.5124 6.75992L31.4222 23.88C32.6845 25.4338 31.7426 28 29.9098 28H2.09021C0.257402 28 -0.684528 25.4338 0.577816 23.88L14.4876 6.75992ZM3.0599 25.073H28.9401L16 9.14767L3.0599 25.073Z" fill="url(#paint0_linear_134_463)"/>
-<path d="M26.35 25.073H5.65L16 12.4L26.35 25.073Z" fill="#B4E1B2"/>
-<defs>
-<linearGradient id="paint0_linear_134_463" x1="0" y1="17" x2="32" y2="17" gradientUnits="userSpaceOnUse">
-<stop stop-color="#6BB37A"/>
-<stop offset="1" stop-color="#367243"/>
-</linearGradient>
-</defs>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46.72 30.79">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #99d8e4;
+      }
+
+      .cls-2 {
+        fill: #f37f81;
+      }
+    </style>
+  </defs>
+  <g id="Layer_4" data-name="Layer 4">
+    <g>
+      <path class="cls-2" d="M21.57.35c.33-.44.98-.47,1.35-.06l2,3.31c4.87,8.05,11.19,15.12,18.64,20.87l2.94,2.27c.48.54.13,1.4-.6,1.44l-6.36.37L21.76,10.86l-13.03,19.47-7.8.45c-.73.04-1.18-.79-.75-1.38l2.98-3.31c6.1-6.77,11.51-14.13,16.17-21.96l2.25-3.78Z"/>
+      <polygon class="cls-1" points="36.45 28.83 36.45 28.83 11.43 30.28 11.43 30.28 22.01 14.47 36.45 28.83"/>
+    </g>
+  </g>
 </svg>

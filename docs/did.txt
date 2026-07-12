@@ -11,6 +11,8 @@
    preserving time across practice mode so play "now" and hear "now" always
       match as you flip learn mode
    color mode of velocity now in grey - it just makes better sense than rainbow
+   fixed tempo> to not decrement tempo :/
+   no more scootin trills just do that manually when needed
 
 
 2026Apr

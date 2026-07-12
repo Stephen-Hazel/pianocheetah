@@ -123,9 +123,9 @@ char Song::MsPos (sbyt2 x, sbyt2 y)
             break;       // break out ALL the way :/
          }
       }
-TStr x1;
-DBG("MsPos at=x ct=`d cp=`d got=`b tr=`d p=`d tm=`s",
-Up.pos.ct, Up.pos.cp, Up.pos.got, Up.pos.tr, Up.pos.p, TmSt(x1,Up.pos.tm));
+//TStr x1;
+//DBG("MsPos at=x ct=`d cp=`d got=`b tr=`d p=`d tm=`s",
+//Up.pos.ct, Up.pos.cp, Up.pos.got, Up.pos.tr, Up.pos.p, TmSt(x1,Up.pos.tm));
       return (Up.pos.at = 'x');
    }
 // ok, has ta be nt area so hunt down a symbol
@@ -172,7 +172,7 @@ void Song::MsDn (Qt::MouseButton b, sbyt2 x, sbyt2 y)
   TStr    s;
   ubyt2   nx;
    MsPos (x, y);
-DBG("MsDn x=`d y=`d b=`d", x, y, b);   DbgPos ();
+//DBG("MsDn x=`d y=`d b=`d", x, y, b);   DbgPos ();
    if (! Up.pos.at)  return;
 
    if (   b == Qt::RightButton) {           // just for ctl killin

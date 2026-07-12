@@ -25,24 +25,22 @@ videos
 code____________________________________________________________________________
 
 trill tangles - when 2+notes at nearly same time that wreck ez playin
-   look at how - probs are
-      notes of other hand jammed in
-      chords played unevenly w 1 5 2 3 4  (check clair,briansSong)
-      splitting across the ez 5
-      clair bar 31 end has 2 notes that prob need quant?
-         check sheet music
-   show trills better somehow - connected dots?    \  \
-                                                   O  O
-   quantize notes near clicked on note's time
-   bugs shouldn't show at trills?
+   brianssong bar 18 ><> trill 41
+   scoot trills so they don't wrap (hop everywhere before a wrap happens?)
+   show 1st note of very near trill starts somehow
+   reorg trill to be either up or down only
+      quantize notes for stretched piano chords
 
-   install - stuck in a loop - how tho...
+   guitar strums prob step weird
+   bugs should only show on trill note 1, not 2+
+   notes of other hand jammed in hasta be fixed by splitting tracks
+
+install - stuck in a loop - how tho...
    pianocheetah.tar.gz properly
 
-weird unshowing notes across column borders
-   brianssong bar 8 (ez mode)
-
 RELEASE EET
+
+show/hide dlg should hilite cc that was pressed to kick it
 
 changing device always pickin chan 1
 

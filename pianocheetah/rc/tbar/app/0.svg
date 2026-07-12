@@ -1,19 +1,20 @@
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M26.5 30.2222V32H5.5V30.2222H26.5ZM28.25 28.4444V3.55556C28.25 2.57372 27.4665 1.77778 26.5 1.77778H5.5C4.5335 1.77778 3.75 2.57372 3.75 3.55556V28.4444C3.75 29.4263 4.5335 30.2222 5.5 30.2222V32C3.68761 32 2.19776 30.6005 2.0188 28.8073L2 28.4444V3.55556C2 1.59188 3.567 0 5.5 0H26.5C28.433 0 30 1.59188 30 3.55556V28.4444C30 30.4081 28.433 32 26.5 32V30.2222C27.4665 30.2222 28.25 29.4263 28.25 28.4444Z" fill="url(#paint0_linear_140_583)"/>
-<path d="M28.25 3.55556C28.25 2.57372 27.4665 1.77778 26.5 1.77778H14.25V30.2222H26.5C27.4665 30.2222 28.25 29.4263 28.25 28.4444V3.55556Z" fill="url(#paint1_linear_140_583)"/>
-<path d="M5.5 3.55556H12.5V28.4444H5.5V3.55556Z" fill="url(#paint2_linear_140_583)"/>
-<path d="M20.667 11.4287L16.0003 16.0001L20.667 20.5716V11.4287Z" fill="black"/>
-<defs>
-<linearGradient id="paint0_linear_140_583" x1="9" y1="25.3333" x2="7.27822" y2="0.539705" gradientUnits="userSpaceOnUse">
-<stop stop-color="#4F4373"/>
-<stop offset="1" stop-color="#957ED9"/>
-</linearGradient>
-<linearGradient id="paint1_linear_140_583" x1="9" y1="25.3333" x2="7.27822" y2="0.539705" gradientUnits="userSpaceOnUse">
-<stop stop-color="#9076DA"/>
-<stop offset="1" stop-color="#CBB8E8"/>
-</linearGradient>
-<linearGradient id="paint2_linear_140_583" x1="9" y1="25.3333" x2="7.27822" y2="0.539705" gradientUnits="userSpaceOnUse">
-<stop stop-color="#C7BAEA"/>
-</linearGradient>
-</defs>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52.2 43.24">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #99d8e4;
+      }
+
+      .cls-2 {
+        fill: #797cbb;
+      }
+    </style>
+  </defs>
+  <g id="Layer_4" data-name="Layer 4">
+    <g>
+      <polygon class="cls-2" points="0 4.56 4.47 43.24 49.27 40.74 47.99 21.99 44.33 22.1 42.76 33.65 10.97 35.98 5.97 7.84 30 4.56 30.48 .46 0 4.56"/>
+      <path class="cls-1" d="M52.11.46h0s0-.01-.01-.01c0,0,0,0,0-.01h-.01c-5.23-1.26-19.26.4-18.57,2.04.35.83,3.26,1.96,6.05,2.87-.89,1.36-2.84,3.96-6.56,7.28-5.57,4.98-13.19,11.21-12.39,12.08s8.56-3.9,8.56-3.9c0,0,10.7-7.75,16.62-8.65.6,2.93,1.41,6.07,2.21,6.53,1.54.87,4.78-12.88,4.1-18.22Z"/>
+    </g>
+  </g>
 </svg>
