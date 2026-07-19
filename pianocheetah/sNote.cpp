@@ -48,7 +48,6 @@ void CInit ()
 **    270 25.5 26.6  #443355
 **    316 33.7 31.9  #6d365e
 **    332 60.8 36    #942458
-*/
    CScl [0][0]  = Color ("#f37f81");
    CScl [0][1]  = Color ("#f3bf88");
    CScl [0][2]  = Color ("#faf184");
@@ -74,6 +73,7 @@ void CInit ()
    CScl [1][9]  = Color ("#443355");
    CScl [1][10] = Color ("#6d365e");
    CScl [1][11] = Color ("#942458");
+*/
 
 // lt blue=#e5f2ff pink=#ffe5ff green=#e5fff2 lt grey=#eff0f1
    CTnt [0][0] = HSL (210, 100, 95);
@@ -361,8 +361,12 @@ void Song::DrawSym (SymDef *s, ColDef *co)
          case 6:  clr = CScl [1-dk][ 1];   break;     // misc orange
          default: clr = CScl [1-dk][11];   break;     // x    magenta
       }                                // oops doin velocity
-      if (Cfg.ntCo == 1)  clr = CRng [(nt->dn == NONE) ? 64 :
-                                      (trk->e [nt->dn].valu & 0x7F)];
+      if (Cfg.ntCo == 1) {// clr = CRng [(nt->dn == NONE) ? 64 :
+                          //             (trk->e [nt->dn].valu & 0x7F)];
+         gr  = (nt->dn == NONE) ? 64 : (trk->e [nt->dn].valu & 0x7F);
+         gr *= 2;   if (! dk)  gr = 255-gr;
+         clr = GRAY (gr);
+      }
    }
    else if (SHRCRD)                    // f to purple so it shows better
       clr = CScl [dk][((tc = n % 12) == 5) ? 9 : tc];
@@ -384,10 +388,33 @@ void Song::DrawSym (SymDef *s, ColDef *co)
       }
    kc = (dr || (KeyCol [n%12] == 'w')) ? CWHITE : CBLACK;
 
-// now x,y etc
+// now x,y,w,h
    x = co->nx + s->x;   y = s->y;   w = s->w;   h = s->h;
 
-   if (kc == CWHITE) {                 // white dudes: big head, little butt
+   if (SHRCRD && (! dr)) {             // ez notes are pretty ez
+      if (s->top) {
+         Up.cnv.RectF (x,   y,   w,    1, clr);
+         Up.cnv.RectF (x+1, y+1, w-2,  1, clr);
+         Up.cnv.RectF (x+2, y+2, w-4,  1, clr);
+         Up.cnv.RectF (x+3, y+3, w-6,  1, clr);
+         Up.cnv.RectF (x+6, y+4, w-12, 1, clr);
+         if (h <= 5) h = 0;   else h -= 5;
+      }
+      x += 7;   w -= 14;
+      if (s->bot && (h >= 2)) {
+         Up.cnv.RectF (x+1, y+h-4, w-2, 1, clr);
+         Up.cnv.RectF (x+2, y+h-3, w-4, 1, clr);
+         Up.cnv.RectF (x+3, y+h-2, w-6, 1, clr);
+         Up.cnv.RectF (x+4, y+h-1, w-8, 1, clr);
+         if (h <= 4) h = 0;   else h -= 4;
+      }
+      if (h)  Up.cnv.RectF (x, y, w, h, clr);
+      return;
+   }
+
+   if (kc == CWHITE) {
+   // white dudes: big head, little butt.  if top, we only draw head for now
+   //                                      else    reset x,w to tail
       if (s->top)  {if (h >= 18)  h = 16;}
       else         {x = Nt2X (n, co, 'g');   w = W_NT;}
    }
@@ -398,7 +425,8 @@ void Song::DrawSym (SymDef *s, ColDef *co)
                  Up.cnv.RectF (x+1, y+1,   w-2, 1, clr);   y += 2;   h -= 2;}
    if (s->bot)  {Up.cnv.RectF (x+1, y+h-2, w-2, 1, clr);
                  Up.cnv.RectF (x+2, y+h-1, w-4, 1, clr);             h -= 2;}
-                 Up.cnv.RectF (x, y, w, h, clr);
+   Up.cnv.RectF (x, y, w, h, clr);
+
    if (s->top) {y -= 2;  h += 2;}   if (s->bot) h += 2;    // put em back
 
    if (dr) {
@@ -421,13 +449,14 @@ void Song::DrawSym (SymDef *s, ColDef *co)
       dw = w - mo*2;
       dx = x;   if      (ha == 'R')  dx += (mo*2);
                 else if (ha != 'L')  dx +=  mo;
+   // 2 rects to leave pixels in corners clear making it rounded lookin
                    Up.cnv.RectF (dx+1, y,   dw-2, dh,   kc);
       if (dh > 2)  Up.cnv.RectF (dx,   y+1, dw,   dh-2, kc);
    }
 
-   if ((kc == CWHITE) && s->top && (h != s->h)) {
+   if ((kc == CWHITE) && s->top && (h != s->h)) {     // skinny white butt
       if (SHRCRD) {                    // center n slightly thinner in rec
-         x += 7;   w -= 14;
+         x += 7;   w -= 14;            // not aligned w black notes
       }
       else {                 // white dudes have tail of only W_NT for true h
          x = Nt2X (n, co, 'g');   w = W_NT;
@@ -514,10 +543,9 @@ TRC("DrawPg `d", pp);
          // background stripes down the col
             Up.cnv.Blt (*Up.bg2 [dk], x, H_KB, w, co.h-H_KB, x1, 0, w, 1);
 
-         // oct label at left, left div line unless 1st
+         // oct label at left
             StrFmt (str, "`d", oc+1);
             Up.cnv.Text (x+2,      15+th, str);
-            Up.cnv.Text (x+w-tw-3, 15+th, str);
          }
          if ((x > nx) && co.nDrm)      // vert line btw melo n drum
                           Up.cnv.RectF (x, 0, 2, co.h, qc);

@@ -247,6 +247,16 @@ void Song::SetDn (char qu)             // qu from DlgCfg quantize button ONLY
   struct {ubyte pos;   char dir, key;} xx [64*1024];  // more _dn info
   struct {ubyte t;   ubyt4 p;} on [2][128];
 TRC("SetDn qu=`c", qu);
+
+// kill existing `tre cues
+   for (p = 0;  p < _f.cue.Ln;) {
+      if (_f.cue [p].tend)  p++;
+      else {
+         if (StrCm (_f.cue [p].s, "-/") && StrCm (_f.cue [p].s, "-\\"))  p++;
+         else  _f.cue.Del (p);
+      }
+   }
+
    _pDn = 0;   _dn.Ln = 0;   didq = false;
    MemSet (tpos, 0, sizeof (tpos));
    MemSet (qd,   0, sizeof (qd));
@@ -369,11 +379,11 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
                                            if (nt > nmax) nmax = nt;}
                nn++;   if (c == 128)  c = x;
             }
-         if (! nn)  xx [dp].pos = 99;  // if no notes in dn for my trks
+         if (! nn)  xx [dp].pos = 99;  // no notes in dn for my oct(trk)
          else {
-            xx [dp].pos = c;           // first nt pos for my trks
+            xx [dp].pos = c;           // first nt pos for my oct
             nt = nsum / nn;   ntrm = (ubyt2)(32768 * (nsum % nn) / nn);
-            if      (nt   > pnt)    ch = '>';
+            if      (nt   > pnt)    ch = '>';    // ^ remainder
             else if (nt   < pnt)    ch = '<';
             else if (ntrm > pntrm)  ch = '>';
             else if (ntrm < pntrm)  ch = '<';
@@ -387,7 +397,7 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
             _dn [dp].nt [c].nt = ((ht == 'L') ? nmin : nmax);
             pnt = nt;   pntrm = ntrm;
 
-         // toss any notes of my trks beyond c
+         // toss any notes of my oct/trk beyond c
             for (x = c+1;  x < _dn [dp].nNt;  x++)
                if (_f.trk [_dn [dp].nt [x].t].ht == oc) {
                   MemCp (& _dn [dp].nt [x], & _dn [dp].nt [x+1],
@@ -398,7 +408,7 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
          }
       }
 
-   // now collect manually picked notes in _f.cue[].s for my oct's tracks
+   // now collect manually picked note restarts in _f.cue[] for my oct/trk
       StrFmt (st, ".ezpos `c", k [0]);
       for (p = 0;  p < _f.cue.Ln;  p++)
                                      if (! MemCm (_f.cue [p].s, st, StrLn (st)))
@@ -410,14 +420,55 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
 //dp, xx [dp].key, _f.cue [p].s, xx [dp].pos);
          }
 
+   // ok!  time for final fingerin'
+   // check for rolled chord/trill - time diff of < 22 ticks (32nd note-2ticks)
+   //    else follow < > !
+     ulong pend;                       // end of trill pos
+     ubyte cu;
       pf = 0;
       for (dp = 0;  dp < _dn.Ln;  dp++)  if (xx [dp].pos != 99) {
-//DBG(" dp=`d", dp);
+         tm = _dn [dp].time;           // max is actually min for LH
+         c  = 0;                       // count # EXTRA downs in trill (not 1st)
+         cu = (xx [dp].dir == '>') ? 1 : 0;      // how many ups altogether
+TStr s3;
+DBG("tm1=`s dir=`c", TmSt(s3,tm), xx [dp].dir);
+         for (p = dp+1;  p < _dn.Ln;  p++)  if (xx [p].pos != 99) {
+            if (_dn [p].time < tm+22) {
+               c++;   pend = p;   tm = _dn [p].time;
+               if (xx [p].dir == '>')  cu++;
+DBG("   + tm=`s dir=`c c=`d cu=`d", TmSt(s3,tm), xx [p].dir, c, cu);
+            }
+            else  break;
+         }
+
+      // do either our only or our 1st note
          if      (xx [dp].dir == '!')  pf = xx [dp].key - 'c';
          else if (xx [dp].dir == '<')  {if (pf-- == 0)  pf = 4;}
          else if (xx [dp].dir == '>')  {if (pf++ == 4)  pf = 0;}
          k [1] = 'c' + pf;
          _dn [dp].nt [xx [dp].pos].nt = MKey (k);
+
+         if (c) {                      // do rolled chord/trill
+           char dir = (cu > c+1-cu) ? '>' : '<';
+            tm = _dn [dp].time;
+DBG("   c=`d cu=`d pf=`d dir=`c", c, cu, pf, dir);
+
+            TxtIns (tm, CC((dir == '<') ? "-\\" : "-/"), & _f.cue, 'c');
+
+         // if normal 1st note would cause a wrap (5>1 or 1>5) bump it
+            if (dir == '>') {if (pf+c > 4)  pf = 4-c;}
+            else             if (pf   < c)  pf = c;
+DBG("   pf=`d", pf);
+            k [1] = 'c' + pf;
+            _dn [dp].nt [xx [dp].pos].nt = MKey (k);  // in case it's new
+            for (p = dp+1;  p <= pend;  p++)  if (xx [p].pos != 99) {
+               if (dir == '<')  {if (pf-- == 0)  pf = 4;}  // but we should
+               else             {if (pf++ == 4)  pf = 0;}  // never wrap
+               k [1] = 'c' + pf;
+               _dn [p].nt [xx [p].pos].nt = MKey (k);
+            }
+            dp = pend;
+         }
       }
    }
 
@@ -448,7 +499,7 @@ void Song::SetLp (char dir)
 // [cues, _dn, _bug=> calcd loops then set curr lpBgn,lpEnd n adj tempo %
 // make sure _dn is SET !
 { ubyt4 nl, p, x, xt, l, tMn, tMx, in;
-  bool  usex = true;                   // set _lrn.lp* to lp[x] ?
+  bool  usex = true;
   TStr  ts, t2;
   struct {ubyt4 tm, te, d, nd;} lp [4096];
 // tm-te is time range;  d = #distinct bug times;  nd = total times (from _dn)
