@@ -1,79 +1,41 @@
 play____________________________________________________________________________
 
-get good sheet music in;  play good songs;  change em to be better songs
+gather good songs - find BEST way to get sheet music in
+play em;  study em;  pick out riffs;  change em;  make one;
 
-play, study magic singable dumb songs, pick out riffs, make a SONG
-   yellowbrickroad
-   petshopboys
-   yazoo - only you, don't go, situation (move out)
-   owl city?
+especially magic singable dumb songs
+   yellowbrickroad, petshopboys, yazoo/erasure, owl city
    journey - don't stop believin, who's crying now, patiently,
       feeling that way, just the same way, lovin touchin squeezin
       lights, stay awhile, wheel in the sky,
-   erasure - always, love to hate you, chorus, sometimes, fingers and thumbs
 
-try to find all the good rush sounds
-
-controller via joystick
-videos
-   songs playin
-   keyCmd
-   hook up a track volume
-   docs=>videos
+dup the good rush sounds
 
 
 code____________________________________________________________________________
 
-cc dlg should hilite cc that was pressed to kick it
+install - stuck in a loop how?  revisit pianocheetah.tar.gz
 
-changing device always pickin chan 1
-
-trill tangles - maybe a setting for between 10..24..48
-                                                32nd 16th
-   work on loveIsBlue
-   mark better
-
-   quantize "now" notes  (maybe below a threshold, autoquant?)
-   maybe a "do the trills for me" mode?  you only hit 1st?
-
+trill tangles - loveIsBlue, to zanarkand
+   32nd ok?  why are things so messed up when 3/4 of 16th
+      then take out dbg
+   back to regular notes, better markings
+   quantize now (into 1 note chord) or
+      autoplay trill (only 1st note in dn n rest in bg track)
    bugs should only show on trill note 1, not 2+
-   notes of other hand jammed in hasta be fixed by splitting tracks
 
-install - stuck in a loop - how tho...
-   pianocheetah.tar.gz properly
+track ttips - show note range, and control list
+   take drum/ outa sngrp, inst&kit in tip
 
-RELEASE EET
-
-track ttips - dif per col - show note range, and control list
-   take drum/ outa sngrp, inst,kit in tip
-   really squish track display (tooltip everything - esp sounds)
-
-is there a better way to get in sheet music than txt2song?
-
-make BEAT variable h?  (not just bar)
-   get that note match "text report" into dbg
-      to notice places to make things better
-   to zanarkand
-      bar 34 trill is incr and should start on 1, bar 70 too
-         incr always start on 1
-         decr on 5
-      check trill sync across hands
-      1-2 and 3-4 are exact same rhythm and note DIRECTION
-         but actual notes diff
-         maybe ez should match?
-         same for 5-8,9-12
-      13 and 17 match exactly (real notes that is)
-         14 and 18 lh match, rh ONE trailing note diff
-         15 and 19 lh match, rh diff by last notes
-         16 and 20 lh match, rh diff
-         at least a resync so 13 and 17 start at the same place
+is step entry better than txt format?
 
 dragdrop for midicfg, track, FLst
 
-test out syn's envelopes harder - esp chorus-y things
+can reprpt make ez tracks repeat rhythms on same keys
 
-when sounds are wrecked cuz a device is off,
-   can it fallback to syn? once avail?
+changing device always pickin chan 1
+
+syn's envelopes more - esp chorus-y things
 
 
 spec____________________________________________________________________________
@@ -84,6 +46,8 @@ in note ev, pass duration so syn can do tricky echoes and stuff
 
 whistle compose?
 
+when device is off can it fallback to syn?  then autorestore once dev is avail?
+
 note level control of envelopes etc via "note color"
    palette of fx colors:
       name=> all defaults overriden w set of control to set at once
@@ -92,8 +56,6 @@ note level control of envelopes etc via "note color"
    note color...  set only a note to phaserlr
       if color!=0 (str != '')
          note estr overrides chan = fxlist[color-1],
-
-strum?
 
 follow an osc?
 
@@ -122,6 +84,10 @@ more obviously stacked notes somehow
 
 
 doc_____________________________________________________________________________
+
+all docs convert to video
+
+videos on songs hearin/playin; keyCmd; hook up a track volume
 
 shoot ez linux
    get your data backed up properly - exfat
@@ -162,14 +128,6 @@ Info() doesn't seem to work..
 
 put sounds with banks in a tooltip (strip *,bank)
 
-if Hey!  device is off, it's dead forever...
-
-eznotes - replace pattern w another funner to play one
-
-changing dev doesnt pick next chan
-
-looping needs a little tlc i think
-
 how is recorded tempo somehow bein saved to learn .song ?
 
 hearmode rec - show notes/ctrls as played;  in poz, step recording
@@ -179,15 +137,13 @@ ez should make similar sections have same fingering
    using 2 hands on a given track (for 10 notes instead of 5)
       pick ? 3+LH
 
-arp random notes
+arp random notes w/in chord
 
 limit note editing in RCRD to only what makes sense
    dlgmov - not in RCRD;   is move to backing ok?
             upon close - "you need a practice track to add notes on"  ???
 
 EvIns - do i ALWAYS keep trk[].e in order throughout .song lifetime?
-
-midicfg - keep row hilited in Mv()
 
 control picker should show if control is used in song
    map cc zone1 to somethin how?
@@ -208,8 +164,6 @@ ctrl list
    take out tempo?
    preserve across song load
    give controls fullname too
-
-CtlTr - icon centering - cuz just a "decoration role" on left
 
 control editing
    how to edit cues at nearly same time

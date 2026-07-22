@@ -14,65 +14,18 @@ QColor CMap (ubyte n)
 
 void CInit ()
 { ColRng cr;                           // Scl[12]=red,ora,yel,x,grn,trq,x,blu,x,
+  int i;
    cr.Init (CRng);                                                  // prp,x,mag
-// main 12 for notes
-   for (int i = 0;  i < 12;  i++)  {
+   for (i = 0;  i < 12;  i++)  {       // main 12 for notes
       CScl [0][i] = HSL (30*i, 100, 75);
       CScl [1][i] = HSL (30*i, 100, 40);
    }
-/* try Sophia's palette
-**    hue              previous 4                hex      hsl
-**      0 red          #e48483    1 64.2 70.4 => #f37f81  359 82.9 72.5
-**     30 orange                                 #f3bf88   31 81.7 74.3
-**     60 yellow       #f8f191   56 88   77.1 => #faf184   55 92.9 74.9
-**     90 yellow-green                           #c6d985   74 52.5 68.6
-**    120 green                                  #a1c979   90 42.6 63.1
-**    150 cyan-green                             #a2cfaf  137 31.9 72.4
-**    180 cyan         #a5d6e3  193 52.5 76.9 => #99d8e4  190 58.1 74.7
-**    210 blue                                   #92bae1  210 56.8 72.7
-**    240 blue-purple  #787cb5  236 29.2 59   => #797cbb  237 32.7 60.4
-**    270 purple                                 #9d84b6  270 25.5 61.6
-**    300 pink                                   #c78eb8  316 33.7 66.9
-**    330 magenta                                #e288b2  332 60.8 71
-** now dark (lum-35)
-**    hsl
-**    359 82.9 37.5  #af1013
-**     31 81.7 39.3  #b66712
-**     55 92.9 39.9  #c4b507
-**     74 52.5 33.6  #6e8329
-**     90 42.6 28.1  #486629
-**    137 31.9 37.4  #417e52
-**    190 58.1 39.7  #2a8ca0
-**    210 56.8 37.7  #2a6097
-**    237 32.7 25.4  #2c2e56
-**    270 25.5 26.6  #443355
-**    316 33.7 31.9  #6d365e
-**    332 60.8 36    #942458
-   CScl [0][0]  = Color ("#f37f81");
-   CScl [0][1]  = Color ("#f3bf88");
-   CScl [0][2]  = Color ("#faf184");
-   CScl [0][3]  = Color ("#c6d985");
-   CScl [0][4]  = Color ("#a1c979");
-   CScl [0][5]  = Color ("#a2cfaf");
-   CScl [0][6]  = Color ("#99d8e4");
-   CScl [0][7]  = Color ("#92bae1");
-   CScl [0][8]  = Color ("#797cbb");
-   CScl [0][9]  = Color ("#9d84b6");
-   CScl [0][10] = Color ("#c78eb8");
-   CScl [0][11] = Color ("#e288b2");
-
-   CScl [1][0]  = Color ("#af1013");
-   CScl [1][1]  = Color ("#b66712");
-   CScl [1][2]  = Color ("#c4b507");
-   CScl [1][3]  = Color ("#6e8329");
-   CScl [1][4]  = Color ("#486629");
-   CScl [1][5]  = Color ("#417e52");
-   CScl [1][6]  = Color ("#2a8ca0");
-   CScl [1][7]  = Color ("#2a6097");
-   CScl [1][8]  = Color ("#2c2e56");
-   CScl [1][9]  = Color ("#443355");
-   CScl [1][10] = Color ("#6d365e");
-   CScl [1][11] = Color ("#942458");
+/*
+TStr s, s2;
+   for (i = 0;  i < 12;  i++)
+DBG("`s `s", ColRGB (s, CScl [0][i]), ColRGB (s2, CScl [0][i], 'd'));
+   for (i = 0;  i < 12;  i++)
+DBG("`s `s", ColRGB (s, CScl [1][i]), ColRGB (s2, CScl [1][i], 'd'));
 */
 
 // lt blue=#e5f2ff pink=#ffe5ff green=#e5fff2 lt grey=#eff0f1

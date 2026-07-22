@@ -276,7 +276,7 @@ void DlgCtl::Open ()
    }
    _t.Shut ();
    Gui.DlgMv (this, Up.gp, "tc");
-   _t.HopTo (Up.rHop, 2);
+   if (Up.rHop)  _t.HopTo (Up.rHop, 2);
 }
 
 void DlgCtl::Shut ()

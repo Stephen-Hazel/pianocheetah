@@ -421,7 +421,7 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
          }
 
    // ok!  time for final fingerin'
-   // check for rolled chord/trill - time diff of < 22 ticks (32nd note-2ticks)
+   // check for rolled chord/trill - time diff of < 32nd
    //    else follow < > !
      ulong pend;                       // end of trill pos
      ubyte cu;
@@ -433,7 +433,7 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
 TStr s3;
 DBG("tm1=`s dir=`c", TmSt(s3,tm), xx [dp].dir);
          for (p = dp+1;  p < _dn.Ln;  p++)  if (xx [p].pos != 99) {
-            if (_dn [p].time < tm+22) {
+            if (_dn [p].time < tm+(M_WHOLE/32)) {
                c++;   pend = p;   tm = _dn [p].time;
                if (xx [p].dir == '>')  cu++;
 DBG("   + tm=`s dir=`c c=`d cu=`d", TmSt(s3,tm), xx [p].dir, c, cu);
