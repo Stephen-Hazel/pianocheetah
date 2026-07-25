@@ -447,7 +447,7 @@ TRC(" tbar init");
 // global-y
    _tb.Btn (0, UCmdS ("fullScr"));
    _tb.Ico (0, 1);
-   _tb.Btn (1, "configure midi devices", "d");
+   _tb.Btn (1, "configure midi devices");
    _tb.Btn (2, "settings and junk");
    connect (_tb.Act (0), & QAction::triggered,  this, & PCheetah::Trak);
    connect (_tb.Act (1), & QAction::triggered,  this, & PCheetah::MCfg);
@@ -496,9 +496,9 @@ TRC(" tbar init");
    _tb.Sep (17);
 
 // tempo
-   _tb.Btn (18, UCmdS ("tempo<"  ), "d");
-   _tb.Btn (19, UCmdS ("tempoHop"), "d");
-   _tb.Btn (20, UCmdS ("tempo>"  ), "d");
+   _tb.Btn (18, UCmdS ("tempo<"  ));
+   _tb.Btn (19, UCmdS ("tempoHop"));
+   _tb.Btn (20, UCmdS ("tempo>"  ));
    connect (_tb.Act (18), & QAction::triggered,
                           this, [this]() {emit sgCmd ("tempo<"  );});
    connect (_tb.Act (19), & QAction::triggered,
@@ -508,8 +508,8 @@ TRC(" tbar init");
    _tb.Sep (21);
 
 // editing stuff
-   _tb.Btn (22, "scoot track up", "d");
-   _tb.Btn (23, "scoot track down", "d");
+   _tb.Btn (22, "scoot track up");
+   _tb.Btn (23, "scoot track down");
    _tb.Btn (24, "insert track", "d");
    _tb.Btn (25, "delete track", "d");
    _tb.Btn (26, "split the learn track (3E and below) into new LH track", "d");

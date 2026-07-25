@@ -14,14 +14,23 @@ dup the good rush sounds
 
 code____________________________________________________________________________
 
+map out the palette!!  blue-aqua = #80EDEA
+
+is eye icon ok in dark mode?
+
 install - stuck in a loop how?  revisit pianocheetah.tar.gz
 
-trill tangles - loveIsBlue, to zanarkand
-   32nd ok?  why are things so messed up when 3/4 of 16th
-      then take out dbg
-   back to regular notes, better markings
-   quantize now (into 1 note chord) or
-      autoplay trill (only 1st note in dn n rest in bg track)
+cc dlg - can't add TSig cuz it doesn't go out
+
+trill tangles - loveIsBlue, to zanarkand, brianssong
+   zan 34 - shoulda been trill, why are durs short sometimes?
+      zan tsig is 6/4 so dur should be rel to tsig subbeat?
+   now 16th*3/4 seems ok?
+   better markings
+   comment out dbg
+   quantize now should just use time of note you clicked instead of asking
+      but ok/can needed
+   autoplay trill? (only 1st note in dn n rest in bg track)
    bugs should only show on trill note 1, not 2+
 
 track ttips - show note range, and control list

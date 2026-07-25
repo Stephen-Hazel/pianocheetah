@@ -1,14 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
-  <defs id="defs3051">
-    <style type="text/css" id="current-color-scheme">
-      .ColorScheme-Text {
-        color:#003366;
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 77.24 74.48">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ff8080;
       }
-      </style>
+
+      .cls-2 {
+        fill: #8080ff;
+      }
+    </style>
   </defs>
- <path 
-     style="fill:currentColor;fill-opacity:1;stroke:none" 
-     d="M 3 3 L 3 4 L 11 4 L 11 3 L 3 3 z M 3 8 L 3 9 L 19 9 L 19 8 L 3 8 z M 15.5 10 L 15.28125 10.21875 L 12 13.40625 L 12.71875 14.125 L 15 11.90625 L 15 19 L 16 19 L 16 11.90625 L 18.28125 14.125 L 19 13.40625 L 15.71875 10.21875 L 15.5 10 z M 3 13 L 3 14 L 11 14 L 11 13 L 3 13 z M 3 18 L 3 19 L 13 19 L 13 18 L 3 18 z "
-     class="ColorScheme-Text"
-     />
+  <g id="Layer_4" data-name="Layer 4">
+    <g>
+      <polygon class="cls-2" points="0 18.76 0 35.68 77.24 35.68 77.24 12.44 0 18.76"/>
+      <rect class="cls-2" x="0" width="41.96" height="6.49"/>
+      <rect class="cls-2" x="0" y="48.39" width="41.96" height="6.49"/>
+      <rect class="cls-2" x="0" y="66.39" width="41.96" height="6.49"/>
+      <path class="cls-1" d="M59.22,37.61c-1.9,3.95-6.65,12.49-12.97,14.55-.19.06-.22.31-.03.4,1.53.67,6.31,2.33,10.52-.79.13-.1.32-.03.34.14l2.88,22.39c.03.25.38.26.43.01l4.44-23.27c.03-.15.19-.23.32-.15.98.6,4.62,2.51,9,.67.16-.07.2-.3.04-.39-1.71-1.06-9.13-5.99-13.11-13.57-.4-.76-1.48-.75-1.85.02Z"/>
+    </g>
+  </g>
 </svg>
