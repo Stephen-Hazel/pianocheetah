@@ -121,7 +121,8 @@ private:
       return Up.dev [_f.trk [t].dev].mo->Name ();
    }
    char *SndName (ubyte t)
-   {  if (_f.trk [t].snd == SND_NONE)  return CC("");
+   {  if (!  Up.dev [_f.trk [t].dev].mo)  return CC("");
+      if (_f.trk [t].snd == SND_NONE)     return CC("");
       return Up.dvt [Up.dev [_f.trk [t].dev].dvt].Snd (_f.trk [t].snd)->name;
    }
    void  NotesOff ();                  // notes+hold OFF

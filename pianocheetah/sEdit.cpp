@@ -716,6 +716,13 @@ TStr db1, db2;
 DBG("move `s `s from tr=`d to tR=`d tL=`d",
 TmSt    (db1,_f.trk[it->tr].n [it->nt].tm),
 MKey2Str(db2,_f.trk[it->tr].n [it->nt].nt), it->tr, tR, tL);
+            if ((p = _f.trk [it->tr].n [it->nt].up) != NONE)
+               MemCp (& up, & _f.trk [it->tr].e [p], sizeof (up));
+            else {
+               MemCp (& up, & dn, sizeof (dn));
+               up.time =  dn.time + (M_WHOLE/32-1);
+               up.valu = 64;
+            }
             if ((p = _f.trk [it->tr].n [it->nt].dn) != NONE)
                MemCp (& dn, & _f.trk [it->tr].e [p], sizeof (dn));
             else {
@@ -723,13 +730,6 @@ MKey2Str(db2,_f.trk[it->tr].n [it->nt].nt), it->tr, tR, tL);
                dn.time = (up.time > (M_WHOLE/32-1)) ?
                          (up.time - (M_WHOLE/32-1)) : 0;
                dn.valu = 100;
-            }
-            if ((p = _f.trk [it->tr].n [it->nt].up) != NONE)
-               MemCp (& up, & _f.trk [it->tr].e [p], sizeof (up));
-            else {
-               MemCp (& up, & dn, sizeof (dn));
-               up.time =  dn.time + (M_WHOLE/32-1);
-               up.valu = 64;
             }
             if      (*s == '>')  dn.x = up.x = tR;
             else if (*s == '<')  dn.x = up.x = tL;
