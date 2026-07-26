@@ -35,19 +35,19 @@
     <style
        id="style1">
       .cls-1 {
-        fill: #faf184;
+        fill: #fffe8a;
       }
 
       .cls-2 {
-        fill: #99d8e4;
+        fill: #80edea;
       }
 
       .cls-3 {
-        fill: #f37f81;
+        fill: #ff8985;
       }
 
       .cls-4 {
-        fill: #797cbb;
+        fill: #7f83fa;
       }
     </style>
   </defs>

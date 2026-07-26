@@ -396,7 +396,7 @@ void Song::Load (char *fn)
   STable st [TB_MAX];
    Wipe ();
 TRC(" title");
-   App.Path (buf, 'd');   StrAp (buf, CC("/4_queue/"));    // git window title
+   App.Path (buf, 'd');   StrAp (buf, CC("/3_queue/"));    // git window title
    if (MemCm (fn, buf, StrLn (buf)))  FnName (fnt, fn);
    else                               StrCp  (fnt, & fn [StrLn (buf)]);
    StrCp (Up.ttl, fnt);   emit sgUpd ("ttl");

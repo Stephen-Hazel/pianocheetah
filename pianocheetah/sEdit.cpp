@@ -72,7 +72,7 @@ DBG("TDr r=`d c=`d s=`d", r, c, a);
   TStr  fn, pt [3];
   Path  d;
   File  f;
-   App.Path (fn, 'd');   StrAp (fn, CC("/4_queue/drumpat"));   d.Make (fn);
+   App.Path (fn, 'd');   StrAp (fn, "/3_queue/drumpat");   d.Make (fn);
    StrAp (fn, CC("/a.txt"));
    if (! f.Open (fn, "w"))  Die (StrFmt (s, "can't write song file `s", fn));
    f.Put (CC("-- drumpat.txt\n"

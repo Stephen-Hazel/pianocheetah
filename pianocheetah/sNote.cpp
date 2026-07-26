@@ -17,13 +17,34 @@ void CInit ()
   int i;
    cr.Init (CRng);                                                  // prp,x,mag
 // main 12 for notes
-TStr s;
-   for (i = 0;  i < 12;  i++)  {
-      CScl [0][i] = HSL (30*i, 100, 75);
-      CScl [1][i] = HSL (30*i, 100, 40);
-   }
-for (i = 0;  i < 12;  i++)  DBG(ColRGB(s, CScl [0][i]));
-for (i = 0;  i < 12;  i++)  DBG(ColRGB(s, CScl [1][i]));
+// OLD:
+// for (i = 0;  i < 12;  i++)  {CScl [0][i] = HSL (30*i, 100, 75);
+//                              CScl [1][i] = HSL (30*i, 100, 40);}
+   CScl [0][ 0] = Color ("#ff8985");   // * red  LITE MODE
+   CScl [0][ 1] = Color ("#ffc287");   //   orange
+   CScl [0][ 2] = Color ("#fffe8a");   // * yellow
+   CScl [0][ 3] = Color ("#b3fb87");   //   yellow-green
+   CScl [0][ 4] = Color ("#5afa85");   //   green
+   CScl [0][ 5] = Color ("#59fac0");   //   cyan-green
+   CScl [0][ 6] = Color ("#80edea");   // * cyan
+   CScl [0][ 7] = Color ("#71befb");   //   blue
+   CScl [0][ 8] = Color ("#7f83fa");   // * blue-purple
+   CScl [0][ 9] = Color ("#c686fb");   //   purple
+   CScl [0][10] = Color ("#ff8cfd");   //   pink
+   CScl [0][11] = Color ("#ff8ac0");   //   magenta
+
+   CScl [1][ 0] = Color ("#da3225");   // * red  DARK MODE
+   CScl [1][ 1] = Color ("#d76c29");   //   orange
+   CScl [1][ 2] = Color ("#cdcb35");   // * yellow
+   CScl [1][ 3] = Color ("#46c72b");   //   yellow-green
+   CScl [1][ 4] = Color ("#00c627");   //   green
+   CScl [1][ 5] = Color ("#00c768");   //   cyan-green
+   CScl [1][ 6] = Color ("#00c8ca");   // * cyan
+   CScl [1][ 7] = Color ("#0065c8");   //   blue
+   CScl [1][ 8] = Color ("#001dc7");   // * blue-purple
+   CScl [1][ 9] = Color ("#6b25c8");   //   purple
+   CScl [1][10] = Color ("#da39ca");   //   pink
+   CScl [1][11] = Color ("#da3468");   //   magenta
 
 // lt blue=#e5f2ff pink=#ffe5ff green=#e5fff2 lt grey=#eff0f1
    CTnt [0][0] = HSL (210, 100, 95);

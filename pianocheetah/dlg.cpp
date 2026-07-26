@@ -414,14 +414,10 @@ void FLstDef::Load ()
 // reinit t n list every a.song file in Pianocheetah dir
    App.Path (dr, 'd');
    t.Init (CC("lstS"), FL.MAX, FL.MAX*sizeof (TStr)/2);
-   StrFmt (fn, "`s/1_learning",   dr);   f.DoDir (fn, & t, SongOK);
-   StrFmt (fn, "`s/2_repertoire", dr);   f.DoDir (fn, & t, SongOK);
+   StrFmt (fn, "`s/1_learning", dr);   f.DoDir (fn, & t, SongOK);
    t.Sort ();
-//TRC("num 1,2 pc songs=`d", t.num);  t.Dump ();
-
-// if got 2_rep, need 1_learn ins pos
-   for (ins1 = 0;  ins1 < FL.lst.Ln;  ins1++)
-      if (StrSt (FL.lst [ins1], CC("2_repertoire")))  break;
+   ins1 = FL.lst.Ln;
+//TRC("num 1 pc songs=`d", t.num);  t.Dump ();
 
 // upd FL keepin prev order if file still exists (w flag n=>y)
    for (i = 0;  i < t.num;  i++) {
@@ -440,16 +436,16 @@ void FLstDef::Load ()
 
 // append done/queue to FLst[]
    t.Init (CC("lstS"), FL.MAX, FL.MAX*sizeof (TStr)/2);
-   StrFmt (fn, "`s/3_done",  dr);   f.DoDir (fn, & t, SongOK);
-   StrFmt (fn, "`s/4_queue", dr);   f.DoDir (fn, & t, SongOK);
+   StrFmt (fn, "`s/2_done",  dr);   f.DoDir (fn, & t, SongOK);
+   StrFmt (fn, "`s/3_queue", dr);   f.DoDir (fn, & t, SongOK);
    t.Sort ();
-//TRC("num 3,4 pc songs=`d", t.num);  t.Dump ();
+//TRC("num 2,3 pc songs=`d", t.num);  t.Dump ();
    j = FL.lst.Ln;
    for (i = 0;  i < t.num;  i++, j++) {     // FLAG init for rand load
       if (FL.lst.Full ())  break;
       FL.lst.Ins ();
       StrCp (FL.lst [j], t.str [i]);
-      FL.lst [j][FL.X] = StrSt (t.str [i], CC("4_queue")) ? 'n' : 'y';
+      FL.lst [j][FL.X] = StrSt (t.str [i], CC("3_queue")) ? 'n' : 'y';
    }
    Save ();
 //TRC("FL::Load ln=`d", FL.lst.Ln);
@@ -458,14 +454,14 @@ void FLstDef::Load ()
 
 
 void FLstDef::Save ()
-// just dump Learn/Rep (with manual sort) of FLst[] in cfg/songlist.txt
+// just dump Learn (with manual sort) of FLst[] in cfg/songlist.txt
 { TStr fn;
   File f;
    App.Path (fn, 'c');   StrAp (fn, CC("/songlist.txt"));
    if (! f.Open (fn, "w"))  DBG("FL.Save  couldn't write songlist");
    for (ubyt4 r = 0;  r < FL.lst.Ln;  r++) {
-      if (StrSt (FL.lst [r], CC("3_done")) ||
-          StrSt (FL.lst [r], CC("4_queue")))  break;
+      if (StrSt (FL.lst [r], CC("2_done")) ||
+          StrSt (FL.lst [r], CC("3_queue")))  break;
       f.Put (FL.lst [r]);  f.Put (CC("\n"));
    }
    f.Shut ();
@@ -572,11 +568,10 @@ void DlgFL::ReDo ()                    // FL.lst/FL.pos => gui tbl
          Gui.Hey ("pick a learn/rep song to uncheck all");
          all = true;  c.Set (true);
       }
-      switch (*ts) {                   // 1_learning/ 2_repertoire/ 3_done/ etc
+      switch (*ts) {                   // 1_learning/ 2_done/ etc
          case '1':  StrCp (s1, CC("learn"));   StrCp (s2, & ts [11]);   break;
-         case '2':  StrCp (s1, CC("rep"));     StrCp (s2, & ts [13]);   break;
-         case '3':  StrCp (s1, CC("done"));    StrCp (s2, & ts [ 7]);   break;
-         case '4':  StrCp (s1, CC("queue"));   StrCp (s2, & ts [ 8]);   break;
+         case '2':  StrCp (s1, CC("done"));    StrCp (s2, & ts [ 7]);   break;
+         case '3':  StrCp (s1, CC("queue"));   StrCp (s2, & ts [ 8]);   break;
       }
       _t.Put (ro);
    }
@@ -653,8 +648,8 @@ DBG("no _midicache.txt for `s", dMid);
       return;
    }
 
-// wipe n recreate 4_queue/found;  start writin 4_queue/found.txt
-   StrFmt (dFnd, "`s/4_queue/found", App.Path (c, 'd'));
+// wipe n recreate 3_queue/found;  start writin 3_queue/found.txt
+   StrFmt (dFnd, "`s/3_queue/found", App.Path (c, 'd'));
    d.Kill (dFnd);   d.Make (dFnd);
    NFnd = 0;   if (! FFnd.Open (StrFmt (fnF, "`s.txt", dFnd), "w"))  return;
 
@@ -666,10 +661,10 @@ DBG("found `d", NFnd);
                             "I'm only copyin 500 of the midi files, pal.\n"
                             "wanna view all matched filenames?"))
                         App.Open (fnF);
-// ok copy em to 4_queue/found
+// ok copy em to 3_queue/found
    StrCp (DirF, dMid);   StrCp (DirT, dFnd);   f.DoText (fnF, nullptr, FLCopy);
 
-// relist and move pos to 4_queue/found
+// relist and move pos to 3_queue/found
   CtlChek a (ui->all);
    a.Set (true);   FL.Load ();   FL.pos = 0;
    for (ln = StrLn (dFnd), i = 0;  i < FL.lst.Ln;  i++)
@@ -756,7 +751,7 @@ void DlgFL::Init ()
                  "   fill in the search box below THEN click me"));
    tb.Btn (3, CC("MidiImport\n"
                  "Pick a dir tree with midi files to convert to songs\n"
-                 "in the 4_queue dir"));
+                 "in the 3_queue dir"));
    tb.Btn (4, CC("Song2Wav\n"
                  "Render .song to a .wav file"));
    tb.Btn (5, CC("Sfz2Syn\n"

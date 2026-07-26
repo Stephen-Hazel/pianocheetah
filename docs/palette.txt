@@ -1,1 +1,49 @@
-/home/sh/.var/app/app.pianocheetah.pianocheetah/config/dbg.txt
+Sophia's palette
+hue                 original was lite=sat=100,lum=75   dark=lum=40
+  0 * red
+ 30   orange
+ 60 * yellow
+ 90   yellow-green
+120   green
+150   cyan-green
+180 * cyan
+210   blue
+240 * blue-purple
+270   purple
+300   pink
+330   magenta
+
+LIGHT MODE
+default foreground/text color  #232629
+default background color       #eff0f1
+
+#ff8985 * red
+#ffc287   orange
+#fffe8a * yellow
+#b3fb87   yellow-green
+#5afa85   green
+#59fac0   cyan-green
+#80edea * cyan
+#71befb   blue
+#7f83fa * blue-purple
+#c686fb   purple
+#ff8cfd   pink
+#ff8ac0   magenta
+
+
+DARK MODE
+default foreground/text color  #fcfcfc
+default background color       #202326
+
+#da3225   red
+#d76c29   orange
+#cdcb35   yellow
+#46c72b   yellow-green
+#00c627   green
+#00c768   cyan-green
+#00c8ca   cyan
+#0065c8   blue
+#001dc7   blue-purple
+#6b25c8   purple
+#da39ca   pink
+#da3468   magenta

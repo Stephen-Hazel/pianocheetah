@@ -14,11 +14,9 @@ dup the good rush sounds
 
 code____________________________________________________________________________
 
-map out the palette!!  blue-aqua = #80EDEA
+lose 2_rep
 
-is eye icon ok in dark mode?
-
-install - stuck in a loop how?  revisit pianocheetah.tar.gz
+revisit pianocheetah.tar.gz
 
 cc dlg - can't add TSig cuz it doesn't go out
 

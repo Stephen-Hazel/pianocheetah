@@ -130,10 +130,10 @@ static void XLoad ()
                          return;}
 DBG("   xPos=`d xLen=`d xFn=`s dMid=`s", FL.xPos, FL.xLen, FL.xFn, dMid);
 // recreate dest dir
-   StrFmt (dFnd, "`s/4_queue/found", App.Path (s, 'd'));
+   StrFmt (dFnd, "`s/3_queue/found", App.Path (s, 'd'));
    d.Kill (dFnd);   d.Make (dFnd);
 
-// ok copy it to 4_queue/found
+// ok copy it to 3_queue/found
   TStr fr, to, frP, toP, cmd;
    StrCp  (to, FL.xFn);   StrAp (to, "", 4);   FnFix (to);
    StrFmt (frP, "`s/`s",          dMid, FL.xFn);
@@ -141,7 +141,7 @@ DBG("   xPos=`d xLen=`d xFn=`s dMid=`s", FL.xPos, FL.xLen, FL.xFn, dMid);
    StrFmt (toP, "`s/`s/a.mid",    dFnd, to);   f.Copy (frP, toP);
    App.Run (StrFmt (cmd, "mid2song `p", toP));
 
-// relist and move pos to 4_queue/found
+// relist and move pos to 3_queue/found
    FL.Load ();   FL.pos = 0;
    for (ln = StrLn (dFnd), i = 0;  i < FL.lst.Ln;  i++)
       if (! MemCm (dFnd, FL.lst [i], ln))  {FL.pos = i;   break;}
@@ -205,9 +205,9 @@ void PCheetah::SongKill ()
   Path  d;
    if ((p = FL.pos) >= FL.lst.Ln)  return;
 TRC("SongKill `s", FL.lst [FL.pos]);
-   StrCp (dr, FL.lst [p]);   App.Path (t, 'd');   StrAp (t, "/4_queue/");
+   StrCp (dr, FL.lst [p]);   App.Path (t, 'd');   StrAp (t, "/3_queue/");
    if (MemCm (dr, t, StrLn (t)))
-      {Gui.Hey ("songKill only works in 4_queue dir");   return;}
+      {Gui.Hey ("songKill only works in 3_queue dir");   return;}
 
 //TODO gotta path.txt?  rm that .mid too
    emit sgCmd ("wipe");   Zzz (750);   // give it 3/4 sec

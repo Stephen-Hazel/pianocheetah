@@ -37,7 +37,7 @@ char *Move (char *fn, ubyt2 len, ubyt4 pos, void *ptr)
    StrFmt (to, "`s/`s/a.mid", DirT, fnx);
    if (mod)  StrAp (to, CC("mod"), 3);
 // move n mid2song
-   f.Copy (fr, to);   f.Kill (fr);   
+   f.Copy (fr, to);   f.Kill (fr);
    App.Run (StrFmt (c, "`s2song `p", mod?"mod":"mid", to));
    return nullptr;
 }
@@ -52,7 +52,7 @@ char *Wipe (char *fn, ubyt2 len, ubyt4 pos, void *ptr)
    StrCp (fnx, fn);
    for (i = 0;  i < StrLn (fnx);  i++)  if (fnx [i] == '/')  fnx [i] = '_';
    StrFmt (fr, "`s/`s", DirF, fn);
-   StrFmt (to, "`s/`s", DirT, fnx);   
+   StrFmt (to, "`s/`s", DirT, fnx);
    f.Copy (fr, to);   f.Kill (fr);
    return nullptr;
 }
@@ -67,8 +67,8 @@ TRC("bgn");
    App.Init ();
 // from picked dir
    StrCp (DirF, argv [1]);   FnName (ds, DirF);
-// to ..pianocheetah/4_queue/botdirpicked
-   StrFmt (DirT, "`s/4_queue/`s", App.Path (s, 'd'), ds);   d.Make (DirT);
+// to ..pianocheetah/3_queue/botdirpicked
+   StrFmt (DirT, "`s/3_queue/`s", App.Path (s, 'd'), ds);   d.Make (DirT);
 DBG("DirFr=`s DirTo=`s", DirF, DirT);
 
 // list midi files in midi_import n move+mid2song em

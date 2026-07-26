@@ -389,7 +389,7 @@ int main (int argc, char *argv [])
 DBGTH("Mod2Song");
    App.Init ();
 TRC("arg=`s", argv [1]);               // we EXPECT ta be called by midimp
-                                       // so .../4_queue/dir/song/a.mod
+                                       // so .../3_queue/dir/song/a.mod
 // MODs have loads of weird .exts so can't check
    if (argc < 2)  Die ("need .../song/a.mod");
    StrCp (FN, argv [1]);
