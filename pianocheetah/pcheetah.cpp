@@ -458,7 +458,7 @@ TRC(" tbar init");
    _tb.Btn (4, "pick from song list");
    _tb.Btn (5, UCmdS ("song<"));
    _tb.Btn (6, UCmdS ("song>"));
-   _tb.Btn (7, UCmdS ("songRand"), "*^??");
+   _tb.Btn (7, UCmdS ("songRand"));
    connect (_tb.Act (4), & QAction::triggered,  this, & PCheetah::Load);
    connect (_tb.Act (5), & QAction::triggered,  this, & PCheetah::SongPrv);
    connect (_tb.Act (6), & QAction::triggered,  this, & PCheetah::SongNxt);

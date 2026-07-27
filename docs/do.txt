@@ -14,10 +14,6 @@ dup the good rush sounds
 
 code____________________________________________________________________________
 
-lose 2_rep
-
-revisit pianocheetah.tar.gz
-
 cc dlg - can't add TSig cuz it doesn't go out
 
 trill tangles - loveIsBlue, to zanarkand, brianssong
