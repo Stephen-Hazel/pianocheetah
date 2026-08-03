@@ -1,7 +1,6 @@
 <RCC>
     <qresource>
         <file>app.svg</file>
-        <file>app_d.svg</file>
         <file>tbar/app/0.svg</file>
         <file>tbar/app/1.svg</file>
         <file>tbar/app/2.svg</file>

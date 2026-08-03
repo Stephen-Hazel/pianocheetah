@@ -427,6 +427,8 @@ DBG("dark/light done");
 
 void PCheetah::SetPix ()               // all dem bitmaps
 {  Up.bug     = new QPixmap (":/note/bug");
+   Up.trillL  = new QPixmap (":/note/trilll");
+   Up.trillR  = new QPixmap (":/note/trillr");
    Up.cue     = new QPixmap (":/note/cue");
    Up.dot     = new QPixmap (":/note/dot");
    Up.fade    = new QPixmap (":/note/fade");
@@ -510,10 +512,10 @@ TRC(" tbar init");
 // editing stuff
    _tb.Btn (22, "scoot track up");
    _tb.Btn (23, "scoot track down");
-   _tb.Btn (24, "insert track", "d");
-   _tb.Btn (25, "delete track", "d");
-   _tb.Btn (26, "split the learn track (3E and below) into new LH track", "d");
-   _tb.Btn (27, "make drum track from clips", "d");
+   _tb.Btn (24, "insert track");
+   _tb.Btn (25, "delete track");
+   _tb.Btn (26, "split the learn track (3E and below) into new LH track");
+   _tb.Btn (27, "make drum track from clips");
 // "time scaling - for { to } => } scales to ^"
 //    this, [this]() {emit sgCmd ("trkEd *");});
 // "time offsetting - for { to end => { moves to ^"

@@ -25,6 +25,8 @@
         <file>note/fade.png</file>
         <file>note/now.png</file>
         <file>note/oct.png</file>
+        <file>note/trilll.png</file>
+        <file>note/trillr.png</file>
         <file>note/bg.png</file>
         <file>note/bg2.png</file>
         <file>note/bg_d.png</file>
@@ -56,17 +58,13 @@
         <file>tbar/app/25.svg</file>
         <file>tbar/app/26.svg</file>
         <file>tbar/app/27.svg</file>
-        <file>tbar/app/24_d.svg</file>
-        <file>tbar/app/25_d.svg</file>
-        <file>tbar/app/26_d.svg</file>
-        <file>tbar/app/27_d.svg</file>
         <file>tbar/flst/0.svg</file>
         <file>tbar/flst/1.svg</file>
-        <file>tbar/flst/2.png</file>
-        <file>tbar/flst/3.png</file>
-        <file>tbar/flst/4.png</file>
-        <file>tbar/flst/5.png</file>
-        <file>tbar/flst/6.png</file>
+        <file>tbar/flst/2.svg</file>
+        <file>tbar/flst/3.svg</file>
+        <file>tbar/flst/4.svg</file>
+        <file>tbar/flst/5.svg</file>
+        <file>tbar/flst/6.svg</file>
         <file>tbar/flst/7.svg</file>
         <file>tbar/cue/0.svg</file>
         <file>tbar/cue/1.svg</file>
@@ -83,11 +81,11 @@
         <file>tbar/cue/10.png</file>
         <file>tbar/cue/11.png</file>
         <file>tbar/cue/12.png</file>
-        <file>tbar/cue/13.png</file>
-        <file>tbar/cue/14.png</file>
-        <file>tbar/cue/15.png</file>
-        <file>tbar/chd/0.png</file>
-        <file>tbar/chd/1.png</file>
+        <file>tbar/cue/13.svg</file>
+        <file>tbar/cue/14.svg</file>
+        <file>tbar/cue/15.svg</file>
+        <file>tbar/chd/0.svg</file>
+        <file>tbar/chd/1.svg</file>
         <file>tbar/chd/2.svg</file>
     </qresource>
 </RCC>

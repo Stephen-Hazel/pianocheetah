@@ -144,7 +144,8 @@ struct UTrkRow {
 };
 struct UpdLst {                        // dlg val passin, etc, etc
    ubyt2 txH;
-   QPixmap *oct, *bg [2], *bg2 [2], *now, *dot, *cue, *bug, *fade, *tr;
+   QPixmap *oct, *bg [2], *bg2 [2], *now, *fade,
+           *dot, *cue, *bug, *trillL, *trillR;
 // stuff Song sets for gui
    bool  uPoz;                         // user said poz, not just learn mode
    char  lrn;

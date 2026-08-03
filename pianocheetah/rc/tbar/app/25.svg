@@ -1,10 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
-  <defs id="defs3051">
-    <style type="text/css" id="current-color-scheme">
-      .ColorScheme-Text {
-        color:#003366;
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_4" data-name="Layer 4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fffe8a;
       }
-      </style>
+
+      .cls-2 {
+        fill: #7f83fa;
+      }
+    </style>
   </defs>
-    <path style="fill:currentColor" class="ColorScheme-Text" d="M 3 7 L 3 9 L 13 9 L 13 7 L 3 7 z" transform="translate(3 3)"/>
+  <rect class="cls-2" x="1.18" y="43.13" width="97.65" height="13.74" rx="4.71" ry="4.71"/>
+  <rect class="cls-1" x="11.96" y="48.18" width="77.91" height="3.64" rx="1.82" ry="1.82"/>
 </svg>

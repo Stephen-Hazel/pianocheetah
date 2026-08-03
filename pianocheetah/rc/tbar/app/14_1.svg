@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52.1 52.1">
+<svg id="Layer_4" data-name="Layer 4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
   <defs>
     <style>
       .cls-1 {
-        fill: #7f83fa;
+        fill: #fffe8a;
       }
 
       .cls-2 {
-        fill: #fffe8a;
+        fill: #7f83fa;
       }
     </style>
   </defs>
-  <g id="Layer_4" data-name="Layer 4">
-    <g>
-      <path class="cls-1" d="M12.18,52.1H0L2.25,3.58l7.05-1.54h.02L18.63,0s-8.09,46.36-6.45,52.1Z"/>
-      <path class="cls-1" d="M29.17,46.47l-6.81,1.16-2.19.37L25.69,4.6l2.59-.18,9.49-.64s-9.83,38.8-8.6,42.69Z"/>
-      <polygon class="cls-2" points="28.28 4.42 22.36 47.63 20.17 48 25.69 4.6 28.28 4.42"/>
-      <polygon class="cls-2" points="9.32 2.04 4.61 52.1 0 52.1 2.25 3.58 9.3 2.04 9.32 2.04"/>
-    </g>
-  </g>
+  <path class="cls-2" d="M35.64,98.81H12.82L17.03,7.9l13.21-2.89h.04l17.44-3.82s-15.16,86.86-12.08,97.62Z"/>
+  <path class="cls-2" d="M67.47,88.26l-12.76,2.17-4.1.69L60.95,9.81l4.85-.34,17.78-1.2s-18.42,72.7-16.11,79.99Z"/>
+  <polygon class="cls-1" points="65.8 9.47 54.71 90.43 50.61 91.13 60.95 9.81 65.8 9.47"/>
+  <polygon class="cls-1" points="30.28 5.01 21.45 98.81 12.82 98.81 17.03 7.9 30.24 5.01 30.28 5.01"/>
 </svg>

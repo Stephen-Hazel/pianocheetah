@@ -14,8 +14,6 @@ dup the good rush sounds
 
 code____________________________________________________________________________
 
-cc dlg - can't add TSig cuz it doesn't go out
-
 trill tangles - loveIsBlue, to zanarkand, brianssong
    zan 34 - shoulda been trill, why are durs short sometimes?
       zan tsig is 6/4 so dur should be rel to tsig subbeat?
