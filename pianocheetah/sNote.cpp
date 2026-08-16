@@ -310,7 +310,7 @@ void Song::DrawSym (SymDef *s, ColDef *co)
   TrkNt  *nt;
   QColor  clr, kc;                     // main color, key color (white/black)
    tr = s->tr;   trk = & _f.trk [tr];   nt = & trk->n [s->nt];   dr = TDrm (tr);
-   n = SHRCRD ? ((ubyte)s->nt) : nt->nt;
+   n = SHRCRD ? ((ubyte)s->nt) : nt->nt;    // nt is junk if SHRCRD
 
 // first get the color - clr is main color, kc is white/black
    if (dr) {
@@ -357,8 +357,25 @@ void Song::DrawSym (SymDef *s, ColDef *co)
    if (kc == CWHITE) {
    // white dudes: big head, little butt.  if top, we only draw head for now
    //                                      else    reset x,w to tail
-      if (s->top)  {if (h >= 18)  h = 16;}
-      else         {x = Nt2X (n, co, 'g');   w = W_NT;}
+      if (s->top) {
+         if (SHRCRD) {                 // trill?
+            if (s->mrk) {
+              ubyt2 ww, hh, w2, h2;
+               ww = Up.trillL->width ();   hh = Up.trillL->height ();
+               w2 = W_NTW;   h2 = hh/(ww/W_NTW);
+               if (s->mrk == '<')
+                  Up.cnv.Blt (*Up.trillL, x-W_NT/2, y-h2, w2, h2,
+                                                    0, 0, ww, hh);
+               else
+                  Up.cnv.Blt (*Up.trillR, x+W_NT/2, y-h2, w2, h2,
+                                                    0, 0, ww, hh);
+            }
+         }
+         if (h >= 18)  h = 16;
+      }
+      else {
+         x = Nt2X (n, co, 'g');   w = W_NT;
+      }
    }
    if (dr && (h >= 8))  h = 6;         // drums have skinny head n butt
 //TStr sx;
@@ -397,12 +414,10 @@ void Song::DrawSym (SymDef *s, ColDef *co)
    }
 
    if ((kc == CWHITE) && s->top && (h != s->h)) {
-      if (SHRCRD) {                    // center n slightly thinner in rec
-         x += 7;   w -= 14;
-      }
-      else {                 // white dudes have tail of only W_NT for true h
-         x = Nt2X (n, co, 'g');   w = W_NT;
-      }
+      if (SHRCRD)                      // center n slightly thinner in rec
+         {x += 7;   w -= 14;}
+      else                   // white dudes have tail of only W_NT for true h
+         {x = Nt2X (n, co, 'g');   w = W_NT;}
       y += 14;   h = s->h - 14;
       if (s->bot)  {Up.cnv.RectF (x+1, y+h-2, w-2, 1, clr);
                     Up.cnv.RectF (x+2, y+h-1, w-4, 1, clr);   h -= 2;}
@@ -861,7 +876,7 @@ TRC("DrawPg `d", pp);
    //__________________________________
    // bugs on top of tmpo
       if (bug) {
-        ubyt2 dw, dh, w = Up.bug->width (), h = Up.bug->height ();
+        ubyt2 dw, dh, w = 18, h = 18;
          ne = _f.bug.Ln;
          for (p = 0;  (p < ne) && (_f.bug [p].time < tMn);  p++)  ;
          for (;       (p < ne) && (_f.bug [p].time < tMx);  p++) {
@@ -869,7 +884,7 @@ TRC("DrawPg `d", pp);
             dh = h/2 + hit * 5*h/4 / 8;
             dw = w*dh/h + ((w*dh%h >= h/2) ? 1:0);
             Up.cnv.Blt (*Up.bug, cx, Tm2Y (_f.bug [p].time, & co), dw, dh,
-                                                              0, 0, w,  h);
+                                 0, 0, Up.bug->width (), Up.bug->height ());
          }
       }
 

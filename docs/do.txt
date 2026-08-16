@@ -14,21 +14,40 @@ dup the good rush sounds
 
 code____________________________________________________________________________
 
-trill tangles - loveIsBlue, to zanarkand, brianssong
-   zan 34 - shoulda been trill, why are durs short sometimes?
-      zan tsig is 6/4 so dur should be rel to tsig subbeat?
-   now 16th*3/4 seems ok?
-   better markings
-   comment out dbg
-   quantize now should just use time of note you clicked instead of asking
-      but ok/can needed
-   autoplay trill? (only 1st note in dn n rest in bg track)
-   bugs should only show on trill note 1, not 2+
+step entry
+   show current duration, articulation in lyrics area
+      when step entry keys are hit
+   need to be in pause mode
+      and only 1 track picked in record mode
+   now time is where notes start
+   duration - show string combo whq. etc
+      3c# .   all toggle
+      3d# 3
+      3f# w
+      3g# h
+      3a# q
+      4c# e
+      4d# s
+      4f# t
+      4a# wipe  (empty dur string, set portato)
+   articulation - show staccatissimo (1/4),
+                       staccato (1/2),
+                       portato (3/4),  default
+                       legato (full)
+      5c# artic down
+      5d# artic up
+   notes hit (3a-4b) add to a chord with picked dur
+      white note goes flat/sharp with keysig in most recent octave
+      hit note a 2nd time to remove
+      3d octave down
+      3e octave up
+      3f flat
+      3g sharp
+      usually add long dur notes first, then change dur to less for advance
+   3c advance time by lowest dur of the notes added
 
 track ttips - show note range, and control list
    take drum/ outa sngrp, inst&kit in tip
-
-is step entry better than txt format?
 
 dragdrop for midicfg, track, FLst
 
@@ -41,47 +60,47 @@ syn's envelopes more - esp chorus-y things
 
 spec____________________________________________________________________________
 
-colors for sound groups?
+pcheetah
+   controls in gui - pad of 3 control,values (3 x droplist,button)
+      pick control.  down on button follows mouse x to set value
 
-in note ev, pass duration so syn can do tricky echoes and stuff
+   device/drummap.txt picks drum layout for keyboards
+         kick,kik2, snar,snr2, hhcl,hhop,hhpd, ride,rdbl, cras
+                    clap,sstk
+      drum map name in place of 4RH?
 
-whistle compose?
+   do unreachable powerchords, guitar strum, rhythm guitar
+      drums on keys - make a good map but get it from device/drummap.txt
+         pick drum instead of oct (show Drum instead of 4RH)
 
-when device is off can it fallback to syn?  then autorestore once dev is avail?
+   in oct, are black notes slightly offset from strict 12/7 by
+      slight narrowing/offsetting for a more aesthetic look?
 
-note level control of envelopes etc via "note color"
-   palette of fx colors:
-      name=> all defaults overriden w set of control to set at once
-         ex: step5:     pBnR=5th pStp=key
-             phaserlr:  envs=phaser|panl
-   note color...  set only a note to phaserlr
-      if color!=0 (str != '')
-         note estr overrides chan = fxlist[color-1],
+   when device is off can it fallback to syn?
+      then autorestore once dev is avail?
 
-follow an osc?
+   more obviously stacked notes somehow
+   whistle compose?
 
-future env stuff:
-   dur - discrete   *1/16 *2/16 *3/16 *4/16 .. *32/16
-         discrete2  /16 /8 /4 /2 1 *2 *4 *8 *16
-         continuous 0-1
-   rand (sample and hold / osc follow)
+syn
+   in note ev, pass duration so syn can do echoes in tempo
 
-controls in gui - pad of 3 control,values (3 x droplist,button)
-   pick control.  down on button follows mouse x to set value
+   note level control of envelopes etc via "note color"
+      palette of fx colors:
+         name=> all defaults overriden w set of control to set at once
+            ex: step5:     pBnR=5th pStp=key
+                phaserlr:  envs=phaser|panl
+      note color...  set only a note to phaserlr
+         if color!=0 (str != '')
+            note estr overrides chan = fxlist[color-1],
 
-device/drummap.txt picks drum layout for keyboards
-      kick,kik2, snar,snr2, hhcl,hhop,hhpd, ride,rdbl, cras
-                 clap,sstk
-   drum map name in place of 4RH?
+   follow an osc?
 
-do unreachable powerchords, guitar strum, rhythm guitar
-   drums on keys - make a good map but get it from device/drummap.txt
-      pick drum instead of oct (show Drum instead of 4RH)
-
-in oct, are black notes slightly offset from strict 12/7 by
-   slight narrowing/offsetting for a more aesthetic look?
-
-more obviously stacked notes somehow
+   env stuff:
+      dur - discrete   *1/16 *2/16 *3/16 *4/16 .. *32/16
+            discrete2  /16 /8 /4 /2 1 *2 *4 *8 *16
+            continuous 0-1
+      rand (sample and hold / osc follow)
 
 
 doc_____________________________________________________________________________
@@ -106,6 +125,8 @@ how video   cleanin up a song
 
 
 later___________________________________________________________________________
+
+bugs should only show on trill note 1, not 2+
 
 dark/light mode flip - pcheetah
    flip to light - time area bg ok but fg still white from dark mode

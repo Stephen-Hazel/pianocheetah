@@ -248,6 +248,7 @@ void Song::SetDn (char qu)             // qu from DlgCfg quantize button ONLY
   struct {ubyte t;   ubyt4 p;} on [2][128];
 TRC("SetDn qu=`c", qu);
 
+//TODO kill meee
 // kill existing `tre cues
    for (p = 0;  p < _f.cue.Ln;) {
       if (_f.cue [p].tend)  p++;
@@ -323,9 +324,10 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
          MemSet (_dn [dp].velo, 0, sizeof (_dn[0].velo));
          for (nn = d = 0;  d < 2;  d++)  for (c = 0;  c < 128;  c++)
             if (on [d][c].t && (nn < BITS (_dn [0].nt))) {
-               _dn [dp].nt [nn].nt = c;
-               _dn [dp].nt [nn].t  = on [d][c].t - 1;
-               _dn [dp].nt [nn].p  = on [d][c].p;
+               _dn [dp].nt [nn].t   = on [d][c].t - 1;
+               _dn [dp].nt [nn].nt  = c;
+               _dn [dp].nt [nn].p   = on [d][c].p;
+               _dn [dp].nt [nn].mrk = '\0';
                nn++;
             }
          _dn [dp].nNt = nn;   _dn.Ln++;
@@ -347,9 +349,10 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
             nn++;
          }
       if (nn > 1) {                    // some ta kill?
-         _dn [dp].nt [d].p  = 0;       // NO P FO EZ !
-         _dn [dp].nt [d].t  = _dn [dp].nt [c].t;
-         _dn [dp].nt [d].nt = _dn [dp].nt [c].nt;
+         _dn [dp].nt [d].t   = _dn [dp].nt [c].t;
+         _dn [dp].nt [d].nt  = _dn [dp].nt [c].nt;
+         _dn [dp].nt [d].p   = 0;      // NO P FO EZ !
+         _dn [dp].nt [d].mrk = '\0';
 
       // toss any other drum notes in the dn
          for (x = d+1;  x < _dn [dp].nNt;  x++)  if (TDrm (_dn [dp].nt [x].t)) {
@@ -423,17 +426,20 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
    // ok!  time for final fingerin'
    // check for rolled chord/trill - time diff of < 32nd
    //    else follow < > !
-     ulong pend;                       // end of trill pos
+     ulong pend, tr;                   // end of trill pos, trill trigger dur
      ubyte cu;
+     TSgRow *ts;
       pf = 0;
       for (dp = 0;  dp < _dn.Ln;  dp++)  if (xx [dp].pos != 99) {
          tm = _dn [dp].time;           // max is actually min for LH
+         ts = TSig (tm);
+         tr = M_WHOLE/ts->den/ts->sub*3/4;  // 3/4 of a subbt
          c  = 0;                       // count # EXTRA downs in trill (not 1st)
          cu = (xx [dp].dir == '>') ? 1 : 0;      // how many ups altogether
 TStr s3;
-DBG("tm1=`s dir=`c", TmSt(s3,tm), xx [dp].dir);
+DBG("tm1=`s tr=`d dir=`c", TmSt(s3,tm), tr, xx [dp].dir);
          for (p = dp+1;  p < _dn.Ln;  p++)  if (xx [p].pos != 99) {
-            if (_dn [p].time < tm+(M_WHOLE/16*3/4)) {
+            if (_dn [p].time < (tm + tr)) {
                c++;   pend = p;   tm = _dn [p].time;
                if (xx [p].dir == '>')  cu++;
 DBG("   + tm=`s dir=`c c=`d cu=`d", TmSt(s3,tm), xx [p].dir, c, cu);
@@ -450,16 +456,15 @@ DBG("   + tm=`s dir=`c c=`d cu=`d", TmSt(s3,tm), xx [p].dir, c, cu);
 
          if (c) {                      // do rolled chord/trill
            char dir = (cu > c+1-cu) ? '>' : '<';
+            _dn [dp].nt [xx [dp].pos].mrk = dir;      // mark trill start
             tm = _dn [dp].time;
 DBG("   c=`d cu=`d pf=`d dir=`c", c, cu, pf, dir);
 
-            TxtIns (tm, CC((dir == '<') ? "-\\" : "-/"), & _f.cue, 'c');
-
          // if normal 1st note would cause a wrap (5>1 or 1>5) bump it
-            if (dir == '>') {if (pf+c > 4)  pf = 4-c;}
-            else             if (pf   < c)  pf = c;
-DBG("   pf=`d", pf);
+            if (dir == '>') {if (pf+c > 4)  pf = (c <= 4) ? (4-c) : 0;}
+            else             if (pf   < c)  pf = (c <= 4) ? c     : 4;
             k [1] = 'c' + pf;
+DBG("   pf=`d k=`s", pf, k);
             _dn [dp].nt [xx [dp].pos].nt = MKey (k);  // in case it's new
             for (p = dp+1;  p <= pend;  p++)  if (xx [p].pos != 99) {
                if (dir == '<')  {if (pf-- == 0)  pf = 4;}  // but we should
@@ -978,6 +983,7 @@ TRC("_col full prob cuz w,h");
                   _sym [ns].tr = t;   _sym [ns].nt = nt;   // not p !
                   _sym [ns].tm = ntb;
                   _sym [ns].top = _sym [ns].bot = true;
+                  _sym [ns].mrk = dr->nt [i].mrk;
                   if      (ntb < tbx) {
                      _sym [ns].top = false;   _sym [ns].y = H_KB;
                   }
@@ -1029,10 +1035,11 @@ TRC("_col full prob cuz w,h");
 //DBG("      oct=`d oX=`d smn=`s smx=`s",o+1,oX[o],smn,smx);
                   }
                   _sym [ns].x = x;   _sym [ns].w = w;
-//DBG("   DN ns=`d tr=`d nt=`s x=`d y=`d w=`d h=`d top=`b bot=`b tm=`d=`s",
+//DBG("   DN ns=`d tr=`d nt=`s x=`d y=`d w=`d h=`d top=`b bot=`b "
+//"tm=`d=`s mrk=`c",
 //ns,_sym[ns].tr, MKey2Str(ts1,nt),
 //_sym[ns].x,_sym[ns].y, _sym[ns].w,_sym[ns].h, _sym[ns].top,_sym[ns].bot,
-//ntb,TmSt(ts2,ntb));
+//ntb,TmSt(ts2,ntb), _sym[ns].mrk);
                   _col [nc].nSym++;
                }
             }
@@ -1063,6 +1070,7 @@ TRC("_col full prob cuz w,h");
                      _sym [ns].tr = t;   _sym [ns].nt = p;
                      _sym [ns].top = (n [p].dn != NONE) ? true : false;
                      _sym [ns].bot = (n [p].up != NONE) ? true : false;
+                     _sym [ns].mrk = '\0';
                      if      (ntb < tbx) {
                         _sym [ns].top = false;   _sym [ns].y = H_KB;
                      }

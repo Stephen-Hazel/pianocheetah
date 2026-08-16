@@ -1,6 +1,19 @@
-<?xml version="1.0"?><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 100 100" xml:space="preserve"><circle cx="50" cy="50" r="37" stroke-miterlimit="10" fill="#fff" stroke-width="8" stroke="#333"/><circle cx="50" cy="50" r="21" fill="#e15b64"/><metadata xmlns:d="https://loading.io/stock/">
-<d:name>record</d:name>
-<d:tags>record,copy,log,save,keep,clone,player</d:tags>
-<d:license>by</d:license>
-<d:slug>gti4zn</d:slug>
-</metadata></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 144">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #7f83fa;
+        stroke-miterlimit: 10;
+        stroke-width: 9px;
+      }
+
+      .cls-2 {
+        fill: #ff8985;
+      }
+    </style>
+  </defs>
+  <circle class="cls-1" cx="72" cy="72" r="65.94"/>
+  <circle class="cls-2" cx="72" cy="72" r="43.95"/>
+</svg>

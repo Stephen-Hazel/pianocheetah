@@ -39,7 +39,7 @@ extern ubyte  NUCmd;
 
 //______________________________________________________________________________
 // track, melo/drum note, ev pos of a notedown
-struct NtDef   {ubyte t, nt;   ubyt4 p;};
+struct NtDef   {ubyte t, nt;   ubyt4 p;   char mrk;};
 
 // msec of rec ev down calcs (micro) tmpo btw ev downs and clip sez if way off
 // nt[] has notes to hit (lrn) and velo has ez trk velos
