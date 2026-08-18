@@ -1,47 +1,16 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   id="Layer_1"
-   data-name="Layer 1"
-   viewBox="0 0 144 120"
-   version="1.1"
-   sodipodi:docname="trillr.svg"
-   width="144"
-   height="120"
-   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
-  <sodipodi:namedview
-     id="namedview1"
-     pagecolor="#ffffff"
-     bordercolor="#000000"
-     borderopacity="0.25"
-     inkscape:showpageshadow="2"
-     inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
-     inkscape:deskcolor="#d1d1d1"
-     inkscape:zoom="5.625"
-     inkscape:cx="72"
-     inkscape:cy="72"
-     inkscape:window-width="1920"
-     inkscape:window-height="1038"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="Layer_1" />
-  <defs
-     id="defs1">
-    <style
-       id="style1">
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 147.16 93.01">
+  <defs>
+    <style>
       .cls-1 {
-        fill: #7f83fa;
+        fill: none;
+        stroke: #000;
+        stroke-miterlimit: 10;
+        stroke-width: 8px;
       }
     </style>
   </defs>
-  <path
-     class="cls-1"
-     d="m 16.244038,7.9409011 c -2.19,-0.99 -1.73,-4.21 0.65,-4.56 14.98,-2.22 47.470004,-4.23000002 68.500004,14.9099999 26.109998,23.77 21.289998,73.89 54.989998,93.849999 2.07,1.23 1.18,4.42 -1.23,4.45 -15.36,0.19 -46.299998,-2.04 -69.279998,-20.549999 -24.15,-19.46 -49.740004,-24.13 -65.1000044,-24.69 -2.37,-0.09 -3.18,-3.19 -1.17,-4.44 11.7300004,-7.31 27.9100004,-19.7 51.0300044,-16.38 1.8,0.26 3.21,-1.52 2.57,-3.21 -3.01,-8.01 -12.75,-26.6 -40.970004,-39.3699999 z"
-     id="path1"
-     style="display:inline;fill:none;stroke:#000000;stroke-width:5;stroke-dasharray:none;stroke-opacity:1" />
+  <g id="Layer_1-2" data-name="Layer 1">
+    <path class="cls-1" d="M118.66,81.13l-33.5-9.09c-9.93-2.24-14.66-3.25-22.76-3.99l-34.41-3.14,37.37-7.4-19.74-32.79,5.49,5.37c19.79,19.36,42.6,36.59,67.56,51.04h0Z"/>
+  </g>
 </svg>
