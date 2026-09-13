@@ -45,7 +45,8 @@ char  Scale [12], Artc,           // defaults
       NoteSym [] = "C_D_EF_G_A_B";
 
 
-void Die (char *msg)
+void Die (const char *msg)  {Die (CC(msg));}
+void Die (      char *msg)
 { TStr s, p;
   File f;
    StrCp (p, ErrFN);   Fn2Path (p);   Fn2Path (p);
@@ -98,16 +99,16 @@ char *DoNote (char *b, ubyte l)
   bool  got, nt;
   ubyte len, step, f, chd [4], nChd, i, rollOfs = 0;
    while (l && (*b == ' '))  {b++; l--;}
-   if (l == 0)                         Die (CC("Missin duration"));
+   if (l == 0)                         Die ("Missin duration");
    for (len = 0;  len < l;  len++)  if (b [len] == ' ') break;
-   if (! DoDur (b, len))               Die (CC("Bad duration"));
+   if (! DoDur (b, len))               Die ("Bad duration");
    b += len;  l -= len;  while (l && (*b == ' '))  {b++; l--;}
    while (l) {
       got = nt = false;
    // velocity change?
       if ((l >= 2) && (*b == 'V')) {
          step = b [1];
-         if ((step < '0') || (step > '9'))  Die (CC("Bad velocity"));
+         if ((step < '0') || (step > '9'))  Die ("Bad velocity");
                   got = true;  Velo = VEL (step-'0');  b += 2;  l -= 2;
       }
    // drum?
@@ -115,15 +116,15 @@ char *DoNote (char *b, ubyte l)
          if (! MemCm (MDrum [step].sym, b, 4)) {
             step = MKey (MDrum [step].key);
             nt = got = true;   b += 4;   l -= 4;
-            StrCp (TNm [NTrk], CC("DrumTrack"));      // might as well
-            StrCp (TSn [NTrk], CC("Drum/*"));
+            StrCp (TNm [NTrk], "DrumTrack");     // might as well
+            StrCp (TSn [NTrk], "Drum/*");
             break;
          }
    // regular octNoteNote...
       if (! got) {
          if ((*b >= '0') && (*b <= '9'))  {Octv = *b - '0';  b++;  l--;}
-         if (l == 0)                        Die (CC("Missin Nt after Oct"));
-         if (! (p = StrCh (NoteSym, *b)))   Die (CC("Bad note"));
+         if (l == 0)                        Die ("Missin Nt after Oct");
+         if (! (p = StrCh (NoteSym, *b)))   Die ("Bad note");
          step = p - NoteSym;                                 b++;  l--;
          if (l && StrCh (CC("%#@"), *b))  {shrp = *b;        b++;  l--;}
          else                              shrp = ' ';
@@ -134,9 +135,9 @@ char *DoNote (char *b, ubyte l)
       }
       if (nt) {
       // ok, got dur and step - create the note
-         if (NE+2 >= MAX_EVT)          Die (CC("Hit max events"));
+         if (NE+2 >= MAX_EVT)          Die ("Hit max events");
          if (Grace) {
-            if (Time < (M_WHOLE/32))   Die (CC("Gracenote can't start bar 1"));
+            if (Time < (M_WHOLE/32))   Die ("Gracenote can't start bar 1");
             E [NE+0].time = Time-(M_WHOLE/32);
             E [NE+1].time = Time-1;
          }
@@ -170,7 +171,7 @@ char *DoNote (char *b, ubyte l)
                                      {chd[2] = 4;  b++;  l--;}
                }
             }
-            if ((NE+2*nChd) >= MAX_EVT)  Die (CC("Hit max events +"));
+            if ((NE+2*nChd) >= MAX_EVT)  Die ("Hit max events +");
             for (i = 0;  i < nChd;  i++) {
                step += chd [i];
                E [NE+0].time =                        E [NE-2].time;
@@ -194,38 +195,38 @@ char *DoCC (char *b)
 { ubyte c, i;
   ubyt2 v, n, d;
   char *p, *p2, *p3;
-   if (! (p = StrCh (b, '=')))  Die (CC("missing ="));
+   if (! (p = StrCh (b, '=')))  Die ("missing =");
    *p++ = '\0';
 
 // special-ish ones...
-   if (! StrCm (b, CC("sound" ))) {
+   if (! StrCm (b, "sound" )) {
       StrCp (TSn [NTrk], p);
-      if (! MemCm (p, CC("drum"), 4))
-         {StrCp (TNm [NTrk], CC("DrumTrack"));
-          StrCp (TSn [NTrk], CC("Drum/*"));}
+      if (! MemCm (p, "drum", 4))
+         {StrCp (TNm [NTrk], "DrumTrack");
+          StrCp (TSn [NTrk], "Drum/*");}
       return nullptr;
    }
-   if (! StrCm (b, CC("mode"  ))) {
+   if (! StrCm (b, "mode"  )) {
       StrCp (TMd [NTrk], p);
       return nullptr;
    }
-   if (! StrCm (b, CC("name"  ))) {
+   if (! StrCm (b, "name"  )) {
       StrCp (TNm [NTrk], p);
-      if (! MemCm (p, CC("drum"), 4))
-           {StrCp (TNm [NTrk], CC("DrumTrack"));
-            StrCp (TSn [NTrk], CC("Drum/*"));}
-      else if ( (! StrCm (p, CC("LH"))) ||
-                (! StrCm (p, CC("RH"))) )
+      if (! MemCm (p, "drum", 4))
+           {StrCp (TNm [NTrk], "DrumTrack");
+            StrCp (TSn [NTrk], "Drum/*");}
+      else if ( (! StrCm (p, "LH")) ||
+                (! StrCm (p, "RH")) )
            {StrCp (& TMd [NTrk][1], p);   TMd [NTrk][0] = '?';}
       return nullptr;
    }
-   if (! StrCm (b, CC("marker")))
-      Die (CC("use section.  not marker.  sorry."));
-   if (! StrCm (b, CC("section"))) {
-      if (NMrk >= BITS (Mrk))  Die (CC("tooo many sections"));
+   if (! StrCm (b, "marker"))
+      Die ("use section.  not marker.  sorry.");
+   if (! StrCm (b, "section")) {
+      if (NMrk >= BITS (Mrk))  Die ("tooo many sections");
       if (NMrk && (Time <= Mrk [NMrk-1].t))
-         Die (CC("section's time is BEFORE previously found section - "
-                  "keep all sections in the same track"));
+         Die ("section's time is BEFORE previously found section - "
+               "keep all sections in the same track");
       StrCp (Mrk [NMrk].s, p);   Mrk [NMrk].t = Time;
 TStr db;
 TRC("mark[`d].s=`s .t=`d=`s",
@@ -233,11 +234,11 @@ NMrk, Mrk[NMrk].s, Mrk[NMrk].t, TmS (db,Mrk[NMrk].t));
       NMrk++;
       return nullptr;
    }
-   if (! StrCm (b, CC("cue"))) {
-      if (NCue >= BITS (Cue))  Die (CC("tooo many cue lines"));
+   if (! StrCm (b, "cue")) {
+      if (NCue >= BITS (Cue))  Die ("tooo many cue lines");
       if (NCue && (Time <= Cue [NCue-1].t))
-         Die (CC("this cue time is BEFORE a prev cue - "
-                  "keep all !cue=... stuff in the SAME track"));
+         Die ("this cue time is BEFORE a prev cue - "
+               "keep all !cue=... stuff in the SAME track");
       StrCp (Cue [NCue].s, p);   Cue [NCue].t = Time;
       NCue++;
       return nullptr;
@@ -247,29 +248,29 @@ NMrk, Mrk[NMrk].s, Mrk[NMrk].t, TmS (db,Mrk[NMrk].t));
    for (c = 0;  c < NCtrl;  c++)  if (! StrCm (Ctrl [c], b))  break;
    if (c >= NCtrl) {                   // new dude
       if (StrLn (b) > (sizeof (WStr)-1))
-                                 Die (CC("control name too long"));
-      if (NCtrl >= BITS (Ctrl))  Die (CC("too many controls"));
+                                 Die ("control name too long");
+      if (NCtrl >= BITS (Ctrl))  Die ("too many controls");
       StrCp (Ctrl [NCtrl++], b);
    }
 
 // ok, parse the wierd ones first (tsig, ksig)
-   if      (! StrCm (b, CC("TSig"))) {
-      if (! (p2 = StrCh (p, '/')))     Die (CC("TSig Missing /"));
+   if      (! StrCm (b, "TSig")) {
+      if (! (p2 = StrCh (p, '/')))     Die ("TSig Missing /");
       p3 = StrCh (++p2, '/');
       n = (ubyt2) Str2Int (p);
       d = (ubyt2) Str2Int (p2);
       for (i = 0;  i < 8;  i++) if ((1 << i) == d) break;
-      if (i >= 8)                      Die (CC("bad TSig denom"));
+      if (i >= 8)                      Die ("bad TSig denom");
       v = (i << 8) | n;
       if (p3) {                  // got subbeat?
          i = (ubyte) Str2Int (p3+1);
          if ((i >= 1) && (i <= 8))  v |= ((i-1) << 12);
-         else                          Die (CC("bad TSig subbeat"));
+         else                          Die ("bad TSig subbeat");
       }
       else if (v == 0x0204)      // default 4/4 to 4/4/4
          v = 0x3204;
    }
-   else if (! StrCm (b, CC("KSig"))) {
+   else if (! StrCm (b, "KSig")) {
      char *map = CC("b2#b#b2#b#b2");
       v = i = MNt (p);
       if (p [StrLn (p)-1] == 'm')                v |= 0x0100;   // minor
@@ -280,7 +281,7 @@ NMrk, Mrk[NMrk].s, Mrk[NMrk].t, TmS (db,Mrk[NMrk].t));
    else
       v = (ubyt2) Str2Int (p);         // a regular one
 
-   if (NE >= MAX_EVT)  Die (CC("tooo many events"));
+   if (NE >= MAX_EVT)  Die ("tooo many events");
    E [NE].time = Time;   E [NE].ctrl = 0x80 | c;
                          E [NE].valu = (ubyte)(v & 0x00FF);
                          E [NE].val2 = (ubyte)(v >> 8);
@@ -301,9 +302,9 @@ char *DoChord (char *b, ubyte l)
       if (len == 0)  break;            // len to next space
 
       MemCp (chd, b, len);   chd [len] = '\0';
-      if (StrCm (chd, CC("|"))) {      // | really does nothin, just legibility
-         if (StrCm (chd, CC("/"))) {   // / only bumps Time
-            if (NCue >= BITS (Cue))  Die (CC("tooo many chords"));
+      if (StrCm (chd, "|")) {          // | really does nothin, just legibility
+         if (StrCm (chd, "/")) {       // / only bumps Time
+            if (NCue >= BITS (Cue))  Die ("tooo many chords");
             Cue [NCue].t     = Time;
             Cue [NCue].s [0] = '*';   StrCp (& Cue [NCue].s [1], chd);
             NCue++;
@@ -337,7 +338,7 @@ void TSig ()
    NTSg = 0;
    for (t = 0;  t < NTrk;  t++)  for (p = 0;  p < TrkNE [t];  p++)
       if ( (TEv [t][p].ctrl & 0x80) &&
-           (! StrCm (Ctrl [TEv [t][p].ctrl & 0x7F], CC("TSig"))) ) {
+           (! StrCm (Ctrl [TEv [t][p].ctrl & 0x7F], "TSig")) ) {
          TSg [NTSg].time = TEv [t][p].time;
          TSg [NTSg].num  = TEv [t][p].valu;
          TSg [NTSg].den  = 1 << (TEv [t][p].val2 & 0x0F);
@@ -374,7 +375,7 @@ char *TmSt (char *str, ubyt4 tm)
       bt  = (ubyt2)(1 +          ((tm - TSg [s].time) % dBr) / dBt);
       bx  =                      ((tm - TSg [s].time) % dBr) % dBt;
    }
-   if      (br > 9999)  StrCp  (str, CC("9999      "));
+   if      (br > 9999)  StrCp  (str, "9999      ");
    else if ((bt == 1) && (bx == 0))
                         StrFmt (str, "`04d      ",   br);
    else if (bx == 0)    StrFmt (str, "`04d.`d    ",  br, bt);
@@ -393,15 +394,15 @@ void Put ()
   TStr  s, s1, s2, SB, to, lFN;
   ubyt4 st [128];                     // section's start time
   TrkEv *e;
-  StrArr ly (CC("lyric.txt"), 16000, 6000*sizeof(TStr));
+  StrArr ly ("lyric.txt", 16000, 6000*sizeof(TStr));
    TSig ();
 
 // get lyric.txt if any
-   StrCp (lFN, FN);   Fn2Path (lFN);   StrAp (lFN, CC("/lyric.txt"));
+   StrCp (lFN, FN);   Fn2Path (lFN);   StrAp (lFN, "/lyric.txt");
    ly.Load (lFN);
 
    if (! f.Open (SFN, "w"))  {DBG("couldn't write .song", SFN);   exit (99);}
-   f.Put (CC("Track:\n"));
+   f.Put ("Track:\n");
    for (t = 0;  t < NTrk;  t++) {
       f.Put (StrFmt (s, ".  `s  .`s  `s\n",
          TSn [t][0] ? TSn [t] : "Piano_AcousticGrand",
@@ -410,7 +411,7 @@ TRC("t=`d nEv=`d", t+1, TrkNE [t]);
    }
 TRC("NSct=`d", NSct);
    if (NSct) {
-      f.Put (CC("Lyric:\n"));
+      f.Put ("Lyric:\n");
       for (i = 0;  i < ly.NRow ();  i++) {
          StrCp (s2, ly.Get (i));   if (StrLn (s2) < 6)  continue;
          if (StrCh (CC("!?*"), s2 [5]))                    // escape em
@@ -428,7 +429,7 @@ TRC("NSct=`d", NSct);
       for (i = 0;  i < NCue;  i++)
          f.Put (StrFmt (s, "`s ?`s\n", TmSt (s2, Cue [i].t), Cue [i].s));
 
-      f.Put (CC("Event:\n"));
+      f.Put ("Event:\n");
       for (t = 0;  t < NTrk;  t++) {
          for (Time = 0, i = 0;  i < NSct;  i++) {
             for (j = 0;  j < NMrk;  j++)
@@ -448,25 +449,25 @@ TRC("NSct=`d", NSct);
                if (c & 0x0080) {
                   StrCp (s, Ctrl [c & 0x7F]);
                // tmpo,tsig,ksig,prog get str values
-                  if      (! StrCm (s, CC("prog")))
-                     f.Put (CC("!Prog=*"));
-                  else if (! StrCm (s, CC("tmpo")))
+                  if      (! StrCm (s, "prog"))
+                     f.Put ("!Prog=*");
+                  else if (! StrCm (s, "tmpo"))
                      f.Put (StrFmt (SB,
                              "!Tmpo=`d", e->valu | (e->val2<<8)));
-                  else if (! StrCm (s, CC("tsig"))) {
+                  else if (! StrCm (s, "tsig")) {
                      f.Put (StrFmt (SB,
                              "!TSig=`d/`d", e->valu, 1 << (e->val2 & 0x0F)));
                      if (e->val2 >> 4)
                         f.Put (StrFmt (SB, "/`d", 1 + (e->val2 >> 4)));
                   }
-                  else if (! StrCm (s, CC("ksig"))) {
-                     f.Put (CC("!KSig="));
+                  else if (! StrCm (s, "ksig")) {
+                     f.Put ("!KSig=");
                      if   (! (e->val2 & 0x80))
                            StrCp (SB, MKeyStr  [e->valu]);
                      else if (e->valu != 11)
                            StrCp (SB, MKeyStrB [e->valu]);
-                     else  StrCp (SB, CC("Cb"));      // cuz B / Cb are WEIRD
-                     if (e->val2 & 0x01)  StrAp (SB, CC("m"));
+                     else  StrCp (SB, "Cb");     // cuz B / Cb are WEIRD
+                     if (e->val2 & 0x01)  StrAp (SB, "m");
                      *SB = CHUP (*SB);
                      f.Put (SB);
                   }
@@ -477,11 +478,11 @@ TRC("NSct=`d", NSct);
                }
                else                          // note
                   f.Put (StrFmt (SB, "`s`c`d",
-                     (! StrCm (TSn [t], CC("Drum/*"))) ? MDrm2Str (s, c)
-                                                       : MKey2Str (s, c),
+                     (! StrCm (TSn [t], "Drum/*")) ? MDrm2Str (s, c)
+                                                   : MKey2Str (s, c),
                      (e->valu & 0x0080) ? ((e->val2 & 0x80) ? '~' : '_')
                                         : '^',  e->valu & 0x007F));
-               f.Put (CC("\n"));
+               f.Put ("\n");
             }
             Time += (t2 - t1);
          }
@@ -489,7 +490,7 @@ TRC("NSct=`d", NSct);
       }
    }
    else {
-      if (NCue || NMrk || ly.NRow ())  f.Put (CC("Lyric:\n"));
+      if (NCue || NMrk || ly.NRow ())  f.Put ("Lyric:\n");
       for (i = 0;  i < ly.NRow ();  i++) {
          StrCp (s2, ly.Get (i));   if (StrLn (s2) < 6)  continue;
          if (StrCh (CC("!?*"), s2 [5]))                    // escape em
@@ -502,7 +503,7 @@ TRC("NSct=`d", NSct);
          StrCp (s1, Mrk [x].s);
          f.Put (StrFmt (s, "`s ?(`s\n", TmSt (s2, Mrk [x].t), s1));
       }
-      f.Put (CC("Event:\n"));
+      f.Put ("Event:\n");
       for (t = 0;  t < NTrk;  t++) {
          for (e = & TEv [t][0], ne = TrkNE [t];  ne--;  e++) {
             f.Put (StrFmt (SB, "`s ", TmSt (s, e->time)));
@@ -511,23 +512,23 @@ TRC("NSct=`d", NSct);
                StrCp (s, Ctrl [c & 0x7F]);
 
             // tmpo,tsig,ksig,prog get str values
-               if      (! StrCm (s, CC("prog")))
-                  f.Put (CC("!Prog=*"));
-               else if (! StrCm (s, CC("tmpo")))
+               if      (! StrCm (s, "prog"))
+                  f.Put ("!Prog=*");
+               else if (! StrCm (s, "tmpo"))
                   f.Put (StrFmt (SB,
                          "!Tmpo=`d", e->valu | (e->val2<<8)));
-               else if (! StrCm (s, CC("tsig"))) {
+               else if (! StrCm (s, "tsig")) {
                   f.Put (StrFmt (SB,
                          "!TSig=`d/`d", e->valu, 1 << (e->val2 & 0x0F)));
                   if (e->val2 >> 4)
                      f.Put (StrFmt (SB, "/`d", 1 + (e->val2 >> 4)));
                }
-               else if (! StrCm (s, CC("ksig"))) {
-                  f.Put (CC("!KSig="));
+               else if (! StrCm (s, "ksig")) {
+                  f.Put ("!KSig=");
                   if   (! (e->val2 & 0x80))  StrCp (SB, MKeyStr  [e->valu]);
                   else if (e->valu != 11)    StrCp (SB, MKeyStrB [e->valu]);
                   else // Cb is weird :/ */  StrCp (SB, "Cb");
-                  if (e->val2 & 0x01)  StrAp (SB, CC("m"));
+                  if (e->val2 & 0x01)  StrAp (SB, "m");
                   *SB = CHUP (*SB);
                   f.Put (SB);
                }
@@ -538,12 +539,12 @@ TRC("NSct=`d", NSct);
             }
             else {                        // note
                f.Put (StrFmt (SB, "`s`c`d",
-                  (! StrCm (TSn [t], CC("Drum/*"))) ? MDrm2Str (s, c)
-                                                    : MKey2Str (s, c),
+                  (! StrCm (TSn [t], "Drum/*")) ? MDrm2Str (s, c)
+                                                : MKey2Str (s, c),
                   (e->valu & 0x0080) ? ((e->val2 & 0x80) ? '~' : '_')
                                      : '^',  e->valu & 0x007F));
             }
-            f.Put (CC("\n"));
+            f.Put ("\n");
          }
          f.Put (StrFmt (SB, "EndTrack `d #ev=`d\n", t+1, TrkNE [t]));
       }
@@ -584,12 +585,12 @@ char *DoLine (char *b, ubyt2 l, ubyt4 line, void *ptr)
    (void)ptr;
    ErrLine = line;
 //DBG("FN=`s line=`d NE=`d Time=`d", ErrFN, ErrLine, NE, Time);
-   if (! StrCm (b, CC("unroll")))  {unr = 1;  return nullptr;}
+   if (! StrCm (b, "unroll"))  {unr = 1;  return nullptr;}
    if (unr) {
       if (NSct >= BITS (Sct))
-                      Die (CC("too many sections in unroll"));
+                      Die ("too many sections in unroll");
       for (i = 0;  i < NMrk;  i++)  if (! StrCm (Mrk [i].s, b))  break;
-      if (i >= NMrk)  Die (CC("unknown section in unroll"));
+      if (i >= NMrk)  Die ("unknown section in unroll");
       StrCp (Sct [NSct++], b);
       return nullptr;
    }
@@ -598,14 +599,14 @@ char *DoLine (char *b, ubyt2 l, ubyt4 line, void *ptr)
    if ((*b == '-') || (l == 0))  return nullptr;
 
 // chord on/off/line?
-   if (! StrCm (b, CC("chord"   )))  {Chrd = true;   TimeSave = Time;
+   if (! StrCm (b, "chord"   ))  {Chrd = true;   TimeSave = Time;
                                       return nullptr;}
-   if (! StrCm (b, CC("chordend")))  {Chrd = false;  Time = TimeSave;
+   if (! StrCm (b, "chordend"))  {Chrd = false;  Time = TimeSave;
                                       return nullptr;}
    if (Chrd)  return DoChord (b, (ubyte)l);
 
 // EndTrack?
-   if (StrCm (b, CC("NextTrack")) == 0)  {EndTrack ();  return nullptr;}
+   if (StrCm (b, "NextTrack") == 0)  {EndTrack ();  return nullptr;}
 
 // include?
    if (*b == '#') {
@@ -622,10 +623,10 @@ char *DoLine (char *b, ubyt2 l, ubyt4 line, void *ptr)
 
 // default scale/artic?
    if (*b == '$')  {
-      if (l < 8)             Die (CC("Bad scale"));
+      if (l < 8)             Die ("Bad scale");
       if (l > 8) {
          if (! StrCh (ArtcSym, b [8]))
-                             Die (CC("Bad default Artic"));
+                             Die ("Bad default Artic");
          Artc = b [8];
       }
       Scale[0] = b[1];  Scale[2] = b[2];  Scale[4] = b[3];
@@ -661,12 +662,12 @@ TRC("arg=`s", argv [1]);
    if (f.Size (FN) == 0)  {DBG(".txt file is empty? `s", FN);   exit (99);}
 
 // get .song filename into SFN
-   StrCp (SFN, FN);   Fn2Path (SFN);   StrAp (SFN, CC("/a.song"));
+   StrCp (SFN, FN);   Fn2Path (SFN);   StrAp (SFN, "/a.song");
 
 // init globals
    NE = Time = 0;   E = & TEv [0][0];
    Octv = 4;   Velo = VEL(7);   Artc = '>';
-   MemCp (Scale, CC("c_d_ef_g_a_b"), 12);
+   MemCp (Scale, "c_d_ef_g_a_b", 12);
    StrCp (Path,  FN);   Fn2Path (Path);     // Path of current dir
    StrFmt (FNRats, "`s/RATS.txt", Path);   f.Kill (FNRats);
 

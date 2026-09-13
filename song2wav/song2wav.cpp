@@ -13,7 +13,7 @@ void Song::DumpEv (TrkEv *e, ubyte t, ubyt4 p)
   ubyte v;
    StrFmt (o, "t=`d ", t);
    if (p < 1000000)  StrAp (o, StrFmt (ts, "p=`d ", p));
-   StrAp (o, TmS (ts, e->time));   StrAp (o, CC(" "));
+   StrAp (o, TmS (ts, e->time));   StrAp (o, " ");
   bool dr = (_trk [t].chn == 9) ? true : false;
    if (ECTRL (e))
       StrFmt (&o[StrLn(o)], "`s(cc`d)=`02x,`02x",
@@ -100,10 +100,10 @@ DBG("   prog ch=`d prog=`d", c+1, p);
 
 void Song::PutCC (ubyte t, TrkEv *e)
 { ubyte c = e->ctrl & 0x7F;
-   if      (! StrCm (_ctl [c], CC("Tmpo")))
+   if      (! StrCm (_ctl [c], "Tmpo"))
    { ubyt4 tp = e->valu + (e->val2 << 8);   _timer.SetTempo (tp);}
-   else if (! StrCm (_ctl [c], CC("TSig")))  ;
-   else if (! StrCm (_ctl [c], CC("Prog")))  SetChn (t);
+   else if (! StrCm (_ctl [c], "TSig"))  ;
+   else if (! StrCm (_ctl [c], "Prog"))  SetChn (t);
    else {
      ubyt2 craw = _dvt.CCMap [c];
       if (craw) Sy.Put ((ubyte)_trk [t].chn, craw, e->valu, e->val2);
@@ -130,7 +130,7 @@ ubyt4 Song::Put (File *f)
 DBG("Song::Put bgn");
    TmStr (bar, _tEnd);   StrFmt (end, "`04d", Str2Int (bar));
    for (_now = 0;  _now < _tEnd;) {
-      TmStr (bar, _now, & tL8r);   StrAp (bar, CC(" / "));   StrAp (bar, end);
+      TmStr (bar, _now, & tL8r);   StrAp (bar, " / ");   StrAp (bar, end);
 DBG(" bar=`s _now=`d tl8r=`d tEnd=`d", bar, _now, tL8r, _tEnd);
    // plow thru tracks from .p to tNow and write events
       for (t = 0;  t < _trk.Ln;  t++) {
@@ -172,9 +172,9 @@ void WavHdr (File *f, ubyt4 totLen = 0)
    ln2 = 16;
    ln1 = 12 + ln2 + 8 + ln3;
    f->Seek (0, '<');
-   f->Put (CC("RIFF"    ));  f->Put (& ln1, 4);
-   f->Put (CC("WAVEfmt "));  f->Put (& ln2, 4);  f->Put (& wf, ln2);
-   f->Put (CC("data"    ));  f->Put (& ln3, 4);
+   f->Put ("RIFF"    );  f->Put (& ln1, 4);
+   f->Put ("WAVEfmt ");  f->Put (& ln2, 4);  f->Put (& wf, ln2);
+   f->Put ("data"    );  f->Put (& ln3, 4);
 }
 
 
@@ -186,7 +186,7 @@ DBGTH("S2W"); DBG("bgn");
    StrCp (fn, argv [1]);
    Sy.Init ('w');   Sg.Init ();   Sg.Load (fn);
 
-   StrAp (fn, CC(".wav"), 5);
+   StrAp (fn, ".wav", 5);
    if (! f.Open (fn, "w"))  Die ("can't write .wav file");
 
 DBG("write .wav");

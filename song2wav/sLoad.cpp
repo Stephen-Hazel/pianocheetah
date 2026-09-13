@@ -64,12 +64,12 @@ DBG("Load fn=`s", fn);
 DBG(" init tsg, ctl, trk, ev");
    nt = (ubyte)(_trk.Ln = st [TB_TRK].NRow ());
    ne =                   st [TB_EVT].NRow ();
-   _ctl.Ln = 3;   StrCp (_ctl [0], CC("Tmpo"));
-                  StrCp (_ctl [1], CC("TSig"));
-                  StrCp (_ctl [2], CC("KSig"));
+   _ctl.Ln = 3;   StrCp (_ctl [0], "Tmpo");
+                  StrCp (_ctl [1], "TSig");
+                  StrCp (_ctl [2], "KSig");
    _tSg.Ln = 0;
    for (t = 0, pe = e = 0;  e < ne;  e++) {
-      if (! StrCm (st [TB_EVT].Get (e, 0), CC("EndTrack"))) {
+      if (! StrCm (st [TB_EVT].Get (e, 0), "EndTrack")) {
          if (t >= nt)  {DBG("Load  EndTrack>nt");   return;}
          _trk [t].ne = (e-pe);   pe = e+1;
          _trk [t].e = & _ev [_nEv];   _nEv += _trk [t].ne;
@@ -113,7 +113,7 @@ DBG(" set events");
    _tEnd = 0;
    for (e2 = _trk [t = 0].e, e = 0;  e < ne;  e++) {
       StrCp (buf, st [TB_EVT].Get (e, 0));
-      if (! StrCm (buf, CC("EndTrack")))  {e2 = _trk [++t].e;   continue;}
+      if (! StrCm (buf, "EndTrack"))  {e2 = _trk [++t].e;   continue;}
 
       e2->time = Str2Tm (buf);         // ok parse the rec - all start w time
       if (e2->time > _tEnd)  _tEnd = e2->time;
@@ -179,7 +179,7 @@ DBG(" set events");
       StrCp (buf, st [TB_TRK].Get (t,2));                  // mode
       _trk [t].grp = (*buf ==    '+') ? true : false;
       _trk [t].shh = StrCh (buf, '#') ? true : false;
-      _trk [t].chn = MemCm (_trk [t].snd, CC("Drum/"), 5) ? 0xFF : 9;
+      _trk [t].chn = MemCm (_trk [t].snd, "Drum/", 5) ? 0xFF : 9;
    }
   ubyte mc = 0;                        // finalize _chn n get maxchans for syn
    for (t = 0;  t < nt;  t++)  if (_trk [t].chn != 9)

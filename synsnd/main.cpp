@@ -32,7 +32,7 @@ bool DoDir (void *ptr, char dfx, char *fn)
 //DBG("nsl=`d", nsl);
       if ( nsl &&                                // not raw bank
            (ln > 5) &&                           // long enough fer anything
-           StrCm (& fn [ln-5], CC("/Drum")) &&   // not raw drum dir
+           StrCm (& fn [ln-5], "/Drum") &&       // not raw drum dir
            (NSnd < BITS (Snd)) ) {               // got room
          StrCp (s, & fn [StrLn (DirSyn)+1]);
          StrCp (t, s);
@@ -56,8 +56,8 @@ int SndCmp (void *p1, void *p2)
    StrCp (b1, (char *)p1);   s1 = & b1 [0];
    StrCp (b2, (char *)p2);   s2 = & b2 [0];
 //DBG("s1=`s s2=`s", s1, s2);
-   d1 = MemCm (s1, CC("Drum/"), 5) ? 1 : 0;      // 0=drum vs 1=melo
-   d2 = MemCm (s2, CC("Drum/"), 5) ? 1 : 0;
+   d1 = MemCm (s1, "Drum/", 5) ? 1 : 0;     // 0=drum vs 1=melo
+   d2 = MemCm (s2, "Drum/", 5) ? 1 : 0;
    if (d1 - d2)  return d1-d2;
 
 //DBG("drum same");
@@ -73,8 +73,8 @@ int SndCmp (void *p1, void *p2)
 //DBG("melo cmp");
    }
                                        // left w Drum/*
-   g1 = MemCm (s1, CC("Drum/x_"), 6) ? 0 : 1;    // 1=x_999_b_k, 0=grp_snd_b_k
-   g2 = MemCm (s2, CC("Drum/x_"), 6) ? 0 : 1;
+   g1 = MemCm (s1, "Drum/x_", 6) ? 0 : 1;        // 1=x_999_b_k, 0=grp_snd_b_k
+   g2 = MemCm (s2, "Drum/x_", 6) ? 0 : 1;
    if (g1 - g2)  return g1-g2;
 //DBG("Drum/x_ same");
 
@@ -106,7 +106,7 @@ TRC("DirSyn=`s", DirSyn);
    NSnd = 0;  f.DoDir (DirSyn, NULL, (FDoDirFunc)(& DoDir));
    Sort (Snd, NSnd, sizeof (Snd[0]), SndCmp);
 
-   StrAp (DirSyn, CC("/sound.txt"));
+   StrAp (DirSyn, "/sound.txt");
    if (f.Open (DirSyn, "w")) {
       for (ubyt4 i = 0;  i < NSnd;  i++)
          f.Put (StrFmt (ts, "`<40s . . .\n", Snd [i]));

@@ -8,7 +8,7 @@ public:
      File f;
 DBG("load controls for syn");
       _nCc = 0;
-      App.Path (fn, 'd');   StrAp (fn, CC("/device/syn/ccout.txt"));
+      App.Path (fn, 'd');   StrAp (fn, "/device/syn/ccout.txt");
       f.DoText (fn, this, CcRec);
    }
 
