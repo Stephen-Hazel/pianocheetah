@@ -73,13 +73,14 @@ private:
 
 Song *S;
 
-void Ugh (char *s)
+void Ugh (const char *s)  {Ugh (CC(s));}
+void Ugh (      char *s)
 { TStr fn, t;
   File f;
    if (Fs.IsOpen ())  Fs.Shut ();
    if (S)   delete S;
-   StrCp (fn, FN);   Fn2Path (fn);   StrAp (fn, CC("/a.song"));   Fs.Kill (fn);
-   StrAp (fn, CC("RATS.txt"), 6);
+   StrCp (fn, FN);   Fn2Path (fn);   StrAp (fn, "/a.song");   Fs.Kill (fn);
+   StrAp (fn, "RATS.txt", 6);
    f.Save (fn, StrFmt (t, "`s\nfn=`s\n", s, FN), StrLn (t));
 DBG("mid2song error=`s", s);
    exit (99);
@@ -183,7 +184,7 @@ TRC("{ Trk2Ev tr=`d res=`d trPos=`d trLen=`d", tr, res, MidP, l);
          GetByt (& p, l, & c);       // NOW c is the meta type
          GetVar (& p, l, & hmmlen);
          if ((p + hmmlen) > l)
-            Ugh (CC("Trk2Ev  EOF readin a $FF??"));
+            Ugh ("Trk2Ev  EOF readin a $FF??");
          switch (c) {
             case 0:   //...sequence number
                if (hmmlen == 2)
@@ -210,22 +211,22 @@ TRC("{ Trk2Ev tr=`d res=`d trPos=`d trLen=`d", tr, res, MidP, l);
                hmmgot = (hmmlen > MAXTSTR) ? MAXTSTR : hmmlen;
                MemCp (s, & Mid [MidP+p], hmmgot);
                FixStrLy ((ubyte *) s, (ubyte) hmmgot);
-               if (*s == '\0')   StrCp (s, CC("-"));
+               if (*s == '\0')   StrCp (s, "-");
                if (Ly.Full ())  break;           // got room?
                lp = Ly.Ins ();
                StrCp (& s [1], s);  *s = '?';
                Ly [lp].time = time;   StrCp (Ly [lp].s, s);
-               if (StrSt (s, CC("HCXSetting")))  HCX = 'y';
+               if (StrSt (s, "HCXSetting"))  HCX = 'y';
                break;
             case 9:   //...DevName text event
                hmmgot = (hmmlen > MAXTSTR) ? MAXTSTR : hmmlen;
                MemCp (s, & Mid [MidP+p], hmmgot);
                s [hmmgot] = '\0';
-               if (*s == '\0')   StrCp (s, CC("00"));
+               if (*s == '\0')   StrCp (s, "00");
                for (i = 0;  i < NDv;  i++)
                   if (! StrCm (s, Dv [i]))  break;
                if (i >= NDv) {
-                  if (NDv >= BITS (Dv))  Ugh (CC("Trk2Ev  too many devices"));
+                  if (NDv >= BITS (Dv))  Ugh ("Trk2Ev  too many devices");
                   StrCp (Dv [NDv++], s);
                }
                chan = (ubyt2)((i << 4) | (chan & 0x0F));
@@ -239,7 +240,7 @@ tr+1, TmS (TMS, time), s, i+1, (chan & 0x0F)+1);
                hmmgot = (hmmlen > MAXTSTR) ? MAXTSTR : hmmlen;
                MemCp (s, & Mid [MidP+p], hmmgot);
                FixStr1 ((ubyte *) s, (ubyte) hmmgot);
-               if ((c == 3) && (StrCm (s, CC("Words"), 'x') == 0))  gotKar = 1;
+               if ((c == 3) && (StrCm (s, "Words", 'x') == 0))  gotKar = 1;
                if ((c == 1) && gotKar) {
                   FixStrLy ((ubyte *) s, (ubyte) hmmgot);
                   if (LyCmp)       break;   // already got track of lyrics
@@ -416,7 +417,7 @@ tr+1, TmS (TMS, time), chan+1, c, MProg [c], prog [chan] & 0x0000FFFF);
                          if ((chan & 0x0F) == 9)      // kill drum ProgCh's
                             {Ev.Del (ep);   break;}
                          if (Pr.Full ())
-                            Ugh (CC("Trk2Ev  hit max program changes"));
+                            Ugh ("Trk2Ev  hit max program changes");
                          prog [chan] = (prog [chan] & 0x0000FFFF) | (c << 16);
                          pp = Pr.Ins ();
                          Pr [pp].chan = chan;
@@ -483,7 +484,7 @@ TRC("`02d `s: BankLo Chan=`d $`02x", tr+1, TmS (TMS, time), chan+1, c);
 "Trk2Ev tr=`02d tm=`s pos=`d badMIDIevent=$`02x`02x",
 tr+1, TmS (TMS, time), MidP+p, (int) pStat, (int) c));
          }
-         if (Ev.Full ()) Ugh (CC("Trk2Ev  Hit max output events :("));
+         if (Ev.Full ()) Ugh ("Trk2Ev  Hit max output events :(");
       }
    }
    StrCp (Tr [tr].name, trknm);
@@ -545,7 +546,7 @@ char *Song::TmSt (char *str, ubyt4 tm)
       bt  = (ubyt2)(1 +         ((tm - Ts [s].time) % dBr) / dBt);
       bx  =                     ((tm - Ts [s].time) % dBr) % dBt;
    }
-   if      (br > 9999)  StrCp  (str, CC("9999      "));
+   if      (br > 9999)  StrCp  (str, "9999      ");
    else if ((bt == 1) && (bx == 0))
                         StrFmt (str, "`04d      ",   br);
    else if (bx == 0)    StrFmt (str, "`04d.`d    ",  br, bt);
@@ -783,17 +784,17 @@ DBG("dump#1"); Dump(false);//Dump(true);
    for (e = 0;  e < Ev.Ln;  e++)
       if ( ((Ev [e].chan & 0x0F) == 9) && (dtrk [Ev [e].chan >> 4] == 0) ) {
       // got drum ev, on dev we haven't seen yet
-         if (Tr.Full ())  Ugh (CC("PutSong  too many tracks to add drum trk"));
+         if (Tr.Full ())  Ugh ("PutSong  too many tracks to add drum trk");
          tr = (ubyte)Tr.Ins ();        // init new end Tr[].name,dur
-         StrCp (Tr [tr].name, CC("DrumTrack"));   Tr [tr].dur = 0;
+         StrCp (Tr [tr].name, "DrumTrack");   Tr [tr].dur = 0;
          dtrk [Ev [e].chan >> 4] = tr;      // mark trk# for a given dev
          dr = 'y';                          // got =A= trk to jam tmpo,tsig into
       }
 // no drums used?  still make a dev=0 drumtrack
    if (dr == 'n') {
-      if (Tr.Full ())     Ugh (CC("PutSong  TOO many tracks to add tmpo trk"));
+      if (Tr.Full ())     Ugh ("PutSong  TOO many tracks to add tmpo trk");
       tr = (ubyte)Tr.Ins ();
-      StrCp (Tr [tr].name, CC("DrumTrack"));   Tr [tr].dur = 0;
+      StrCp (Tr [tr].name, "DrumTrack");   Tr [tr].dur = 0;
       dtrk [0] = tr;
    }
 // get 1st drum dev that has stuff
@@ -808,8 +809,8 @@ DBG("dump#1"); Dump(false);//Dump(true);
    // move any drum events to dev's DrumTrack n tweak it's .dur (hoakily?)
       else if ((Ev [e].chan & 0x0F) == 9) {
       // these only exist in RolandGS, else use "drumgs.txt" check to pick
-         if ((Ev [e].ctrl >= MKey (CC("6Db"))) &&
-             (Ev [e].ctrl <= MKey (CC("6E"))))
+         if ((Ev [e].ctrl >= MKey ("6Db")) &&
+             (Ev [e].ctrl <= MKey ("6E")))
             gs = true;
          Ev [e].trak = t = dtrk [Ev [e].chan >> 4];
          if (Tr [t].dur < Ev [e].time) {
@@ -828,7 +829,7 @@ DBG("dump#1"); Dump(false);//Dump(true);
          }
       }
    }
-   StrCp (ts, FN);   Fn2Path (ts);   StrAp (ts, CC("/drumgs.txt"));
+   StrCp (ts, FN);   Fn2Path (ts);   StrAp (ts, "/drumgs.txt");
    if (tf.Size (ts))  gs = true;       // gotta convert GS to standard XG sigh
 
 // by chan,prog,trak,time,ctrlHiBit-DESC,ctrlLo7,valu,val2
@@ -844,7 +845,7 @@ DBG("dump#2"); Dump(false); //Dump(true);
              (Ev [e].trak == St [s].trak))
             break;
       if (s >= St.Ln) {                // new guy
-         if (St.Full ())  Ugh (CC("PutSong  tooo many St entries :("));
+         if (St.Full ())  Ugh ("PutSong  tooo many St entries :(");
          St.Ins ();
          St [s].chan = Ev [e].chan;
          St [s].prog = Ev [e].prog;
@@ -908,10 +909,10 @@ DBG("dump#3"); Dump(false);
             else if (St [s].chan == 2)  St [s].hand = 2;   // LH
          }
          else {
-            if ( (StrSt (ts, CC("RH")) && (! StrSt (ts, CC("RHY")))) ||
-                 StrSt (ts, CC("right")) )  St [s].hand = 1;
-            if ( StrSt (ts, CC("LH")) ||
-                 StrSt (ts, CC("left" )) )  St [s].hand = 2;
+            if ( (StrSt (ts, "RH") && (! StrSt (ts, "RHY"))) ||
+                 StrSt (ts, "right") )  St [s].hand = 1;
+            if ( StrSt (ts, "LH") ||
+                 StrSt (ts, "left" ) )  St [s].hand = 2;
          }
       }
       if ((s == 0) || (St [s-1].chan != St [s].chan)) {
@@ -932,7 +933,7 @@ DBG("dump#4"); Dump(false);
 
 // WHEW!  cleanup DONE!  now...
 // build .song file given St [], etc, etc
-   Fs.Put (FN);   Fs.Put (CC("\n"));
+   Fs.Put (FN);   Fs.Put ("\n");
 /*
 ** Fs.Put ("...tracks in\n");
 ** for (t = 0;  t < Tr.Ln;  t++)
@@ -946,17 +947,17 @@ DBG("dump#4"); Dump(false);
 **       St [s].prog & 0x0FFFF, St [s].trak+1, Tr [St [s].trak].name,
 **       St [s].nT, St [s].nC, St [s].nN));
 */
-   Fs.Put (CC("Track:\n"));
+   Fs.Put ("Track:\n");
    for (s = 0;  s < St.Ln;  s++) {
       t = St [s].trak;
-      if      (St [s].hand == 1) StrCp (tm, CC(".?RH"));
-      else if (St [s].hand == 2) StrCp (tm, CC(".?LH"));
-      else                       StrCp (tm, CC(".SH"));
+      if      (St [s].hand == 1) StrCp (tm, ".?RH");
+      else if (St [s].hand == 2) StrCp (tm, ".?LH");
+      else                       StrCp (tm, ".SH");
       StrCp (ts, Tr [t].name);
       if (s && (St [s].chan == St [s-1].chan))  *tm = '+';
       ts [40] = '\0';                  // trim to 40 chars MAX
-      while (StrLn (ts) && (ts [StrLn (ts)-1] == ' '))  StrAp (ts, CC(""), 1);
-      if ((St [s].chan & 0x0F) == 9)  StrCp (snnm, CC("Drum/*"));
+      while (StrLn (ts) && (ts [StrLn (ts)-1] == ' '))  StrAp (ts, "", 1);
+      if ((St [s].chan & 0x0F) == 9)  StrCp (snnm, "Drum/*");
       else                            StrCp (snnm, MProg [St [s].prog >> 16]);
       if (St [s].prog & 0x00FFFF)
          StrFmt (& snnm [StrLn (snnm)], ".`03d`03d",
@@ -965,24 +966,24 @@ DBG("dump#4"); Dump(false);
 TRC("SB=`s", SB);
    }
    if (Ly.Ln) {                        // tack any Lyrics onto .song file
-      Fs.Put (CC("Lyric:\n"));
+      Fs.Put ("Lyric:\n");
       for (e = 0;  e < Ly.Ln;  e++)
          Fs.Put (StrFmt (SB, "`s `s\n", TmSt (TMS, Ly [e].time), Ly [e].s));
    }
-   { StrArr ly (CC("lyric.txt"), 16000, 6000*sizeof(TStr));
+   { StrArr ly ("lyric.txt", 16000, 6000*sizeof(TStr));
      TStr   lFN, s, s2;
    // get lyric.txt if any
-      StrCp (lFN, FN);   Fn2Path (lFN);   StrAp (lFN, CC("/lyric.txt"));
+      StrCp (lFN, FN);   Fn2Path (lFN);   StrAp (lFN, "/lyric.txt");
       ly.Load (lFN);
-      if (ly.NRow () && (Ly.Ln == 0))  Fs.Put (CC("Lyric:\n"));
+      if (ly.NRow () && (Ly.Ln == 0))  Fs.Put ("Lyric:\n");
       for (ubyt4 i = 0;  i < ly.NRow ();  i++) {
          StrCp (s2, ly.Get (i));   if (StrLn (s2) < 6)  continue;
          Fs.Put (StrFmt (s, "`s/\n", s2));
       }
    }
-   Fs.Put (CC("Event:\n"));            // main event data
+   Fs.Put ("Event:\n");                // main event data
    for (s = 0;  s < St.Ln;  s++) {
-      if ((St [s].chan & 0x0F) == 9)  StrCp (snnm, CC("Drum/*"));
+      if ((St [s].chan & 0x0F) == 9)  StrCp (snnm, "Drum/*");
       else                            StrCp (snnm, MProg [St [s].prog >> 16]);
       for (e = St [s].bgn;  e <= St [s].end;  e++) {
          Fs.Put (StrFmt (SB, "`s ", TmSt (TMS, Ev [e].time)));
@@ -993,25 +994,25 @@ TRC("SB=`s", SB);
                               {StrCp (ts, MCC [i].s);   break;}
             if (i >= NMCC)  MCtl2Str (ts, (ubyt2)c);
          // tmpo,tsig,ksig,prog get str values
-            if      (! StrCm (ts, CC("prog")))
-               Fs.Put (CC("!Prog=*"));
-            else if (! StrCm (ts, CC("tmpo")))
+            if      (! StrCm (ts, "prog"))
+               Fs.Put ("!Prog=*");
+            else if (! StrCm (ts, "tmpo"))
                Fs.Put (StrFmt (SB,
                        "!Tmpo=`d", Ev [e].valu | (Ev [e].val2<<8)));
-            else if (! StrCm (ts, CC("tsig"))) {
+            else if (! StrCm (ts, "tsig")) {
                Fs.Put (StrFmt (SB,
                        "!TSig=`d/`d", Ev [e].valu, 1 << (Ev [e].val2 & 0x0F)));
                if (Ev [e].val2 >> 4)
                   Fs.Put (StrFmt (SB, "/`d", 1 + (Ev [e].val2 >> 4)));
             }
-            else if (! StrCm (ts, CC("ksig"))) {
-               Fs.Put (CC("!KSig="));
+            else if (! StrCm (ts, "ksig")) {
+               Fs.Put ("!KSig=");
                if   (! (Ev [e].val2 & 0x80))
                      StrCp (SB, MKeyStr  [Ev [e].valu]);
                else if (Ev [e].valu != 11)
                      StrCp (SB, MKeyStrB [Ev [e].valu]);
-               else  StrCp (SB, CC("Cb"));      // cuz B / Cb are WEIRD
-               if (Ev [e].val2 & 0x01)  StrAp (SB, CC("m"));
+               else  StrCp (SB, "Cb");      // cuz B / Cb are WEIRD
+               if (Ev [e].val2 & 0x01)  StrAp (SB, "m");
                *SB = CHUP (*SB);
                Fs.Put (SB);
             }
@@ -1028,7 +1029,7 @@ TRC("SB=`s", SB);
                (Ev [e].valu & 0x0080) ? ((Ev [e].val2 & 0x80) ? '~' : '_')
                                       : '^',  Ev [e].valu & 0x007F));
          }
-         Fs.Put (CC("\n"));
+         Fs.Put ("\n");
       }
       Fs.Put (StrFmt (SB, "EndTrack `d #ev=`d\n",
                       s+1, St [s].end-St [s].bgn+1));
@@ -1043,20 +1044,20 @@ void Song::CvtMid ()
 { ubyt4 tlen;                // len isn't really PART of the header info
   ubyte tr;
   struct {ubyt4 len;  ubyt2 fmt, ntrk, res;} MThd;
-   if (StrCm ((char *)Mid, CC("MThd"), 'x'))  Ugh (CC("CvtMid  Bad .mid hdr"));
+   if (StrCm ((char *)Mid, "MThd", 'x'))  Ugh ("CvtMid  Bad .mid hdr");
    MThd.len  = Mid [4]<<24 | Mid [5]<<16 | Mid [6]<<8 | Mid [7];
    MThd.fmt  = Mid [8] <<8 | Mid [9];
    MThd.ntrk = Mid [10]<<8 | Mid [11];
    MThd.res  = Mid [12]<<8 | Mid [13];
 TRC("CvtMid nTrk=`d", MThd.ntrk);
-   if (MidLn < (MidP = 8 + MThd.len))     Ugh (CC("CvtMid  No .mid hdr"));
+   if (MidLn < (MidP = 8 + MThd.len))     Ugh ("CvtMid  No .mid hdr");
    for (;  Tr.Ln < MThd.ntrk;  MidP += tlen) {
-      if (StrCm ((char *)(& Mid [MidP]), CC("MTrk"), 'x'))
-                                          Ugh (CC("CvtMid  Bad trk hdr"));
+      if (StrCm ((char *)(& Mid [MidP]), "MTrk", 'x'))
+                                          Ugh ("CvtMid  Bad trk hdr");
       tlen = Mid [MidP+4]<<24 | Mid [MidP+5]<<16 | Mid [MidP+6]<<8 |
                                                    Mid [MidP+7];
-      if (MidLn < ((MidP += 8) + tlen))   Ugh (CC("CvtMid  EOF in track"));
-      if (Tr.Full ())                  Ugh (CC("CvtMid  too many .mid tracks"));
+      if (MidLn < ((MidP += 8) + tlen))   Ugh ("CvtMid  EOF in track");
+      if (Tr.Full ())                  Ugh ("CvtMid  too many .mid tracks");
       tr = (ubyte)Tr.Ins ();         Tr [tr].eFr = Ev.Ln;
       Trk2Ev (tr, MThd.res, tlen);   Tr [tr].eTo = Ev.Ln;
    }
@@ -1076,14 +1077,14 @@ TRC("FN=`s", FN);
 
 // load the midi file into memory
    if ((MidLn = f.Load (FN, Mid, sizeof (Mid))) == 0)
-                                                     Ugh (CC(".mid not found"));
-   if (MidLn >= BITS (Mid))                          Ugh (CC(".mid too big"));
-   if (MemCm ((char *)Mid, CC("RIFF"), 4, 'x') == 0)      // damn .RMI files...
+                                                     Ugh (".mid not found");
+   if (MidLn >= BITS (Mid))                          Ugh (".mid too big");
+   if (MemCm ((char *)Mid, "RIFF", 4, 'x') == 0)      // damn .RMI files...
       MemCp (Mid, & Mid [20], MidLn -= 20);
 
 // parse n save mem to .song file
-   StrCp (fn, FN);   Fn2Path (fn);   StrAp (fn, CC("/a.song"));
-   if (! Fs.Open (fn, "w"))  Ugh (CC("Can't write .song file"));
+   StrCp (fn, FN);   Fn2Path (fn);   StrAp (fn, "/a.song");
+   if (! Fs.Open (fn, "w"))  Ugh ("Can't write .song file");
 
    S = new Song ();   S->CvtMid ();   delete S;
 

@@ -136,11 +136,11 @@ DBG("Save bgn");
    if (! f.Open (fn, "w"))
       {Gui.Hey ("Save couldn't write device.txt");   return;}
 // in
-   f.Put (CC(
+   f.Put (
       "# device.txt - list of Midi Devices (In and Out)\n"
       "# Name  Type/OFF  Description\n"
       "#\n"
-      "MidiIn:\n"));
+      "MidiIn:\n");
    for (i = 0;  i < Midi._len;  i++)
       if ((Midi._lst [i].io == 'i') &&
              StrCm (Midi._lst [i].type, "OFF") )
@@ -153,9 +153,9 @@ DBG("Save bgn");
          f.Put (StrFmt (buf, "`s  `s  `s\n",
             Midi._lst [i].name, Midi._lst [i].type, Midi._lst [i].desc));
 // out
-   f.Put (CC(
+   f.Put (
       "\n"
-      "MidiOut:\n"));
+      "MidiOut:\n");
    for (i = 0;  i < Midi._len;  i++)
       if ((Midi._lst [i].io == 'o') &&
              StrCm (Midi._lst [i].type, "OFF") )
@@ -286,9 +286,9 @@ void MidiCfg::TestO ()
 {  if (_to.CurRow () < 0)  return;
    if (! StrCm (_to.Get (_to.CurRow (), 1), "syn"))  return;
   MidiO m (_to.Get (_to.CurRow (), 0), 'x');    // no gm init
-   m.Put (9, MDrm(CC("snar")), 0x80|90);   m.Put (0, MKey (CC("4C")), 0x80|90);
+   m.Put (9, MDrm("snar"), 0x80|90);   m.Put (0, MKey ("4C"), 0x80|90);
    Zzz (300);                          // 3/10 sec
-   m.Put (9, MDrm(CC("snar")),      64);   m.Put (0, MKey (CC("4C")),      64);
+   m.Put (9, MDrm("snar"),      64);   m.Put (0, MKey ("4C"),      64);
    Zzz (300);                          // 3/10 sec
 }
 
@@ -373,7 +373,7 @@ DBG("bgn");
    qRegisterMetaType<Qt::MouseButtons>("Qt::MouseButtons");
    App.Init ();   Gui.Init (& app, & win, "MidiCfg");   win.Init ();
   int rc = Gui.Loop ();                                 win.Quit ();
-   App.Spinoff (CC("pianocheetah"));
+   App.Spinoff ("pianocheetah");
 DBG("end");
    return rc;
 }

@@ -3,8 +3,6 @@
 #include "initme.h"
 
 TStr  DirPC;
-char  Buf [800000000];
-ubyt4 Len;
 
 void InitMe::Init ()
 { TStr dir;
@@ -17,10 +15,10 @@ DBG("Init bgn");
    StrCp (dir, getenv ("HOME"));
 DBG("home=`s", dir);
    if (Gui.AskDir (dir, "Pick a dir to put the pianocheetah dir into")) {
-      StrAp (dir, CC("/pianocheetah"));
+      StrAp (dir, "/pianocheetah");
       StrCp (DirPC, dir);
 DBG("picked=`s", DirPC);
-      App.CfgPut (CC("d"), DirPC);
+      App.CfgPut ("d", DirPC);
       Gui.WinLoad ();
    }
 DBG("Init end");

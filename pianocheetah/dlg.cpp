@@ -15,7 +15,7 @@ void CfgDef::Init ()                   // default the global settings
 }
 
 void CfgDef::Load ()                   // load global settings
-{ StrArr t (CC("cfg"), 80, 80*sizeof(TStr));
+{ StrArr t ("cfg", 80, 80*sizeof(TStr));
   TStr   fn, s, v;
   char  *p;
   ubyt2  i;
@@ -25,8 +25,8 @@ TRC("CfgDef::Load");
    for (i = 0;  i < t.num;  i++) {
       StrCp (s, t.str [i]);   if (! (p = StrCh (s, '=')))  continue;
       *p = '\0';   StrCp (v, p+1);
-      if (StrSt (s, CC("ntCo"  )))  Cfg.ntCo   = (ubyte)Str2Int (v);
-      if (StrSt (s, CC("barCl" )))  Cfg.barCl  = (*v == 'y') ? true:false;
+      if (StrSt (s, "ntCo"  ))  Cfg.ntCo   = (ubyte)Str2Int (v);
+      if (StrSt (s, "barCl" ))  Cfg.barCl  = (*v == 'y') ? true:false;
    }
 }
 
@@ -403,9 +403,9 @@ void FLstDef::Load ()
 { ubyt4 i, j, ins1;
   TStr  dr, fn, c;
   File  f;
-  StrArr t (CC("FL.Load"), FL.MAX, FL.MAX*sizeof (TStr)/2);
+  StrArr t ("FL.Load", FL.MAX, FL.MAX*sizeof (TStr)/2);
 // load prev songlist.txt in cfg dir w order of songs
-   App.Path (fn, 'c');   StrAp (fn, CC("/songlist.txt"));   t.Load (fn);
+   App.Path (fn, 'c');   StrAp (fn, "/songlist.txt");   t.Load (fn);
    FL.pos = 0;   FL.lst.Ln = t.num;
    for (ubyt4 i = 0;  i < t.num;  i++)
       {StrCp (FL.lst [i], t.str [i]);   FL.lst [i][FL.X] = 'n';}
@@ -413,7 +413,7 @@ void FLstDef::Load ()
 
 // reinit t n list every a.song file in Pianocheetah dir
    App.Path (dr, 'd');
-   t.Init (CC("lstS"), FL.MAX, FL.MAX*sizeof (TStr)/2);
+   t.Init ("lstS", FL.MAX, FL.MAX*sizeof (TStr)/2);
    StrFmt (fn, "`s/song", dr);   f.DoDir (fn, & t, SongOK);
    t.Sort ();
 //TRC("num 1 pc songs=`d", t.num);  t.Dump ();
@@ -441,10 +441,10 @@ void FLstDef::Save ()
 // just dump Learn (with manual sort) of FLst[] in cfg/songlist.txt
 { TStr fn;
   File f;
-   App.Path (fn, 'c');   StrAp (fn, CC("/songlist.txt"));
+   App.Path (fn, 'c');   StrAp (fn, "/songlist.txt");
    if (! f.Open (fn, "w"))  DBG("FL.Save  couldn't write songlist");
    for (ubyt4 r = 0;  r < FL.lst.Ln;  r++)
-      f.Put (FL.lst [r]);  f.Put (CC("\n"));
+      f.Put (FL.lst [r]);  f.Put ("\n");
    f.Shut ();
 }
 
@@ -491,33 +491,33 @@ void DlgFL::Pik ()
 { sbyt2 p;
   TStr  fn, s, bars, tmpo, tsig, ksig, prac, lyr;
   ubyt4 r, i;
-  StrArr tb (CC("FLstEtc"), 16000, 6000*sizeof(TStr));
-   StrCp (bars, CC("0"));   StrCp (tmpo, CC("120"));   StrCp (tsig, CC("4/4"));
-   StrCp (ksig, CC("C"));   StrCp (prac, CC(""));      StrCp (lyr,  CC("0"));
+  StrArr tb ("FLstEtc", 16000, 6000*sizeof(TStr));
+   StrCp (bars, "0");   StrCp (tmpo, "120");   StrCp (tsig, "4/4");
+   StrCp (ksig, "C");   StrCp (prac, "");      StrCp (lyr,  "0");
 
    if ((p = _t.CurRow ()) >= 0)  FL.pos = p;
    FL.ext = false;
 
 // git the .song fn, load for infoz
-   StrCp (fn, FL.lst [FL.pos]);   StrAp (fn, CC("/a.song"));
+   StrCp (fn, FL.lst [FL.pos]);   StrAp (fn, "/a.song");
    tb.Load (fn, nullptr, CC("Track:"));
 
 // plow thru top of .song till we hit DrumMap: or Track: and load interestin etc
    for (r = 0;  r < tb.NRow ();  r++) {
       StrCp (s, tb.Get (r));
-      if ((! MemCm (s, CC("DrumMap:"), 8)) ||
-          (! MemCm (s, CC("Track:"  ), 6)))  break;
-      if  (! MemCm (s, CC("info={"), 6)) {
+      if ((! MemCm (s, "DrumMap:", 8)) ||
+          (! MemCm (s, "Track:"  , 6)))  break;
+      if  (! MemCm (s, "info={", 6)) {
          for (i = r+1;  i < tb.NRow ();  i++) {
             StrCp (s, tb.Get (i));
-            if (! MemCm (s, CC("}"), 1))  break;
+            if (! MemCm (s, "}", 1))  break;
 
-            if (! MemCm (s, CC("bars" ), 4))  StrCp (bars, & s [7]);
-            if (! MemCm (s, CC("tempo"), 5))  StrCp (tmpo, & s [7]);
-            if (! MemCm (s, CC("tsig" ), 4))  StrCp (tsig, & s [7]);
-            if (! MemCm (s, CC("ksig" ), 4))  StrCp (ksig, & s [7]);
-            if (! MemCm (s, CC("prac" ), 4))  StrCp (prac, & s [7]);
-            if (! MemCm (s, CC("lyric"), 5))  StrCp (lyr,  & s [7]);
+            if (! MemCm (s, "bars" , 4))  StrCp (bars, & s [7]);
+            if (! MemCm (s, "tempo", 5))  StrCp (tmpo, & s [7]);
+            if (! MemCm (s, "tsig" , 4))  StrCp (tsig, & s [7]);
+            if (! MemCm (s, "ksig" , 4))  StrCp (ksig, & s [7]);
+            if (! MemCm (s, "prac" , 4))  StrCp (prac, & s [7]);
+            if (! MemCm (s, "lyric", 5))  StrCp (lyr,  & s [7]);
          }
       }
    }
@@ -565,7 +565,7 @@ static char *FLFind (char *fn, ubyt2 len, ubyt4 pos, void *ptr)
 */
    NFnd++;
 //DBG("FLFind fn=`s", fn);
-   FFnd.Put (fn);   FFnd.Put (CC("\n"));   return nullptr;
+   FFnd.Put (fn);   FFnd.Put ("\n");   return nullptr;
 }
 
 
@@ -575,7 +575,7 @@ static char *FLCopy (char *fr, ubyt2 len, ubyt4 pos, void *ptr)
   BStr  to, frP, toP, cmd;
   File  f;
    if (pos >= 500)  return CC("enough, pal!");
-   StrCp (to, fr);   StrAp (to, CC(""), 4);   FnFix (to);
+   StrCp (to, fr);   StrAp (to, "", 4);   FnFix (to);
    StrFmt (frP, "`s/`s",          DirF, fr);
    StrFmt (toP, "`s/`s/path.txt", DirT, to);   f.Save (toP, frP, StrLn (frP));
    StrFmt (toP, "`s/`s/a.mid",    DirT, to);   f.Copy (frP, toP);
@@ -594,14 +594,14 @@ void DlgFL::Find ()
    StrCp (srch, l.Get ());
   ColSep ss (srch, 8);
    for (NCol = 0;  ss.Col [NCol][0];  NCol++)  Col [NCol] = ss.Col [NCol];
-   App.CfgGet (CC("DlgFL_dir"), dMid);
+   App.CfgGet ("DlgFL_dir", dMid);
 //DBG("a dir=`s", dMid);
    if (*dMid == '\0')  StrCp (dMid, getenv ("HOME"));
 //DBG("b dir=`s", dMid);
    if (! Gui.AskDir (dMid, "pick dir to search for songs in (NOT / please)"))
       return;
 
-   App.CfgPut (CC("DlgFL_dir"), dMid);
+   App.CfgPut ("DlgFL_dir", dMid);
 
    StrFmt (fnC, "`s/_midicache.txt", dMid);
    if (! f.Size (fnC)) {               // no cache yet so start makin one
@@ -651,10 +651,10 @@ void DlgFL::Dn ()
 void DlgFL::MidImp ()
 { TStr d;
   BStr c;
-   App.CfgGet    (CC("DlgFL_middir"), d);
+   App.CfgGet    ("DlgFL_middir", d);
    if (*d == '\0')  StrCp (d, getenv ("HOME"));
    if (Gui.AskDir (d, "pick dir with midi files")) {
-      App.CfgPut (CC("DlgFL_middir"), d);   // remember it
+      App.CfgPut ("DlgFL_middir", d);   // remember it
       App.Spinoff (StrFmt (c, "midimp `p", d));
    }
 }
@@ -662,17 +662,17 @@ void DlgFL::MidImp ()
 void DlgFL::Song2Wav ()
 { TStr fn;
   BStr c;
-   StrCp (fn, FL.lst [FL.pos]);   StrAp (fn, CC("/a.song"));
+   StrCp (fn, FL.lst [FL.pos]);   StrAp (fn, "/a.song");
    App.Spinoff (StrFmt (c, "song2wav `p", fn));
 }
 
 void DlgFL::Sfz2Syn ()
 { TStr d;
   BStr c;
-   App.CfgGet    (CC("DlgFL_sfzdir"), d);
+   App.CfgGet    ("DlgFL_sfzdir", d);
    if (*d == '\0')  StrCp (d, getenv ("HOME"));
    if (Gui.AskDir (d, "pick dir with .sfz files")) {
-      App.CfgPut (CC("DlgFL_sfzdir"), d);   // remember it
+      App.CfgPut ("DlgFL_sfzdir", d);   // remember it
       App.Spinoff (StrFmt (c, "sfz2syn `p", d));
    }
 }
@@ -680,10 +680,10 @@ void DlgFL::Sfz2Syn ()
 void DlgFL::Mod2Song ()
 { TStr d;
   BStr c;
-   App.CfgGet    (CC("DlgFL_moddir"), d);
+   App.CfgGet    ("DlgFL_moddir", d);
    if (*d == '\0')  StrCp (d, getenv ("HOME"));
    if (Gui.AskDir (d, "pick dir with .sfz files")) {
-      App.CfgPut (CC("DlgFL_moddir"), d);   // remember it
+      App.CfgPut ("DlgFL_moddir", d);   // remember it
       App.Spinoff (StrFmt (c, "mod2song `p", d));
    }
 }
@@ -702,26 +702,26 @@ void DlgFL::Init ()
    FL.Load ();
   CtlTBar tb;
    tb.Init (this, "flst");
-   tb.Btn (0, CC("Up\n"
-                 "Scoot song up in the list"));
-   tb.Btn (1, CC("Down\n"
-                 "Scoot song down in the list"));
-   tb.Btn (2, CC("Search\n"
+   tb.Btn (0, "Up\n"
+                 "Scoot song up in the list");
+   tb.Btn (1, "Down\n"
+                 "Scoot song down in the list");
+   tb.Btn (2, "Search\n"
                  "Search a big midi file dir for matching search strings\n"
-                 "   fill in the search box below THEN click me"));
-   tb.Btn (3, CC("MidiImport\n"
+                 "   fill in the search box below THEN click me");
+   tb.Btn (3, "MidiImport\n"
                  "Pick a dir tree with midi files to convert to songs\n"
-                 "in the song dir"));
-   tb.Btn (4, CC("Song2Wav\n"
-                 "Render .song to a .wav file"));
-   tb.Btn (5, CC("Sfz2Syn\n"
-                 "Pick a dir with .sfz files to add to a Syn sound bank"));
-   tb.Btn (6, CC("Mod2Song\n"
+                 "in the song dir");
+   tb.Btn (4, "Song2Wav\n"
+                 "Render .song to a .wav file");
+   tb.Btn (5, "Sfz2Syn\n"
+                 "Pick a dir with .sfz files to add to a Syn sound bank");
+   tb.Btn (6, "Mod2Song\n"
                  "Pick a .mod file to convert to\n"
-                 "a .song and a Syn sound bank"));
-   tb.Btn (7, CC("Browse\n"
+                 "a .song and a Syn sound bank");
+   tb.Btn (7, "Browse\n"
                  "Open file browser in PianoCheetah/device directory\n"
-                 "   to delete/rename/etc"));
+                 "   to delete/rename/etc");
    connect (tb.Act (0), & QAction::triggered,  this, & DlgFL::Up);
    connect (tb.Act (1), & QAction::triggered,  this, & DlgFL::Dn);
    connect (tb.Act (2), & QAction::triggered,  this, & DlgFL::Find);
@@ -807,8 +807,8 @@ void DlgHlp::Init ()
    _t.Init (ui->t, "Group\0Note\0Key\0Command Description\0");
    _t.Open ();
    for (ubyte i = 0;  i < NUCmd;  i++) {
-      ro [0] = CC(UCmd [i].grp);   ro [1] = CC(UCmd [i].nt);
-      ro [2] = CC(UCmd [i].ky);    ro [3] = CC(UCmd [i].desc);
+      ro [0] = CC(UCmd [i].grp);   ro [1] =    UCmd [i].nt;
+      ro [2] =    UCmd [i].ky;     ro [3] = CC(UCmd [i].desc);
       _t.Put (ro);
    }
    _t.Shut ();
@@ -849,7 +849,7 @@ void DlgKSg::Open ()
           key (ui->key, *m == 'm' ? Mi : Ma);
    maj.Set (*m == 'm' ? 1 : 0);
    if (*m == 'm')  *m = '\0';
-   StrAp (s, CC(" "));   key.SetS (s);
+   StrAp (s, " ");   key.SetS (s);
    Gui.DlgMv (this, Up.gp, "tR");
 }
 
@@ -858,7 +858,7 @@ void DlgKSg::Shut ()
   CtlList key (ui->key), maj (ui->maj);
    key.GetS (s);
    if (s [1] == ' ')  s [1] = '\0';   else s [2] = '\0';
-   if (maj.Get ())  StrAp (s, CC("m"));
+   if (maj.Get ())  StrAp (s, "m");
    StrAp (_s, s);
    emit sgCmd (_s);
    done (true);   lower ();   hide ();
@@ -890,13 +890,13 @@ void DlgMov::Shut ()  {done (true);   lower ();   hide ();}
 void DlgMov::Init ()
 {  Gui.DlgLoad (this, "DlgMov");
    connect (ui->h2r, & QPushButton::pressed,
-            this, [this]() {StrCp (Up.pos.str, CC(">"));   Shut ();});
+            this, [this]() {StrCp (Up.pos.str, ">");   Shut ();});
    connect (ui->h2l, & QPushButton::pressed,
-            this, [this]() {StrCp (Up.pos.str, CC("<"));   Shut ();});
+            this, [this]() {StrCp (Up.pos.str, "<");   Shut ();});
    connect (ui->h2b, & QPushButton::pressed,
-            this, [this]() {StrCp (Up.pos.str, CC("#"));   Shut ();});
+            this, [this]() {StrCp (Up.pos.str, "#");   Shut ();});
    connect (ui->del, & QPushButton::pressed,
-            this, [this]() {StrCp (Up.pos.str, CC("x"));   Shut ();});
+            this, [this]() {StrCp (Up.pos.str, "x");   Shut ();});
 }
 
 void DlgMov::Quit ()  {Gui.DlgSave (this, "DlgMov");}

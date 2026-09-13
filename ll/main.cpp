@@ -16,17 +16,17 @@ void DoDir (char *dir)
          if (df == 'f') {
            ulong ln = StrLn (fn);
             if      (Ext == 0) {       // alll files (minus any cache files)
-               if ( (ln < 10) || StrCm (& fn [ln-9], CC("cache.txt")) )
-                  {F.Put (& fn [StrLn (Top)+1]);   F.Put (CC("\n"));}
+               if ( (ln < 10) || StrCm (& fn [ln-9], "cache.txt") )
+                  {F.Put (& fn [StrLn (Top)+1]);   F.Put ("\n");}
             }
             else if (Ext == 1) {       // .mid/.kar/etc file
                if (FnMid (fn))
-                  {F.Put (& fn [StrLn (Top)+1]);   F.Put (CC("\n"));}
+                  {F.Put (& fn [StrLn (Top)+1]);   F.Put ("\n");}
             }
             else                       // dirs w an a.song
-               if ( (ln > 7) && (! StrCm (& fn [ln-7], CC("/a.song"))) )
+               if ( (ln > 7) && (! StrCm (& fn [ln-7], "/a.song")) )
                   {StrCp (a, fn);   Fn2Path (a);
-                   F.Put (& a  [StrLn (Top)+1]);   F.Put (CC("\n"));}
+                   F.Put (& a  [StrLn (Top)+1]);   F.Put ("\n");}
          }
          else  DoDir (fn);
       } while ((df = d.Next (fn)));

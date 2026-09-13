@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>I need to download a BIG bunch of samples.
+     <string>I'm currently downloading a BIG bunch of samples.
 This will take -4- minutes :(   Please be patient :)
 
 When I'm done, I'll bring up MidiConfig
@@ -33,10 +33,10 @@ so please turn on all your midi devices.
 (and please don't close me - sorry)</string>
     </property>
     <property name="textFormat">
-     <enum>Qt::AutoText</enum>
+     <enum>Qt::TextFormat::AutoText</enum>
     </property>
     <property name="alignment">
-     <set>Qt::AlignCenter</set>
+     <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
    </widget>
   </widget>

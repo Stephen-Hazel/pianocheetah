@@ -129,11 +129,11 @@ void PutWav (ubyte t, ubyt4 len, ubyt4 lpBgn, ubyt4 lpEnd)
    if (! f.Open (fn, "w")) {LF.Put (StrFmt (ls, "can't write file `s\n", fn));
                             return;}
 
-   f.Put (CC("RIFF")    );   f.Put (& ln1, 4);
-   f.Put (CC("WAVEfmt "));   f.Put (& ln2, 4);   f.Put (& wf,   ln2);
-   f.Put (CC("data"    ));   f.Put (& len, 4);   f.Put (ptr,    len);
+   f.Put ("RIFF"    );   f.Put (& ln1, 4);
+   f.Put ("WAVEfmt ");   f.Put (& ln2, 4);   f.Put (& wf,   ln2);
+   f.Put ("data"    );   f.Put (& len, 4);   f.Put (ptr,    len);
    if (len % 2)  f.Put (CC(""), 1);
-   f.Put (CC("smpl"));       f.Put (& ln4, 4);   f.Put (& smpl, ln4);
+   f.Put ("smpl");       f.Put (& ln4, 4);   f.Put (& smpl, ln4);
 
    f.Shut ();
 }
@@ -166,7 +166,7 @@ void CvtTrk (ubyte t)
   BStr  ps;
    in = t + 1;                         // trk 0..30 <=> ins 1..31
 LF.Put (StrFmt (ps, "inst=`d ----------\n", in));
-LF.Put (CC("tr time        dur key vel   vol cmd\n"));
+LF.Put ("tr time        dur key vel   vol cmd\n");
    rep    = (Hdr->sample [t].replen > 1) ? true : false;
    maxdur =  Hdr->sample [t].length * (M_WHOLE/64) / 110;
    for (b = 0;  b < Hdr->songlen;  b++) {   // each block of song
@@ -232,17 +232,17 @@ per, per, bl, l, c));
                n++;
             }
             TEv [t][n].time = time;
-            TEv [t][n].ctrl = MKey (CC("2c")) + note;
+            TEv [t][n].ctrl = MKey ("2c") + note;
             TEv [t][n].valu = 0x80 | (ubyte)((127 * vol) / 64);
             if (TEv [t][n].valu == 0x80)  TEv [t][n].valu = 0x81;
 LF.Put (StrFmt (ps,
 "`>2d `s `>3d `<3s `>3d    `>2d `02x\n",
-in, TmS (ts2, time), dur, MKey2Str (ts, MKey (CC("2c")) + note),
+in, TmS (ts2, time), dur, MKey2Str (ts, MKey ("2c") + note),
 TEv [t][n].valu & 0x7F, vol, cmd [c]));
             n++;
             if (n >= MAX_EVNT)  Die ("hit max events");
             TEv [t][n].time = time + dur - 1;
-            TEv [t][n].ctrl = MKey (CC("2c")) + note;
+            TEv [t][n].ctrl = MKey ("2c") + note;
             TEv [t][n].valu = 0;
             n++;
          }
@@ -270,13 +270,13 @@ void CvtMod ()
 // parse header
    Hdr = (STMOD *)Mod;
    if (ModLen < sizeof (STMOD))
-      {LF.Put (CC("Header too small\n"));   return;}
+      {LF.Put ("Header too small\n");   return;}
 //DBG("magic=`c`c`c`c",Hdr->magic[0],Hdr->magic[1],Hdr->magic[2],Hdr->magic[3]);
-// if (MemCm (Hdr->magic, CC("M.K."), 4))
-//    {LF.Put (CC("not a regular (M.K.) MOD file\n"));   return;}
+// if (MemCm (Hdr->magic, "M.K.", 4))
+//    {LF.Put ("not a regular (M.K.) MOD file\n");   return;}
 
    ModPos += sizeof (STMOD);
-   LF.Put (CC("id length volume repeat repLen name\n"));
+   LF.Put ("id length volume repeat repLen name\n");
    for (i = 0;  i < BITS (Hdr->sample);  i++) {
       Hdr->sample [i].name [21] = '\0';
       FnFix (Hdr->sample [i].name, '-');
@@ -291,8 +291,8 @@ i+1, Hdr->sample [i].length, Hdr->sample [i].volume,
 // setup block pointers (to 1K blocks of bytes in file)
    for (i = 0;  i < Hdr->songlen;  i++)
       if (Hdr->playseq [i] >= NBlk)  NBlk = Hdr->playseq [i] + 1;
-   if (NBlk ==  0)  {LF.Put (CC("hmmm, no blocks?\n"));     return;}
-   if (NBlk > 128)  {LF.Put (CC("hmmm, >128 blocks?\n"));   return;}
+   if (NBlk ==  0)  {LF.Put ("hmmm, no blocks?\n");     return;}
+   if (NBlk > 128)  {LF.Put ("hmmm, >128 blocks?\n");   return;}
 
    for (b = 0;  b < NBlk;  b++)  {
       LF.Put (StrFmt (ps,
@@ -317,46 +317,45 @@ t, ModPos, ModPos, ModLen, TSn [t]);
    }
 
 // write .song
-   Fn2Name (FN);   StrCp (sfn, FN);   StrAp (sfn, CC(".song"));
+   Fn2Name (FN);   StrCp (sfn, FN);   StrAp (sfn, ".song");
    if (! f.Open (sfn, "w"))
       {LF.Put (StrFmt (ps, "couldn't write `s\n", sfn));   return;}
 
-   f.Put (CC("id length volume repeat repLen name\n"));
+   f.Put ("id length volume repeat repLen name\n");
    for (t = 0;  t < NTRK;  t++) {
       StrFmt (buf, "`>2d `>6d `>6d `>6d `>6d `s\n",
          t+1, Hdr->sample [t].length, Hdr->sample [t].volume,
          Hdr->sample [t].repeat, Hdr->sample [t].replen, Hdr->sample [t].name);
       f.Put (buf);
    }
-   f.Put (CC("\nTrack:\n"));
+   f.Put ("\nTrack:\n");
    for (t = 0;  t < NTRK;  t++)  if (NEv [t])
       f.Put (StrFmt (ps, "syn  `s_`s  .SH\n",  TSn [t], SS));
 
 // write events
-   f.Put (CC("Event:\n"));
+   f.Put ("Event:\n");
    for (t = 0;  t < NTRK;  t++)  if (NEv [t]) {
       e = & TEv [t][0];
       for (j = 0;  j < NEv [t];  j++) {
          f.Put (StrFmt (s, "`<9s ", TmS (s2, e [j].time)));
          c = e [j].ctrl;
-         if (c & 0x0080) {          // ctrl
-            StrCp (s, CC("pan"));   // we only do pan :/
+         if (c & 0x0080) {             // ctrl
+            StrCp (s, "pan");          // we only do pan :/
 /*
-            if      (! StrCm (s,  CC("Tmpo")))  // tmpo,tsig,ksig are special
-               f.Put (StrFmt (s, CC("!Tmpo=`d"),
-                                              e [j].valu | (e [j].val2<<8)));
-            else if (! StrCm (s,  CC("TSig"))) {
-               f.Put (StrFmt (s, CC("!TSig=`d/`d"),  e [j].valu,
+            if      (! StrCm (s,  "Tmpo"))  // tmpo,tsig,ksig are special
+               f.Put (StrFmt (s, "!Tmpo=`d", e [j].valu | (e [j].val2<<8)));
+            else if (! StrCm (s,  "TSig")) {
+               f.Put (StrFmt (s, "!TSig=`d/`d",  e [j].valu,
                                            1 << (e [j].val2 & 0x0F)));
                if (e [j].val2 >> 4)  f.Put (StrFmt (s, "/`d",
                                             1 + (e [j].val2 >> 4)));
             }
-            else if (! StrCm (s, CC("KSig"))) {
-               f.Put (CC("!KSig="));
+            else if (! StrCm (s, "KSig")) {
+               f.Put ("!KSig=");
                if   (! (e [j].val2 & 0x80)) StrCp (s, MKeyStr  [e [j].valu]);
                else if (e [j].valu != 11)   StrCp (s, MKeyStrB [e [j].valu]);
-               else                         StrCp (s, CC("Cb"));  // weird :/
-               if (e [j].val2 & 0x01)  StrAp (s, CC("m"));
+               else                         StrCp (s, "Cb");    // weird :/
+               if (e [j].val2 & 0x01)  StrAp (s, "m");
                *s = CHUP (*s);
                f.Put (s);
             }
@@ -373,7 +372,7 @@ t, ModPos, ModPos, ModLen, TSn [t]);
                e [j].valu & 0x7F);
             f.Put (s);
          }
-         f.Put (CC("\n"));
+         f.Put ("\n");
       }
       f.Put (StrFmt (s, "EndTrack `d #ev=`d\n", t+1, NEv [t]));
    }
@@ -396,17 +395,17 @@ TRC("arg=`s", argv [1]);               // we EXPECT ta be called by midimp
 
 // sampleset is MOD-fn of arg w spaces => -
    StrCp (fn, FN);   Fn2Path (fn);     // toss /a.mod leaving path/song
-   StrCp (SS, CC("MOD-"));                 // MOD- prefix
+   StrCp (SS, "MOD-");                 // MOD- prefix
    FnName (& SS [4], fn);              // toss path leaving just fn
    FnFix (SS, '-');                    // spaces => - etc
 TRC("bank=`s", SS);
 
 // make syn's new bank
-   App.Path (To, 'd');   StrAp (To, CC("/device/syn/"));   StrAp (To, SS);
+   App.Path (To, 'd');   StrAp (To, "/device/syn/");   StrAp (To, SS);
    if (d.Got (To))  p.Kill (To);
 
 // ok, make To dir n open log.txt there
-   p.Make (To);   StrCp (fn, To);   StrAp (fn, CC("/log.txt"));
+   p.Make (To);   StrCp (fn, To);   StrAp (fn, "/log.txt");
    if (! LF.Open (fn, "w"))   Die ("Mod2Song  couldn't write log file");
 LF.Put (StrFmt (fn, "`s\n", FN));
 
@@ -418,7 +417,7 @@ LF.Put (StrFmt (fn, "`s\n", FN));
    CvtMod ();                          // do eeeet
 
    LF.Shut ();
-   App.Run (CC("synsnd"));
+   App.Run ("synsnd");
 TRC("end");
    return 0;
 }

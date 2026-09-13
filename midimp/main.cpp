@@ -11,13 +11,13 @@ void FixFn (char *s)
   char *p;
   ubyt4 n;
   FDir  d;
-   StrCp (t, DirT);   StrAp (t, CC("/"));   StrAp (t, s);
+   StrCp (t, DirT);   StrAp (t, "/");   StrAp (t, s);
    if (d.Got (t)) {
-      StrAp (t, CC("_2"));   StrAp (s, CC("_2"));
+      StrAp (t, "_2");   StrAp (s, "_2");
       while (d.Got (t)) {              // gotta return s but test w t
          for (p = & s [StrLn (s)-2];  *p != '_';  p--)  ;
          n = Str2Int (p+1);   StrFmt (p+1, "`d", ++n);
-         StrCp (t, DirT);   StrAp (t, CC("/"));   StrAp (t, s);
+         StrCp (t, DirT);   StrAp (t, "/");   StrAp (t, s);
       }
    }
 //DBG(s);
@@ -31,11 +31,11 @@ char *Move (char *fn, ubyt2 len, ubyt4 pos, void *ptr)
   File f;
    (void)len;   (void)pos;   (void)ptr;
 // take off .ext, FixFn does merge check
-   if (! StrCm (& fn [StrLn (fn)-4], CC(".mod")))  mod = true;
-   StrCp (fnx, fn);   StrAp (fnx, CC(""), 4);   FixFn (fnx);
+   if (! StrCm (& fn [StrLn (fn)-4], ".mod"))  mod = true;
+   StrCp (fnx, fn);   StrAp (fnx, "", 4);   FixFn (fnx);
    StrFmt (fr, "`s/`s",       DirF, fn);
    StrFmt (to, "`s/`s/a.mid", DirT, fnx);
-   if (mod)  StrAp (to, CC("mod"), 3);
+   if (mod)  StrAp (to, "mod", 3);
 // move n mid2song
    f.Copy (fr, to);   f.Kill (fr);
    App.Run (StrFmt (c, "`s2song `p", mod?"mod":"mid", to));
@@ -73,13 +73,13 @@ DBG("DirFr=`s DirTo=`s", DirF, DirT);
 
 // list midi files in midi_import n move+mid2song em
    App.Run (StrFmt (c, "ll midi `p", DirF));
-   StrCp (s, DirF);   StrAp (s, CC("/_midicache.txt"));
+   StrCp (s, DirF);   StrAp (s, "/_midicache.txt");
    f.DoText (s, nullptr, Move);
 
 // list off leftovers n move to midi_junk
    App.Run (StrFmt (c, "ll alll `p", DirF));
-   StrAp (DirT, CC("/_junk"));   d.Make (DirT);
-   StrCp (s, DirF);   StrAp (s, CC("/_cache.txt"));
+   StrAp (DirT, "/_junk");   d.Make (DirT);
+   StrCp (s, DirF);   StrAp (s, "/_cache.txt");
    f.DoText (s, nullptr, Wipe);
    if (! Did)  d.Kill (DirT);          // kill it if didn't put nothin in
    d.Kill (DirF);                      // kill it it's empty
