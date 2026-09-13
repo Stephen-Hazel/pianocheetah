@@ -181,6 +181,7 @@ DBG (           "DvT=`s can't do cc=`s", Up.dvt [d].Name(), _f.ctl [i].s);
 }
 
 
+ubyte Song::CtlEv (const char *cSt, char ro)  {return CtlEv (CC(cSt), ro);}
 ubyte Song::CtlEv (char *cSt, char ro)
 // turn cSt into _f.ctl pos|0x80 (and ins if new and room)
 // return 0 if outa room
@@ -577,8 +578,7 @@ TRC("TrkDel t=`d", t);
          {got = true;   break;}
    if (! got)  ShutDev (_f.trk [t].dev);
    _f.trk.Del (t);
-   if (t < _f.trk.Ln)         _f.trk.Ln--;  // adj all .trk refs
-   if (Up.eTrk >  t)          Up.eTrk--;
+   if (Up.eTrk >  t)          Up.eTrk--;    // adj all .trk refs
    if (Up.eTrk >= _f.trk.Ln)  Up.eTrk--;
 }
 

@@ -53,6 +53,7 @@ TRC(" del ctl");
    _pLyr = _pChd = 0;   _hLyr = 2;
 TRC(" del ev,nt");
    _recM.Ln = _recD.Ln = 0;
+   *_st.dur = '\0';   _st.artc = 2;   _st.oct = 4;   _st.nt = 'c';   _st.sh = 0;
    if (_f.ev)  delete [] _f.ev;
    _f.nEv = _f.maxEv = 0;   _f.ev = nullptr;
    if (_nt)  delete [] _nt;   _nt = nullptr;
@@ -61,7 +62,7 @@ TRC(" del sym");
    *_f.dsc = '\0';
    MemSet (& _lrn, 0, sizeof (_lrn));
    DscInit ();
-   _pag.Ln = _col.Ln = _blk.Ln = _sym.Ln = 0;
+   _gv++;   _pag.Ln = _col.Ln = _blk.Ln = _sym.Ln = 0;
 TRC(" reset timer");
    _timer->SetSig (0);   _timer->Set (0);   Poz (false);   PutTp (120);
    PutTs (4, 4, 0);   _bEnd = 0;   _tEnd = 0;   StrCp (Up.bars, CC("0"));
@@ -74,7 +75,12 @@ TRC("Wipe end");
 
 
 void Song::Info (char *msg)
-{           TRC("info=`s", msg);   StrCp (Up.hey, msg);   PutLy (); }
+{ TStr bb, be;
+   StrCp (bb, "<span style='font-size: 14pt; font-weight: bold'>");
+   StrCp (be, "</span>");
+TRC("info=`s", msg);   StrFmt (Up.hey, "`s`s`s", bb, msg, be);
+   PutLy ();
+}
 
 void Song::Hey (char *msg)
 { BStr s;   TRC("hey=`s", msg);   emit sgUpd (StrFmt (s, "hey `s", msg)); }

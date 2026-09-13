@@ -182,6 +182,7 @@ void Song::MsDn (Qt::MouseButton b, sbyt2 x, sbyt2 y)
    }
    if (! (b == Qt::LeftButton))  return;    // need regular button
 
+   Up.pos.gv = _gv;                         // stamp current layout gen
    pg = & _pag [Up.pos.pg];
    MemCp (& co, & pg->col [Up.pos.co], sizeof (co));  // load column
    nx = co.nx;
@@ -219,8 +220,9 @@ void Song::MsDn (Qt::MouseButton b, sbyt2 x, sbyt2 y)
    }
   SymDef *it = & co.sym [Up.pos.sy];
    if (Up.pos.at == 'd') {             // drag a new dur
-      Up.pos.drg = 'd';   Up.pos.x1 = nx + it->x;   Up.pos.x2 = nx + it->w - 1;
-                          Up.pos.y1 = it->y;        Up.pos.y2 = y;
+      Up.pos.drg = 'd';
+      Up.pos.x1 = nx + it->x;   Up.pos.x2 = nx + it->x + it->w - 1;
+      Up.pos.y1 = it->y;        Up.pos.y2 = y;
       DragRc ();   return;
    }
    if (Up.pos.at == 'f') {             // hop a note else quant dlg
@@ -322,6 +324,9 @@ DBG("  nope");
    }
    if (! (b & Qt::LeftButton))  return;
 
+   if (Up.pos.drg && (Up.pos.gv != _gv))    // layout rebuilt mid-drag - bail
+      {DragRc ();   Up.pos.drg = '\0';}
+
 // draggin - erase old cursor rect n draw new one
    if ((Up.pos.drg == 'q') || (Up.pos.drg == 'r')) {
       DragRc ();   Up.pos.y1 = y;   Up.pos.y2 = y + 1;   DragRc ();
@@ -375,6 +380,11 @@ void Song::MsUp (Qt::MouseButton b, sbyt2 x, sbyt2 y)
    if (! (b == Qt::LeftButton))  return;
 
    if (Up.pos.drg)  Up.drag.setWidth (0);        // clear it out
+
+   if (Up.pos.drg && (Up.pos.gv != _gv)) {  // layout rebuilt mid-drag - bail
+      if (! Up.pos.pPoz)  Poz (false);
+      Up.pos.drg = '\0';
+   }
 
    if ((Up.pos.drg == 'q') || (Up.pos.drg == 'r')) {  // cue
       Up.pos.y2 = Up.pos.y1 = y;

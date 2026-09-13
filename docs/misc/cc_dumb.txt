@@ -1,0 +1,9 @@
+omniOff  u 0   cc124 these are dumb cuz they're not ONE input controller
+omniOn   u 0   cc125                    or they're from ancient daze
+mono     u 0   cc126                    or there are better alternatives
+poly     u 0   cc127
+prss     u 0   Prss  map these - no defined output
+mod      u 0   cc1
+brth     u 0   cc2
+pedl     u 0   cc4
+hld2     o 0   cc69

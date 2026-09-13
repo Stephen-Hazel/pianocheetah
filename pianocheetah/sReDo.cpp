@@ -6,8 +6,8 @@
 bool Song::TDrm (ubyte t)  {return (_f.trk [t].chn == 9) ? true:false;}
 bool Song::TLrn (ubyte t)  {return  _f.trk [t].lrn;}
 bool Song::TRec (ubyte t)  {return  _f.trk [t].rec;}
-bool Song::TSho (ubyte t)  {return (TLrn (t) || ((! SHRCRD) &&
-                                                 (_f.trk [t].ht == 'S')))
+bool Song::TSho (ubyte t)  {return (TLrn (t) || TRec (t) || ((! SHRCRD) &&
+                                                        (_f.trk [t].ht == 'S')))
                                    ? true:false;}
 void Song::ReTrk ()
 // give gui what it needs in Up.trk
@@ -827,7 +827,7 @@ TRC("SetSym w=`d h=`d", W, H);
       if      (_f.ctl [p].sho == 'm')  cw += th;
       else if (_f.ctl [p].sho == 'y')  cw += 32+2;
    }
-   _pag.Ln = _col.Ln = _blk.Ln = _sym.Ln = 0;
+   _gv++;   _pag.Ln = _col.Ln = _blk.Ln = _sym.Ln = 0;
    for (b = 1;  b <= _bEnd;) {
       if (_pag.Full ()) {
 TRC("SetSym end - w,h too small");

@@ -2,7 +2,7 @@
 
 #include "song.h"
 
-TSgRow DSig = {0, 4, 4, 1, 1};       // default time sig
+TSgRow DSig = {0, 4, 4, 4, 1};       // default time sig
 KSgRow CSig = {0, 0, 0, 1};          // default key  sig
 
 TSgRow *Song::TSig (ubyt4 tm)
@@ -12,13 +12,12 @@ TSgRow *Song::TSig (ubyt4 tm)
                                                                   : & DSig;
 }
 
-KSgRow *Song::KSig (ubyt4 tm)
+KSgRow *Song::KSig (ubyt4 tm)          // not really about time, but eh, whatev
 { ubyt2 p = 0;
    for (;  (p+1 < (ubyt2)_f.kSg.Ln) && (_f.kSg [p+1].time <= tm);  p++)  ;
    return ((p   < (ubyt2)_f.kSg.Ln) && (_f.kSg [p  ].time <= tm)) ? & _f.kSg [p]
                                                                   : & CSig;
 }
-
 
 char *Song::TmStr (char *str, ubyt4 tm, ubyt4 *tL8r, ubyte *subt)
 // put song time into a string w bar.beat;  maybe return time of next bt & subbt
@@ -41,7 +40,7 @@ char *Song::TmStr (char *str, ubyt4 tm, ubyt4 *tL8r, ubyte *subt)
    return str;
 }
 
-char *Song::TmSt (char *str, ubyt4 tm)
+char *Song::TmSt (char *str, ubyt4 tm, char fr)
 // include extra .bx (ticks) if there is some
 { TSgRow *ts;
   ubyt4   dBr, dBt, bx;
@@ -54,7 +53,9 @@ char *Song::TmSt (char *str, ubyt4 tm)
    if      (br > 9999)  StrCp  (str, CC("9999"));
    else if ((bt == 1) && (bx == 0))  StrFmt (str, "`d",       br);
    else if (bx == 0)                 StrFmt (str, "`d.`d",    br, bt);
-   else                              StrFmt (str, "`d.`d.`d", br, bt, bx);
+   else if (! fr)                    StrFmt (str, "`d.`d.`d", br, bt, bx);
+   else                              StrFmt (str, "`d.`d.`d/`d",
+                                                              br, bt, bx, dBt);
    return str;
 }
 

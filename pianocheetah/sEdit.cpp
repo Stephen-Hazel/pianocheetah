@@ -72,7 +72,7 @@ DBG("TDr r=`d c=`d s=`d", r, c, a);
   TStr  fn, pt [3];
   Path  d;
   File  f;
-   App.Path (fn, 'd');   StrAp (fn, "/3_queue/drumpat");   d.Make (fn);
+   App.Path (fn, 'd');   StrAp (fn, "/song/drumpat");   d.Make (fn);
    StrAp (fn, CC("/a.txt"));
    if (! f.Open (fn, "w"))  Die (StrFmt (s, "can't write song file `s", fn));
    f.Put (CC("-- drumpat.txt\n"
@@ -251,6 +251,7 @@ void Song::Ctl ()
          n++;   _ccMap.Ln++;
 
          for (j = 0;  j < _f.ctl.Ln;  j++)  if (! StrCm (ms, CtlSt (j))) {
+DBG("j=`d ms=`s cs=`s sh=`c", j, ms, CtlSt (j), sh);
             if      (*sh == 's')  _f.ctl [j].sho = 'y';
             else if (*sh == 'h')  _f.ctl [j].sho = 'n';
             else                  _f.ctl [j].sho = 'm';

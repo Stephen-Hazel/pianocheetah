@@ -67,8 +67,8 @@ TRC("bgn");
    App.Init ();
 // from picked dir
    StrCp (DirF, argv [1]);   FnName (ds, DirF);
-// to ..pianocheetah/3_queue/botdirpicked
-   StrFmt (DirT, "`s/3_queue/`s", App.Path (s, 'd'), ds);   d.Make (DirT);
+// to ..pianocheetah/song/botdirpicked
+   StrFmt (DirT, "`s/song/`s", App.Path (s, 'd'), ds);   d.Make (DirT);
 DBG("DirFr=`s DirTo=`s", DirF, DirT);
 
 // list midi files in midi_import n move+mid2song em

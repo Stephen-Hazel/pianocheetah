@@ -431,8 +431,8 @@ void Song::DrawPg (ubyt4 pp)
 { ubyte nd, nm, nt, n2, oc, t, td, c, cc, ct, sb, key, ksig [12], cno, tn, bt;
   sbyte hit;
   char  vt;
-  ubyt2 vl, df, tw, th, qx, qw, nx, wb, nw, cx, x, w, y, x1, x2, y2, w2,
-        tpMn, tpMx;
+  ubyt2 vl, df, tw, th, qx, qw, nx, wb, nw, cx,
+        x, w, y, x0, x1, x2, y2, w0, w2, tpMn, tpMx;
   TStr  cs, str, snm, snt;
   ubyt4 nTrk, tMn, tMx, p, q, ne, t1, t2, ts, lt;
   bool  ccg, bug = false;
@@ -494,8 +494,10 @@ TRC("DrawPg `d", pp);
 
          // keyboard oct at top of col
             x1 = (snm[1]-'c')*W_NTW;   w = W_NTW*(snt[1]-snm[1]+1);
-//DBG(" oct x=`d nm=`s nm=`s w=`d x1=`d", x, snm, snt, w, x1);
-            Up.cnv.Blt (*Up.oct,      x, 0,                  x1, 0, w, H_KB);
+            x0 = x1*245/168;   w0 = w*245/168;
+DBG(" oct1 x=`d w0=`d nm=`s nm=`s x1=`d w=`d",
+x, w0, snm, snt, x1, w);
+            Up.cnv.Blt (*Up.oct,      x, 0, w, H_KB,         x0, 0, w0, 75);
 
          // background stripes down the col
             Up.cnv.Blt (*Up.bg2 [dk], x, H_KB, w, co.h-H_KB, x1, 0, w, 1);
@@ -526,10 +528,12 @@ TRC("DrawPg `d", pp);
             if ((nd != 11) && (KeyCol [nd] == 'w'))
                {wb = W_NTW - W_NT -
                      WXOfs [nd] * W_NT/12;               w += wb;}
-//DBG(" oct x=`d nt=`d nd=`d w=`d x1=`d wb=`d", x, nt, nd, w, x1, wb);
 
          // keyboard oct at top of col
-            Up.cnv.Blt (*Up.oct,     x, 0,                  x1, 0, w, H_KB);
+            x0 = x1*245/168;   w0 = w*245/168;
+DBG(" oct2 x=`d x0=`d w0=`d nt=`d nd=`d x1=`d w=`d wb=`d",
+x, x0, w0, nt, nd, x1, w, wb);
+            Up.cnv.Blt (*Up.oct,     x, 0, w, H_KB,         x0, 0, w0, 75);
 
          // background stripes down the col
             Up.cnv.Blt (*Up.bg [dk], x, H_KB, w, co.h-H_KB, x1, 0, w, 1);

@@ -29,6 +29,180 @@ TRC("Shush `b", tf);
 }
 
 
+// step entry:  if poz'd, only 1 rec trk, build chord at now of certain durs
+void Song::SetStDur (char c)           // dur key hit - flip (only) c of dur str
+{ char *p, m, s2 [2];
+  bool  b [6];
+  ubyte i;
+  TStr  dur;
+  const char *s = "whqest";
+// get dur mod (. 3 or nothin)
+   StrCp (dur, _st.dur);
+   m = '\0';
+   if      (StrCh (dur, '.') != nullptr)  m = '.';
+   else if (StrCh (dur, '3') != nullptr)  m = '3';
+
+// get bitmap of durs
+   for (i = 0;  i < 6;  i++)  b [i] = StrCh (dur, s [i]) != nullptr;
+
+   if (c == '.') {
+      if      (m == '\0')  m = '.';
+      else if (m == '.')   m = '3';
+      else                 m = '\0';
+   }
+   else                                // c == one of w h q e s t
+      for (i = 0;  i < 6;  i++)  if (c == s [i])  b [i] = ! b [i];
+
+// rebuild dur str
+   *_st.dur = '\0';   s2 [1] = '\0';
+   for (i = 0;  i < 6;  i++)  if (b [i])  {*s2 = s [i];   StrAp (_st.dur, s2);}
+   if (*_st.dur && m)                     {*s2 = m;       StrAp (_st.dur, s2);}
+}
+
+
+ubyt4 Song::StDur ()                   // dur str into ticks
+{ static char *sym = CC("whqest");
+  char *s = _st.dur;
+  ubyt4 o = 0;
+   while (*s) {
+      if      (*s == '.')  o  = o * 3 / 2;
+      else if (*s == '3')  o  = o * 2 / 3;
+      else                 o += M_WHOLE / (1 << (StrCh (sym, *s) - sym));
+      s++;
+   }
+   return o;
+}
+
+/* M /m             M /m               ...another reason why i hate sheet music
+ 0 C /A    -
+ 1 G /E  # f        F /D  b b
+ 2 D /B  # cf       Bb/G  b eb
+ 3 A /F# # cfg      Eb/C  b eab
+ 4 E /C# # cdfg     Ab/F  b deab
+ 5 B /G# # cdfga    Db/Bb b degab
+ 6 F#/D# # cdefga   Gb/Eb b cdegab
+ 7 C#/A# # cdefgab  Cb/Ab b cdefgab
+*/
+static const char *Scale [7][2][3] = {
+   {{"G", "E",  "f"},        {"F", "D",  "b"}},
+   {{"D", "B",  "cf"},       {"Bb","G",  "eb"}},
+   {{"A", "F#", "cfg"},      {"Eb","C",  "eab"}},
+   {{"E", "C#", "cdfg"},     {"Ab","F",  "deab"}},
+   {{"B", "G#", "cdfga"},    {"Db","Bb", "degab"}},
+   {{"F#","D#", "cdefga"},   {"Gb","Eb", "cdegab"}},
+   {{"C#","A#", "cdefgab"},  {"Cb","Ab", "cdefgab"}}
+};
+
+bool Song::Step (MidiEv *ev)
+// step entry - poz'd n 1 rec trk: note events build a chord at now
+{ ubyte n, t, tr, i, k, step, nt;
+  TStr  s, s2;
+  char *sc, shfl;
+  KSgRow *ks;
+  static char *noteSym = CC("c d ef g a b");
+
+   if (! _timer->Pause ())  return false;
+   for (n = t = tr = 0;  t < _f.trk.Ln;  t++)
+      if (TRec (t) && (! TDrm (t)))  {n++;   tr = t;}
+   if (n != 1)  return false;
+
+   if (! MNTDN (ev))  return true;     // only need ntDn
+   n = (ubyte) ev->ctrl;
+
+// dur entry
+   if  (n == MKey ("3c#"))  *_st.dur = '\0';      // reset
+   if  (n == MKey ("3d#"))  SetStDur ('.');
+   if  (n == MKey ("3f#"))  SetStDur ('w');
+   if  (n == MKey ("3g#"))  SetStDur ('h');
+   if  (n == MKey ("3a#"))  SetStDur ('q');
+   if  (n == MKey ("4c#"))  SetStDur ('e');
+   if  (n == MKey ("4d#"))  SetStDur ('s');
+   if  (n == MKey ("4f#"))  SetStDur ('t');
+   if ((n == MKey ("4g#")) &&  _st.artc     )  _st.artc--;
+   if ((n == MKey ("4a#")) && (_st.artc < 3))  _st.artc++;
+
+// note entry
+   if ((n == MKey ("3c")) &&  _st.oct      )  _st.oct--;
+   if ((n == MKey ("3d")) && (_st.oct  < 8))  _st.oct++;
+   if ((n == MKey ("3e")) &&  _st.sh       )  _st.sh--;
+   if ((n == MKey ("3f")) && (_st.sh   < 3))  _st.sh++;
+   if  (n == MKey ("4c"))  {_st.nt = 'c';   _st.sh = 0;}
+   if  (n == MKey ("4d"))  {_st.nt = 'd';   _st.sh = 0;}
+   if  (n == MKey ("4e"))  {_st.nt = 'e';   _st.sh = 0;}
+   if  (n == MKey ("4f"))  {_st.nt = 'f';   _st.sh = 0;}
+   if  (n == MKey ("4g"))  {_st.nt = 'g';   _st.sh = 0;}
+   if  (n == MKey ("4a"))  {_st.nt = 'a';   _st.sh = 0;}
+   if  (n == MKey ("4b"))  {_st.nt = 'b';   _st.sh = 0;}
+
+// do note
+   step = StrCh (noteSym, _st.nt) - noteSym;
+   if (_st.sh != 3) {               // non-natural means follow scale
+      ks = KSig (_now);
+      shfl = '#';   sc = CC("");    // in case of C(maj), Am
+      for (i = 0;  i < BITS (Scale);  i++) {
+         if (ks->key ==    MNt (CC(Scale [i][0][ks->min])))
+            {shfl = '#';   sc = CC(Scale [i][0][2]);}
+         if (ks->key ==    MNt (CC(Scale [i][1][ks->min])))
+            {shfl = 'b';   sc = CC(Scale [i][1][2]);}
+    }
+DBG("nt=`c kskey=`d ksmin=`d shfl=`c sc=`s",
+_st.nt, ks->key, ks->min, shfl, sc);
+      if (StrCh (sc, _st.nt))  if (shfl == '#')  step++;   else step--;
+   }
+   if (_st.sh == 1)  step--;
+   if (_st.sh == 2)  step++;
+   nt = (_st.oct+1)*12 + step;
+DBG("step=`d nt=`d", step, nt);
+
+   if (n == MKey ("3g")) {             // turn _st.nt,ksig,oct,sh into nt
+      NtIns (tr, _now, _now + StDur () * (1+_st.artc) / 4 - 1, nt);
+      ReDo ();   DrawNow ();
+   }
+
+// advance
+   if (n == MKey ("3a")) {
+      if (*_st.dur)  _now += StDur ();
+      else {
+         TmStr (s, _timer->Get () + (M_WHOLE/64));  // round time to next bar
+         TmHop (Bar2Tm ((ubyt2)Str2Int (s)));
+      }
+      ReDo ();   DrawNow ();
+   }
+
+// draw text info
+   Info (StrFmt (s, "`s  `s`c  `d`c`c",
+      TmSt (s2,_now,'f'),  _st.dur, "<=>-" [_st.artc],
+      _st.oct, _st.nt, " b#%" [_st.sh]
+   ));
+
+// draw demo note
+  ubyt4 p, c, tMn, tMx;
+  PagDef *pg = & _pag [0];
+  ColDef  co;
+   if (! (p = _pg))                    // don't know pg at the moment :/
+      {Up.pos.x1 = Up.pos.x2 = 0;   return true;}
+   p--;
+   for (c = 0;  c < pg [p].nCol;  c++) {    // find our col
+      tMn = pg [p].col [c].blk [0].tMn;
+      tMx = pg [p].col [c].blk [pg [p].col [c].nBlk-1].tMx;
+      if ((_now >= tMn) &&
+          (_now <  tMx-M_WHOLE/32))  break;
+   }
+   if (c >= pg [p].nCol)               // col not shown (don't think thisll go
+      {Up.pos.x1 = Up.pos.x2 = 0;   return true;}
+   MemCp (& co, & pg [p].col [c], sizeof (co));  // load column specs
+DBG("Step p=`d c=`d nx=`d", p, c, co.nx);
+
+   Up.pos.y1 = Tm2Y (_now, & co);
+   Up.pos.y2 = Tm2Y (_now + StDur (), & co);
+   Up.pos.x1 = Nt2X (nt,   & co);
+   Up.pos.x2 = Up.pos.x1 + W_NT;
+   DragRc ();
+   return true;
+}
+
+
+//______________________________________________________________________________
 bool Song::NtCmd (MidiEv *ev)
 // command key?  set _ed n kick a cmd
 { ubyte n, i;
@@ -36,10 +210,10 @@ bool Song::NtCmd (MidiEv *ev)
    n = ev->ctrl;
    if (! _f.trk.Ln) {                  // do DlgFL input ?
       if (MNTDN (ev)) {
-         if      (n == MKey (CC("3b")))  emit sgUpd ("FLex");
-         else if (n == MKey (CC("4c")))  emit sgUpd ("FLgo");
-         else if (n == MKey (CC("4d")))  emit sgUpd ("FLdn");
-         else if (n == MKey (CC("4e")))  emit sgUpd ("FLup");
+         if      (n == MKey ("3b"))  emit sgUpd ("FLex");
+         else if (n == MKey ("4c"))  emit sgUpd ("FLgo");
+         else if (n == MKey ("4d"))  emit sgUpd ("FLdn");
+         else if (n == MKey ("4e"))  emit sgUpd ("FLup");
          else  Info (CC("3b=exit  4c=go!  4d=dn  4e=up"));
       }
       return true;
@@ -232,6 +406,7 @@ TRC("EvRcrd end - ctrl");
 
 // notes only now
    if (NtCmd (ev))  return false;      // filter note command evs
+   if (Step  (ev))  return false;      // filter step entry evs
 
 // map drum .din => .drm
    dr = MDR(ev) ? 1 : 0;   nt = (ubyte) ev->ctrl;

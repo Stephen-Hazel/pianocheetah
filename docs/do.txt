@@ -14,48 +14,31 @@ dup the good rush sounds
 
 code____________________________________________________________________________
 
+release whatev
+
+. hear your recording needs to be stoppable :)
+   un/re marking play track fixes it
+   but also want ability to keep rec tempo (on a masterpiece:)
+
 step entry
-   show current duration, articulation in lyrics area
-      when step entry keys are hit
-   need to be in pause mode
-      and only 1 track picked in record mode
-   now time is where notes start
-   duration - show string combo whq. etc
-      3c# .   all toggle
-      3d# 3
-      3f# w
-      3g# h
-      3a# q
-      4c# e
-      4d# s
-      4f# t
-      4a# wipe  (empty dur string, set portato)
-   articulation - show staccatissimo (1/4),
-                       staccato (1/2),
-                       portato (3/4),  default
-                       legato (full)
-      5c# artic down
-      5d# artic up
-   notes hit (3a-4b) add to a chord with picked dur
-      white note goes flat/sharp with keysig in most recent octave
-      hit note a 2nd time to remove
-      3d octave down
-      3e octave up
-      3f flat
-      3g sharp
-      usually add long dur notes first, then change dur to less for advance
-   3c advance time by lowest dur of the notes added
+   instead of outline, just create/move the note (keep it when, del when)
+   regular keys too?
+   dur   3c# d#  f# g# a#  4c# d#  f# g#     a#
+         x   .3  w  h  q   e   s   t  artc-- artc++
+
+   note  3c    d      e    f     g         a        4c-b
+         oct-- oct++  sh-- sh++  keepnote  advance  nt
 
 track ttips - show note range, and control list
    take drum/ outa sngrp, inst&kit in tip
 
 dragdrop for midicfg, track, FLst
 
-can reprpt make ez tracks repeat rhythms on same keys
+can repRpt make ez tracks repeat rhythms on same keys
 
 changing device always pickin chan 1
 
-syn's envelopes more - esp chorus-y things
+get back to syn - env, chorus
 
 
 spec____________________________________________________________________________
@@ -72,9 +55,6 @@ pcheetah
    do unreachable powerchords, guitar strum, rhythm guitar
       drums on keys - make a good map but get it from device/drummap.txt
          pick drum instead of oct (show Drum instead of 4RH)
-
-   in oct, are black notes slightly offset from strict 12/7 by
-      slight narrowing/offsetting for a more aesthetic look?
 
    when device is off can it fallback to syn?
       then autorestore once dev is avail?

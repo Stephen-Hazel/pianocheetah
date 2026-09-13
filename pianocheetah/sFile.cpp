@@ -3,18 +3,19 @@
 #include "song.h"
 
 
+bool Song::DscGet (const char *key, char *val)  {return DscGet (CC(key), val);}
 bool Song::DscGet (char *key, char *val)    // key is whatev= or whatev={
 // messin w _f.dsc
 { char *p, *e;
    *val = '\0';
 //DBG("DscGet key='`s'", key);
-   if (! (p = StrSt (_f.dsc, key)))    return false;
+   if (! (p = StrSt (_f.dsc, key)))  return false;
    if (key [StrLn (key)-1] == '{') {
-      if (! (e = StrSt (p, CC("}\n"))))  return false;
+      if (! (e = StrSt (p, "}\n")))  return false;
       p += StrLn (key)+1;              // skip \n too
    }
    else {
-      if (! (e = StrSt (p, CC("\n"))))   return false;
+      if (! (e = StrSt (p, "\n")))   return false;
       p += StrLn (key);
    }
    MemCp (val, p, e-p);   val [e-p] = '\0';
@@ -34,12 +35,12 @@ void Song::DscPut (char *repl)
    if ((p = StrSt (_f.dsc, tag))) {    // get n find 'tag='  replace btw end p2
       ofs = p - _f.dsc;
    // point p2 to char right after what we're replacin (usu on a \n)
-      if (! MemCm (& p [StrLn (tag)], CC("{\n"), 2)) {  // multi line value
-         if ((p2 = StrSt (& _f.dsc [ofs], CC("}\n"))))  p2++;
+      if (! MemCm (& p [StrLn (tag)], "{\n", 2)) {    // multi line value
+         if ((p2 = StrSt (& _f.dsc [ofs], "}\n")))  p2++;
          else  p2 = p + StrLn (tag) + 1;      // broke so try to recover :(
       }                                               // single line value
       else {
-         if ((p2 = StrSt (& _f.dsc [ofs], CC("\n"))))  ;
+         if ((p2 = StrSt (& _f.dsc [ofs], "\n")))  ;
          else  {p2 = & _f.dsc [StrLn (_f.dsc)] - 2;   MemCp (p2, CC("\n"), 1);}
       }
       if (StrLn (_f.dsc) + StrLn (repl) - (p2-p) + 1 > (sbyt4)sizeof (_f.dsc))
@@ -49,7 +50,7 @@ void Song::DscPut (char *repl)
    else {                              // it's new so just append w \n\0
       if (StrLn (_f.dsc) + StrLn (repl) + 3 > sizeof (_f.dsc))
          DBG("DscPut  ins - outa room `s", repl);
-      StrAp (_f.dsc, repl);   StrAp (_f.dsc, CC("\n"));
+      StrAp (_f.dsc, repl);   StrAp (_f.dsc, "\n");
    }
 //DBG("   => _f.dsc=...\n`s", _f.dsc);
 }
@@ -65,12 +66,12 @@ void Song::DscLoad ()                  // parse junk outa _dsc plus info={...}
 { sbyt4 i;
   TStr  s;
    DscInit ();
-   if (DscGet (CC("tempo="), s))      _f.tmpo = (ubyt4)Str2Int (s);
-   if (DscGet (CC("transpose="), s)) {
+   if (DscGet ("tempo=", s))        _f.tmpo = (ubyt4)Str2Int (s);
+   if (DscGet ("transpose=", s)) {
       i = Str2Int (s);
-      if ((i >= -36) && (i <= 36))    _f.tran = (sbyte)i;
+      if ((i >= -36) && (i <= 36))  _f.tran = (sbyte)i;
    }
-   if (DscGet (CC("learn="), s))      Up.lrn  =  *s;
+   if (DscGet ("learn=", s))        Up.lrn  =  *s;
    Cfg.tran = _f.tran;                 // ...sigh
 TRC("DscLoad  tmpo=`d tran=`d lrn=`c", _f.tmpo, _f.tran, Up.lrn);
 }
@@ -90,31 +91,31 @@ void Song::DscSave ()                  // put stats into _dsc
    *pr = '\0';
    for (i = 0;  i < _f.trk.Ln;  i++)
       if (TLrn (i) && (! TDrm (i)) && (_f.trk [i].ht < '4'))
-         {StrAp (pr, CC("LH "));   break;}
+         {StrAp (pr, "LH ");   break;}
    for (i = 0;  i < _f.trk.Ln;  i++)
       if (TLrn (i) && (! TDrm (i)) && (_f.trk [i].ht > '3'))
-         {StrAp (pr, CC("RH "));   break;}
+         {StrAp (pr, "RH ");   break;}
    for (i = 0;  i < _f.trk.Ln;  i++)
       if (TLrn (i) &&    TDrm (i))
-         {StrAp (pr, CC("Drum "));   break;}
+         {StrAp (pr, "Drum ");   break;}
    if (*pr)
       {StrCp (& pr [7], pr);   MemCp (pr, CC("prac   "), 7);
-                               StrAp (pr, CC("\n"));}
+                               StrAp (pr, "\n");}
 // ksig   ...
-   StrCp (ks, CC("ksig   "));
+   StrCp (ks, "ksig   ");
    for (i = 0;  (i < _f.kSg.Ln) && (i < 3);  i++) {
       if    (! _f.kSg [i].flt)        StrCp (s, MKeyStr  [_f.kSg [i].key]);
       else if (_f.kSg [i].key != 11)  StrCp (s, MKeyStrB [_f.kSg [i].key]);
-      else                            StrCp (s, CC("Cb"));      // B/Cb iz WEIRD
-      if (_f.kSg [i].min)  StrAp (s, CC("m"));
+      else                            StrCp (s, "Cb");     // B/Cb iz WEIRD
+      if (_f.kSg [i].min)  StrAp (s, "m");
       *s = CHUP (*s);
-      StrAp (ks, s);   StrAp (ks, CC(" "));
+      StrAp (ks, s);   StrAp (ks, " ");
    }
    if (_f.kSg.Ln > 3)  StrFmt (& ks [StrLn (ks)], "+`d", _f.kSg.Ln - 3);
-   if (_f.kSg.Ln == 0) *ks = '\0';   else StrAp (ks, CC("\n"));
+   if (_f.kSg.Ln == 0) *ks = '\0';   else StrAp (ks, "\n");
 
 // tsig   ...
-   StrCp (ts, CC("tsig   "));
+   StrCp (ts, "tsig   ");
    for (i = 0;  (i < _f.tSg.Ln) && (i < 3); i++) {
       if (_f.tSg [i].sub > 1)
             StrFmt (s, "`d/`d/`d ", _f.tSg [i].num, _f.tSg [i].den,
@@ -123,14 +124,14 @@ void Song::DscSave ()                  // put stats into _dsc
       StrAp (ts, s);
    }
    if (_f.tSg.Ln > 3)  StrFmt (& ts [StrLn (ts)], "+`d", _f.tSg.Ln - 3);
-   if (_f.tSg.Ln == 0) *ts = '\0';   else StrAp (ts, CC("\n"));
+   if (_f.tSg.Ln == 0) *ts = '\0';   else StrAp (ts, "\n");
 
 // tempo  ...
-   StrCp (tp, CC("tempo  "));
+   StrCp (tp, "tempo  ");
    for (i = 0;  (i < _f.tpo.Ln) && (i < 3);  i++)
       StrFmt (& tp [StrLn (tp)], "`d ", _f.tpo [i].val);
    if (_f.tpo.Ln > 3)  StrFmt (& tp [StrLn (tp)], "+`d", _f.tpo.Ln - 3);
-   if (_f.tpo.Ln == 0) *tp = '\0';   else StrAp (tp, CC("\n"));
+   if (_f.tpo.Ln == 0) *tp = '\0';   else StrAp (tp, "\n");
 /* loops  23  bug'd=13
    cue    13 verse=2 chorus=3
    synth  syn rockin88 drum +2
@@ -213,7 +214,7 @@ TRC("  got dr trk - ne=`d", _f.trk [t].ne);
          }
 for (e=0; e<nD; e++)TRC("  d[`d]=`d=`s",e,d[e],MDrm2Str(s,d[e]));
          if (! nD)                     // nD == 0...  just Kick for it...
-              {_f.trk [t].drm  = MDrm (CC("Kick"));   nD = 1;}
+              {_f.trk [t].drm  = MDrm ("Kick");   nD = 1;}
          else {
             if (_f.trk.Full (nD-1))  DBG("DrumExp  too many drm trks");
             _f.trk.Ins (t+1, nD-1);    // scoot postdrum tracks down
@@ -322,7 +323,7 @@ TRC("   dTr=`d nD=`d", t, nD);
 
    // toss sub trks, clear out trk
       _f.trk.Del (t+1, nD-1);
-      StrCp (_f.trk [t].name, CC("DrumTrack"));   _f.trk [t].drm = PRG_NONE;
+      StrCp (_f.trk [t].name, "DrumTrack");   _f.trk [t].drm = PRG_NONE;
       otr = t;
    }
 TRC("DrumCon end otr=`d", otr);
@@ -396,22 +397,22 @@ void Song::Load (char *fn)
   STable st [TB_MAX];
    Wipe ();
 TRC(" title");
-   App.Path (buf, 'd');   StrAp (buf, CC("/3_queue/"));    // git window title
+   App.Path (buf, 'd');   StrAp (buf, "/song/");      // git window title
    if (MemCm (fn, buf, StrLn (buf)))  FnName (fnt, fn);
    else                               StrCp  (fnt, & fn [StrLn (buf)]);
    StrCp (Up.ttl, fnt);   emit sgUpd ("ttl");
    StrCp (_f.fn, fn);   _f.got = false;
 
 TRC(" file load");
-   StrAp (fn, CC("/a.song"));
+   StrAp (fn, "/a.song");
    if (! f.Size (fn)) {TRC("Song::Load  file size=0");   return;}
    if (_f.ev)  delete [] _f.ev;        // hope ya init'd it or BOOM :(
    _f.ev = NULL;   _f.nEv = 0;   _f.maxEv = 0;
-   st [TB_DSC].Init (CC("Descrip:"), 1, MAX_DSC);
-   st [TB_TRK].Init (CC("Track:")  , 4, MAX_TRK);
-   st [TB_DRM].Init (CC("DrumMap:"), 7, MAX_DRM);
-   st [TB_LYR].Init (CC("Lyric:")  , 2, MAX_LYR);
-   st [TB_EVT].Init (CC("Event:")  , 2, MAX_EVT);
+   st [TB_DSC].Init ("Descrip:", 1, MAX_DSC);
+   st [TB_TRK].Init ("Track:"  , 4, MAX_TRK);
+   st [TB_DRM].Init ("DrumMap:", 7, MAX_DRM);
+   st [TB_LYR].Init ("Lyric:"  , 2, MAX_LYR);
+   st [TB_EVT].Init ("Event:"  , 2, MAX_EVT);
 
    if ((m = f.DoText (fn, & st, SongRec)))
       {TRC("Song::Load  DoText err=`s", m);   return;}
@@ -421,7 +422,7 @@ TRC (" get dsc");
       StrCp (buf, st [TB_DSC].Get (e, 0));
       if (StrLn (_f.dsc) + StrLn (buf) + 3 > sizeof (_f.dsc))
          TRC ("Load  _f.dsc is too big");
-      StrAp (_f.dsc, buf);   StrAp (_f.dsc, CC("\n"));
+      StrAp (_f.dsc, buf);   StrAp (_f.dsc, "\n");
    }
    DscLoad ();
 
@@ -433,11 +434,10 @@ TRC(" init _f.ev, _f.trk[].e, build _f.ctl[].s");
    nt = (ubyte)(_f.trk.Ln = st [TB_TRK].NRow ());
    ne =                     st [TB_EVT].NRow ();
 // NOTE !! Tmpo must always exist and be first in _f.ctl[] !!
-   _f.ctl.Ln = 0;   CtlEv (CC("Tmpo"));   CtlEv (CC("TSig"));
-                                          CtlEv (CC("KSig"));
+   _f.ctl.Ln = 0;   CtlEv ("Tmpo");   CtlEv ("TSig");   CtlEv ("KSig");
    _f.tSg.Ln = 0;
    for (t = 0, pe = e = 0;  e < ne;  e++) {
-      if (! StrCm (st [TB_EVT].Get (e, 0), CC("EndTrack"))) {
+      if (! StrCm (st [TB_EVT].Get (e, 0), "EndTrack")) {
          if (t >= nt)  {TRC("Song::Load  EndTrack>nt");   return;}
          _f.trk [t].ne = (e-pe);   pe = e+1;
          _f.trk [t].e = & _f.ev [_f.nEv];   _f.nEv += _f.trk [t].ne;
@@ -479,7 +479,7 @@ TRC(" init _f.ev, _f.trk[].e, build _f.ctl[].s");
 // NOW we can convert TmSt n ctrls (n everything) into _f.trk[].e[]
    for (e2 = _f.trk [t = 0].e, e = 0;  e < ne;  e++) {
       StrCp (buf, st [TB_EVT].Get (e, 0));
-      if (! StrCm (buf, CC("EndTrack")))  {e2 = _f.trk [++t].e;   continue;}
+      if (! StrCm (buf, "EndTrack"))  {e2 = _f.trk [++t].e;   continue;}
       e2->time = Str2Tm (buf);         // ok parse the rec - all start w time
       StrCp (buf, st [TB_EVT].Get (e, 1));
       if (*buf == '!') {               // ctl
@@ -506,7 +506,7 @@ TRC(" init _f.ev, _f.trk[].e, build _f.ctl[].s");
             e2->valu = n;   e2->val2 = x | ((s-1) << 4);
          }
          else if (e2->ctrl == 0x82) {  // ksig
-           char *map = CC("b2#b#b2#b#b2");
+           char const *map = "b2#b#b2#b#b2";
             e2->valu = i = MNt (m);
             if (m [StrLn (m)-1] == 'm')  e2->val2 = 1;  // minor
             if (map [i] != '2')
@@ -556,8 +556,8 @@ TRC(" init _f.ev, _f.trk[].e, build _f.ctl[].s");
       StrCp (buf,  st [TB_LYR].Get (e, 1));
       ReplCh (buf, '_', ' ');
       if      (*buf == '*') {                                        // * chd
-         if (StrCm (buf, CC("*SHOW")))  TxtIns (tm, & buf [1], & _f.chd);
-         else                           _lrn.chd = true;
+         if (StrCm (buf, "*SHOW"))  TxtIns (tm, & buf [1], & _f.chd);
+         else                       _lrn.chd = true;
       }
       else if (*buf == '!')  TxtIns (tm, & buf [1], & _f.bug);       // ! bug
       else if (*buf == '?')  TxtIns (tm, & buf [1], & _f.cue, 'c');  // ? cue
@@ -621,7 +621,7 @@ TRC(" soundbank init");
          _f.mapD [e].vol = (ubyte)Str2Int (st [TB_DRM].Get (e, 2));
          _f.mapD [e].pan = (ubyte)Str2Int (st [TB_DRM].Get (e, 3));
       }
-      else if ((e == 0) && StrCm (buf, CC(".")))
+      else if ((e == 0) && StrCm (buf, "."))
       // nonsyn can have drum progch in 1st .snd
          _f.mapD [0].snd = Up.dvt [Up.dev [_f.trk [dt].dev].dvt].SndID (buf);
    }
@@ -641,7 +641,7 @@ _f.mapD [t].vol, _f.mapD [t].pan, _f.mapD [t].snd);
 
 if (App.trc)  Dump ();
    SetSym ();
-   Cmd (CC("timeBar1"));               // just listenin?  else TmHop (mint);
+   Cmd ("timeBar1");                   // just listenin?  else TmHop (mint);
 TRC("Load end !");
 }
 
@@ -661,7 +661,7 @@ TRC("TmpoPik `s", (l_r == 'l') ? "lrn" : "rec");
    for (t = 0;  t < _f.trk.Ln;  t++)  if (TDrm (t))  break;
    if (t >= _f.trk.Ln)  return;        // no tempo track??  nothin ta do
 
-   cc = CtlEv (CC("tmpo"));            // it'll always be 0x80
+   cc = CtlEv ("tmpo");                // it'll always be 0x80
 TRC("   tempo trk=`d cc=x`02x ne=`d", t, cc, _f.trk [t].ne);
 
 // wipe existing
@@ -704,14 +704,14 @@ TRC("Save rec=`c fn=`s nTrk=`d", rec, _f.fn, _f.trk.Ln);
 TRC("actually savin'");
    if (rec == 'a')                     // write a.song w backup
         {_recM.Ln = _recD.Ln = 0;
-         StrCp (fns, _f.fn);   StrAp (fns, CC("/a.song"));}
-   else {                              // d_done/yyyymmdd_hhmm_songTitle
+         StrCp (fns, _f.fn);   StrAp (fns, "/a.song");}
+   else {                              // song/done/yyyymmdd_hhmm_songTitle
       TmpoPik ('r');
       Now (s);   s [13] = '\0';                  // kill secs n on
       FnName (fnt, _f.fn);   Fn2Name (fnt);      // kill path leavin songdir
-      StrFmt (fns, "`s/3_done/`s_`s", App.Path (s2, 'd'), s, fnt);
+      StrFmt (fns, "`s/song/done/`s_`s", App.Path (s2, 'd'), s, fnt);
       dr.Make (fns);
-      StrAp (fns, CC("/a.song"));
+      StrAp (fns, "/a.song");
    }
 DBG("fns=`s", fns);
    dt = DrumCon ();                    // which also sets _f.mapD for us
@@ -719,9 +719,9 @@ DBG("fns=`s", fns);
       if (rec == 'r')  {p = Up.lrn;   Up.lrn = LHEAR;}
       DscSave ();   f.Put (_f.dsc);
       if (rec == 'r')  {Up.lrn = p;   DscSave ();}
-      f.Put (CC("Track:\n"));
+      f.Put ("Track:\n");
       for (t = 0;  t < _f.trk.Ln;  t++) {
-         StrCp (s2, TDrm (t) ? CC("Drum/*") : SndName (t));
+         StrCp (s2, TDrm (t) ? "Drum/*" : SndName (t));
          *s3 = s3 [1] = s4 [1] = '\0';
          if (_f.trk [t].shh)  *s3 = '#';
          if (_f.trk [t].rec)  *s3 = '@';
@@ -734,7 +734,7 @@ DBG("fns=`s", fns);
             _f.trk [t].name, _f.trk [t].etc));
       }
 
-      f.Put (CC("DrumMap:\n"));
+      f.Put ("DrumMap:\n");
       for (d = 0;  d < _f.mapD.Ln;  d++)
          f.Put (StrFmt (s, "`s `s `d `d `c `c `s\n",
             MDrm2Str (s3, _f.mapD [d].ctl),
@@ -749,7 +749,7 @@ DBG("fns=`s", fns);
 
    // jam ?cue,*chd,!bug into lyr to write em all
       for (i = 0;  i < _f.cue.Ln;  i++) {
-         StrCp (s2, CC("?"));
+         StrCp (s2, "?");
          if (_f.cue [i].tend)
             StrFmt (s2, "?/`d", _f.cue [i].tend - _f.cue [i].time);
          TxtIns (_f.cue [i].time, StrAp  (s2,        _f.cue [i].s), & _f.lyr);
@@ -760,7 +760,7 @@ DBG("fns=`s", fns);
       for (i = 0;  i < _f.bug.Ln;  i++)
          TxtIns (_f.bug [i].time, StrFmt (s2, "!`s", _f.bug [i].s), & _f.lyr);
 
-      f.Put (CC("Lyric:\n"));
+      f.Put ("Lyric:\n");
       for (i = 0;  i < _f.lyr.Ln;  i++) {
          StrCp (s3, _f.lyr [i].s);
          ReplCh (s3, ' ', '_');
@@ -769,7 +769,7 @@ DBG("fns=`s", fns);
       for (i = 0;  i < _f.lyr.Ln;)     // take em BACK on out :/
          {if (StrCh (CC("*?!"), _f.lyr [i].s [0])) _f.lyr.Del (i);   else i++;}
 
-      f.Put (CC("Event:\n"));
+      f.Put ("Event:\n");
       for (t = 0;  t < _f.trk.Ln;  t++) {
          oct = 99;
          if ((rec == 'r') && TLrn (t))  oct = (_f.trk [t].ht == 'L') ? 2 : 3;
@@ -779,21 +779,21 @@ DBG("fns=`s", fns);
             c = e [i].ctrl;            // ^ sync
             if (c & 0x0080) {          // ctrl
                StrCp (s, CtlSt (c));
-               if      (! StrCm (s,  CC("Tmpo")))  // tmpo,tsig,ksig are special
-                  f.Put (StrFmt (s, CC("!Tmpo=`d"),
+               if      (! StrCm (s,  "Tmpo"))    // tmpo,tsig,ksig are special
+                  f.Put (StrFmt (s, "!Tmpo=`d",
                                                  e [i].valu | (e [i].val2<<8)));
-               else if (! StrCm (s,  CC("TSig"))) {
-                  f.Put (StrFmt (s, CC("!TSig=`d/`d"),  e [i].valu,
+               else if (! StrCm (s,  "TSig")) {
+                  f.Put (StrFmt (s, "!TSig=`d/`d",  e [i].valu,
                                               1 << (e [i].val2 & 0x0F)));
                   if (e [i].val2 >> 4)  f.Put (StrFmt (s, "/`d",
                                                1 + (e [i].val2 >> 4)));
                }
-               else if (! StrCm (s, CC("KSig"))) {
-                  f.Put (CC("!KSig="));
+               else if (! StrCm (s, "KSig")) {
+                  f.Put ("!KSig=");
                   if   (! (e [i].val2 & 0x80)) StrCp (s, MKeyStr  [e [i].valu]);
                   else if (e [i].valu != 11)   StrCp (s, MKeyStrB [e [i].valu]);
-                  else                         StrCp (s, CC("Cb"));  // weird :/
-                  if (e [i].val2 & 0x01)  StrAp (s, CC("m"));
+                  else                         StrCp (s, "Cb"); // weird :/
+                  if (e [i].val2 & 0x01)  StrAp (s, "m");
                   *s = CHUP (*s);
                   f.Put (s);
                }
@@ -814,7 +814,7 @@ DBG("fns=`s", fns);
                f.Put (s);
                if ((oct < 99) && EDOWN (& e [i]))   e [i].valu = pv;
             }                                         // restore
-            f.Put (CC("\n"));
+            f.Put ("\n");
          }
          f.Put (StrFmt (s, "EndTrack `d #ev=`d\n", t+1, _f.trk [t].ne));
       }

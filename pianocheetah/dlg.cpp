@@ -404,7 +404,7 @@ void FLstDef::Load ()
   TStr  dr, fn, c;
   File  f;
   StrArr t (CC("FL.Load"), FL.MAX, FL.MAX*sizeof (TStr)/2);
-// load prev songlist.txt in cfg dir w order of learn,rep songs
+// load prev songlist.txt in cfg dir w order of songs
    App.Path (fn, 'c');   StrAp (fn, CC("/songlist.txt"));   t.Load (fn);
    FL.pos = 0;   FL.lst.Ln = t.num;
    for (ubyt4 i = 0;  i < t.num;  i++)
@@ -414,9 +414,8 @@ void FLstDef::Load ()
 // reinit t n list every a.song file in Pianocheetah dir
    App.Path (dr, 'd');
    t.Init (CC("lstS"), FL.MAX, FL.MAX*sizeof (TStr)/2);
-   StrFmt (fn, "`s/1_learning", dr);   f.DoDir (fn, & t, SongOK);
+   StrFmt (fn, "`s/song", dr);   f.DoDir (fn, & t, SongOK);
    t.Sort ();
-   ins1 = FL.lst.Ln;
 //TRC("num 1 pc songs=`d", t.num);  t.Dump ();
 
 // upd FL keepin prev order if file still exists (w flag n=>y)
@@ -424,8 +423,6 @@ void FLstDef::Load ()
       for (j = 0;  j < FL.lst.Ln;  j++)     // in songlist?  break early
          if (! StrCm (t.str [i], FL.lst [j]))  break;
       if (j >= FL.lst.Ln)  if (! FL.lst.Full ()) {    // new - append ta songlst
-         if (StrSt (t.str [i], CC("1_learning")))  j = ins1++;
-         if (FL.lst.Full ())  break;
          FL.lst.Ins (j);
          StrCp (FL.lst [j], t.str [i]);
       }
@@ -434,19 +431,6 @@ void FLstDef::Load ()
    for (j = 0;  j < FL.lst.Ln;)        // del gone ones (still n)
       {if (FL.lst [j][FL.X] == 'n')  FL.lst.Del (j);   else  j++;}
 
-// append done/queue to FLst[]
-   t.Init (CC("lstS"), FL.MAX, FL.MAX*sizeof (TStr)/2);
-   StrFmt (fn, "`s/2_done",  dr);   f.DoDir (fn, & t, SongOK);
-   StrFmt (fn, "`s/3_queue", dr);   f.DoDir (fn, & t, SongOK);
-   t.Sort ();
-//TRC("num 2,3 pc songs=`d", t.num);  t.Dump ();
-   j = FL.lst.Ln;
-   for (i = 0;  i < t.num;  i++, j++) {     // FLAG init for rand load
-      if (FL.lst.Full ())  break;
-      FL.lst.Ins ();
-      StrCp (FL.lst [j], t.str [i]);
-      FL.lst [j][FL.X] = StrSt (t.str [i], CC("3_queue")) ? 'n' : 'y';
-   }
    Save ();
 //TRC("FL::Load ln=`d", FL.lst.Ln);
 //for(i=0;i<FL.lst.Ln;i++)DBG("`d `s `c", i, FL.lst[i], FL.lst[i][FL.X]);
@@ -459,11 +443,8 @@ void FLstDef::Save ()
   File f;
    App.Path (fn, 'c');   StrAp (fn, CC("/songlist.txt"));
    if (! f.Open (fn, "w"))  DBG("FL.Save  couldn't write songlist");
-   for (ubyt4 r = 0;  r < FL.lst.Ln;  r++) {
-      if (StrSt (FL.lst [r], CC("2_done")) ||
-          StrSt (FL.lst [r], CC("3_queue")))  break;
+   for (ubyt4 r = 0;  r < FL.lst.Ln;  r++)
       f.Put (FL.lst [r]);  f.Put (CC("\n"));
-   }
    f.Shut ();
 }
 
@@ -551,32 +532,15 @@ void DlgFL::Pik ()
 
 void DlgFL::ReDo ()                    // FL.lst/FL.pos => gui tbl
 { char *ro [10];                       // if lst is huge, learn may not show :/
-  TStr  ts, s1, s2;
+  TStr  ts;
   ubyt4 i, ln, p;
-  bool  all;
-  CtlChek c (ui->all);   all = c.Get ();
    _t.Open ();
    if (! (ln = FL.lst.Ln))  {_t.Shut ();   return;}
 
-   App.Path (ts, 'd');   p = StrLn (ts) + 1;
-   ro [0] = s1;   ro [1] = s2;   ro [2] = nullptr;
-   for (i = 0;  i < ln;  i++) {
-      StrCp (ts, & FL.lst [i][p]);
-//DBG("i=`d/`d all=`b FL.pos=`d p=`d ts=`s", i, ln, all, FL.pos, p, ts);
-      if ((! all) && (*ts >= '3')) {   // not doin all?  done unless FL.pos sez
-         if (FL.pos < i)  break;
-         Gui.Hey ("pick a learn/rep song to uncheck all");
-         all = true;  c.Set (true);
-      }
-      switch (*ts) {                   // 1_learning/ 2_done/ etc
-         case '1':  StrCp (s1, CC("learn"));   StrCp (s2, & ts [11]);   break;
-         case '2':  StrCp (s1, CC("done"));    StrCp (s2, & ts [ 7]);   break;
-         case '3':  StrCp (s1, CC("queue"));   StrCp (s2, & ts [ 8]);   break;
-      }
-      _t.Put (ro);
-   }
+   App.Path (ts, 'd');   p = StrLn (ts) + 6;     // past /song/
+   ro [0] = ts;   ro [1] = nullptr;
+   for (i = 0;  i < ln;  i++)  {StrCp (ts, & FL.lst [i][p]);   _t.Put (ro);}
    _t.Shut ();
-// if (_t.ColW (1) > 600)  _t.SetColW (1, 600);  // or we get scrollin right :(
    _t.HopTo (FL.pos, 0);
    Pik ();
 }
@@ -648,8 +612,8 @@ DBG("no _midicache.txt for `s", dMid);
       return;
    }
 
-// wipe n recreate 3_queue/found;  start writin 3_queue/found.txt
-   StrFmt (dFnd, "`s/3_queue/found", App.Path (c, 'd'));
+// wipe n recreate song/found;  start writin song/found.txt
+   StrFmt (dFnd, "`s/song/found", App.Path (c, 'd'));
    d.Kill (dFnd);   d.Make (dFnd);
    NFnd = 0;   if (! FFnd.Open (StrFmt (fnF, "`s.txt", dFnd), "w"))  return;
 
@@ -661,12 +625,11 @@ DBG("found `d", NFnd);
                             "I'm only copyin 500 of the midi files, pal.\n"
                             "wanna view all matched filenames?"))
                         App.Open (fnF);
-// ok copy em to 3_queue/found
+// ok copy em to song/found
    StrCp (DirF, dMid);   StrCp (DirT, dFnd);   f.DoText (fnF, nullptr, FLCopy);
 
-// relist and move pos to 3_queue/found
-  CtlChek a (ui->all);
-   a.Set (true);   FL.Load ();   FL.pos = 0;
+// relist and move pos to song/found
+   FL.Load ();   FL.pos = 0;
    for (ln = StrLn (dFnd), i = 0;  i < FL.lst.Ln;  i++)
       if (! MemCm (dFnd, FL.lst [i], ln))  {FL.pos = i;   break;}
    ReDo ();
@@ -725,10 +688,7 @@ void DlgFL::Mod2Song ()
    }
 }
 
-void DlgFL::Brow ()
-{ TStr d, dv;
-   App.Open (StrFmt (dv, "`s/device", App.Path (d, 'd')));
-}
+void DlgFL::Brow ()  { TStr d;   App.Open (App.Path (d, 'd'));  }
 
 
 //______________________________________________________________________________
@@ -751,7 +711,7 @@ void DlgFL::Init ()
                  "   fill in the search box below THEN click me"));
    tb.Btn (3, CC("MidiImport\n"
                  "Pick a dir tree with midi files to convert to songs\n"
-                 "in the 3_queue dir"));
+                 "in the song dir"));
    tb.Btn (4, CC("Song2Wav\n"
                  "Render .song to a .wav file"));
    tb.Btn (5, CC("Sfz2Syn\n"
@@ -771,25 +731,13 @@ void DlgFL::Init ()
    connect (tb.Act (6), & QAction::triggered,  this, & DlgFL::Mod2Song);
    connect (tb.Act (7), & QAction::triggered,  this, & DlgFL::Brow);
 
-   _t.Init (ui->fLst, "Stage\0Song\0", "", nullptr, "single", "row");
+   _t.Init (ui->fLst, "Song\0", "", nullptr, "single", "row");
    connect (ui->fLst, &QTableWidget::itemClicked,       this, & DlgFL::Pik);
    connect (ui->fLst, &QTableWidget::itemDoubleClicked, this, & DlgFL::Shut);
-   _t.SetColElide (1, 'c');
-
-  CtlChek a (ui->all);
-  TStr t;
-   App.CfgGet (CC("DlgFL_all"), t);
-   if (*t)  a.Set ((*t=='y')?true:false);   else a.Set (true);
-
-   connect (ui->all, &QCheckBox::checkStateChanged, this, & DlgFL::ReDo);
+   _t.SetColElide (0, 'c');
 }
 
-void DlgFL::Quit ()
-{ CtlChek a (ui->all);
-  TStr t;
-   StrCp (t, CC(a.Get ()?"y":"n"));   App.CfgPut (CC("DlgFL_all"),  t);
-   Gui.DlgSave (this, "DlgFL");
-}
+void DlgFL::Quit ()  {Gui.DlgSave (this, "DlgFL");}
 
 
 //______________________________________________________________________________

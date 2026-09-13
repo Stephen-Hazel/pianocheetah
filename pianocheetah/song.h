@@ -61,6 +61,7 @@ public:
 
 
 //______________________________________________________________________________
+struct StepDef {TStr dur;   ubyte artc, oct, nt, sh;};
 struct RecDef {ubyt4 tm;  ubyte vl;};
 struct LrnDef {
    char   pLrn;                        // prev lrn mode
@@ -92,7 +93,7 @@ class Song: public QObject {
    Q_OBJECT
 public:
    Song ()                             // prep for 1st Wipe()
-   {  _ed = 0;   *_f.fn = '\0';   _f.ev = nullptr;   _nt = nullptr;
+   {  _ed = 0;   _gv = 0;   *_f.fn = '\0';   _f.ev = nullptr;   _nt = nullptr;
       Up.pos.at = Up.pos.drg = '\0';
    }
 
@@ -102,7 +103,7 @@ private:
    KSgRow *KSig  (ubyt4 tm);
    char *TmStr   (char *str, ubyt4 tm, ubyt4 *tL8r = nullptr,
                                        ubyte *subt = nullptr);
-   char *TmSt    (char *str, ubyt4 tm);
+   char *TmSt    (char *str, ubyt4 tm, char fr = '\0');
    ubyt2 Tm2Bar  (ubyt4 tm);
    bool  Poz     (bool tf, ubyt4 msx = 0);
    ubyt4 Bar2Tm  (ubyt2 b, ubyte bt = 1);
@@ -135,7 +136,8 @@ private:
    void  SetChn (), SetChn (ubyte t);
 
 // sFile.cpp
-   bool  DscGet  (char *key, char *val);
+   bool  DscGet  (const char *key, char *val);
+   bool  DscGet  (      char *key, char *val);
    void  DscPut  (char *repl);
    void  DscInit (), DscLoad (), DscSave ();
    ubyte DrumCon ();                   // outputs _mapD
@@ -155,6 +157,11 @@ private:
 
 // sRecord.cpp
    void  Shush   (bool tf);            // flip by volume cc (only) on/off
+
+   void  SetStDur (char c);
+   ubyt4 StDur    ();
+   bool  Step     (MidiEv *ev);
+
    bool  DnOK    (char n = '\0', ubyte *tr = nullptr, MidiEv *ev = nullptr);
    bool  NtCmd   (MidiEv *ev);
    void  NtGet   (MidiEv *ev);
@@ -177,7 +184,8 @@ private:
    ubyt4 SilPrv  (ubyt4 tm), SilNxt  (ubyt4 tm);
    ubyt4 NtDnPrv (ubyt4 tm), NtDnNxt (ubyt4 tm);
    void  ReCtlO  ();                   // map all DevTyps w song's _ctl[]s
-   ubyte CtlEv   (char *cSt, char ro = '\0');
+   ubyte CtlEv   (const char *cSt, char ro = '\0');
+   ubyte CtlEv   (      char *cSt, char ro = '\0');
                                        // get _ctl pos; upd _cch,_ctl,dvt.CCMap
    char *CtlSt   (ubyte ctrl);
    void  CtlClean();                   // redo _ctl[] to just used ones sorted
@@ -274,6 +282,9 @@ private:
 
    ubyte _ed;                          // piano key editin'
    ubyt4 _pLyr, _hLyr, _pChd;
+   ubyt4 _gv;                          // pagination layout generation
+
+   StepDef _st;                        // step entry recording
 
    Arr<CChRow,MAX_CCH>  _cch;          // ctl chasing
    TrkNt                *_nt;          // size is always same as _f.nEv

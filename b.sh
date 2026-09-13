@@ -1,7 +1,7 @@
 #!/bin/php
 <?php # b.sh - build with flatpak-builder n stuff
       # args:  c  wipe config dir - for full reinstall
-      #        d  build with debugging so ya can gdb inside it
+      #        p  build for prod - withOUT debugging so ya can gdb inside it
    $arg = '';   if ($argc > 1)  $arg = $argv [1];
 
 // app triplet n fpak cmds
@@ -13,7 +13,7 @@
 echo "...uninstall old one\n";
    system ("$f uninstall -y $app");
 
-   if ($arg == 'd') {
+   if ($arg != 'p') {
 //    DEBUGGIN !
       system ("mkdir _build");
       system ("$fb --user --force-clean --install _build fpak.dbg", $rc);
@@ -28,8 +28,9 @@ flatpak run --command=sh --devel --filesystem=$(pwd) app.pianocheetah.pianocheet
 gdb /app/bin/pianocheetah
 set logging enabled on
 thread apply all bt
-run        (usually gotta type y)
-           (make it blow up)
+run
+-- hit y
+-- make it blow up
 where
 thread apply all bt
 bt full\n";

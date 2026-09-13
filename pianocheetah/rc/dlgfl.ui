@@ -26,19 +26,6 @@
    <item>
     <layout class="QHBoxLayout" name="hl">
      <item>
-      <widget class="QCheckBox" name="all">
-       <property name="minimumSize">
-        <size>
-         <width>60</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>All</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QLabel" name="lSrch">
        <property name="text">
         <string>Search</string>

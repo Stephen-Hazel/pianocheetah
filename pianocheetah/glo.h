@@ -130,7 +130,7 @@ struct PosDef {
    TStr  str;
 // above are set in MsPos and are constantly written
 // below are for args to various funcs not wrecked by MsMv
-   ubyt4 pg1, co1;
+   ubyt4 pg1, co1, gv;
    sbyt2 x1, y1, x2, y2, xp, yp, xo, yo;
    TStr  etc, stp, stn;
    KSgRow kSg;

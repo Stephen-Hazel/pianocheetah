@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 244 74">
+  <defs>
+    <linearGradient id="whiteKeyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#47484b"/>
+      <stop offset="11%"  stop-color="#5a5b5e"/>
+      <stop offset="23%"  stop-color="#767779"/>
+      <stop offset="34%"  stop-color="#a0a1a2"/>
+      <stop offset="46%"  stop-color="#cbcccd"/>
+      <stop offset="57%"  stop-color="#f0f0f0"/>
+      <stop offset="75%"  stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+    <linearGradient id="blackKeyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#89898d"/>
+      <stop offset="17%"  stop-color="#6f6f71"/>
+      <stop offset="34%"  stop-color="#111111"/>
+      <stop offset="51%"  stop-color="#000000"/>
+      <stop offset="68%"  stop-color="#101011"/>
+      <stop offset="85%"  stop-color="#5f5f61"/>
+      <stop offset="100%" stop-color="#727274"/>
+    </linearGradient>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <g>
+        <rect x="0" y="0" width="34.87" height="74" fill="url(#whiteKeyGrad)"/>
+        <path fill="#272525" d="M33.87,1v72H1s0-72,0-72h32.86ZM34.87,0H0v73.99s34.86,0,34.86,0V0h0Z"/>
+      </g>
+      <g>
+        <rect x="33.98" y="0" width="36.15" height="74" fill="url(#whiteKeyGrad)"/>
+        <path fill="#272525" d="M69.13,1v72h-34.16s0-72,0-72h34.15ZM70.13,0h-36.15v73.99s36.15,0,36.15,0V0h0Z"/>
+      </g>
+      <g>
+        <rect x="69.24" y="0" width="35.76" height="74" fill="url(#whiteKeyGrad)"/>
+        <path fill="#272525" d="M104,1v72h-33.77s0-72,0-72h33.76ZM105,0h-35.76v73.99s35.76,0,35.76,0V0h0Z"/>
+      </g>
+      <g>
+        <rect x="104.11" y="0" width="35.74" height="74" fill="url(#whiteKeyGrad)"/>
+        <path fill="#272525" d="M138.85,1v72h-33.75s0-72,0-72h33.74ZM139.85,0h-35.74v73.99s35.74,0,35.74,0V0h0Z"/>
+      </g>
+      <g>
+        <rect x="138.85" y="0" width="35.76" height="74" fill="url(#whiteKeyGrad)"/>
+        <path fill="#272525" d="M173.61,1v72h-33.77s0-72,0-72h33.76ZM174.61,0h-35.76v73.99s35.76,0,35.76,0V0h0Z"/>
+      </g>
+      <g>
+        <rect x="173.73" y="0" width="35.73" height="74" fill="url(#whiteKeyGrad)"/>
+        <path fill="#272525" d="M208.46,1v72h-33.75s0-72,0-72h33.74ZM209.46,0h-35.74v73.99s35.74,0,35.74,0V0h0Z"/>
+      </g>
+      <g>
+        <rect x="208.26" y="0" width="35.74" height="74" fill="url(#whiteKeyGrad)"/>
+        <path fill="#272525" d="M243,1v72h-33.75s0-72,0-72h33.74ZM244,0h-35.74v73.99s35.74,0,35.74,0V0h0Z"/>
+      </g>
+      <path fill="url(#blackKeyGrad)" d="M41.84.72v44.08c.01,1.42-1.13,2.59-2.55,2.61-1.58.02-3-.08-4.42-.08l-11.35-.03c-1.44,0-2.6-1.17-2.6-2.61V.72h20.92Z"/>
+      <path fill="url(#blackKeyGrad)" d="M83.66.76v43.97c0,1.44-1.16,2.61-2.59,2.61l-11.35.03-4.39-.04c-1.43-.01-2.59-1.18-2.59-2.61V.76h20.92Z"/>
+      <path fill="url(#blackKeyGrad)" d="M144.41.76v43.96c.01,1.42-1.12,2.58-2.53,2.61l-2.44.06-12.35-.04c-1.44,0-2.6-1.17-2.6-2.61V.76h19.93Z"/>
+      <path fill="url(#blackKeyGrad)" d="M184.25.76v43.96c0,1.44-1.15,2.6-2.58,2.61l-7.37.05-7.37-.02c-1.44,0-2.6-1.17-2.6-2.61V.76h19.93Z"/>
+      <path fill="url(#blackKeyGrad)" d="M224.08.76v44c0,1.44-1.16,2.61-2.6,2.61h-12.34s-2.45-.05-2.45-.05c-1.41-.04-2.54-1.19-2.54-2.61V.76h19.93Z"/>
+      <rect x="0" y="0" width="243.99" height="3.48" fill="#cc2229"/>
+    </g>
+  </g>
+</svg>
