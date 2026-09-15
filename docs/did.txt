@@ -1,9 +1,26 @@
+2026Sep
+** release 2026-09-15
+   let's release it finally
+      to flatpak kde runtime 6.11
+      will try to get to app.shaz.pianocheetah with this release !
+   little trill/arpeggio indicator in play mode to see direction they go.
+   the ez play notes work way way better now.
+   coloring notes with a grey bar showing velocity.
+   just song now - no more 1_learning, 2_done, 3_queue.
+   made the install a tiny bit smaller/faster with .flac in aria and
+      streamed wget/tar x.
+   mousemove would core sometimes - fixed.
+   icons getting closer :)
+
+
 2026Jul
+   step entry mode for track in record mode during pause (need to doc it)
    no more 2_repertoire just 1_learning 2_done 3_queue
+
 
 2026Jun
    lyrics are hilighted way better
-   found a graphic designer (2nd time) - I think Sophia will do great!
+   found a graphic designer (2nd time) - I think Sophia is great!
    linux CAN do case sensitive ext4 :O
    CtlTabl uses _rc now
    fixed CtlTabl to fit last col into window leftover so song list doesn't

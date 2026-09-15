@@ -14,9 +14,11 @@ dup the good rush sounds
 
 code____________________________________________________________________________
 
-test song/done
-
 release whatev
+
+fix recSave - s doesn't trigger it but editCtl/4a does
+   played velos should be stored in the song notes
+   flip name to song_timestamp
 
 . hear your recording needs to be stoppable :)
    un/re marking play track fixes it

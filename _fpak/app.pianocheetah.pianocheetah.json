@@ -3,15 +3,16 @@
    "command": "pianocheetah",
    "sdk":     "org.kde.Sdk",
    "runtime": "org.kde.Platform",
-   "runtime-version": "6.10",
+   "runtime-version": "6.11",
    "finish-args": [
       "--filesystem=host",
+		"--filesystem=xdg-run/pipewire-0",
+      "--share=ipc",
+      "--share=network",
       "--device=dri",
       "--socket=wayland",
       "--socket=fallback-x11",
       "--socket=pulseaudio"
-      "--share=ipc",
-      "--share=network",
    ],
    "build-options" : {
       "strip": true,
@@ -27,7 +28,7 @@
          "sources": [
             {
                "type":   "git",
-               "url":    "https://github.com/Stephen-Hazel/PianoCheetah.git",
+               "url":    "https://github.com/Stephen-Hazel/pianocheetah.git",
                "commit": "d4109c31616f71e71b72eb856ddf40d267223d0a"
             }
          ]
@@ -40,7 +41,7 @@
          "sources": [
             {
                "type":   "git",
-               "url":    "https://github.com/Stephen-Hazel/PianoCheetah.git",
+               "url":    "https://github.com/Stephen-Hazel/pianocheetah.git",
                "commit": "d4109c31616f71e71b72eb856ddf40d267223d0a"
             },
             {
@@ -59,7 +60,7 @@
          "sources": [
             {
                "type":   "git",
-               "url":    "https://github.com/Stephen-Hazel/PianoCheetah.git",
+               "url":    "https://github.com/Stephen-Hazel/pianocheetah.git",
                "commit": "d4109c31616f71e71b72eb856ddf40d267223d0a"
             },
             {
@@ -78,7 +79,7 @@
          "sources": [
             {
                "type":   "git",
-               "url":    "https://github.com/Stephen-Hazel/PianoCheetah.git",
+               "url":    "https://github.com/Stephen-Hazel/pianocheetah.git",
                "commit": "d4109c31616f71e71b72eb856ddf40d267223d0a"
             },
             {
@@ -97,7 +98,7 @@
          "sources": [
             {
                "type":   "git",
-               "url":    "https://github.com/Stephen-Hazel/PianoCheetah.git",
+               "url":    "https://github.com/Stephen-Hazel/pianocheetah.git",
                "commit": "d4109c31616f71e71b72eb856ddf40d267223d0a"
             },
             {
@@ -116,7 +117,7 @@
          "sources": [
             {
                "type":   "git",
-               "url":    "https://github.com/Stephen-Hazel/PianoCheetah.git",
+               "url":    "https://github.com/Stephen-Hazel/pianocheetah.git",
                "commit": "d4109c31616f71e71b72eb856ddf40d267223d0a"
             },
             {
@@ -135,7 +136,7 @@
          "sources": [
             {
                "type":   "git",
-               "url":    "https://github.com/Stephen-Hazel/PianoCheetah.git",
+               "url":    "https://github.com/Stephen-Hazel/pianocheetah.git",
                "commit": "d4109c31616f71e71b72eb856ddf40d267223d0a"
             },
             {
@@ -154,7 +155,7 @@
          "sources": [
             {
                "type":   "git",
-               "url":    "https://github.com/Stephen-Hazel/PianoCheetah.git",
+               "url":    "https://github.com/Stephen-Hazel/pianocheetah.git",
                "commit": "d4109c31616f71e71b72eb856ddf40d267223d0a"
             },
             {
@@ -173,7 +174,7 @@
          "sources": [
             {
                "type":   "git",
-               "url":    "https://github.com/Stephen-Hazel/PianoCheetah.git",
+               "url":    "https://github.com/Stephen-Hazel/pianocheetah.git",
                "commit": "d4109c31616f71e71b72eb856ddf40d267223d0a"
             },
             {
@@ -192,7 +193,7 @@
          "sources": [
             {
                "type":   "git",
-               "url":    "https://github.com/Stephen-Hazel/PianoCheetah.git",
+               "url":    "https://github.com/Stephen-Hazel/pianocheetah.git",
                "commit": "d4109c31616f71e71b72eb856ddf40d267223d0a"
             },
             {
@@ -211,7 +212,7 @@
          "sources": [
             {
                "type":   "git",
-               "url":    "https://github.com/Stephen-Hazel/PianoCheetah.git",
+               "url":    "https://github.com/Stephen-Hazel/pianocheetah.git",
                "commit": "d4109c31616f71e71b72eb856ddf40d267223d0a"
             },
             {
@@ -230,7 +231,7 @@
          "sources": [
             {
                "type":   "git",
-               "url":    "https://github.com/Stephen-Hazel/PianoCheetah.git",
+               "url":    "https://github.com/Stephen-Hazel/pianocheetah.git",
                "commit": "d4109c31616f71e71b72eb856ddf40d267223d0a"
             },
             {

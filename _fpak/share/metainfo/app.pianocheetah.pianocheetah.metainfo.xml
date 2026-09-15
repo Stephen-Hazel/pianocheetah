@@ -18,16 +18,16 @@
   <description>
     <p>
       Play and practice a pop song on piano and drums.
-      In a &quot;pianoroll&quot; format that&apos;s a kinda fancy.
+      In a &quot;pianoroll&quot; format that&apos;s kinda fancy.
     </p>
     <p>
       You practice the piano parts and the background tracks sync to your tempo.
-      Our aim is to get a song into our head and fingers.
+      Our aim is to get a simplified song into our head and fingers.
 
       The real notes of the song are simplifed down to one note per hand max.
       And your hands stay in one position.
        
-      Any midi file can become a song for you to practice and play.
+      Tracks in any midi file can become a song for you to practice and play.
 
       More description / install docs / screenshots on the website (see Links).
     </p>
@@ -58,6 +58,19 @@
   <content_rating type="oars-1.0" />
 
   <releases>
+    <release version="2026.09" date="2026-09-15">
+      <description>
+        <p>
+          Will rename app.pianocheetah prefix to app.shaz like my main website.
+          Please rename your pianocheetah directory - things have changed a lot.
+          Audio engine moved to pipewire from alsa to share audio out.
+          Easy note algorithm makes far better note arrangements.
+          Note velocity shown with a grey bar on the note symbol.
+          New step entry mode (that I'll explain in videos soon.)
+          Found a good graphical designer (in work, please be patient:)
+        </p>
+      </description>
+    </release>
     <release version="2025.05b" date="2025-05-11">
       <description>
         <p>
