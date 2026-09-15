@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=pianocheetah
+Comment=piano for mere mortals
+Exec=pianocheetah %F
+Icon=app.shaz.pianocheetah
+Categories=AudioVideo;Audio;Midi;
+Terminal=false
