@@ -2,7 +2,7 @@
 <?php # fhub.sh - test build for flathub
 
 // repo name n app triplet
-   $app = "app.pianocheetah.pianocheetah";
+   $app = "app.shaz.pianocheetah";
    $f = "flatpak";   $fb = "$f-builder";
 
    system ("$f remove $app");

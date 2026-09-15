@@ -5,7 +5,7 @@
    $arg = '';   if ($argc > 1)  $arg = $argv [1];
 
 // app triplet n fpak cmds
-   $app = "app.pianocheetah.pianocheetah";
+   $app = "app.shaz.pianocheetah";
    $f = "flatpak";   $fb = "$f-builder";
 
    system ("rm -fr _build .$fb");      // wipe
@@ -22,9 +22,9 @@ echo "...uninstall old one\n";
       system ("$f install --reinstall --user --assumeyes ".
               "/home/sh/src/pianocheetah/.$fb/cache $app".".Debug");
       system ("echo x " .
-             ">/home/sh/.var/app/app.pianocheetah.pianocheetah/config/dbg.txt");
+             ">/home/sh/.var/app/$app/config/dbg.txt");
       echo "
-flatpak run --command=sh --devel --filesystem=$(pwd) app.pianocheetah.pianocheetah
+flatpak run --command=sh --devel --filesystem=$(pwd) $app
 gdb /app/bin/pianocheetah
 set logging enabled on
 thread apply all bt
@@ -46,7 +46,7 @@ echo "...compilin n installin\n";
 echo "...cleanup\n";
    system ("rm -fr _build .$fb");
    system ("echo x " .
-             ">/home/sh/.var/app/app.pianocheetah.pianocheetah/config/dbg.txt");
+             ">/home/sh/.var/app/$app/config/dbg.txt");
    if ($arg != 'c')  exit;
 
 // cleanup .var/app/ dir for full reset (wipe config files etc)

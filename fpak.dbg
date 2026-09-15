@@ -1,5 +1,5 @@
 {
- "app-id":  "app.pianocheetah.pianocheetah",
+ "app-id":  "app.shaz.pianocheetah",
  "command": "pianocheetah",
  "sdk":     "org.kde.Sdk",
  "runtime": "org.kde.Platform",

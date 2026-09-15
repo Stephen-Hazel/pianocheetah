@@ -1,8 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=MidiCfg
-Comment=Midi Config for PianoCheetah (Steve's weird midi sequencer for piano practice)
-Exec=midicfg
-Icon=app.pianocheetah.pianocheetah.midicfg
-Categories=AudioVideo;Audio;Midi;
-Terminal=false

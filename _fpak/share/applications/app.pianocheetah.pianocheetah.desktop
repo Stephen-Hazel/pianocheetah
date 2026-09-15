@@ -1,8 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=PianoCheetah
-Comment=Steve's weird midi sequencer for piano practice
-Exec=pianocheetah %F
-Icon=app.pianocheetah.pianocheetah
-Categories=AudioVideo;Audio;Midi;
-Terminal=false
