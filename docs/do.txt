@@ -14,7 +14,8 @@ dup the good rush sounds
 
 code____________________________________________________________________________
 
-release whatev
+dbg why scale square is offset
+   somethin weird is goin on w wb whitebump - right nt bein non 11 sets it >0
 
 fix recSave - s doesn't trigger it but editCtl/4a does
    played velos should be stored in the song notes

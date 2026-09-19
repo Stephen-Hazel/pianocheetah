@@ -558,9 +558,12 @@ TRC(" got device.txt");
   ubyte i = 0;
   TStr  nm, ty, ds, dv;
    while (Midi.GetPos ('o', i++, nm, ty, ds, dv))
-      if (StrCm (ty, "OFF") && (*dv == '?'))
-         {Gui.Hey (StrFmt (dv, "Hey! `s: `s (`s)  is off, pal...",
-                               nm, ty, ds));   break;}
+      if (StrCm (ty, "OFF") && (*dv == '?')) {
+         QApplication::setDesktopFileName ("app.shaz.pianocheetah");
+                                       // else window icon turns to wayland
+         Gui.Hey (StrFmt (dv, "Hey! `s: `s (`s)  is off, pal...",  nm, ty, ds));
+         break;
+      }
    UCmdLoad ();
 TRC(" song init");
    _s = new Song;                      // git song worker thread goin
@@ -676,7 +679,7 @@ int main (int argc, char *argv [])
 {  DBGTH ("PcGui");
   QApplication app (argc, argv);
   PCheetah     win;
-   App.Init ();                        //TODO scrsaver off.  limit one instance?
+   App.Init ();
    Gui.Init (& app, & win, "PianoCheetah");   win.Init ();   RandInit ();
    qRegisterMetaType<ubyte>("ubyte");
    qRegisterMetaType<sbyt2>("sbyt2");

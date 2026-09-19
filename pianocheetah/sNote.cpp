@@ -484,7 +484,7 @@ TRC("DrawPg `d", pp);
    // draw bg horiz rect (white&black keyboard);  label octaves at b|c
       Up.cnv.SetFg (COct);
 
-      if (SHRCRD) {                    // WAYY diff
+      if (SHRCRD) {                    // WAYY ez w no ksig, black notes
          for (x = nx, oc = 0;  oc < 7;  oc++, x += w) {
             w = 0;   if (! co.oMx [oc])  continue;
 
@@ -495,8 +495,7 @@ TRC("DrawPg `d", pp);
          // keyboard oct at top of col
             x1 = (snm[1]-'c')*W_NTW;   w = W_NTW*(snt[1]-snm[1]+1);
             x0 = x1*245/168;   w0 = w*245/168;
-DBG(" oct1 x=`d w0=`d nm=`s nm=`s x1=`d w=`d",
-x, w0, snm, snt, x1, w);
+//DBG(" octez x=`d w0=`d nm=`s nm=`s x1=`d w=`d",x, w0, snm, snt, x1, w);
             Up.cnv.Blt (*Up.oct,      x, 0, w, H_KB,         x0, 0, w0, 75);
 
          // background stripes down the col
@@ -510,7 +509,7 @@ x, w0, snm, snt, x1, w);
          if ((x > nx) && co.nDrm)      // vert line btw melo n drum
                           Up.cnv.RectF (x, 0, 2, co.h, qc);
       }
-      else {
+      else {                           // real notes...
       // prep ksig biz
          key = (ks = KSig (tMn))->key;   MemSet (ksig, 0, sizeof (ksig));
          if (ks->min)
@@ -518,10 +517,13 @@ x, w0, snm, snt, x1, w);
                MemCp (  ksig,       CC("0 12 3 45 6 ") + (12-key), key);}
          else {MemCp (& ksig [key], CC("0 1 23 4 5 6"),   12-key      );
                MemCp (  ksig,       CC("0 1 23 4 5 6") + (12-key), key);}
+
          for (x = nx, oc = co.nMn/12;  oc <= co.nMx/12;  oc++, x += w) {
             nt =  0;   if (oc == co.nMn/12)  nt = co.nMn%12;
             nd = 11;   if (oc == co.nMx/12)  nd = co.nMx%12;
             x1 = nt*W_NT;   w = W_NT*(nd-nt+1);
+            wb = 0;
+
          // got leftmost or rightmost whiteBump?
             if ((nt !=  0) && (KeyCol [nt] == 'w'))
                {wb = WXOfs [nt] * W_NT/12;   x1 -= wb;   w += wb;}
@@ -531,8 +533,8 @@ x, w0, snm, snt, x1, w);
 
          // keyboard oct at top of col
             x0 = x1*245/168;   w0 = w*245/168;
-DBG(" oct2 x=`d x0=`d w0=`d nt=`d nd=`d x1=`d w=`d wb=`d",
-x, x0, w0, nt, nd, x1, w, wb);
+DBG(" oct=`d nt=`d nd=`d wb=`d   x=`d w=`d x1=`d w=`d",
+oc, nt, nd, wb,  x, w, x1, w);
             Up.cnv.Blt (*Up.oct,     x, 0, w, H_KB,         x0, 0, w0, 75);
 
          // background stripes down the col
@@ -545,14 +547,18 @@ x, x0, w0, nt, nd, x1, w, wb);
 
          // draw curr keysig;  if in scale, put step color
             w2 = 3;
-            if ((Cfg.ntCo == 0) && (! SHRCRD))
+            if (Cfg.ntCo == 0)
                for (x2 = x+wb, n2 = oc*12+nt;  n2 <= oc*12+nd;
-                                               n2++, x2 += W_NT)
-                  if (ksig [n2 % 12] != ' ')
+                                               n2++, x2 += W_NT) {
+DBG("  x2=`d", x2);
+                  if (ksig [n2 % 12] != ' ') {   // note of ksig
+DBG("  ksig sq x=`d wb=`d finalx=`d", x, wb, x2+w2);
                      Up.cnv.RectF (x2 + w2, 5, W_NT-w2*2, W_NT-w2*2-2,
                                    CScl [1][((n2 % 12) + 12 - key) % 12]);
-            wb = 0;
+                  }
+               }
          }
+
       // octaves at edges
          for (nt = co.nMn;;  nt++) {   // 1st w from left non B,C
             nd = nt % 12;

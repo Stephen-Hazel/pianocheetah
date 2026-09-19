@@ -24,13 +24,15 @@
      </rect>
     </property>
     <property name="text">
-     <string>I'm currently downloading a BIG bunch of samples.
+     <string>Oh hi :)
+
+I'm currently downloading a BIG bunch of samples.
 This will take -4- minutes :(   Please be patient :)
 
 When I'm done, I'll bring up MidiConfig
 so please turn on all your midi devices.
 
-(and please don't close me - sorry)</string>
+(and please don't close me - sorry to make you wait)</string>
     </property>
     <property name="textFormat">
      <enum>Qt::TextFormat::AutoText</enum>

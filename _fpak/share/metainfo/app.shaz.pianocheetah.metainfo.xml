@@ -2,6 +2,9 @@
 <component type="desktop-application">
    
   <id>app.shaz.pianocheetah</id>
+  <replaces>
+    <id>app.pianocheetah.pianocheetah</id>
+  </replaces>
    
   <name>pianocheetah</name>
    
@@ -11,6 +14,7 @@
   <project_license>MIT</project_license>
    
   <url type="homepage">https://pianocheetah.app</url>
+  <url type="contact">https://shaz.app</url>
   <developer id="app.shaz">
     <name>Stephen Hazel</name>
   </developer>
@@ -139,5 +143,9 @@
       </description>
     </release>
   </releases>
-
+  <requires>
+    <display_length compare="ge">1920</display_length>
+    <control>keyboard</control>
+    <control>pointing</control>
+  </requires>
 </component> 

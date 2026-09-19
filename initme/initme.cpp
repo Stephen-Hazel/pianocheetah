@@ -2,10 +2,22 @@
 
 #include "initme.h"
 
-TStr  DirPC;
+TStr DirPC;
 
 void InitMe::Init ()
-{ TStr dir;
+{  StrCp (DirPC, "/var/data/pianocheetah");
+   App.CfgPut ("d", DirPC);
+   Gui.WinLoad ();
+
+/* NO SOUP FOR YOU - this is flatpak land.  ...you want this?
+** then either
+**    ln -s ~/.var/app/app.shaz.pianocheetah/data/pianocheetah  ./pcheetah
+** or
+**    flatseal me with filesystem=host
+**    mv    ~/.var/app/app.shaz.pianocheetah/data/pianocheetah  /.../pcheetah
+**    vi    ~/.var/app/app.shaz.pianocheetah/config/d.cfg n set /.../pcheatah
+**
+  TStr dir;
 DBG("Init bgn");
    Gui.Hey (
       "Oh hi :)\n\n"
@@ -22,6 +34,7 @@ DBG("picked=`s", DirPC);
       Gui.WinLoad ();
    }
 DBG("Init end");
+*/
 }
 
 void InitMe::Quit ()  {}
@@ -34,7 +47,7 @@ int main (int argc, char *argv [])
   int    rc = 0;
 DBGTH("InitMe");   DBG("bgn");
    App.Init ();   Gui.Init (& app, & win, "InitMe");   win.Init ();
-   if (*DirPC && (! f.Size (DirPC))) {
+   if (*DirPC && (! f.Size (DirPC))) { // Size makes sure it's notta file by acc
       s  = new Setup ();
 DBG("came back from thread");
       rc = Gui.Loop ();
