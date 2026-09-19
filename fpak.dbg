@@ -38,93 +38,53 @@
   {
    "name": "midicfg",
    "buildsystem": "cmake-ninja",
-   "config-opts": ["-DCMAKE_BUILD_TYPE=Debug"],
-   "sources": [
-    {"type": "dir", "path": "midicfg"},
-    {"type": "dir", "path": "../stv", "dest": "stv"}
-   ]
+   "config-opts": ["-DCMAKE_BUILD_TYPE=Debug"]
   },
   {
    "name": "initme",
    "buildsystem": "cmake-ninja",
-   "config-opts": ["-DCMAKE_BUILD_TYPE=Debug"],
-   "sources": [
-    {"type": "dir", "path": "initme"},
-    {"type": "dir", "path": "../stv", "dest": "stv"}
-   ]
+   "config-opts": ["-DCMAKE_BUILD_TYPE=Debug"]
   },
 
   {
    "name": "mid2song",
    "buildsystem": "cmake-ninja",
-   "config-opts": ["-DCMAKE_BUILD_TYPE=Debug"],
-   "sources": [
-    {"type": "dir", "path": "mid2song"},
-    {"type": "dir", "path": "../stv", "dest": "stv"}
-   ]
+   "config-opts": ["-DCMAKE_BUILD_TYPE=Debug"]
   },
   {
    "name": "txt2song",
    "buildsystem": "cmake-ninja",
-   "config-opts": ["-DCMAKE_BUILD_TYPE=Debug"],
-   "sources": [
-    {"type": "dir", "path": "txt2song"},
-    {"type": "dir", "path": "../stv", "dest": "stv"}
-   ]
+   "config-opts": ["-DCMAKE_BUILD_TYPE=Debug"]
   },
   {
    "name": "mod2song",
    "buildsystem": "cmake-ninja",
-   "config-opts": ["-DCMAKE_BUILD_TYPE=Debug"],
-   "sources": [
-    {"type": "dir", "path": "mod2song"},
-    {"type": "dir", "path": "../stv", "dest": "stv"}
-   ]
+   "config-opts": ["-DCMAKE_BUILD_TYPE=Debug"]
   },
   {
    "name": "ll",
    "buildsystem": "cmake-ninja",
-   "config-opts": ["-DCMAKE_BUILD_TYPE="],
-   "sources": [
-    {"type": "dir", "path": "ll"},
-    {"type": "dir", "path": "../stv", "dest": "stv"}
-   ]
+   "config-opts": ["-DCMAKE_BUILD_TYPE="]
   },
   {
    "name": "sfz2syn",
    "buildsystem": "cmake-ninja",
-   "config-opts": ["-DCMAKE_BUILD_TYPE=Debug"],
-   "sources": [
-    {"type": "dir", "path": "sfz2syn"},
-    {"type": "dir", "path": "../stv", "dest": "stv"}
-   ]
+   "config-opts": ["-DCMAKE_BUILD_TYPE=Debug"]
   },
   {
    "name": "synsnd",
    "buildsystem": "cmake-ninja",
-   "config-opts": ["-DCMAKE_BUILD_TYPE=Debug"],
-   "sources": [
-    {"type": "dir", "path": "synsnd"},
-    {"type": "dir", "path": "../stv", "dest": "stv"}
-   ]
+   "config-opts": ["-DCMAKE_BUILD_TYPE=Debug"]
   },
   {
    "name": "midimp",
    "buildsystem": "cmake-ninja",
-   "config-opts": ["-DCMAKE_BUILD_TYPE=Debug"],
-   "sources": [
-    {"type": "dir", "path": "midimp"},
-    {"type": "dir", "path": "../stv", "dest": "stv"}
-   ]
+   "config-opts": ["-DCMAKE_BUILD_TYPE=Debug"]
   },
   {
    "name": "song2wav",
    "buildsystem": "cmake-ninja",
-   "config-opts": ["-DCMAKE_BUILD_TYPE=Debug"],
-   "sources": [
-    {"type": "dir", "path": "song2wav"},
-    {"type": "dir", "path": "../stv", "dest": "stv"}
-   ]
+   "config-opts": ["-DCMAKE_BUILD_TYPE=Debug"]
   },
 
   {
