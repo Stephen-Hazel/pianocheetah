@@ -11,6 +11,14 @@
       streamed wget/tar x.
    mousemove would core sometimes - fixed.
    icons getting closer :)
+   looks like i'm not gettin onto flathub without shoving all my data into
+      ~/.var/app.shaz.pianocheetah/data/pianocheetah
+   if you (like I) don't like that then either
+      ln -s ~/.var/app/app.shaz.pianocheetah/data/pianocheetah  ./pcheetah
+   or
+      flatseal me with filesystem=host
+      mv ~/.var/app/app.shaz.pianocheetah/data/pianocheetah  /.../pcheetah
+      vi ~/.var/app/app.shaz.pianocheetah/config/d.cfg n set /.../pcheatah
 
 
 2026Jul
