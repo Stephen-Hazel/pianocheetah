@@ -19,92 +19,27 @@
    },
    "modules": [
       {
-         "name": "_fpak",
+         "name": "pianocheetah",
          "buildsystem": "simple",
          "build-commands": [
-            "cp -pr _fpak/share /app"
+            "cp -pr _fpak/share /app",
+            "for d in pianocheetah midicfg initme mid2song txt2song mod2song ll sfz2syn synsnd midimp song2wav; do ln -sfn ../stv $d/stv && cmake -G Ninja -S $d -B _b/$d -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/app && cmake --build _b/$d && cmake --install _b/$d || exit 1; done"
          ],
          "sources": [
             {
                "type":   "git",
                "url":    "https://github.com/Stephen-Hazel/pianocheetah.git",
-               "commit": "a8653ec3f13c569fd128f57d83eaa2f96f06ec91"
-            }
-         ]
-      },
-      {
-         "name":   "pianocheetah",
-         "subdir": "pianocheetah",
-         "buildsystem": "cmake-ninja",
-         "config-opts": ["-DCMAKE_BUILD_TYPE=Release"],
-         "sources": [
+               "tag":    "2026-09-15",
+               "commit": "57bd6b26921cf03e0956b3e1b98d57b0666f10fe"
+            },
             {
                "type":   "git",
-               "dest":   "pianocheetah/stv",
+               "dest":   "stv",
                "url":    "https://github.com/Stephen-Hazel/stv.git",
+               "tag":    "2026-09-15",
                "commit": "7ecbe1ceaba7246fa56ee4bd0d24cdf525181a56"
             }
          ]
-      },
-      {
-         "name":   "midicfg",
-         "subdir": "midicfg",
-         "buildsystem": "cmake-ninja",
-         "config-opts": ["-DCMAKE_BUILD_TYPE=Release"]
-      },
-      {
-         "name":   "initme",
-         "subdir": "initme",
-         "buildsystem": "cmake-ninja",
-         "config-opts": ["-DCMAKE_BUILD_TYPE=Release"]
-      },
-      {
-         "name":   "mid2song",
-         "subdir": "mid2song",
-         "buildsystem": "cmake-ninja",
-         "config-opts": ["-DCMAKE_BUILD_TYPE=Release"]
-      },
-      {
-         "name":   "txt2song",
-         "subdir": "txt2song",
-         "buildsystem": "cmake-ninja",
-         "config-opts": ["-DCMAKE_BUILD_TYPE=Release"]
-      },
-      {
-         "name":   "mod2song",
-         "subdir": "mod2song",
-         "buildsystem": "cmake-ninja",
-         "config-opts": ["-DCMAKE_BUILD_TYPE=Release"]
-      },
-      {
-         "name":   "ll",
-         "subdir": "ll",
-         "buildsystem": "cmake-ninja",
-         "config-opts": ["-DCMAKE_BUILD_TYPE=Release"]
-      },
-      {
-         "name":   "sfz2syn",
-         "subdir": "sfz2syn",
-         "buildsystem": "cmake-ninja",
-         "config-opts": ["-DCMAKE_BUILD_TYPE=Release"]
-      },
-      {
-         "name":   "synsnd",
-         "subdir": "synsnd",
-         "buildsystem": "cmake-ninja",
-         "config-opts": ["-DCMAKE_BUILD_TYPE=Release"]
-      },
-      {
-         "name":   "midimp",
-         "subdir": "midimp",
-         "buildsystem": "cmake-ninja",
-         "config-opts": ["-DCMAKE_BUILD_TYPE=Release"]
-      },
-      {
-         "name":   "song2wav",
-         "subdir": "song2wav",
-         "buildsystem": "cmake-ninja",
-         "config-opts": ["-DCMAKE_BUILD_TYPE=Release"]
       }
    ]
 }

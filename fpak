@@ -30,53 +30,93 @@
       {
          "name": "midicfg",
          "buildsystem": "cmake-ninja",
-         "config-opts": ["-DCMAKE_BUILD_TYPE=Release"]
+         "config-opts": ["-DCMAKE_BUILD_TYPE=Release"],
+         "sources": [
+            {"type": "dir", "path": "pianocheetah"},
+            {"type": "dir", "path": "../stv", "dest": "stv"}
+         ]
       },
       {
          "name": "initme",
          "buildsystem": "cmake-ninja",
-         "config-opts": ["-DCMAKE_BUILD_TYPE=Release"]
+         "config-opts": ["-DCMAKE_BUILD_TYPE=Release"],
+         "sources": [
+            {"type": "dir", "path": "pianocheetah"},
+            {"type": "dir", "path": "../stv", "dest": "stv"}
+         ]
       },
 
       {
          "name": "mid2song",
          "buildsystem": "cmake-ninja",
-         "config-opts": ["-DCMAKE_BUILD_TYPE=Release"]
+         "config-opts": ["-DCMAKE_BUILD_TYPE=Release"],
+         "sources": [
+            {"type": "dir", "path": "pianocheetah"},
+            {"type": "dir", "path": "../stv", "dest": "stv"}
+         ]
       },
       {
          "name": "txt2song",
          "buildsystem": "cmake-ninja",
-         "config-opts": ["-DCMAKE_BUILD_TYPE=Release"]
+         "config-opts": ["-DCMAKE_BUILD_TYPE=Release"],
+         "sources": [
+            {"type": "dir", "path": "pianocheetah"},
+            {"type": "dir", "path": "../stv", "dest": "stv"}
+         ]
       },
       {
          "name": "mod2song",
          "buildsystem": "cmake-ninja",
-         "config-opts": ["-DCMAKE_BUILD_TYPE=Release"]
+         "config-opts": ["-DCMAKE_BUILD_TYPE=Release"],
+         "sources": [
+            {"type": "dir", "path": "pianocheetah"},
+            {"type": "dir", "path": "../stv", "dest": "stv"}
+         ]
       },
       {
          "name": "ll",
          "buildsystem": "cmake-ninja",
-         "config-opts": ["-DCMAKE_BUILD_TYPE=Release"]
+         "config-opts": ["-DCMAKE_BUILD_TYPE=Release"],
+         "sources": [
+            {"type": "dir", "path": "pianocheetah"},
+            {"type": "dir", "path": "../stv", "dest": "stv"}
+         ]
       },
       {
          "name": "sfz2syn",
          "buildsystem": "cmake-ninja",
-         "config-opts": ["-DCMAKE_BUILD_TYPE=Release"]
+         "config-opts": ["-DCMAKE_BUILD_TYPE=Release"],
+         "sources": [
+            {"type": "dir", "path": "pianocheetah"},
+            {"type": "dir", "path": "../stv", "dest": "stv"}
+         ]
       },
       {
          "name": "synsnd",
          "buildsystem": "cmake-ninja",
-         "config-opts": ["-DCMAKE_BUILD_TYPE=Release"]
+         "config-opts": ["-DCMAKE_BUILD_TYPE=Release"],
+         "sources": [
+            {"type": "dir", "path": "pianocheetah"},
+            {"type": "dir", "path": "../stv", "dest": "stv"}
+         ]
       },
       {
          "name": "midimp",
          "buildsystem": "cmake-ninja",
-         "config-opts": ["-DCMAKE_BUILD_TYPE=Release"]
+         "config-opts": ["-DCMAKE_BUILD_TYPE=Release"],
+         "sources": [
+            {"type": "dir", "path": "pianocheetah"},
+            {"type": "dir", "path": "../stv", "dest": "stv"}
+         ]
       },
       {
          "name": "song2wav",
          "buildsystem": "cmake-ninja",
-         "config-opts": ["-DCMAKE_BUILD_TYPE=Release"]
+         "config-opts": ["-DCMAKE_BUILD_TYPE=Release"],
+         "sources": [
+            {"type": "dir", "path": "pianocheetah"},
+            {"type": "dir", "path": "../stv", "dest": "stv"}
+         ]
       },
 
       {
