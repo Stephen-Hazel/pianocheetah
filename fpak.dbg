@@ -13,125 +13,29 @@
   "--socket=fallback-x11",
   "--socket=pulseaudio"
  ],
-    "build-options" : {
-        "cflags": "-O2 -g",
-        "cxxflags": "-O2 -g",
-        "env": {
-            "V": "1"
-        },
-        "arch": {
-            "x86_64": {
-                "cflags": "-O3 -g"
-            }
-        }
-    },
+ "build-options" : {
+  "cflags": "-O2 -g",
+  "cxxflags": "-O2 -g",
+  "env": {
+   "V": "1"
+  },
+  "arch": {
+   "x86_64": {
+    "cflags": "-O3 -g"
+   }
+  }
+ },
  "modules": [
   {
    "name": "pianocheetah",
-   "buildsystem": "cmake-ninja",
-   "config-opts": ["-DCMAKE_BUILD_TYPE=Debug"],
-   "sources": [
-    {"type": "dir", "path": "pianocheetah"},
-    {"type": "dir", "path": "../stv", "dest": "stv"}
-   ]
-  },
-  {
-   "name": "midicfg",
-   "buildsystem": "cmake-ninja",
-   "config-opts": ["-DCMAKE_BUILD_TYPE=Debug"],
-   "sources": [
-    {"type": "dir", "path": "midicfg"},
-    {"type": "dir", "path": "../stv", "dest": "stv"}
-   ]
-  },
-  {
-   "name": "initme",
-   "buildsystem": "cmake-ninja",
-   "config-opts": ["-DCMAKE_BUILD_TYPE=Debug"],
-   "sources": [
-    {"type": "dir", "path": "initme"},
-    {"type": "dir", "path": "../stv", "dest": "stv"}
-   ]
-  },
-
-  {
-   "name": "mid2song",
-   "buildsystem": "cmake-ninja",
-   "config-opts": ["-DCMAKE_BUILD_TYPE=Debug"],
-   "sources": [
-    {"type": "dir", "path": "mid2song"},
-    {"type": "dir", "path": "../stv", "dest": "stv"}
-   ]
-  },
-  {
-   "name": "txt2song",
-   "buildsystem": "cmake-ninja",
-   "config-opts": ["-DCMAKE_BUILD_TYPE=Debug"],
-   "sources": [
-    {"type": "dir", "path": "txt2song"},
-    {"type": "dir", "path": "../stv", "dest": "stv"}
-   ]
-  },
-  {
-   "name": "mod2song",
-   "buildsystem": "cmake-ninja",
-   "config-opts": ["-DCMAKE_BUILD_TYPE=Debug"],
-   "sources": [
-    {"type": "dir", "path": "mod2song"},
-    {"type": "dir", "path": "../stv", "dest": "stv"}
-   ]
-  },
-  {
-   "name": "ll",
-   "buildsystem": "cmake-ninja",
-   "config-opts": ["-DCMAKE_BUILD_TYPE=Debug"],
-   "sources": [
-    {"type": "dir", "path": "ll"},
-    {"type": "dir", "path": "../stv", "dest": "stv"}
-   ]
-  },
-  {
-   "name": "sfz2syn",
-   "buildsystem": "cmake-ninja",
-   "config-opts": ["-DCMAKE_BUILD_TYPE=Debug"],
-   "sources": [
-    {"type": "dir", "path": "sfz2syn"},
-    {"type": "dir", "path": "../stv", "dest": "stv"}
-   ]
-  },
-  {
-   "name": "synsnd",
-   "buildsystem": "cmake-ninja",
-   "config-opts": ["-DCMAKE_BUILD_TYPE=Debug"],
-   "sources": [
-    {"type": "dir", "path": "synsnd"},
-    {"type": "dir", "path": "../stv", "dest": "stv"}
-   ]
-  },
-  {
-   "name": "midimp",
-   "buildsystem": "cmake-ninja",
-   "config-opts": ["-DCMAKE_BUILD_TYPE=Debug"],
-   "sources": [
-    {"type": "dir", "path": "midimp"},
-    {"type": "dir", "path": "../stv", "dest": "stv"}
-   ]
-  },
-  {
-   "name": "song2wav",
-   "buildsystem": "cmake-ninja",
-   "config-opts": ["-DCMAKE_BUILD_TYPE=Debug"],
-   "sources": [
-    {"type": "dir", "path": "song2wav"},
-    {"type": "dir", "path": "../stv", "dest": "stv"}
-   ]
-  },
-
-  {
-   "name": "_fpak",
    "buildsystem": "simple",
-   "build-commands": [ "cp -pr share /app" ],
-   "sources": [ {"type": "dir", "path": "_fpak"} ]
+   "build-commands": [
+      "_fpak/fp-build-dbg.sh"
+   ],
+   "sources": [
+    {"type": "dir", "path": "."},
+    {"type": "dir", "path": "../stv", "dest": "stv"}
+   ]
   }
  ]
 }
