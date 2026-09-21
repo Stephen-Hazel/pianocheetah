@@ -22,15 +22,14 @@
          "name": "pianocheetah",
          "buildsystem": "simple",
          "build-commands": [
-            "cp -pr _fpak/share /app",
-            "for d in pianocheetah midicfg initme mid2song txt2song mod2song ll sfz2syn synsnd midimp song2wav; do ln -sfn ../stv $d/stv && cmake -G Ninja -S $d -B _b/$d -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/app && cmake --build _b/$d && cmake --install _b/$d || exit 1; done"
+            "sh _fpak/fp-build.sh"
          ],
          "sources": [
             {
                "type":   "git",
                "url":    "https://github.com/Stephen-Hazel/pianocheetah.git",
-               "tag":    "2026-09-15",
-               "commit": "57bd6b26921cf03e0956b3e1b98d57b0666f10fe"
+               "tag":    "2026-09-15b",
+               "commit": "6c4801ca18f06bb21196e61ee479617526e36c87"
             },
             {
                "type":   "git",
