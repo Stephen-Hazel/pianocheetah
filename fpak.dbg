@@ -6,7 +6,6 @@
  "runtime-version":          "6.11",
  "finish-args": [
   "--filesystem=xdg-run/pipewire-0",
-  "--filesystem=xdg-music",
   "--share=ipc",
   "--device=dri",
   "--socket=wayland",
