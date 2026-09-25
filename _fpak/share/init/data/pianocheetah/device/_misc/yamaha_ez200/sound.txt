@@ -1,0 +1,363 @@
+Drum/*                                     .   .   .
+Piano_AcousticGrand_001.Grand Piano1       0   0 112
+Piano_AcousticGrand_002.Grand_Piano2       0   0   0
+Piano_AcousticGrand_143.Grand_Piano_KSP    0   0   1
+Piano_AcousticGrand_222.Piano_Strings      0   0  40
+Piano_AcousticGrand_243.Dream              0   0  41
+Piano_AcousticGrand_335.Cutting_Noise      0  64   0
+Piano_AcousticBright_003.Bright Piano      1   0   0
+Piano_AcousticBright_144.Bright_Piano_KSP  1   0   1
+Piano_AcousticBright_336.Cutting_Noise_2   1  64   0
+Piano_ElecGrand_008.Electric Grand Piano   2   0   0
+Piano_ElecGrand_145.Electric_Grand_Piano_KSP   2   0   1
+Piano_ElecGrand_188.Detuned_CP80           2   0  32
+Piano_HonkyTonk_004.Honky-tonk Piano       3   0   0
+Piano_HonkyTonk_146.Honky-tonk_Piano_KSP   3   0   1
+Piano_HonkyTonk_337.String_Slap            3  64   0
+Piano_Elec1_006.Electric Piano 1           4   0   0
+Piano_Elec1_147.Electric_Piano_1_KSP       4   0   1
+Piano_Elec1_189.Chorus_Electric_Piano_1    4   0  32
+Piano_Elec2_007.Electric Piano 2           5   0   0
+Piano_Elec2_148.Electric_Piano_2_KSP       5   0   1
+Piano_Elec2_190.Chorus_Electric_Piano_2    5   0  32
+Piano_Elec2_244.DX_+_Analog_Electric_Piano   5   0  41
+Piano_Harpsichord_005.Harpsichord          6   0   0
+Piano_Harpsichord_149.Harpsichord_KSP      6   0   1
+Piano_Harpsichord_208.Harpsichord_3        6   0  35
+Piano_Clavinet_009.Clavi                   7   0   0
+Piano_Clavinet_150.Clavi_KSP               7   0   1
+ChromPerc_Celesta_093.Celesta              8   0   0
+ChromPerc_Glockenspiel_097.Glockenspiel    9   0   0
+ChromPerc_MusicBox_094.Music Box          10   0   0
+ChromPerc_MusicBox_264.Orgel              10   0  64
+ChromPerc_Vibraphone_089.Vibraphone       11   0   0
+ChromPerc_Vibraphone_151.Vibraphone_KSP   11   0   1
+ChromPerc_Marimba_090.Marimba             12   0   0
+ChromPerc_Marimba_152.Marimba_KSP         12   0   1
+ChromPerc_Marimba_265.Sine_Marimba        12   0  64
+ChromPerc_Marimba_321.Balimba             12   0  97
+ChromPerc_Marimba_329.Log_Drums           12   0  98
+ChromPerc_Xylophone_091.Xylophone         13   0   0
+ChromPerc_TubularBells_095.Tubular Bells  14   0   0
+ChromPerc_TubularBells_310.Church_Bells   14   0  96
+ChromPerc_TubularBells_322.Carillon       14   0  97
+ChromPerc_Dulcimer_114.Dulcimer           15   0   0
+ChromPerc_Dulcimer_209.Dulcimer_2         15   0  35
+ChromPerc_Dulcimer_311.Cimbalom           15   0  96
+ChromPerc_Dulcimer_323.Santur             15   0  97
+Organ_Drawbar_010.Drawbar Organ           16   0   0
+Organ_Drawbar_191.Detuned_Drawbar_Organ   16   0  32
+Organ_Drawbar_203.60's_Drawbar_Organ_1    16   0  33
+Organ_Drawbar_206.60's_Drawbar_Organ_2    16   0  34
+Organ_Drawbar_210.70's_Drawbar_Organ_1    16   0  35
+Organ_Drawbar_219.60's_Drawbar_Organ_3    16   0  37
+Organ_Drawbar_223.16+2'2/3                16   0  40
+Organ_Drawbar_266.Organ_Bass              16   0  64
+Organ_Drawbar_280.70's_Drawbar_Organ_2    16   0  65
+Organ_Drawbar_294.Cheezy_Organ            16   0  66
+Organ_Drawbar_302.Drawbar_Organ_3         16   0  67
+Organ_Drawbar_338.Flute_Key_Click         16  64   0
+Organ_Perc_011.Percussive Organ           17   0   0
+Organ_Perc_184.70's_Percussive_Organ      17   0  24
+Organ_Perc_192.Detuned_Percussive_Organ   17   0  32
+Organ_Perc_204.Light_Organ                17   0  33
+Organ_Perc_220.Percussive_Organ_2         17   0  37
+Organ_Rock_012.Rock Organ                 18   0   0
+Organ_Rock_267.Rotary_Organ               18   0  64
+Organ_Rock_281.Slow_Rotary                18   0  65
+Organ_Rock_295.Fast_Rotary                18   0  66
+Organ_Church_013.Church Organ             19   0   0
+Organ_Church_193.Church_Organ_3           19   0  32
+Organ_Church_211.Church_Organ_2           19   0  35
+Organ_Church_224.Notre_Dame               19   0  40
+Organ_Church_268.Organ_Flute              19   0  64
+Organ_Church_282.Tremolo_Organ_Flute      19   0  65
+Organ_Reed_014.Reed Organ                 20   0   0
+Organ_Reed_225.Puff_Organ                 20   0  40
+Organ_Accordian_015.Accordion             21   0   0
+Organ_Harmonica_017.Harmonica             22   0   0
+Organ_Harmonica_194.Harmonica_2           22   0  32
+Organ_AccordianTango_016.Tango Accordion  23   0   0
+Organ_AccordianTango_269.Tango_Accordion_2  23   0  64
+Guitar_NylonStr_018.Nylon Guitar          24   0   0
+Guitar_NylonStr_256.Velocity_Guitar_Harmonics  24   0  43
+Guitar_NylonStr_312.Ukulele               24   0  96
+Guitar_SteelStr_019.Steel Guitar          25   0   0
+Guitar_SteelStr_212.12-string_Guitar      25   0  35
+Guitar_SteelStr_226.Nylon_&_Steel_Guitar  25   0  40
+Guitar_SteelStr_245.Steel_Guitar_with_Body_Sound  25   0  41
+Guitar_SteelStr_313.Mandolin              25   0  96
+Guitar_ElecJazz_020.Jazz Guitar           26   0   0
+Guitar_ElecJazz_195.Jazz_Amp              26   0  32
+Guitar_ElecClean_021.Clean Guitar         27   0   0
+Guitar_ElecClean_196.Chorus_Guitar        27   0  32
+Guitar_ElecMuted_022.Muted Guitar         28   0   0
+Guitar_ElecMuted_227.Funk_Guitar_1        28   0  40
+Guitar_ElecMuted_246.Muted_Steel_Guitar   28   0  41
+Guitar_ElecMuted_260.Jazz_Man             28   0  45
+Guitar_Overdriven_023.Overdriven Guitar   29   0   0
+Guitar_Overdriven_257.Guitar_Pinch        29   0  43
+Guitar_Distortion_024.Distortion Guitar   30   0   0
+Guitar_Distortion_228.Feedback_Guitar     30   0  40
+Guitar_Distortion_247.Feedback_Guitar_2   30   0  41
+Guitar_Harmonics_025.Guitar Harmonics     31   0   0
+Guitar_Harmonics_283.Guitar_Feedback      31   0  65
+Guitar_Harmonics_296.Guitar_Harmonics_2   31   0  66
+Bass_Acoustic_026.Acoustic Bass           32   0   0
+Bass_Acoustic_229.Jazz_Rhythm             32   0  40
+Bass_Acoustic_261.Velocity_Crossfade_Upright_Bass  32   0  45
+Bass_Acoustic_339.Shower                  32  64   0
+Bass_ElecFinger_027.Finger Bass           33   0   0
+Bass_ElecFinger_170.Finger_Dark           33   0  18
+Bass_ElecFinger_230.Bass_&_Distorted_Electric_Guitar  33   0  40
+Bass_ElecFinger_258.Finger_Slap_Bass      33   0  43
+Bass_ElecFinger_262.Finger_Bass_2         33   0  45
+Bass_ElecFinger_284.Modulated_Bass        33   0  65
+Bass_ElecFinger_340.Thunder               33  64   0
+Bass_ElecPick_028.Pick Bass               34   0   0
+Bass_ElecPick_186.Muted_Pick_Bass         34   0  28
+Bass_ElecPick_341.Wind                    34  64   0
+Bass_Fretless_029.Fretless Bass           35   0   0
+Bass_Fretless_197.Fretless_Bass_2         35   0  32
+Bass_Fretless_205.Fretless_Bass_3         35   0  33
+Bass_Fretless_207.Fretless_Bass_4         35   0  34
+Bass_Fretless_342.Stream                  35  64   0
+Bass_Slap1_030.Slap Bass 1                36   0   0
+Bass_Slap1_198.Punch_Thumb_Bass           36   0  32
+Bass_Slap1_343.Bubble                     36  64   0
+Bass_Slap2_031.Slap Bass 2                37   0   0
+Bass_Slap2_259.Velocity_Switch_Slap       37   0  43
+Bass_Slap2_344.Feed                       37  64   0
+Bass_Syn1_032.Synth Bass 1                38   0   0
+Bass_Syn1_231.Techno_Synth_Bass           38   0  40
+Bass_Syn2_033.Synth Bass 2                39   0   0
+Bass_Syn2_156.Mellow_Synth_Bass           39   0   6
+Bass_Syn2_166.Sequenced_Bass              39   0  12
+Bass_Syn2_171.Click_Synth_Bass            39   0  18
+Bass_Syn2_178.Synth_Bass_2_Dark           39   0  19
+Bass_Syn2_232.Modular_Synth_Bass          39   0  40
+Bass_Syn2_248.DX_Bass                     39   0  41
+SoloStr_Violin_040.Violin                 40   0   0
+SoloStr_Violin_160.Slow_Violin            40   0   8
+SoloStr_Viola_041.Viola                   41   0   0
+SoloStr_Cello_042.Cello                   42   0   0
+SoloStr_Contrabass_043.Contrabass         43   0   0
+SoloStr_Tremolo_038.Tremolo Strings       44   0   0
+SoloStr_Tremolo_161.Slow_Tremolo_Strings  44   0   8
+SoloStr_Tremolo_233.Suspense_Strings      44   0  40
+SoloStr_Pizzicato_039.Pizzicato Strings   45   0   0
+SoloStr_Orchestral_044.Orchestral Harp    46   0   0
+SoloStr_Orchestral_234.Yang_Chin          46   0  40
+SoloStr_Timpani_096.Timpani               47   0   0
+Ensemble_Str1_034.Strings 1               48   0   0
+Ensemble_Str1_153.Stereo_Strings          48   0   3
+Ensemble_Str1_162.Slow_Strings            48   0   8
+Ensemble_Str1_213.60's_Strings            48   0  35
+Ensemble_Str1_235.Orchestra               48   0  40
+Ensemble_Str1_249.Orchestra_2             48   0  41
+Ensemble_Str1_254.Tremolo_Orchestra       48   0  42
+Ensemble_Str1_263.Velocity_Strings        48   0  45
+Ensemble_Str1_345.Dog                     48  64   0
+Ensemble_Str2_035.Strings 2               49   0   0
+Ensemble_Str2_154.Stereo_Slow_Strings     49   0   3
+Ensemble_Str2_163.Legato_Strings          49   0   8
+Ensemble_Str2_236.Warm_Strings            49   0  40
+Ensemble_Str2_250.Kingdom                 49   0  41
+Ensemble_Str2_346.Horse                   49  64   0
+Ensemble_SynStrs1_036.Synth Strings 1     50   0   0
+Ensemble_SynStrs1_347.Bird_Tweet_2        50  64   0
+Ensemble_SynStrs2_037.Synth Strings 2     51   0   0
+Ensemble_ChoirAahs_046.Choir Aahs         52   0   0
+Ensemble_ChoirAahs_155.Stereo_Choir       52   0   3
+Ensemble_ChoirAahs_199.Mellow_Choir       52   0  32
+Ensemble_ChoirAahs_237.Choir_Strings      52   0  40
+Ensemble_VoiceOohs_047.Voice Oohs         53   0   0
+Ensemble_SynVoice_048.Synth Voice         54   0   0
+Ensemble_SynVoice_238.Synth_Voice_2       54   0  40
+Ensemble_SynVoice_251.Choral              54   0  41
+Ensemble_SynVoice_270.Analog_Voice        54   0  64
+Ensemble_OrchestraHit_045.Orchestra Hit   55   0   0
+Ensemble_OrchestraHit_214.Orchestra_Hit_2  55   0  35
+Ensemble_OrchestraHit_271.Impact          55   0  64
+Ensemble_OrchestraHit_348.Maou            55  64   0
+Brass_Trumpet_057.Trumpet                 56   0   0
+Brass_Trumpet_200.Warm_Trumpet            56   0  32
+Brass_Trombone_059.Trombone               57   0   0
+Brass_Trombone_172.Trombone_2             57   0  18
+Brass_Tuba_061.Tuba                       58   0   0
+Brass_TrumpetMuted_058.Muted Trumpet      59   0   0
+Brass_FrenchHorn_060.French Horn          60   0   0
+Brass_FrenchHorn_157.French_Horn_Solo     60   0   6
+Brass_FrenchHorn_201.French_Horn_2        60   0  32
+Brass_FrenchHorn_221.Horn_Orchestra       60   0  37
+Brass_BrassSection_062.Brass Section      61   0   0
+Brass_BrassSection_215.Trumpet_&_Trombone_Section  61   0  35
+Brass_Syn1_063.Synth Brass 1              62   0   0
+Brass_Syn1_182.Resonant_Synth_Brass       62   0  20
+Brass_Syn2_064.Synth Brass 2              63   0   0
+Brass_Syn2_173.Soft_Brass                 63   0  18
+Brass_Syn2_252.Choir_Brass                63   0  41
+Reed_SaxSoprano_051.Soprano Sax           64   0   0
+Reed_SaxSoprano_349.Phone_Call            64  64   0
+Reed_SaxAlto_050.Alto Sax                 65   0   0
+Reed_SaxAlto_239.Sax_Section              65   0  40
+Reed_SaxAlto_350.Door_Squeak              65  64   0
+Reed_SaxTenor_049.Tenor Sax               66   0   0
+Reed_SaxTenor_240.Breathy_Tenor_Sax       66   0  40
+Reed_SaxTenor_351.Door_Slam               66  64   0
+Reed_SaxBaritone_052.Baritone Sax         67   0   0
+Reed_SaxBaritone_352.Scratch_Cut          67  64   0
+Reed_Oboe_053.Oboe                        68   0   0
+Reed_Oboe_353.Scratch_Split               68  64   0
+Reed_EnglishHorn_055.English Horn         69   0   0
+Reed_EnglishHorn_354.Wind_Chime           69  64   0
+Reed_Bassoon_056.Bassoon                  70   0   0
+Reed_Bassoon_355.Telephone_Ring_2         70  64   0
+Reed_Clarinet_054.Clarinet                71   0   0
+Pipe_Piccolo_066.Piccolo                  72   0   0
+Pipe_Flute_065.Flute                      73   0   0
+Pipe_Recorder_068.Recorder                74   0   0
+Pipe_FlutePan_067.Pan Flute               75   0   0
+Pipe_BlownBottle_069.Blown Bottle         76   0   0
+Pipe_Skakuhachi_070.Shakuhachi            77   0   0
+Pipe_Whistle_071.Whistle                  78   0   0
+Pipe_Ocarina_072.Ocarina                  79   0   0
+SynLead_Square_073.Square Lead            80   0   0
+SynLead_Square_158.Square_Lead_2          80   0   6
+SynLead_Square_164.LM_Square              80   0   8
+SynLead_Square_174.Hollow                 80   0  18
+SynLead_Square_179.Shroud                 80   0  19
+SynLead_Square_272.Mellow                 80   0  64
+SynLead_Square_285.Solo_Sine              80   0  65
+SynLead_Square_297.Sine_Lead              80   0  66
+SynLead_Square_356.Car_Engine_Ignition    80  64   0
+SynLead_Sawtooth_074.Sawtooth Lead        81   0   0
+SynLead_Sawtooth_159.Sawtooth_Lead_2      81   0   6
+SynLead_Sawtooth_165.Thick_Sawtooth       81   0   8
+SynLead_Sawtooth_175.Dynamic_Sawtooth     81   0  18
+SynLead_Sawtooth_180.Digital_Sawtooth     81   0  19
+SynLead_Sawtooth_183.Big_Lead             81   0  20
+SynLead_Sawtooth_314.Sequenced_Analog     81   0  96
+SynLead_Sawtooth_357.Car_Tires_Squeal     81  64   0
+SynLead_Calliope_075.Calliope Lead        82   0   0
+SynLead_Calliope_286.Pure_Pad             82   0  65
+SynLead_Calliope_358.Car_Passing          82  64   0
+SynLead_Chiff_076.Chiff Lead              83   0   0
+SynLead_Chiff_359.Car_Crash               83  64   0
+SynLead_Charang_077.Charang Lead          84   0   0
+SynLead_Charang_273.Distorted_Lead        84   0  64
+SynLead_Charang_360.Siren                 84  64   0
+SynLead_Voice_078.Voice Lead              85   0   0
+SynLead_Voice_361.Train                   85  64   0
+SynLead_Fifths_079.Fifths Lead            86   0   0
+SynLead_Fifths_216.Big_Five               86   0  35
+SynLead_Fifths_362.Jet_Plane              86  64   0
+SynLead_Bass+Lead_080.Bass & Lead         87   0   0
+SynLead_Bass+Lead_169.Big_&_Low           87   0  16
+SynLead_Bass+Lead_274.Fat_&_Perky         87   0  64
+SynLead_Bass+Lead_287.Soft_Whirl          87   0  65
+SynLead_Bass+Lead_363.Starship            87  64   0
+SynPad_NewAge_081.New Age Pad             88   0   0
+SynPad_NewAge_275.Fantasy                 88   0  64
+SynPad_NewAge_364.Burst                   88  64   0
+SynPad_Warm_082.Warm Pad                  89   0   0
+SynPad_Warm_365.Roller_Coaster            89  64   0
+SynPad_PolySyn_083.Poly Synth Pad         90   0   0
+SynPad_PolySyn_366.Submarine              90  64   0
+SynPad_Choir_084.Choir Pad                91   0   0
+SynPad_Choir_298.Itopia                   91   0  66
+SynPad_Bowed_085.Bowed Pad                92   0   0
+SynPad_Metallic_086.Metallic Pad          93   0   0
+SynPad_Halo_087.Halo Pad                  94   0   0
+SynPad_Sweep_088.Sweep Pad                95   0   0
+SynFX_Rain_105.Rain                       96   0   0
+SynFX_Rain_288.African_Wind               96   0  65
+SynFX_Rain_299.Carib                      96   0  66
+SynFX_Rain_367.Laugh                      96  64   0
+SynFX_Soundtrack_106.Sound Track          97   0   0
+SynFX_Soundtrack_185.Prologue             97   0  27
+SynFX_Soundtrack_368.Scream               97  64   0
+SynFX_Crystal_107.Crystal                 98   0   0
+SynFX_Crystal_167.Synth_Drum_Comp         98   0  12
+SynFX_Crystal_168.Popcorn                 98   0  14
+SynFX_Crystal_176.Tiny_Bells              98   0  18
+SynFX_Crystal_217.Round_Glockenspiel      98   0  35
+SynFX_Crystal_241.Glockenspiel_Chimes     98   0  40
+SynFX_Crystal_253.Clear_Bells             98   0  41
+SynFX_Crystal_255.Chorus_Bells            98   0  42
+SynFX_Crystal_289.Soft_Crystal            98   0  65
+SynFX_Crystal_305.Air_Bells               98   0  70
+SynFX_Crystal_307.Bell_Harp               98   0  71
+SynFX_Crystal_309.Gamelimba               98   0  72
+SynFX_Crystal_369.Punch                   98  64   0
+SynFX_Atmosphere_108.Atmosphere           99   0   0
+SynFX_Atmosphere_177.Warm_Atmosphere      99   0  18
+SynFX_Atmosphere_181.Hollow_Release       99   0  19
+SynFX_Atmosphere_242.Nylon_Electric_Piano  99   0  40
+SynFX_Atmosphere_276.Nylon_Harp           99   0  64
+SynFX_Atmosphere_290.Harp_Vox             99   0  65
+SynFX_Atmosphere_300.Atmosphere_Pad       99   0  66
+SynFX_Atmosphere_370.Heartbeat            99  64   0
+SynFX_Brightness_109.Brightness          100   0   0
+SynFX_Brightness_371.Footsteps           100  64   0
+SynFX_Goblins_110.Goblins                101   0   0
+SynFX_Goblins_277.Goblins_Synth          101   0  64
+SynFX_Goblins_291.Creeper                101   0  65
+SynFX_Goblins_303.Ritual                 101   0  67
+SynFX_Goblins_304.To_Heaven              101   0  68
+SynFX_Goblins_306.Night                  101   0  70
+SynFX_Goblins_308.Glisten                101   0  71
+SynFX_Goblins_315.Bell_Choir             101   0  96
+SynFX_Echoes_111.Echoes                  102   0   0
+SynFX_SciFi_112.Sci-Fi                   103   0   0
+Ethnic_Sitar_113.Sitar                   104   0   0
+Ethnic_Sitar_202.Detuned_Sitar           104   0  32
+Ethnic_Sitar_218.Sitar_2                 104   0  35
+Ethnic_Sitar_324.Tamboura                104   0  97
+Ethnic_Banjo_115.Banjo                   105   0   0
+Ethnic_Banjo_187.Muted_Banjo             105   0  28
+Ethnic_Banjo_316.Rabab                   105   0  96
+Ethnic_Banjo_325.Gopichant               105   0  97
+Ethnic_Banjo_330.Oud                     105   0  98
+Ethnic_Shamisen_116.Shamisen             106   0   0
+Ethnic_Koto_117.Koto                     107   0   0
+Ethnic_Koto_317.Taisho-kin               107   0  96
+Ethnic_Koto_326.Kanoon                   107   0  97
+Ethnic_Kalimba_118.Kalimba               108   0   0
+Ethnic_Bagpipe_119.Bagpipe               109   0   0
+Ethnic_Fiddle_120.Fiddle                 110   0   0
+Ethnic_Shanai_121.Shanai                 111   0   0
+Perc_TinkleBell_098.Tinkle Bell          112   0   0
+Perc_TinkleBell_318.Bonang               112   0  96
+Perc_TinkleBell_327.Altair               112   0  97
+Perc_TinkleBell_331.Gamelan_Gongs        112   0  98
+Perc_TinkleBell_333.Stereo_Gamelan_Gongs 112   0  99
+Perc_TinkleBell_334.Rama_Cymbal          112   0 100
+Perc_TinkleBell_372.Machine_Gun          112  64   0
+Perc_Agogo_099.Agogo                     113   0   0
+Perc_Agogo_373.Laser_Gun                 113  64   0
+Perc_SteelDrums_092.Steel Drums          114   0   0
+Perc_SteelDrums_328.Glass_Percussion     114   0  97
+Perc_SteelDrums_332.Thai_Bells           114   0  98
+Perc_SteelDrums_374.Explosion            114  64   0
+Perc_WoodBlock_100.Woodblock             115   0   0
+Perc_WoodBlock_319.Castanets             115   0  96
+Perc_WoodBlock_375.Firework              115  64   0
+Perc_TaikoDrum_101.Taiko Drum            116   0   0
+Perc_TaikoDrum_320.Gran_Cassa            116   0  96
+Perc_MelodicTom_102.Melodic Tom          117   0   0
+Perc_MelodicTom_278.Melodic_Tom_2        117   0  64
+Perc_MelodicTom_292.Real_Tom             117   0  65
+Perc_MelodicTom_301.Rock_Tom             117   0  66
+Perc_SynDrum_103.Synth Drum              118   0   0
+Perc_SynDrum_279.Analog_Tom              118   0  64
+Perc_SynDrum_293.Electronic_Percussion   118   0  65
+Perc_RvrsCymbal_104.Reverse Cymbal       119   0   0
+SndFX_GuitarFret_122.Fret Noise          120   0   0
+SndFX_BreathNoise_123.Breath Noise       121   0   0
+SndFX_Seashore_124.Seashore              122   0   0
+SndFX_BirdTweet_125.Bird Tweet           123   0   0
+SndFX_TeleRing_126.Telephone Ring        124   0   0
+SndFX_Helicopter_127.Helicopter          125   0   0
+SndFX_Applause_128.Applause              126   0   0
+SndFX_Gunshot_129.Gunshot                127   0   0

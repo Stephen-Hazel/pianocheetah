@@ -1,0 +1,34 @@
+--- Rock 20
+s kick          hhop
+s          hhcl
+s kick     hhcl
+s          hhcl
+s     snar      hhop
+s          hhcl
+s kick     hhcl
+s          hhcl
+s kick          hhop
+s          hhcl
+s          hhcl
+s kick     hhcl
+s     snar hhcl
+s          hhcl
+s kick          hhop
+s
+--
+s          hhcl
+s kick     hhcl
+s          hhcl
+s kick     hhcl
+s     snar      hhop
+s          hhcl
+s kick     hhcl
+s          hhcl
+s kick          hhop
+s          hhcl
+s kick          hhop
+s          hhcl
+s     snar hhcl
+s          hhcl
+s kick          hhop
+s          hhcl

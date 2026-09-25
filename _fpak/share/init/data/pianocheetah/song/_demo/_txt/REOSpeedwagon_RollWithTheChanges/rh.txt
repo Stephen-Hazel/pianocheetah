@@ -1,0 +1,719 @@
+-- 1
+!section=intro
+qqq
+s
+s  3g
+s   a
+se 3g4c
+--
+e  3g4c
+e  3g4e
+s  3g
+ss   4c
+s  3g
+s    4c
+ss 3g4e
+s  3g
+s    4c
+s  3g
+--
+e
+e 3a
+e 3a4f
+s 3a
+ss  4c
+s 3a
+s   4c
+ss 3a4f
+s 3a
+s 4c
+s 3a
+-- 4
+e
+e 3b@
+e  b@4df
+s 3a
+se a4cf
+e 3a
+e  a4cf
+s 3a
+se 3g4ce
+--
+e 3g
+e  g4e
+s 3g
+ss 4c
+s 3g
+s 4c
+ss 3g4e
+s 3g
+s 4c
+s 3g
+-- 6
+e
+e 3g
+e 3g4ce
+s 3g
+se 3g4ce
+es 3g4ce
+s  3g
+s  4c
+s  3g
+--
+e
+e  3a
+e  3a4cf
+s  3a
+ss 3a4cf
+s  3a
+s  4c
+ss 3a4f
+s 3a
+s 4c
+s 3a
+-- 8
+e
+e 3b@
+e  b@4df
+s 3a
+se a4cf
+e 3a
+e 3a4cf
+s 3a
+se 3g4ce
+--
+e 3g4ce
+e 3g4ce
+e 3g4ce
+q 3g4ce
+e.
+se 3g4ce
+-- 10 verse
+!section=verse
+e 3g
+e g4e
+s 3g
+se 4c
+ee 3g4e
+s 3g4e
+se 3a4f
+--
+e  3a4cf
+e  3a4cf
+s  3a
+ss 3a4cf
+s  3a
+e  3a4cf
+e  3a4cf
+s  3a
+se 3b@4df
+-- 12
+es 3b@4df
+e  3b@4df
+se 3b@4df
+s  3a4cf
+ss 3a4cf
+e  3a4cf
+se 3a4cf
+--
+e  3g4ce
+e  3g4ce
+s  3g
+se 3g4ce
+e  3g4ce
+q  3g4ce
+-- 14
+e
+e  3g4ce
+e  3g4ce
+s  3g
+ss 3g4ce
+s    4c
+s  3g
+se   4c
+s  3g4ce
+s  3g4ce
+--
+e  3a4cf
+e  3a4cf
+e  3a4cf
+s  3a
+se 3a4cf
+e  3a4cf
+s  3a4cf
+s  3a
+s    4c
+s  3a
+-- 16
+s
+e  3b@4df
+ss 3b@4df
+e  3b@4df
+ss 3a4cf
+e  3a4cf
+ss 3a4cf
+e  3a4cf
+se 3a4cf
+--
+e  3g4ce
+e. 3g4ce
+se 3g4ce
+e  3g4ce
+e  3g4ce
+e  3g4ce
+-- 18
+q  3fb@4d
+q  3fb@4d
+e. 3g4df
+sq 3g4df
+--
+e  3g4ce
+e  3g4ce
+e  3g4ce
+e  3g4ce
+s 4ceg
+s  c
+s   e
+ss 3g4df
+s  3g4df
+e  3g4ce
+-- 20
+q  3fb@4d
+q  3fb@4d
+q  3a4df
+e. 3a4df
+se 3a4cf
+--
+s  3g4ce
+s  3g4ce
+s  3g
+s  3g
+s  3g
+ss 3g4df
+s  3g4ce
+s  3g
+ss 3g4df
+s  3g4df
+e  4c
+-- 22
+e  3fb@4d
+es 3fb@4d
+e. 3fb@4d
+e  3a4df
+es 3a4df
+e. 3a4df
+--
+e 3g4ce
+e 3g4ce
+e 3g4ce
+e 3g4ce
+s 4ceg
+s 4c
+s   e
+ss 3g4df
+s  3g4df
+e  3g4ce
+-- 24
+!section=verseend1
+e
+e 3g4df
+s
+e 3g4df
+s
+e 3g4df
+s
+s 3g4df
+e
+e 3g4df
+--
+e
+e 3g4df
+s
+e 3g4df
+s
+e 3g4df
+e
+q
+-- 26
+e
+e  3g4ce
+e  3g4ce
+s  3g
+se 3g4ce
+e  3g4ce
+q  3g4ce
+--
+e
+e  3a4cf
+e  3a4cf
+s  3a
+ss 3a4cf
+s  3a4cf
+e  3a4cf
+q  3a4cf
+-- 28
+e
+es 3b@4df
+e  3b@4df
+ss 3b@4df
+e  3a4cf
+ss 3a4cf
+e  3a4cf
+se 3a4cf
+--
+e  3g4ce
+s  3g4ce
+e. 3g4ce
+e  3g4ce
+e
+e.
+s  3g4ce
+-- 30
+!section=verseend2
+e
+e 3g4df
+s
+e 3g4df
+s
+e 3g4df
+s
+s 3g4df
+e
+e 3g4df
+--
+e
+e 3g4df
+s
+e 3g4df
+s
+s 3g4df
+s 3g
+s  g
+s  g
+s  g
+s  g
+s  g
+s  g
+-- 32
+!section=prechorus
+e  3g
+e  3g4ce
+e  3g4ce
+s  3g
+ss 3g4ce
+s  3g4ce
+e  3g4ce
+e  3g4ce
+s  3g4ce
+s  3g4ce
+--
+s
+s  3a4cf
+e  3a4cf
+e. 3a4cf
+ss 3a4cf
+s  3a4cf
+e  3a4cf
+e  3a4cf
+e  3a
+-- 34
+e 3b@4df
+e 3b@4df
+s
+s 3b@4df
+s 3b@4df
+s 3b@4df
+e
+s  3a4cf
+ss 3a4cf
+e  3a4cf
+s  3a4cf
+--
+!section=prechorus1
+e
+e  3g4ce
+e. 3g4ce
+ss 3g4df
+e  3g4ce
+ss 3g4df
+s  3g4df
+e  3g4ce
+-- 36
+!section=prechorus2
+e.
+ss 3g4cg
+s  3g
+s  3g
+ss 3g4cg
+s  3g
+s  3g
+sq 3g4cg
+--
+e  3b@4df
+es 3b@4df
+e. 3b@4df
+e
+e  3a4df
+e. 3a4df
+s  3a4df
+-- 38
+e
+e 3g4ce
+q 3g4ce
+s 4ceg
+s 4c
+s  e
+ss 3g4df
+s  3g4df
+e 3g4ce
+--
+q 3fb@4d
+q 3fb@4d
+e 3a4df
+e 4a
+e 3a4df
+s 4a
+se 3a4cf
+-- 40
+s  3g4ce
+s  3g4ce
+s  3g4ce
+s  3g
+s  3g
+ss 3g4df
+s  3g4ce
+s  3g
+ss 3g4df
+s  3g4df
+e  3g4ce
+--
+e  3fb@4d
+s  3fb@4d
+ss 3fb@4d
+e. 3fb@4d
+e  3a4df
+s  3a4df
+s  3a4df
+q  3a4df
+-- 42
+e 3g4ce
+e 3g4ce
+e 3g4ce
+e 3g4ce
+s 4ceg
+s  c
+s   e
+ss 3g4df
+s  3g4df
+e  3g4ce
+--
+e
+e 3g4df
+s
+e 3g4df
+s
+e 3g4df
+s
+s 3g4df
+s
+s 3g
+e 4c
+-- 44
+e
+e 3g4df
+s
+e 3g4df
+s
+e 3g4df
+s
+s 3g4df
+e
+e 4c
+--
+e
+s 3g4df
+s 3g4df
+s
+s 3g4df
+e 4c
+e
+s 3g4df
+s 3g4df
+s
+s 3g4df
+e 4c
+-- 46
+e
+s 3g4df
+s 3g4df
+s
+e 3g4df
+s
+e
+s 3g4df
+s 3g4df
+s
+e 3g4df
+s- 3g4ce
+--
+!section=chorus
+e 3g4ce
+e 3g4ce
+s
+e 3g4ce
+ss 3g4ce
+s 3g
+s  g
+ss 3g4c
+s  3g
+s  4c
+s   c
+-- 48
+e
+e  3a4cf
+e. 3a4cf
+se 3a4cf
+s  3a4cf
+s  3a4cf
+e  3a4cf
+e  3a
+--
+s  3b@4df
+e  3b@4df
+ss 3b@4df
+e  3b@4df
+ss 3a4cf
+e  3a4cf
+ss 3a4cf
+e  3a4cf
+se 3g4ce
+--
+e  3g4ce
+e  3g4ce
+s  3g
+se 3g4ce
+es 3g4ce
+e  3g4c
+s- 3g4ce
+-- 51
+!section=solo
+e 3g4ce
+e 3g
+s 3g4e
+s 3g
+s g
+ss g4c
+s 3g
+e g
+e. g4c
+s 3g4ce
+--
+s 3a4cf
+s 3a4cf
+e 3a4cf
+e. 3a4cf
+es 3a4cf
+s 3a4cf
+e 3a4cf
+e 3a4cf
+s 3a4cf
+-- 53
+e
+e 3b@4df
+s
+e 3b@4df
+s 3b@4df
+s
+s 3a4cf
+s 3a4cf
+ss 3a4cf
+e 3a4cf
+se 3g4ce
+--
+e  3g4ce
+e. 3g4ce
+se 3g4ce
+e  3g4ce
+e  3g4ce
+e  3g4ce
+-- 55
+e
+e  3g4ce
+e. 3g4ce
+ss 3g4ce
+s  3g4ce
+e  3g4ce
+e. 3g4ce
+s  3g4ce
+--
+s
+s 3a4cf
+e 3a4cf
+e. 3a4cf
+ss 3a4cf
+s 3a4cf
+e 3a4cf
+e. 3a4cf
+s 3a4cf
+-- 57
+e
+e 3b@4df
+s
+e 3b@4df
+s 3b@4df
+s
+s 3a4cf
+s 3a4cf
+ss 3a4cf
+e 3a4cf
+ss 3g4ce
+--
+s  3g4ce
+e  3a4cf
+e. 3g4ce
+ss 3g4df
+e  3g4ce
+ss 3g4df
+s  3g4df
+e 3g4ce
+-- 59
+e
+e  3g4ce
+s  3g4ce
+e  3g4ce
+se 3g4ce
+e  3g4ce
+e  3g4ce
+s  3g4ce
+s  3g4ce
+--
+s  3a4cf
+s  3a4cf
+e  3a4cf
+s  3a4cf
+e  3a4cf
+se 3a4cf
+e  3a4cf
+e. 3a4cf
+se 3b@4df
+-- 61
+es 3b@4df
+e  3b@4df
+ss 3b@4df
+e  3a4cf
+ss 3a4cf
+e  3a4cf
+se 3g4ce
+--
+e  3g4ce
+e  3g4ce
+s  3g4ce
+se 3g4ce
+e  3g4ce
+e  3g4ce
+e  3g4ce
+-- 63
+e
+e 3g4ce
+s 3g
+s  g
+s 4c
+s c
+s 3g
+s  g
+e 4c
+s
+e 3g4ce
+s 3g4ce
+--
+s 3a4cf
+s 3a4cf
+e 3a4cf
+s 3a4cf
+e 3a4cf
+se 3a4cf
+e 3a4cf
+s 3a4cf
+e 3a4cf
+s 3a4cf
+-- 65
+e
+e  3b@4df
+s
+e  3b@4df
+ss 3b@4df
+e  3a4cf
+ss 3a4cf
+e  3a4cf
+s- 3g4ce
+--
+!section=soloend1
+e 3g4ce
+e 3g4ce
+e 3g4ce
+e 3g4ce
+e 3g4ce
+e 3g4ce
+e 3g4ce
+s 3g4ce
+s- 3g4ce
+-- 67
+!section=soloend2
+e  3g4ce
+e  3g4ce
+s  3g4ce
+e  3g4ce
+s  3g4ce
+e. 3g4ce
+ss 3g4ce
+s  3g4ce
+s  3g4ce
+s- 3g4ce
+--
+!section=coda
+e 3g4ce
+e 3g4ce
+s
+e 3g4ce
+ss 3g4ce
+s 3g4ce
+e 3g4ce
+e 3g4ce
+e 3g4ce
+--
+e
+e 3a4cf
+s
+e 3a4cf
+sq 3a4cf
+e 3a4cf
+e 3a4cf
+-- 70
+!section=codaend1
+e  3b@4df
+e  3b@4df
+e  3b@4df
+s  3b@
+se 3a4cf
+e  3a
+e  3a4cf
+s  3a
+se 3g4ce
+--
+e  3g
+e  3g4e
+s  3g
+ss 3g4c
+s  3g4c
+s  3g
+ss 3g4c
+s  3g4c
+e  3g
+-- 72
+!section=codaend2
+h 3b@4df
+h 3a4cf
+--
+w 4ceg
+--
+w

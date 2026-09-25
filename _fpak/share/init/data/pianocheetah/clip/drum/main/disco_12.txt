@@ -1,0 +1,19 @@
+s kick      tamb hhcl
+s
+s kick      tamb hhcl
+s           tamb
+--
+s kick snar tamb hhcl
+s
+s           tamb hhcl
+s      snar tamb
+--
+s kick      tamb hhcl
+s
+s      snar tamb hhcl
+s           tamb
+--
+s kick snar tamb hhcl
+s kick
+s           tamb hhcl
+s      snar tamb

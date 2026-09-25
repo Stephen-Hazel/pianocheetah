@@ -1,0 +1,9 @@
+cc64 Hold damper pedal
+cc66 Sust sostenuto pedal
+cc67 Soft soft pedal
+Prog .    toss all these - they just hang off lame progch's
+cc32 .    banklo
+cc0  .    bank
+cc91 .    rvrb
+cc93 .    chor
+cc95 .    other fx

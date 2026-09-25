@@ -1,0 +1,13 @@
+--- Blues 4
+e3 kick      hhcl      ride
+e3 
+e3 kick      hhcl      ride
+e3      snar           ride
+e3
+e3 kick      hhcl      ride
+e3 kick                ride
+e3
+e3 kick      hhcl      ride
+e3      snar           ride
+e3 kick           hhop
+e3 kick      hhcl

@@ -5,4 +5,5 @@ Comment=piano for mere mortals
 Exec=pianocheetah %F
 Icon=app.shaz.pianocheetah
 Categories=AudioVideo;Audio;Midi;
+MimeType=inode/directory;
 Terminal=false

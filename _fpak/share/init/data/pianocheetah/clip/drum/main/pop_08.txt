@@ -1,0 +1,17 @@
+--- Pop 8
+s kick     hhcl
+s
+s kick         hhop
+s
+s     snar!hhcl!
+s
+s kick         hhop
+s
+s          hhcl
+s
+s kick         hhop
+s
+s     snar!hhcl!
+s
+s kick         hhop
+s

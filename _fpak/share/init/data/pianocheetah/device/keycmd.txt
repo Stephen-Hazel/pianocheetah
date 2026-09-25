@@ -1,0 +1,25 @@
+# don't change 1st column :/
+song<    3c   z
+song>    3d   x
+songRand 3c#  a
+songKill .    !
+exit     3d#  esc
+tempoHop 3e   t
+tempo<   3f   f02
+tempo>   3f#  f03
+tran<    .    f11
+tran>    .    f12
+fullscr  3g   v
+timeBar1 4c   1
+time<    4c#  2
+time>    4d   3
+time<<   4d#  lft
+time>>   4e   rit
+timePoz  4f   spc
+timeBug  .    b
+learn    4g   l
+recWipe  4g#  w
+recSave  4a   s
+color    4a#  c
+hearRec  4b   .
+hearLoop 5c   /

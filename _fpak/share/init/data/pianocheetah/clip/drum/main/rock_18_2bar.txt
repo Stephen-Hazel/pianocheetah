@@ -1,0 +1,34 @@
+--- Rock 19
+s kick     hhcl
+s
+s kick          hhop
+s
+s     snar hhcl
+s
+s kick          hhop
+s
+s          hhcl
+s
+s kick          hhop
+s
+s     snar hhcl
+s
+s kick          hhop
+s
+--
+s          hhcl
+s
+s kick          hhop
+s
+s     snar hhcl
+s
+s kick          hhop
+s
+s kick     hhcl
+s
+s kick     hhcl
+s kick
+s     snar      hhop
+s
+s          hhcl
+s

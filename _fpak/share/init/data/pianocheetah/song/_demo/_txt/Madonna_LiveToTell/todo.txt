@@ -1,0 +1,2 @@
+when hopping from chorus to trans2, held notes get chopped
+ - so rebar the transistions so no held notes across sections

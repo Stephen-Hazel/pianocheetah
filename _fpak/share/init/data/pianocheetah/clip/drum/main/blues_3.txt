@@ -1,0 +1,13 @@
+--- Blues 3
+e3 kick      hhcl
+e3           hhcl!
+e3 kick      hhcl
+e3      snar hhcl
+e3           hhcl!
+e3 kick      hhcl
+e3 kick      hhcl
+e3           hhcl!
+e3 kick      hhcl
+e3      snar hhcl
+e3 kick!          hhop!
+e3           hhcl

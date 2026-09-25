@@ -1,0 +1,17 @@
+--- Rock Break 8
+s kick      toml
+s
+s           toml
+s
+s kick!snar!toml!
+s
+s      snar!toml!
+s
+s kick      toml
+s
+s      snar!toml!
+s
+s kick!snar!toml!
+s
+s           toml
+s

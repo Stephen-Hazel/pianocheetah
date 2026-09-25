@@ -1,0 +1,34 @@
+--- Rock 17
+s kick          hhop
+s          hhcl
+s          hhcl
+s          hhcl
+s     snar hhcl
+s          hhcl
+s          hhcl
+s          hhcl
+s kick          hhop
+s          hhcl
+s          hhcl
+s          hhcl
+s     snar hhcl
+s          hhcl
+s          hhcl
+s          hhcl
+--
+s kick          hhop
+s          hhcl
+s          hhcl
+s          hhcl
+s     snar hhcl
+s          hhcl
+s          hhcl
+s          hhcl
+s kick          hhop
+s          hhcl
+s kick          hhop
+s          hhcl
+s     snar hhcl
+s kick          hhop
+s          hhcl
+s          hhcl

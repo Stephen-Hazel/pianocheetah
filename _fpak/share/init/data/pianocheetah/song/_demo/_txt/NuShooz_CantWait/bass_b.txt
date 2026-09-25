@@ -1,0 +1,8 @@
+-- Bass pattern 2
+e 3c
+e c
+e 2b
+e b
+e e
+q e
+e e

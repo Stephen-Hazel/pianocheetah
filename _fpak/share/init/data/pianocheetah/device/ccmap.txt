@@ -1,0 +1,3 @@
+rk88 bend kSig
+pedz pedl1 keyCmd
+pedz pedl2 vol

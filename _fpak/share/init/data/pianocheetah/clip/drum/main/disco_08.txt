@@ -1,0 +1,19 @@
+s kick      clap hhcl
+s                hhcl
+s           clap hhcl
+s                hhop
+--
+s kick snar clap
+s                hhcl
+s                hhcl
+s                hhop
+--
+s kick           hhcl
+s                hhcl
+s                hhcl
+s      snar
+--
+s kick snar clap
+s                hhcl
+s                hhcl
+s                hhop

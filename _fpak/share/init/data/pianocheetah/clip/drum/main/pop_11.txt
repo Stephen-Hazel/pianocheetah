@@ -1,0 +1,17 @@
+--- Pop 11
+s     snar
+s          hhcl
+s kick     hhcl
+s          hhcl
+s     snar!
+s kick     hhcl
+s          hhcl
+s kick     hhcl
+s     snar
+s          hhcl
+s kick     hhcl
+s          hhcl
+s     snar!
+s kick     hhcl
+s          hhcl
+s kick     hhcl

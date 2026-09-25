@@ -1,0 +1,17 @@
+--- Rock Break 5
+s kick     hhcl
+s
+s kick     hhcl
+s
+s     snar!hhcl!
+s
+s     snar
+s     snar
+s kick                tmdl
+s
+s                     tmdl!
+s
+s             hhop!tomh!
+s                  tomh
+s                  tomh!
+s

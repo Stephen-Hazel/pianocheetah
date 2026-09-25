@@ -1,0 +1,17 @@
+--- Pop 6
+s kick     hhcl
+s kick
+s          hhcl
+s kick
+s     snar!hhcl!
+s
+s          hhcl
+s
+s kick     hhcl
+s kick
+s          hhcl
+s kick
+s     snar!hhcl!
+s
+s          hhcl
+s

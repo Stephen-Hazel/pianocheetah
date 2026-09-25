@@ -1,0 +1,36 @@
+-- NuShooz_CantWait_song.txt - should take melody out of RH eventually...
+$cd@fga@
+--
+!name=rh
+!mode=?rh
+!sound=SynLead_Sawtooth
+#rh
+NextTrack
+--
+!name=lh
+!mode=?lh
+!sound=Bass_Syn1
+#lh
+NextTrack
+-- markers in here
+!name=vocal
+!sound=SynLead_Voice
+#vocal
+NextTrack
+--
+!name=drum
+!Tmpo=120
+#drum
+NextTrack
+--
+unroll
+intro
+verse
+chorus
+bridge1
+intro
+verse
+chorus
+bridge2
+coda
+coda

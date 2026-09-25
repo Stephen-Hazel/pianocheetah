@@ -1,0 +1,4 @@
+cc64 pedl1
+cc65 pedl2
+cc66 pedl3
+cc67 pedl4

@@ -1,0 +1,11 @@
+PBnd PBnd  pitch bender
+cc1  Mod   mod wheel
+cc64 Hold  pedal 1 (variable)
+cc66 Soft  pedal 2 (switch)
+cc7  zone1 teeny lame little slider
+cc32 Prog  BnkL is more specific than progchange itself for cp33
+Prog .     toss all these - they just hang off lame progch's
+cc0  .     bank
+cc91 .     rvrb
+cc93 .     chor
+cc95 .     other fx

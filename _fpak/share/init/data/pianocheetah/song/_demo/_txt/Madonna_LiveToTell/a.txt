@@ -1,0 +1,33 @@
+-- LiveToTell.txt:  Madonna - "Live To Tell"
+$cdefga@
+!name=drum
+!Tmpo=97
+#drum/main/1234 71
+NextTrack
+--
+!name=lh
+#lh
+NextTrack
+--
+!name=rh
+#rh
+NextTrack
+--
+-- markers in here
+!name=vocal
+!sound=Ensemble_SynVoice
+#vocal
+unroll
+intro
+verse
+chorus
+trans1
+intro
+verse
+chorus
+trans2
+chorus2
+trans3
+solo
+trans4
+chorus2

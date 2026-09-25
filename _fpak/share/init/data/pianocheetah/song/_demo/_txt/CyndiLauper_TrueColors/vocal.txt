@@ -1,0 +1,240 @@
+-- Vocal.txt
+!section=intro
+---------------------------------------- 1
+w
+w
+w
+-------
+h
+e- 4e@
+e   d
+e   d
+e   c
+!section=verse
+---------------------------------------- 5
+h   c
+s  3a
+e.q g
+-------
+e 4e
+e  f
+e  g
+ee g
+e  f
+e  e
+e  d
+-------
+e   d
+e   e
+qe  c
+q. 3a
+------- 8
+e 4d
+e  d
+e  d
+e  d
+q  c
+e
+s 3b
+s  b
+-------
+q. 4c
+s   c
+s   c
+e   d
+s-  c
+sq  d
+------- 10
+e 4c
+e  e
+e  f
+e  g
+e  g
+e  a
+e  c
+s  c
+s  c
+-------
+e d
+e d
+e d
+e d
+e d
+e c
+e c
+e c
+------- 12
+e  c
+q  c
+ee c
+s  c
+s  c
+e  e
+e  g
+!section=chorus
+---------------------------------------- 13
+q. a
+s- a
+se g
+q  g
+e, ee e
+-------
+e
+e  d
+s- d
+e. e
+e
+e  c
+e  e
+e  g
+------- 15
+q. a
+s- a
+se g
+q  g
+e  c
+-------
+e   a
+e   a
+e   a
+ee- a
+e   g
+e   g
+e   g
+-------
+e   a
+e   a
+e   g
+ee- g
+q   c
+e   c
+------- 18
+e  d
+q  d
+ee d
+e  c
+q  c
+-------
+q. c
+ee c
+e  c
+q
+-------
+q.  c
+es- c
+s   d
+e   e
+e
+e  3g
+-------
+q. 4e
+e   d
+q   d
+e   c
+e   c
+!section=trans1
+---------------------------------------- 22
+q.- c
+e  3a
+h   a
+-------
+w
+-------
+w
+------- 25
+h
+e- 4e@
+q   d
+s   c
+s   c
+!section=coda
+---------------------------------------- 26
+q.- 4c
+e   3a
+h    a
+-------
+w
+------- 28
+w
+-------
+w
+------- 30
+q. 4c
+ee  c
+q   c
+e
+-------
+q. c
+ee c
+q  c
+e
+------- 32
+q. c
+ee c
+e  e
+e  g
+e, ee a
+-------
+e
+e  g
+s- g
+e. a
+e
+e  c
+e  e
+e  g
+-------
+q. a
+s- a
+se g
+q  g
+e  g
+------- 35
+e   a
+e   a
+e   a
+ee- a
+e   g
+e   g
+e   g
+-------
+e  5c
+e   c
+e  4a
+eq 5c
+e
+e  4e
+-------
+e   d
+q   d
+ee- d
+e-  c
+e  3a
+e   a
+------- 38
+q. 4c
+ee  c
+q   c
+e
+-------
+q.  c
+es- c
+s   d
+e   e
+e
+e  3g
+-------
+q. 4e
+e   d
+q   d
+e  3b
+e  3b
+------- 41
+q.- 4c
+s-  3b
+s    a
+qw-  a
+------- ^2 bars
+w
+-------
+w

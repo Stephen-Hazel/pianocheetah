@@ -1,0 +1,350 @@
+!vol=80
+---------------------------------------- intro 1
+e 4b,   h eg
+e b
+e 5d
+e c
+e 4gb,  q e
+s 5c
+s 4g
+e
+e b
+----------
+e  4b,  q.s df
+e  b
+e  5d
+s  c
+sq 4dfgb
+e
+e  b
+---------- 3
+e 4b,   h eg
+e b
+e 5d
+e c
+e 4gb,  h e
+s 5c
+s 4g
+q
+----------
+s  4f,  h 3a4cd
+e  g
+s  f
+e. g
+s  f%
+e  3b4dfg
+q
+e  b
+----------
+e 4b,   h eg
+e b
+e 5d
+e c
+e 4b,   q eg
+s 5c
+s 4g
+e
+e b
+---------- 6
+e  4b,  q.s df
+e  b
+e  5d
+s  c
+sq 4dfgb
+e
+e  b
+----------
+e 4b,   q ceg
+e b
+e 5d
+e c
+e 4cegb
+s 5c
+s 4g
+q
+----------
+s  4f,  q. a5c
+e  d
+s  f
+e  d
+e  f%
+e  4fgb5d
+e
+e  4b
+e,     ee g
+---------------------------------------- verse 9
+e
+e 4b
+q
+h cegb
+----------
+e 4g,   h cdf
+e a
+e g
+e a
+e gb,  h df%
+e a
+e g
+e g
+----------
+q 4d
+q
+h cegb
+---------- 12
+h 4cdfa
+e df%gb
+e f
+e c
+e c
+----------
+e   4c
+e   3b
+e
+eq. cegb
+e   b
+----------
+q 4c,    h 3dfa
+q 3b
+q 4df%,  h 3gb
+e 4c
+e c
+---------- 15
+h 3b
+h cegb
+----------
+h  4cdfa
+q. df%gb
+s  b
+s  g
+----------
+q  4b
+e
+eh cegb
+---------- 18
+q  4f,  h 3a4cd
+e  f
+e  g
+q  5c, hq. 4df%gb
+e  5d
+eq c
+----------
+e  5d
+eh 4cegb
+----------
+q. 4cdfa
+eq df%gb
+e  b
+ee g
+---------- 21
+e 4b
+q
+h cegb
+----------
+e 4g,   h 3a4cd
+e a
+e g
+e a
+e gb,  h df%
+e a
+e g
+e g
+----------
+e 4d
+q.,    q.h g
+h 3b4ce
+----------
+q. 3a4cdf
+e  3a4cdf%
+e  g,  h 3b4d
+q  f
+e, eq g
+---------------------------------------- chorus 25
+h
+q 3gb4ce
+e g
+e f
+----------
+e 4g,   h 3a4cd
+e f
+e g
+e f%
+e g,   q 3gb4d
+e f
+e c
+e c
+---------- 27
+q  3b
+e
+eh cegb
+----------
+h  4cdfa
+e  df%gb
+e  g
+e  f
+eq g
+----------
+q
+h 3b4ceg
+---------- 30
+q
+e 4g,   q 3a4cd
+e f%
+q 3b4dfg
+e b
+e b
+---------------------------------------- bridge1 31
+q 4g
+q
+h 3b4ceg
+----------
+e 3a4cdf
+q 3a4cdf
+e 3b4df%g
+q
+e
+e b
+---------------------------------------- bridge2 33
+q 4b
+q
+h cegb
+----------
+q. 4cdfa
+ee df%gb
+e  g
+e  f
+eq g
+----------
+q
+q. 3b4ceg
+e  f
+---------- 36
+e 4g,   h 3a4cd
+e f
+e g
+e f%
+e g,   q 3b4d
+e f
+e c
+e c
+----------
+q 3b
+q
+e 4g,   h 3b4ce
+e g
+e f
+e,     ee f
+----------
+e,     q 3a4cd
+e d
+e f%
+e g,   eh 3b4df
+e g
+q f
+e g
+---------- 39
+q 4b
+q
+h cegb
+----------
+e 4g,   h 3a4cd
+e f
+e g
+e f%
+q 3b4dfg
+e b
+e 5c
+----------
+q 4b
+q
+h cegb
+---------- 42
+e 3a4cdf
+q 3a4cdf
+e 3b4df%g
+q
+e
+e b
+---------------------------------------- coda 43
+e 4b,   h eg
+e b
+e 5d
+e c
+e 4gb,  e. e
+s 5c
+s 4g
+e
+e b
+----------
+e 4b,   q cdf
+e b
+e 5d
+s c
+s 4dfgb
+q
+e
+e b
+---------- 45
+e 4b,   h eg
+e b
+e 5d
+e c
+e 4gb,  e. e
+s 5c
+s 4g
+q
+----------
+s  4f,  h 3a4cd
+e  g
+s  f
+e. g
+s  f%
+e  3b4dfg
+q
+e  b
+----------
+e 4b,   h eg
+e b
+e 5d
+e c
+e 4gb,  q e
+s 5c
+s 4g
+e
+e b
+---------- 48
+e 4b,   q df
+e b
+e 5d
+s c
+s 4df%b
+q
+e
+e b
+----------
+e 4b,   h eg
+e b
+e 5d
+e c
+e 4gb,  q e
+s 5c
+s 4g
+q
+----------
+s 5f,  q. 4a5c
+e d
+s f
+e d
+e 4f%
+q 3b4dfg
+e
+e b
+-- don't want last 'e b' on very last bar...
+--
+-- s 5f,  q. 4a5c
+-- e d
+-- s f
+-- e d
+-- e 4f%
+-- q 3b4dfg
+-- e
+-- e

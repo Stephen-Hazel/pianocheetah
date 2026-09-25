@@ -1,0 +1,16 @@
+--- Boogie 1
+e3 Kick       Cras
+e3      Snar
+e3      Snar
+--
+e3 Kick       Cras
+e3      TMdH
+e3      TMdH
+--
+e3 Kick       Cras
+e3      Snar
+e3      Snar
+--
+e3 Kick       Cras
+e3      TFlL
+e3      TFlL

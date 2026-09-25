@@ -1,0 +1,17 @@
+--- Rock 15
+s kick     hhcl
+s
+s          hhcl
+s kick
+s     snar!hhcl!
+s kick
+s kick     hhcl
+s
+s kick     hhcl
+s
+s          hhcl
+s
+s     snar!hhcl!
+s
+s              hhop
+s

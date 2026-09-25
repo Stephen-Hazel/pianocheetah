@@ -1,0 +1,295 @@
+- Vocal.txt
+---------------------------------------- intro 1
+!section=intro
+w
+w
+w
+w
+w
+w
+w
+---------------------------------------- verse 9
+!section=verse
+h
+q
+q 4f
+-------
+h. e
+q  c
+------- 10
+h. d
+q  c
+-------
+q   c
+e   3a
+wq. g
+-------
+q 4f
+-------
+q  e
+e  f
+q  e
+q  f
+q. g
+-------
+e  c
+q  c
+e 3a
+e 4d
+e, eh c
+------- 15
+w
+-------
+w
+-------
+q
+q f
+q e
+q f
+-------
+q  e
+q  c
+e  c
+e 3a
+e 4d
+hq. c
+-------
+q
+------- 20
+h
+q
+q f
+-------
+q  e
+e  f
+q. e
+e  f
+q  g
+-------
+q.  c
+e   c
+e  3a
+e  4d
+hq. c
+-------
+q
+-------
+h
+q
+e
+e a
+---------------------------------------- chorus 25
+!section=chorus
+q  g
+e  a
+q  b
+q 5c
+q 4a
+-------
+q  g
+q. f
+q  a
+-------
+q  g
+q  a
+e  b
+q 5c
+q. c
+-------
+e  c
+e 4b
+q 5c
+e  e
+q. f
+-------
+e  c
+q  c
+q 4b
+q 5c
+------- 30
+q 4b
+q. a
+q 5c
+-------
+h. c
+e  d
+e  e
+-------
+q  f
+q  e
+q  c
+e 4a
+e, ew 5d
+---------------------------------------- trans1 33
+!section=trans1
+w
+---------------------------------------- trans2 34
+!section=trans2
+w
+-------
+w
+------- 36
+h
+q
+e
+e 4a
+---------------------------------------- chorus2 37
+!section=chorus2
+q 4g
+e  a
+q  b
+q 5c
+e, q 4a
+-------
+e
+q g
+h f
+e a
+------- 39
+q  g
+e  a
+q  b
+q  5c
+e, q. c
+-------
+q
+e 5c
+e 4b
+q 5c
+e  e
+e, q. f
+-------
+q
+e  c
+q  c
+q 4b
+e, q 5c
+------- 42
+e
+q 4b
+q. a
+q 5c
+-------
+h. c
+e  d
+e  e
+-------
+q  f
+e  g
+q. g
+e  f
+e- g
+------- 45
+e-  f
+hq. d
+-------
+w
+-------
+w
+---------------------------------------- trans3 48
+!section=trans3
+w
+w
+w
+---------------------------------------- solo 51
+!section=solo
+q
+e
+e 4c
+e  d
+e  e
+e  f
+e, he d
+-------
+h
+q
+e      f
+e, q.- e
+-------
+q
+e      d
+q.     c
+e     3g
+e, eq. a
+------- 54
+q.
+e     g
+e     a
+e     a
+e     g
+e, eh a
+-------
+h
+e 4d
+e  e
+e  f
+e, hqe d
+-------
+h.
+e f
+e, q e
+------- 57
+e
+q  c
+q 3a
+q 4e
+e, w- e
+-------
+h.e
+s- f
+s- e
+-------
+h d
+e d
+e e
+e f
+e, q. d
+------- 60
+h.
+e f
+e, q e
+-------
+e
+q     d
+q     c
+q    3g
+e, he a
+-------
+h
+e     3a4f
+e     3a4f
+e     3g4f
+e, he 3a4e
+------- 63
+h
+e 4d
+e  e
+e  f
+e, he d
+-------
+h
+e  d
+e  e
+e  f
+e, he d
+-------
+h
+e d
+e e
+q f
+------- 66
+w, w. d
+-------
+w
+---------------------------------------- tran4 68
+!section=trans4
+w
+------- 69
+w
+-------
+w
+-------
+h
+q
+e
+e 4a

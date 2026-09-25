@@ -1,0 +1,16 @@
+Kick
+Snar
+Snr2  snare edge open
+StkS  snare edge closed
+HHCl
+HHOp
+HHPd
+Ride
+RdBl
+Cra2  ride edge
+Cras  crash edge
+Rid2  crash
+Spla  crash bell
+TMdH
+TMdL
+TFlH

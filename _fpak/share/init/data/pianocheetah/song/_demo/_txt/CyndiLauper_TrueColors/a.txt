@@ -1,0 +1,24 @@
+-- CyndiLauper_TrueColors.txt
+!Tmpo=90
+--
+!name=LH
+#lh
+NextTrack
+--
+!name=RH
+#rh
+NextTrack
+--
+-- markers are in here...
+!name=vocal
+!sound=Ensemble_SynVoice
+#vocal
+--
+unroll
+intro
+verse
+chorus
+trans1
+verse
+chorus
+coda

@@ -1,0 +1,17 @@
+--- Pop 3
+s kick     hhcl
+s kick
+s          hhcl
+s kick
+s     snar!hhcl!
+s kick
+s              hhop
+s          hhcl
+s kick     hhcl
+s kick
+s          hhcl
+s kick
+s     snar!hhcl!
+s
+s              hhop
+s          hhcl

@@ -1,0 +1,375 @@
+  1   0 112 001.Grand Piano1
+  1   0   0 002.Grand Piano2
+  2   0   0 003.Bright Piano
+  4   0   0 004.Honky-tonk Piano
+  7   0   0 005.Harpsichord
+  5   0   0 006.Electric Piano 1
+  6   0   0 007.Electric Piano 2
+  3   0   0 008.Electric Grand Piano
+  8   0   0 009.Clavi
+ 17   0   0 010.Drawbar Organ
+ 18   0   0 011.Percussive Organ
+ 19   0   0 012.Rock Organ
+ 20   0   0 013.Church Organ
+ 21   0   0 014.Reed Organ
+ 22   0   0 015.Accordion
+ 24   0   0 016.Tango Accordion
+ 23   0   0 017.Harmonica
+ 25   0   0 018.Nylon Guitar
+ 26   0   0 019.Steel Guitar
+ 27   0   0 020.Jazz Guitar
+ 28   0   0 021.Clean Guitar
+ 29   0   0 022.Muted Guitar
+ 30   0   0 023.Overdriven Guitar
+ 31   0   0 024.Distortion Guitar
+ 32   0   0 025.Guitar Harmonics
+ 33   0   0 026.Acoustic Bass
+ 34   0   0 027.Finger Bass
+ 35   0   0 028.Pick Bass
+ 36   0   0 029.Fretless Bass
+ 37   0   0 030.Slap Bass 1
+ 38   0   0 031.Slap Bass 2
+ 39   0   0 032.Synth Bass 1
+ 40   0   0 033.Synth Bass 2
+ 49   0   0 034.Strings 1
+ 50   0   0 035.Strings 2
+ 51   0   0 036.Synth Strings 1
+ 52   0   0 037.Synth Strings 2
+ 45   0   0 038.Tremolo Strings
+ 46   0   0 039.Pizzicato Strings
+ 41   0   0 040.Violin
+ 42   0   0 041.Viola
+ 43   0   0 042.Cello
+ 44   0   0 043.Contrabass
+ 47   0   0 044.Orchestral Harp
+ 56   0   0 045.Orchestra Hit
+ 53   0   0 046.Choir Aahs
+ 54   0   0 047.Voice Oohs
+ 55   0   0 048.Synth Voice
+ 67   0   0 049.Tenor Sax
+ 66   0   0 050.Alto Sax
+ 65   0   0 051.Soprano Sax
+ 68   0   0 052.Baritone Sax
+ 69   0   0 053.Oboe
+ 72   0   0 054.Clarinet
+ 70   0   0 055.English Horn
+ 71   0   0 056.Bassoon
+ 57   0   0 057.Trumpet
+ 60   0   0 058.Muted Trumpet
+ 58   0   0 059.Trombone
+ 61   0   0 060.French Horn
+ 59   0   0 061.Tuba
+ 62   0   0 062.Brass Section
+ 63   0   0 063.Synth Brass 1
+ 64   0   0 064.Synth Brass 2
+ 74   0   0 065.Flute
+ 73   0   0 066.Piccolo
+ 76   0   0 067.Pan Flute
+ 75   0   0 068.Recorder
+ 77   0   0 069.Blown Bottle
+ 78   0   0 070.Shakuhachi
+ 79   0   0 071.Whistle
+ 80   0   0 072.Ocarina
+ 81   0   0 073.Square Lead
+ 82   0   0 074.Sawtooth Lead
+ 83   0   0 075.Calliope Lead
+ 84   0   0 076.Chiff Lead
+ 85   0   0 077.Charang Lead
+ 86   0   0 078.Voice Lead
+ 87   0   0 079.Fifths Lead
+ 88   0   0 080.Bass & Lead
+ 89   0   0 081.New Age Pad
+ 90   0   0 082.Warm Pad
+ 91   0   0 083.Poly Synth Pad
+ 92   0   0 084.Choir Pad
+ 93   0   0 085.Bowed Pad
+ 94   0   0 086.Metallic Pad
+ 95   0   0 087.Halo Pad
+ 96   0   0 088.Sweep Pad
+ 12   0   0 089.Vibraphone
+ 13   0   0 090.Marimba
+ 14   0   0 091.Xylophone
+115   0   0 092.Steel Drums
+  9   0   0 093.Celesta
+ 11   0   0 094.Music Box
+ 15   0   0 095.Tubular Bells
+ 48   0   0 096.Timpani
+ 10   0   0 097.Glockenspiel
+113   0   0 098.Tinkle Bell
+114   0   0 099.Agogo
+116   0   0 100.Woodblock
+117   0   0 101.Taiko Drum
+118   0   0 102.Melodic Tom
+119   0   0 103.Synth Drum
+120   0   0 104.Reverse Cymbal
+ 97   0   0 105.Rain
+ 98   0   0 106.Sound Track
+ 99   0   0 107.Crystal
+100   0   0 108.Atmosphere
+101   0   0 109.Brightness
+102   0   0 110.Goblins
+103   0   0 111.Echoes
+104   0   0 112.Sci-Fi
+105   0   0 113.Sitar
+ 16   0   0 114.Dulcimer
+106   0   0 115.Banjo
+107   0   0 116.Shamisen
+108   0   0 117.Koto
+109   0   0 118.Kalimba
+110   0   0 119.Bagpipe
+111   0   0 120.Fiddle
+112   0   0 121.Shanai
+121   0   0 122.Fret Noise
+122   0   0 123.Breath Noise
+123   0   0 124.Seashore
+124   0   0 125.Bird Tweet
+125   0   0 126.Telephone Ring
+126   0   0 127.Helicopter
+127   0   0 128.Applause
+128   0   0 129.Gunshot
+  1 127   0 130.Standard Kit 1
+  2 127   0 131.Standard Kit 2
+  9 127   0 132.Room Kit
+ 17 127   0 133.Rock Kit
+ 25 127   0 134.Electronic Kit
+ 26 127   0 135.Analog Kit
+ 28 127   0 136.Dance Kit
+ 33 127   0 137.Jazz Kit
+ 41 127   0 138.Brush Kit
+ 49 127   0 139.Symphony Kit
+  1 126   0 140.SFX Kit 1
+  2 126   0 141.SFX Kit 2
+113 126   0 142.Sound Effect Kit
+  1   0   1 143.Grand Piano KSP
+  2   0   1 144.Bright Piano KSP
+  3   0   1 145.Electric Grand Piano KSP
+  4   0   1 146.Honky-tonk Piano KSP
+  5   0   1 147.Electric Piano 1 KSP
+  6   0   1 148.Electric Piano 2 KSP
+  7   0   1 149.Harpsichord KSP
+  8   0   1 150.Clavi KSP
+ 12   0   1 151.Vibraphone KSP
+ 13   0   1 152.Marimba KSP
+ 49   0   3 153.Stereo Strings
+ 50   0   3 154.Stereo Slow Strings
+ 53   0   3 155.Stereo Choir
+ 40   0   6 156.Mellow Synth Bass
+ 61   0   6 157.French Horn Solo
+ 81   0   6 158.Square Lead 2
+ 82   0   6 159.Sawtooth Lead 2
+ 41   0   8 160.Slow Violin
+ 45   0   8 161.Slow Tremolo Strings
+ 49   0   8 162.Slow Strings
+ 50   0   8 163.Legato Strings
+ 81   0   8 164.LM Square
+ 82   0   8 165.Thick Sawtooth
+ 40   0  12 166.Sequenced Bass
+ 99   0  12 167.Synth Drum Comp
+ 99   0  14 168.Popcorn
+ 88   0  16 169.Big & Low
+ 34   0  18 170.Finger Dark
+ 40   0  18 171.Click Synth Bass
+ 58   0  18 172.Trombone 2
+ 64   0  18 173.Soft Brass
+ 81   0  18 174.Hollow
+ 82   0  18 175.Dynamic Sawtooth
+ 99   0  18 176.Tiny Bells
+100   0  18 177.Warm Atmosphere
+ 40   0  19 178.Synth Bass 2 Dark
+ 81   0  19 179.Shroud
+ 82   0  19 180.Digital Sawtooth
+100   0  19 181.Hollow Release
+ 63   0  20 182.Resonant Synth Brass
+ 82   0  20 183.Big Lead
+ 18   0  24 184.70's Percussive Organ
+ 98   0  27 185.Prologue
+ 35   0  28 186.Muted Pick Bass
+106   0  28 187.Muted Banjo
+  3   0  32 188.Detuned CP80
+  5   0  32 189.Chorus Electric Piano 1
+  6   0  32 190.Chorus Electric Piano 2
+ 17   0  32 191.Detuned Drawbar Organ
+ 18   0  32 192.Detuned Percussive Organ
+ 20   0  32 193.Church Organ 3
+ 23   0  32 194.Harmonica 2
+ 27   0  32 195.Jazz Amp
+ 28   0  32 196.Chorus Guitar
+ 36   0  32 197.Fretless Bass 2
+ 37   0  32 198.Punch Thumb Bass
+ 53   0  32 199.Mellow Choir
+ 57   0  32 200.Warm Trumpet
+ 61   0  32 201.French Horn 2
+105   0  32 202.Detuned Sitar
+ 17   0  33 203.60's Drawbar Organ 1
+ 18   0  33 204.Light Organ
+ 36   0  33 205.Fretless Bass 3
+ 17   0  34 206.60's Drawbar Organ 2
+ 36   0  34 207.Fretless Bass 4
+  7   0  35 208.Harpsichord 3
+ 16   0  35 209.Dulcimer 2
+ 17   0  35 210.70's Drawbar Organ 1
+ 20   0  35 211.Church Organ 2
+ 26   0  35 212.12-string Guitar
+ 49   0  35 213.60's Strings
+ 56   0  35 214.Orchestra Hit 2
+ 62   0  35 215.Trumpet & Trombone Section
+ 87   0  35 216.Big Five
+ 99   0  35 217.Round Glockenspiel
+105   0  35 218.Sitar 2
+ 17   0  37 219.60's Drawbar Organ 3
+ 18   0  37 220.Percussive Organ 2
+ 61   0  37 221.Horn Orchestra
+  1   0  40 222.Piano Strings
+ 17   0  40 223.16+2'2/3
+ 20   0  40 224.Notre Dame
+ 21   0  40 225.Puff Organ
+ 26   0  40 226.Nylon & Steel Guitar
+ 29   0  40 227.Funk Guitar 1
+ 31   0  40 228.Feedback Guitar
+ 33   0  40 229.Jazz Rhythm
+ 34   0  40 230.Bass & Distorted Electric Guitar
+ 39   0  40 231.Techno Synth Bass
+ 40   0  40 232.Modular Synth Bass
+ 45   0  40 233.Suspense Strings
+ 47   0  40 234.Yang Chin
+ 49   0  40 235.Orchestra
+ 50   0  40 236.Warm Strings
+ 53   0  40 237.Choir Strings
+ 55   0  40 238.Synth Voice 2
+ 66   0  40 239.Sax Section
+ 67   0  40 240.Breathy Tenor Sax
+ 99   0  40 241.Glockenspiel Chimes
+100   0  40 242.Nylon Electric Piano
+  1   0  41 243.Dream
+  6   0  41 244.DX + Analog Electric Piano
+ 26   0  41 245.Steel Guitar with Body Sound
+ 29   0  41 246.Muted Steel Guitar
+ 31   0  41 247.Feedback Guitar 2
+ 40   0  41 248.DX Bass
+ 49   0  41 249.Orchestra 2
+ 50   0  41 250.Kingdom
+ 55   0  41 251.Choral
+ 64   0  41 252.Choir Brass
+ 99   0  41 253.Clear Bells
+ 49   0  42 254.Tremolo Orchestra
+ 99   0  42 255.Chorus Bells
+ 25   0  43 256.Velocity Guitar Harmonics
+ 30   0  43 257.Guitar Pinch
+ 34   0  43 258.Finger Slap Bass
+ 38   0  43 259.Velocity Switch Slap
+ 29   0  45 260.Jazz Man
+ 33   0  45 261.Velocity Crossfade Upright Bass
+ 34   0  45 262.Finger Bass 2
+ 49   0  45 263.Velocity Strings
+ 11   0  64 264.Orgel
+ 13   0  64 265.Sine Marimba
+ 17   0  64 266.Organ Bass
+ 19   0  64 267.Rotary Organ
+ 20   0  64 268.Organ Flute
+ 24   0  64 269.Tango Accordion 2
+ 55   0  64 270.Analog Voice
+ 56   0  64 271.Impact
+ 81   0  64 272.Mellow
+ 85   0  64 273.Distorted Lead
+ 88   0  64 274.Fat & Perky
+ 89   0  64 275.Fantasy
+100   0  64 276.Nylon Harp
+102   0  64 277.Goblins Synth
+118   0  64 278.Melodic Tom 2
+119   0  64 279.Analog Tom
+ 17   0  65 280.70's Drawbar Organ 2
+ 19   0  65 281.Slow Rotary
+ 20   0  65 282.Tremolo Organ Flute
+ 32   0  65 283.Guitar Feedback
+ 34   0  65 284.Modulated Bass
+ 81   0  65 285.Solo Sine
+ 83   0  65 286.Pure Pad
+ 88   0  65 287.Soft Whirl
+ 97   0  65 288.African Wind
+ 99   0  65 289.Soft Crystal
+100   0  65 290.Harp Vox
+102   0  65 291.Creeper
+118   0  65 292.Real Tom
+119   0  65 293.Electronic Percussion
+ 17   0  66 294.Cheezy Organ
+ 19   0  66 295.Fast Rotary
+ 32   0  66 296.Guitar Harmonics 2
+ 81   0  66 297.Sine Lead
+ 92   0  66 298.Itopia
+ 97   0  66 299.Carib
+100   0  66 300.Atmosphere Pad
+118   0  66 301.Rock Tom
+ 17   0  67 302.Drawbar Organ 3
+102   0  67 303.Ritual
+102   0  68 304.To Heaven
+ 99   0  70 305.Air Bells
+102   0  70 306.Night
+ 99   0  71 307.Bell Harp
+102   0  71 308.Glisten
+ 99   0  72 309.Gamelimba
+ 15   0  96 310.Church Bells
+ 16   0  96 311.Cimbalom
+ 25   0  96 312.Ukulele
+ 26   0  96 313.Mandolin
+ 82   0  96 314.Sequenced Analog
+102   0  96 315.Bell Choir
+106   0  96 316.Rabab
+108   0  96 317.Taisho-kin
+113   0  96 318.Bonang
+116   0  96 319.Castanets
+117   0  96 320.Gran Cassa
+ 13   0  97 321.Balimba
+ 15   0  97 322.Carillon
+ 16   0  97 323.Santur
+105   0  97 324.Tamboura
+106   0  97 325.Gopichant
+108   0  97 326.Kanoon
+113   0  97 327.Altair
+115   0  97 328.Glass Percussion
+ 13   0  98 329.Log Drums
+106   0  98 330.Oud
+113   0  98 331.Gamelan Gongs
+115   0  98 332.Thai Bells
+113   0  99 333.Stereo Gamelan Gongs
+113   0 100 334.Rama Cymbal
+  1  64   0 335.Cutting Noise
+  2  64   0 336.Cutting Noise 2
+  4  64   0 337.String Slap
+ 17  64   0 338.Flute Key Click
+ 33  64   0 339.Shower
+ 34  64   0 340.Thunder
+ 35  64   0 341.Wind
+ 36  64   0 342.Stream
+ 37  64   0 343.Bubble
+ 38  64   0 344.Feed
+ 49  64   0 345.Dog
+ 50  64   0 346.Horse
+ 51  64   0 347.Bird Tweet 2
+ 56  64   0 348.Maou
+ 65  64   0 349.Phone Call
+ 66  64   0 350.Door Squeak
+ 67  64   0 351.Door Slam
+ 68  64   0 352.Scratch Cut
+ 69  64   0 353.Scratch Split
+ 70  64   0 354.Wind Chime
+ 71  64   0 355.Telephone Ring 2
+ 81  64   0 356.Car Engine Ignition
+ 82  64   0 357.Car Tires Squeal
+ 83  64   0 358.Car Passing
+ 84  64   0 359.Car Crash
+ 85  64   0 360.Siren
+ 86  64   0 361.Train
+ 87  64   0 362.Jet Plane
+ 88  64   0 363.Starship
+ 89  64   0 364.Burst
+ 90  64   0 365.Roller Coaster
+ 91  64   0 366.Submarine
+ 97  64   0 367.Laugh
+ 98  64   0 368.Scream
+ 99  64   0 369.Punch
+100  64   0 370.Heartbeat
+101  64   0 371.Footsteps
+113  64   0 372.Machine Gun
+114  64   0 373.Laser Gun
+115  64   0 374.Explosion
+116  64   0 375.Firework

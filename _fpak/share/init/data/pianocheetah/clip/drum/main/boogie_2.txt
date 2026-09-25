@@ -1,0 +1,20 @@
+--- Boogie 2
+s Kick      Cras
+s
+s
+s           Cras
+-
+s      Snar Cras
+s
+s
+s           Cras
+-
+s Kick      Cras
+s
+s
+s Kick      Cras
+-
+s      Snar Cras
+s
+s
+s           Cras

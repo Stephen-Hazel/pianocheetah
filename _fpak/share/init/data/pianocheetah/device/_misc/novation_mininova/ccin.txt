@@ -1,0 +1,8 @@
+prog   prog
+pbnd   pbnd
+cc1    mod
+cc64   hold
+np319  tempo  40-240 with tempoH
+np319L tempoH
+cc13   octave
+cc74   filter

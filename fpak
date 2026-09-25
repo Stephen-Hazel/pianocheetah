@@ -7,7 +7,6 @@
    "finish-args": [
       "--filesystem=xdg-run/pipewire-0",
       "--share=ipc",
-      "--share=network",
       "--device=dri",
       "--socket=wayland",
       "--socket=fallback-x11",
@@ -22,7 +21,7 @@
          "name": "pianocheetah",
          "buildsystem": "simple",
          "build-commands": [
-            "_fpak/fp-build.sh"
+            "_fpak/fp-build.sh Release"
          ],
          "sources": [
             {"type": "dir", "path": "."},

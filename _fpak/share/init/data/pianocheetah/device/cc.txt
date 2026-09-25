@@ -1,0 +1,69 @@
+# cc.txt - controls to have in a .song and send out
+#
+# name type default_value raw description
+#
+# name is what pianocheetah/syn call it
+# type: u=0-127(number default)
+#       o=0,127(on/off split at 64)
+#       s=0-127(signed -64 .. +63)
+#       x=(weird)tmpo,tsig,ksig,prog,pcStepCtl
+# default_value is what's set upon "all control reset" (CtRst)
+# raw is the cc# within a .mid file
+# pianocheetah doesn't use raw for sending out - only loading .mids
+# it maps this control string via the output devicetype's ccout.txt
+# and raw controls coming in are mapped from devicetype's ccin.txt=>ccmap
+#    into one of these strings
+#
+# first, the special ones only used within pianocheetah
+# (not goin out as part of song)  rrr, kinda
+prog     x 0   prog  set track's sound on it's dev/chn
+snOff    u 0   cc120 all notes cut
+ntOff    u 0   cc123 all notes release
+ctRst    u 0   cc121 control reset
+locCtrl  u 0   cc122 echo a midiin device's notes (if it HAS a synth)
+#
+# ok, here are the controls to map and uuuse
+# first one MUST be keyCmd
+#
+keyCmd   o 0   .     pianokeys do commands          (non midi)
+tmpo     x 120 .     tempo (scaled unsigned)        (non midi)
+tSig     x 260 .     time signature 4/4=>4|2<<7=260 (non midi)
+kSig     x 0   .     key signature C(0b,Maj)=0      (non midi)
+hold     o 0   cc64  sustain/damper pedal
+soft     o 0   cc67  soft pedal              (syn nope)
+sust     o 0   cc66  sustenuto pedal         (syn nope)
+lega     o 0   cc68  legato pedal            (syn nope)
+mTun     s 64  us3   master transpose/tune   (syn nope)
+tune     s 64  rp4   channel transpose       (syn nope)
+pBnd     s 64  PBnd  pitchbend tuning
+pBnR     p 2   rp0   pitchbend range (PBnR cents are dumb)
+pStp     p 0   cc40  0=smooth,1=key,2=ksig   (syn only)
+glide    u 0   cc65  glide(portamento) on/off
+glRate   u 0   cc5   glide rate
+glRateL  u 0   cc37  glide rate lo           (syn nope)
+glFrom   u 0   cc84  glide from note (64=prev)
+fCut     u 127 cc16  filter cutoff           (syn only)
+fRes     u 0   cc17  filter resonance        (syn only)
+vCut     o 0   cc18  velocity=>filter cutoff (syn only)
+mVol     u 127 us0   master volume           (syn nope)
+vol      u 100 cc7   channel overall volume
+expr     u 127 cc11  channel volume adjustment(syn nope)
+mBal     s 64  us1   master balance          (syn nope)
+pan      s 64  cc10  channel pan position
+bal      s 64  cc8   channel pan adjustment  (syn nope)
+rvrb     u 0   cc91  reverb fx amount        (syn nope)
+chor     u 0   cc93  chorus fx amount        (syn nope)
+#
+# for envelope level,dur modulation          (syn only)
+x1       u 0   cc28
+x2       u 0   cc29
+x3       u 0   cc30
+x4       u 0   cc31
+x5       u 0   cc32
+x6       u 0   cc33
+x7       u 0   cc34
+x8       u 0   cc35
+x9       u 0   cc36
+x10      u 0   cc37
+x11      u 0   cc38
+x12      u 0   cc39

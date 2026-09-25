@@ -1,0 +1,17 @@
+--- Pop 4
+s kick     hhcl
+s
+s kick     hhcl
+s kick
+s     snar!hhcl!
+s kick
+s          hhcl
+s kick         hhop
+s          hhcl
+s kick
+s          hhcl
+s kick
+s     snar!hhcl!
+s kick
+s          hhcl
+s kick         hhop

@@ -1,0 +1,16 @@
+s v7 hhcl kick
+s v4 hhcl
+s    hhcl
+s    hhcl
+s v7 hhcl v4 snar
+s    hhcl
+s    hhcl
+s    hhcl
+s v7 hhcl v4 kick
+s    hhcl
+s    hhcl
+s    hhcl
+s v7 hhcl v4 snar
+s    hhcl
+s    hhcl
+s v7 hhcl v4 kick

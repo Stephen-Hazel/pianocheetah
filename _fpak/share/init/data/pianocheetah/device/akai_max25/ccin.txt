@@ -1,0 +1,14 @@
+prog  prog
+pbnd  bend
+cc1   weel
+cc12  sldr1 0-127
+cc13  sldr2
+cc14  sldr3
+cc15  sldr4
+cc32  tggl1 0,127 sust
+cc33  tggl2       soft
+cc34  tggl3       lega
+cc35  tggl4       hld2
+cc118 play  only 127
+cc117 stop
+cc119 rec

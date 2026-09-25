@@ -7,7 +7,6 @@
    "finish-args": [
       "--filesystem=xdg-run/pipewire-0",
       "--share=ipc",
-      "--share=network",
       "--device=dri",
       "--socket=wayland",
       "--socket=fallback-x11",
@@ -22,13 +21,13 @@
          "name": "pianocheetah",
          "buildsystem": "simple",
          "build-commands": [
-            "sh _fpak/fp-build.sh"
+            "sh _fpak/fp-build.sh Release"
          ],
          "sources": [
             {
                "type":   "git",
                "url":    "https://github.com/Stephen-Hazel/pianocheetah.git",
-               "tag":    "2026-09-15b",
+               "tag":    "2026-09-15c",
                "commit": "6c4801ca18f06bb21196e61ee479617526e36c87"
             },
             {

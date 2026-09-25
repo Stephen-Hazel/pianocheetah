@@ -1,0 +1,8 @@
+-- Bass pattern 3
+e 2f
+e f
+e f#
+e f
+e g
+q
+e g

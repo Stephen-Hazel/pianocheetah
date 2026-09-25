@@ -1,0 +1,62 @@
+------- intro
+-- 8 bars of drums in ABABABAC pattern using rock 5,7,f9
+-- (8 bars of non chorus)
+#drum/main/rock_05
+#drum/main/rock_07
+#drum/main/rock_05
+#drum/main/rock_07
+#drum/main/rock_05
+#drum/main/rock_07
+#drum/main/rock_05
+#drum/fill/rock_09
+------- verse
+#drum/main/rock_05
+#drum/main/rock_07
+#drum/main/rock_05
+#drum/main/rock_07
+#drum/main/rock_05
+#drum/main/rock_07
+#drum/main/rock_05
+#drum/fill/rock_09
+#drum/main/rock_05
+#drum/main/rock_07
+#drum/main/rock_05
+#drum/main/rock_07
+#drum/main/rock_05
+#drum/main/rock_07
+#drum/main/rock_05
+#drum/fill/rock_09
+------- chorus
+-- 1st 6 bars of drums in ABABABAC pattern using rock 13,14,f10
+-- (6 bars of main chorus)
+#drum/main/rock_13
+#drum/main/rock_14
+#drum/main/rock_13
+#drum/main/rock_14
+#drum/main/rock_13
+#drum/main/rock_14
+------- bridge1
+-- last 2 bars of drums in ABABABAC pattern using rock 13,14,f10
+-- (2 bars of chorus bridge)
+#drum/main/rock_13
+#drum/fill/rock_10
+------- bridge2
+#drum/main/rock_13
+#drum/fill/rock_10
+#drum/main/rock_13
+#drum/main/rock_14
+#drum/main/rock_13
+#drum/main/rock_14
+#drum/main/rock_13
+#drum/main/rock_14
+#drum/main/rock_13
+#drum/fill/rock_10
+------- coda
+#drum/main/rock_13
+#drum/main/rock_14
+#drum/main/rock_13
+#drum/main/rock_14
+#drum/main/rock_13
+#drum/main/rock_14
+#drum/main/rock_13
+#drum/fill/rock_10

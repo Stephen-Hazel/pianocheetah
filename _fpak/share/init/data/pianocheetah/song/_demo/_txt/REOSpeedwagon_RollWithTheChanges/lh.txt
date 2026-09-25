@@ -1,0 +1,584 @@
+-- 1
+qqq
+s
+s    2g
+s     a
+s, sw c
+--
+q
+s
+e. 3c
+q  c
+q  c
+--
+e., w 2c
+ss 3c
+e.  c
+q   c
+q   c
+-- 4
+e., qe. 2c
+ss  3c
+e   3c
+se. 3c, sqe. 2c
+ss  3c
+e   3c
+se. 3c, sw 2c
+--
+ss 3c
+e. 3c
+q   c
+q   c
+-- 6
+e, w 2c
+e 3c
+e. c
+se c
+e  c
+e. c
+s  c
+--
+e   c, w 2c
+e  3c
+e.  c
+se. c
+sq  c
+-- 8
+e, qe. 2c
+e 3c
+e. c
+se c, sqe. 2c
+e 3c
+e. c
+se 2c3c
+--
+s 2f
+s 2f
+s 2f#
+s 2f#
+s 2g
+s 2g
+q 3c
+e.
+se 3c, sw 2c
+-- 10 verse
+e 3c
+e. c
+se c
+e c
+e c
+e c
+--
+e c, w 2c
+e 3c
+e. c
+se c
+e c
+e c
+e c
+-- 12
+e c, w 2c
+e 3c
+e c
+e c
+e c
+e c
+e c
+e c
+--
+e 3c, w 2c
+e 3c
+e. c
+se c
+e c
+q c
+-- 14
+e, w 2c
+e 3c
+e. c
+ss c
+e c
+se. c
+s c
+--
+e, w 2c
+e 3c
+e. 3c
+se c
+e c
+q c
+-- 16
+e 3c, w 2c
+e 3c
+e c
+e c
+e c
+e c
+e c
+e c
+--
+e 3c, h 2c
+e 3c
+e c
+e c
+s 3c
+s 2c
+s 3c
+s 2c
+s 3c
+s 2c
+s 3c
+s 2c
+-- 18
+h 1b@2b@
+h 2d3d
+--
+h  2c3c
+e. 2e3e
+se 2d3d
+e  2c3c
+-- 20
+h 1b@2b@
+h 2d3d
+--
+e 3c, w 2c
+e 3c
+e. c
+ss c
+e  c
+ss c
+s  c
+e  c
+-- 22
+h 1b@2b@
+h 2d3d
+--
+e. 2c3c
+s  2c3c
+q  2c3c
+e. 2e3e
+s  2d3d
+q  2c3c
+-- 24
+e 2g, w 1g
+e 2g
+e 2g
+e 2g
+e 2g
+e 2g
+e 2g
+e 2g
+--
+e 2g, h 1g
+e 2g
+e 2g
+e 2g
+s 1g
+s 2g
+s 1g
+s 2g
+s 1g
+s 2g
+s 1g
+s 2g
+-- 26
+e, w 2c
+e 3c
+e. c
+se c
+e c
+q c
+--
+e, w 2c
+e 3c
+e. c
+ss c
+s c
+e c
+q c
+-- 28
+s 2c
+s 3c
+s 2c
+s 3c
+s 2c
+s 3c
+s 2c
+s 3c
+s 2c
+s 3c
+s 2c
+s 3c
+s 2c
+s 3c
+s 2c
+s 3c
+--
+s 2c
+s  c
+s  f
+s  f
+s  f#
+s  f#
+s  g
+s  g
+e 3c
+e
+e.
+s 2c3c
+-- 30
+e 2g, w 1g
+e 2g
+e  g
+e  g
+e  g
+e  g
+e  g
+e  g
+--
+e 2g, h 1g
+e 2g
+e  g
+e  g
+s 1g
+s 2g
+s 1g
+s 2g
+s 1g
+s 2g
+s 1g
+s, sw 2c
+-- 32
+e
+e 3c
+e. c
+se c
+e  c
+e  c
+e  c
+--
+e 3c, w 2c
+e 3c
+e  c
+e  c
+e  c
+e  c
+e  c
+e  c
+-- 34
+e 3c, w 2c
+e 3c
+e  c
+e  c
+e  c
+e  c
+e  c
+e  c
+--
+e, w 2c
+e 3c
+e. c
+ss c
+e  c
+se c
+e  c
+-- 36
+e 2c
+e  e
+e  f
+e  f#
+e  g
+e  a
+e  b@
+e 3c
+--
+h 1b@2b@
+h 2d3d
+-- 38
+h 2c3c
+e. 2e3e
+se 2d3d
+e 2c3c
+--
+h 1b@2b@
+h 2d3d
+-- 40
+e 3c, w 2c
+e 3c
+e. c
+se c
+e  c
+e  c
+e  c
+--
+h 1b@2b@
+h 2d3d
+-- 42
+e. 2c3c
+s  2c3c
+q  2c3c
+e. 2e3e
+se 2d3d
+e  2c3c
+--
+e 2g, w 1g
+e 2g
+e  g
+e  g
+e  g
+e  g
+e  g
+e  g
+-- 44
+e 2g, w 1g
+e 2g
+e  g
+e  g
+e  g
+e  g
+e  g
+e  g
+--
+e 2g, w 1g
+e 2g
+e  g
+e  g
+e  g
+e  g
+e  g
+e  g
+-- 46
+e 2g, h.e.- 1g
+e 2g
+e  g
+e  g
+e  g
+e  g
+e  g
+s  g
+s- 2c
+--
+e, w 2c
+e 3c
+e. c
+se c
+e  c
+e  c
+e  c
+-- 48
+e, w 2c
+e 3c
+e. c
+se c
+e  c
+e  c
+e  c
+--
+e 3c, w 2c
+e 3c
+e  c
+e  c
+e  c
+e  c
+e  c
+e  c
+--
+e 3c, h.e.- 2c
+e 3c
+e. c
+se c
+e  c
+e  c
+s, e c
+s- 2c
+-- 51
+e, w 2c
+e 3c
+e. c
+se c
+e c
+e. c
+s, se c
+--
+e, w 2c
+e 3c
+e. c
+se c
+e c
+q c
+-- 53
+e 3c, w 2c
+es 3c
+e c
+se c
+s c
+se c
+e c
+--
+e c, w 2c
+e 3c
+e. c
+se c
+e c
+q c
+-- 55
+e c, w 2c
+e 3c
+e. c
+se c
+e c
+e. c
+s c
+--
+e c, w 2c
+e 3c
+e. c
+se c
+e c
+q c
+-- 57
+e 3c, w 2c
+es 3c
+e c
+se c
+s c
+s c
+s c
+e c
+s c
+--
+e c, w 2c
+e 3c
+e. c
+ss c
+e c
+ss c
+s c
+e c
+-- 59
+e 3c, w 2c
+e 3c
+e. c
+se c
+e c
+e c
+e c
+--
+e c, w 2c
+e 3c
+s c
+e c
+se c
+e c
+e. c
+s, se c
+-- 61
+e, w 2c
+es 3c
+e c
+ss c
+e c
+ss c
+e c
+s, se c
+--
+e, w 2c
+e 3c
+e. c
+se c
+e c
+e c
+e c
+-- 63
+e 3c, w 2c
+e 3c
+e. c
+se c
+e c
+e. c
+s c
+--
+e c, w 2c
+e 3c
+s c
+e c
+se c
+e c
+s c
+e c
+s c
+-- 65
+e c, w 2c
+e 3c
+s c
+e c
+ss c
+e c
+ss c
+e c
+s, se c
+--
+e, h 2c
+e 3c
+e c
+e c
+s c
+s c
+s 2f
+s  f
+s  f
+s  f
+s  g
+s- 2c
+-- 67
+e 3c, h.e.- 2c
+e 3c
+s c
+e c
+s c
+e c
+e c
+s c
+s c
+s c
+s- c, s- 2c
+--
+e 3c, w 2c
+e 3c
+e. c
+se c
+e c
+e c
+e c
+--
+e c, w 2c
+e 3c
+e. c
+se c
+e c
+e c
+e c
+-- 70
+e 3c, qe.- 2c
+e 3c
+e. c
+se c, sqe.- 2c
+e 3c
+e. c
+se c, sw 2c
+--
+e 3c
+e. c
+se c
+e c
+e c
+e c
+-- 72
+h 1b@2b@
+h 1f2f
+--
+w 2c3c
+--
+q 2c3c
+q
+h

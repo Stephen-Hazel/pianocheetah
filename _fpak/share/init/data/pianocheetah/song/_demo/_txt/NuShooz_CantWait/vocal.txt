@@ -1,0 +1,215 @@
+!vol=80
+---------------------------------------- intro 1
+!section=intro
+w
+w
+w
+w
+w
+w
+w
+---------- 8
+h
+e
+s 4b
+s b
+e b
+e, q- g
+---------------------------------------- verse 9
+!section=verse
+e
+e b
+q
+h
+----------
+e  g
+e  a
+e  g
+e  a
+e- b
+e  a
+e  g
+e- g
+----------
+q d
+q
+h
+---------- 12
+h
+e
+e f
+e c
+e c
+----------
+e- c
+e  3b
+q
+q
+e  b
+e  b
+----------
+q  4c
+q  3b
+q  4f
+e  c
+e- c
+---------- 15
+q 3b
+q
+h
+----------
+h
+q.
+s  4b
+s  g
+----------
+q  b
+q
+h
+---------- 18
+q
+e  f
+e  g
+q  5c
+e  d
+e, q.- c
+----------
+q
+e  d
+eh 4b
+----------
+h
+q
+e  b
+e, q g
+---------- 21
+e
+e b
+q
+h
+----------
+e  g
+e  a
+e  g
+e  a
+e- b
+e  a
+e  g
+e- g
+----------
+e-  d
+q.h g
+----------
+q.
+e  f
+e  g
+q  f
+e, eq g
+---------------------------------------- chorus 25
+!section=chorus
+q
+h
+e g
+e f
+----------
+e  g
+e  f
+e  g
+e  f
+e- g
+e  f
+e  c
+e, eq c
+---------- 27
+w
+----------
+h
+e
+e  g
+e  f
+e, eq g
+----------
+q
+h
+e g
+e f
+---------- 30
+q  g
+e  g
+e  f
+q  g
+e  b
+e- 5c
+---------------------------------------- bridge1 31
+!section=bridge1
+q 4g
+q
+h
+----------
+e f
+q f
+e g
+h
+---------------------------------------- bridge2 33
+!section=bridge2
+q 4b
+q
+h
+----------
+h
+e
+e g
+e f
+e, eq g
+----------
+q
+h
+e
+e  f
+---------- 36
+e- g
+e  f
+e  g
+e  f
+e- g
+e  f
+e  c
+e- c
+----------
+q 3b
+q
+e
+e 4g
+e f
+e,  ee f
+----------
+e
+e  d
+e  f
+e  g
+e  g
+q  f
+e- g
+---------- 39
+q  b
+q
+h
+----------
+e  g
+e  f
+e  g
+e  f
+q  g
+e  b
+e- 5c
+----------
+q 4b
+q
+h
+---------- 42
+e f
+q f
+e g
+h
+---------------------------------------- coda 43
+!section=coda

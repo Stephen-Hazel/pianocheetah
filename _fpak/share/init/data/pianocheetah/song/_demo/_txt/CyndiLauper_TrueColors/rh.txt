@@ -1,0 +1,311 @@
+---------------------------------------- intro 1
+e- 4g
+e- 3b
+e- 4c
+e-  g
+e-  g
+e- 3b
+e- 4c
+e-  g
+-------
+e-   g
+e-  3b
+e-  4c
+eq- 3a
+e-   b
+e-  4c
+-------
+e-  g
+e- 3b
+e- 4c
+e-  g
+e-  g
+e- 3b
+e- 4c
+e-  g
+-------
+e-  g
+e- 3b
+e- 4c
+e- 3a
+e 4e@
+e  d
+e  d
+e  c
+---------------------------------------- verse 5
+h  3a4c
+s  3a
+e.q g
+-------
+e 4e, q. 3g4c
+e 4f
+e  g
+ee g, eh 3g4c
+e 4f
+e  e
+e  d
+-------
+e  d, he 3ga
+e 4e
+qe c
+e 3a
+e 4e
+e  d
+------- 8
+e  d, q. 3a
+e 4d
+e  d
+e  d, ee 3b
+e 4c
+e 3g
+e  b
+s  b
+s  b
+-------
+e 3g4c, h 3e
+e 3g
+e 4c
+s  c
+s  c
+e  d, h 3fa
+s 4c
+sq d
+------- 10
+e 4c, q. 3g
+e 4e
+e f
+e g, eq c
+e g
+e a
+e c
+s c
+s c
+-------
+e d, q. 3a
+e 4d
+e  d
+e  d, eh 3b
+e 4d
+e  c
+e  c
+e  c
+------- 12
+e  3fa4c
+q  3fa4c
+ee 3eg4c
+s  4c
+s   c
+e   e
+e   g
+---------------------------------------- chorus 13
+q. 4cfa
+s  a, eq. ce
+se g
+q  g
+e, ee 4e, eq. 3g4c
+-------
+e
+e  4d
+e, qe 4d
+ee 3gb
+e  4c
+e   e
+e   g
+------- 15
+q. cfa
+s  a, eq. ce
+se g
+q  g
+e  c
+-------
+e 4a, q. 4cf
+e  a
+e  a
+ee a, eq cd
+e g
+e g, q cd
+e g
+-------
+e  a, q. cf
+e  a
+e  g
+ee ceg
+q  c
+e  c
+------- 18
+e  d, q. 3fa
+q  d
+ee d, eh 3a
+e 4c
+q  c
+-------
+q. 3a4c
+ee 4c, eh 3g
+q. 4c
+-------
+q. 3a4c
+es 4c, eq. 3g
+s  4d
+e   e
+e
+e  3g
+-------
+q. 4e, h g
+e   d
+q   dg
+e   c
+e   c
+---------------------------------------- trans1 22
+e- 4c
+e- 3b
+e- 4c
+e- 3a
+e-  a
+e-  b
+e- 4c
+e-  g
+-------
+e-   g
+e-  3b
+e-  4c
+ee- 3a
+e-   b
+e-  4c
+e-  3a
+-------
+e-  4g
+e-  3b
+e-  4c
+e-   g
+e-   g
+e-  3b
+e-  4c
+e-   g
+------- 25
+e-  g
+e- 3b
+e- 4c
+e, eh 3a
+e 4e@
+q  d
+s  c
+s  c
+---------------------------------------- coda 26
+e- 4c
+e- 3b
+e- 4c
+e- 3a
+e-  a
+e-  b
+e- 4c
+e-  g
+-------
+e-   g
+e-  3b
+e-  4c
+ee- 3a
+e-   b
+e-  4c
+e-  3a
+------- 28
+e- 4e
+e- 3b
+e- 4c
+e-  g
+e-  g
+e- 3b
+e- 4c
+e-  g
+-------
+e-   g
+e-  3b
+e-  4c
+ee- 3a
+e-   b
+e-  4c
+e   3a
+------- 30
+q. 3a4c
+ee 4c, eh 3g
+q. 4c
+-------
+q. 3a4c
+ee 4c, eh 3g
+q. 4c
+------- 32
+q. 3a4c
+ee 4c, eq. 3g
+e 4e
+e g
+e, ee a, eq. 4cd
+-------
+e
+e 4g
+e, qe  g
+ee 3b
+e 4c
+e  e
+e  g
+-------
+q. cfa
+s a, eh ce
+se g
+q g
+e g
+------- 35
+e a, q. cf
+e a
+e a
+ee a, eq cd
+e g
+e g, q 3b
+e 4g
+-------
+e 5c, q 4a, q. f
+e 5c
+e 4a
+eq. 4eg5c
+e 4e
+-------
+e d, q. 3g
+q d
+ee d, eq 3a
+e 4c
+e 3a
+e  a
+------- 38
+q. 3a4c
+ee 4c, eh 3g
+q. 4c
+-------
+q. 3a4c
+es 4c, eq. 3g
+s 4d
+e e
+e
+e 3g
+-------
+q. e, h. g
+e d
+q d
+e 3b
+e 3b
+------- 41  3/4 time for this bar
+q. 4c
+s 3b
+s  a
+q  a
+-------
+e- 4g
+e- 3b
+e- 4c
+e-  g
+e-  g
+e- 3b
+e- 4c
+e-  g
+-------
+e-  g
+e- 3b
+e- 4c
+ehw- 3a

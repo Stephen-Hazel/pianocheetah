@@ -1,0 +1,19 @@
+s kick           cowb
+s                     hhcl
+s                     hhcl
+s                     hhcl
+--
+s kick snar clap cowb
+s                     hhcl
+s                     hhcl
+s                     hhcl
+--
+s kick      clap cowb
+s                cowb
+s                cowb
+s                     hhcl
+--
+s kick snar clap cowb
+s           clap      hhcl
+s                     hhcl
+s                     hhcl

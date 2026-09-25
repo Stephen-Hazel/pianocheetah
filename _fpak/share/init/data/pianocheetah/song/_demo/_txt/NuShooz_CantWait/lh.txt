@@ -1,0 +1,56 @@
+------- intro
+#bass_a
+#bass_c
+#bass_b
+#bass_c
+#bass_a
+#bass_c
+#bass_b
+#bass_c
+------- verse
+#bass_b
+#bass_c
+#bass_b
+#bass_c
+#bass_b
+#bass_c
+#bass_b
+#bass_c
+#bass_b
+#bass_c
+#bass_b
+#bass_c
+#bass_b
+#bass_c
+#bass_b
+#bass_c
+------- chorus
+#bass_a
+#bass_c
+#bass_b
+#bass_c
+#bass_a
+#bass_c
+------- bridge1
+#bass_b
+#bass_c
+------- bridge2
+#bass_b
+#bass_c
+#bass_a
+#bass_c
+#bass_b
+#bass_c
+#bass_a
+#bass_c
+#bass_b
+#bass_c
+------- out
+#bass_a
+#bass_c
+#bass_b
+#bass_c
+#bass_a
+#bass_c
+#bass_b
+#bass_c
