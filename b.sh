@@ -10,9 +10,10 @@
 echo "...uninstall old one\n";
    system ("$f uninstall -y $app");
    system ("rm -fr _build .$fb");      // wipe
+   system ("mkdir  _build");
 
    if ($arg != 'p') {                  // Debug build by default
-      system ("mkdir _build");
+echo "...compile/install\n";
       system ("$fb --user --force-clean --install _build fpak.dbg", $rc);
       system ("$f install --reinstall --user --assumeyes ".
               "/home/sh/src/pianocheetah/.$fb/cache $app");
@@ -21,8 +22,8 @@ echo "...uninstall old one\n";
       system ("echo x >/home/sh/.var/app/$app/config/dbg.txt");
    // cant remember gdb commands to save my life
       echo "
-flatpak run --command=sh --devel --filesystem=$(pwd) $app
-gdb /app/bin/pianocheetah
+$f run --command=sh --devel --filesystem=$(pwd) $app
+gdb /app/bin/theapp
 set logging enabled on
 thread apply all bt
 run
@@ -36,10 +37,9 @@ bt full\n";
 // source => _build => install
 echo "...compile/install\n";
    system ("$fb --user --install _build fpak", $rc);
-#  system ("$fb --user --install --force-clean --ccache
-#               --keep-build-dirs _build fpak", $rc);
    if ($rc != 0)  exit;                // build error :(
 
-echo "...cleanup\n";
-   system ("rm -fr _build .$fb");
+echo "...cleanup incl user data\n";
    system ("rm -fr ~/.var/app/$app");
+   system ("echo x >/home/sh/.var/app/$app/config/dbg.txt");
+   system ("rm -fr _build .$fb");

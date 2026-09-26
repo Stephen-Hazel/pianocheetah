@@ -14,10 +14,6 @@ dup the good rush sounds
 
 code____________________________________________________________________________
 
-getting outside dirs - test
-
-release
-
 dbg why scale square is offset
    somethin weird is goin on w wb whitebump - right nt bein non 11 sets it >0
 

@@ -31,6 +31,7 @@ char Song::MsPos (sbyt2 x, sbyt2 y)
 // if showing transition(got _rc) next page unless w/in rect
    p--;
    if (x < _rc.left () || y < _rc.top ())  p++;
+   if (p >= _pag.Ln)  return Up.pos.at;     // no pages (empty song) - bail
    pg = & _pag [p];
    for (c = 0;  (c+1 < pg->nCol) && (x >= pg->col [c+1].x);  c++)  ;
    MemCp (& co, & pg->col [c], sizeof (co));     // load column
