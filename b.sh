@@ -40,6 +40,5 @@ echo "...compile/install\n";
    if ($rc != 0)  exit;                // build error :(
 
 echo "...cleanup incl user data\n";
-   system ("rm -fr ~/.var/app/$app");
-   system ("echo x >/home/sh/.var/app/$app/config/dbg.txt");
    system ("rm -fr _build .$fb");
+   system ("rm -fr ~/.var/app/$app");
