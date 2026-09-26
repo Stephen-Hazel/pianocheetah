@@ -1,18 +1,18 @@
 /home/sh/_/pianocheetah/4_queue/_demo/ZeldaOcarina/WindmillHut/a.mid
 tempo=10000
 transpose=0
-learn=d
+learn=a
 info={
 bars   27
-prac   LH RH Drum REC_RH REC_HT 
+prac   RH 
 ksig   C 
 tsig   3/4 
 tempo  198 198 198 +48
 lyric  0
 }
 Track:
-rokn88  Piano_AcousticGrand  .?4  ?RH#Piano_AcousticGrand
-rokn88  Piano_AcousticGrand  .3  ?LH#Piano_AcousticGrand
+thing1  Piano_AcousticGrand  .?4  ?RH#Piano_AcousticGrand
+thing1  Piano_AcousticGrand  .3  ?LH#Piano_AcousticGrand
 syn  Drum/*  .  DrumTrack#Drum/*
 DrumMap:
 Kick . 127 64 . . Kick
@@ -53,8 +53,6 @@ Lyric:
 16.3.191  ?.repeat_bar_9
 17        !2
 17.2.4    !2
-18.2.4    !1
-20.2.4    !1
 21.3.2    ?/1630[
 21.3.3    !2
 21.3.97   !2

@@ -1,10 +1,10 @@
 /home/sh/_/pianocheetah/4_queue/_demo/ZeldaOcarina/LostWoods/a.mid
 tempo=10000
 transpose=0
-learn=d
+learn=a
 info={
 bars   19
-prac   LH RH Drum REC_RH REC_HT 
+prac   RH 
 ksig   Cm 
 tsig   4/4/4 
 tempo  140 
@@ -13,7 +13,7 @@ lyric  0
 Track:
 syn  Piano_AcousticGrand_aria  .?4  ?RH#Piano_AcousticGrand
 syn  Piano_AcousticGrand_aria  .3  ?LH#Piano_AcousticGrand
-drumz  Drum/*  .  DrumTrack#Drum/*
+thing1  Drum/*  .  DrumTrack#Drum/*
 DrumMap:
 Kick . 127 64 . . Kick
 Lyric:

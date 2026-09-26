@@ -1,10 +1,10 @@
 /home/sh/_/z/pianocheetah/4_queue/Christmas/christmas_We-Wish-You-a-Merry-Christmas/orig.mid
-learn=d
+learn=a
 tempo=10000
 transpose=0
 info={
 bars   15
-prac   LH RH REC_RH REC_HT 
+prac   RH 
 ksig   G 
 tempo  120 
 lyric  2

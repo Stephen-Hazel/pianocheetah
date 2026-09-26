@@ -1,5 +1,5 @@
 /home/sh/_/z/pianocheetah/4_queue/SteveRep/Beatles_LetItBe/orig.mid
-learn=d
+learn=a
 tempo=10000
 transpose=0
 ez=Y
@@ -105,7 +105,6 @@ Lyric:
 16.4      !1
 16.4.191  ?.repeat_bar_5
 17        !3
-21        !1
 21        ?.repeat_bar_5
 24        ?.repeat_bar_12
 27.3.191  ?/3553[
@@ -118,21 +117,12 @@ Lyric:
 36.4.93   !2
 36.4.191  ?.repeat_bar_5
 37        !2
-38.4      !1
-40        !1
-40.3      !1
 41        ?.repeat_bar_5
 44        ?.repeat_bar_12
-45        !1
-49        !1
 49        ?.repeat_bar_5
-51.2      !1
-52.3      !1
 53        ?.repeat_bar_5
 56        ?.repeat_bar_12
 60        ?.repeat_bar_28
-60.2      !1
-60.4      !1
 65.3.191  ?/769[
 66        !1
 Event:

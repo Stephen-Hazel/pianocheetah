@@ -1,19 +1,19 @@
 /home/sh/_/pianocheetah/4_queue/found/VGame_vgmusic.com_nGamecube_AnimalCrossing_Title2/a.mid
 tempo=10000
 transpose=0
-learn=d
+learn=a
 info={
 bars   36
-prac   LH RH Drum REC_LH REC_RH REC_HT 
+prac   LH RH 
 ksig   Bb 
 tsig   5/4 6/4 4/4/4 
-tempo  120 120 120 +2
+tempo  120 120 120 +4
 lyric  0
 }
 Track:
-rokn88  Piano_AcousticGrand  .?4  ANIMAL#Piano_AcousticGrand
-rokn88  Piano_AcousticGrand  .?3  Levi_Folds#Piano_AcousticGrand
-drumz  Drum/*  .  DrumTrack#Drum/*
+thing1  Piano_AcousticGrand  .?4  ANIMAL#Piano_AcousticGrand
+thing1  Piano_AcousticGrand  .?3  Levi_Folds#Piano_AcousticGrand
+thing1  Drum/*  .  DrumTrack#Drum/*
 DrumMap:
 Kik2 . 127 64 . . Kik2
 SStk . 127 64 . . SStk
@@ -591,6 +591,8 @@ EndTrack 1 #ev=541
 1         !Tmpo=120
 EndTrack 2 #ev=1
 1         HHCl_127
+1         !Tmpo=120
+1         !Tmpo=120
 1         !Tmpo=120
 1         !Tmpo=120
 1         !Tmpo=120
@@ -1448,4 +1450,4 @@ EndTrack 2 #ev=1
 35.3.96   HHOp_127
 35.3.144  HHOp^0
 35.4      !Vol=127
-EndTrack 3 #ev=858
+EndTrack 3 #ev=860

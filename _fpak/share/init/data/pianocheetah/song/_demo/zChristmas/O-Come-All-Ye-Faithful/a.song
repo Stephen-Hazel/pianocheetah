@@ -1,19 +1,19 @@
 /home/sh/_/z/pianocheetah/4_queue/Christmas/christmas_O-Come-All-Ye-Faithful/orig.mid
-learn=d
+learn=a
 tempo=10000
 transpose=0
 ezhop=n
 info={
 bars   15
-prac   LH RH Drum REC_RH REC_HT 
+prac   RH 
 ksig   G 
 tempo  120 
 lyric  1
 }
 Track:
-rokn88  Piano_AcousticGrand  .?4  ?RH_J._F._Wade
-rokn88  Piano_AcousticGrand  .3  ?LH
-drumz  Drum/*  .  DrumTrack
+thing1  Piano_AcousticGrand  .?4  ?RH_J._F._Wade
+thing1  Piano_AcousticGrand  .3  ?LH
+thing1  Drum/*  .  DrumTrack
 DrumMap:
 Kick . 127 64 . . Kick
 Lyric:

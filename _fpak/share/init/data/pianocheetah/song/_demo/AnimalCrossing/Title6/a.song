@@ -1,19 +1,19 @@
 /home/sh/_/pianocheetah/4_queue/found/_not_rated_130000_Pop_6_19_15_C_crossing/a.mid
 tempo=10000
 transpose=0
-learn=d
+learn=a
 info={
 bars   20
-prac   RH Drum REC_RH REC_HT 
+prac   RH 
 ksig   Bb 
 tsig   4/4/4 
 tempo  70 
 lyric  0
 }
 Track:
-drum  SynLead_Voice  .?4  #SynLead_Voice
-drum  SynLead_Voice  +?4  
-drum  Drum/*  +  DrumTrack#Drum/*
+thing1  SynLead_Voice  .?4  #SynLead_Voice
+thing1  SynLead_Voice  +?4  
+thing1  Drum/*  +  DrumTrack#Drum/*
 DrumMap:
 Kick . 127 64 . . Kick
 Lyric:

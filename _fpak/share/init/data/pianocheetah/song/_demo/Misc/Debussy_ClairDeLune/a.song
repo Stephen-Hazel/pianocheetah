@@ -4,20 +4,20 @@ pract 202409 02 21
 /home/sh/_/pianocheetah/1_learning/Debussy_ClairDeLune/a.mid
 tempo=10000
 transpose=0
-learn=d
+learn=a
 ez=Y
 info={
 bars   72
-prac   LH RH Drum REC_RH REC_HT 
+prac   RH 
 ksig   Dbm E Db 
 tsig   9/8 
 tempo  40 83 66 +811
 lyric  0
 }
 Track:
-rokn88  Piano_AcousticGrand  .?4  RH#Piano_AcousticGrand
-rokn88  Piano_AcousticGrand  +3  RH#Piano_AcousticGrand
-drumz  Drum/*  .  DrumTrack#Drum/*
+thing1  Piano_AcousticGrand  .?4  RH#Piano_AcousticGrand
+thing1  Piano_AcousticGrand  +3  RH#Piano_AcousticGrand
+thing1  Drum/*  .  DrumTrack#Drum/*
 DrumMap:
 Kick . 127 64 . . Kick
 Lyric:

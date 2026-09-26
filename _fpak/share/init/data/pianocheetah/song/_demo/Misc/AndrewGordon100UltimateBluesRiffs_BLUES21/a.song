@@ -2,7 +2,7 @@ pract 202410 26
 /home/sh/_/pianocheetah/4_queue/midi/zzEtc/Do/_Book/100bluesriffs/BLUES_a_21/a.mid
 tempo=10000
 transpose=0
-learn=d
+learn=a
 ez=Y
 info={
 bars   7
@@ -13,9 +13,9 @@ tempo  75 89 80 +29
 lyric  0
 }
 Track:
-rk88  Piano_AcousticBright  .?4  rh#Piano_AcousticBright
-rk88  Piano_AcousticBright  +?3  lh#Piano_AcousticBright
-drumz  Drum/*  .  DrumTrack#Drum/*
+thing1  Piano_AcousticBright  .?4  rh#Piano_AcousticBright
+thing1  Piano_AcousticBright  +?3  lh#Piano_AcousticBright
+thing1  Drum/*  .  DrumTrack#Drum/*
 DrumMap:
 Kick . 127 64 . . Kick
 Snr2 . 127 64 . . Snr2

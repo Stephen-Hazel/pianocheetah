@@ -1,21 +1,21 @@
 /home/sh/_/pianocheetah/4_queue/found/_not_rated_50000midifiles_2009_MIDI_amazing_grace6-G96/a.mid
 tempo=10000
 transpose=0
-learn=d
+learn=a
 info={
 bars   17
-prac   LH RH Drum REC_LH REC_RH REC_HT 
+prac   LH RH 
 ksig   G 
 tsig   3/4 
 tempo  96 45 96 +4
 lyric  0
 }
 Track:
-rokn88  Piano_AcousticGrand  .?4  #Piano_AcousticGrand
-rokn88  Piano_AcousticGrand  .?4  #Piano_AcousticGrand
-rokn88  Piano_AcousticGrand  .?3  #Piano_AcousticGrand
-rokn88  Piano_AcousticGrand  .?3  #Piano_AcousticGrand
-drumz  Drum/*  .  DrumTrack#Drum/*
+thing1  Piano_AcousticGrand  .?4  #Piano_AcousticGrand
+thing1  Piano_AcousticGrand  .?4  #Piano_AcousticGrand
+thing1  Piano_AcousticGrand  .?3  #Piano_AcousticGrand
+thing1  Piano_AcousticGrand  .?3  #Piano_AcousticGrand
+thing1  Drum/*  .  DrumTrack#Drum/*
 DrumMap:
 Kick . 127 64 . . Kick
 Lyric:

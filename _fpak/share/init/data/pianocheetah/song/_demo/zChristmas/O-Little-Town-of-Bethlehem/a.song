@@ -1,17 +1,17 @@
 /home/sh/_/z/pianocheetah/4_queue/Christmas/christmas_O-Little-Town-of-Bethlehem/orig.mid
-learn=d
+learn=a
 tempo=10000
 transpose=0
 info={
 bars   14
-prac   RH Drum REC_RH REC_HT 
-ksig   F 
+prac   RH 
+ksig   Fm 
 tempo  120 
 lyric  2
 }
 Track:
-rokn88  Piano_AcousticGrand  .?4  ?Lewis_H._Redner,__O_Little
-drumz  Drum/*  .  DrumTrack
+thing1  Piano_AcousticGrand  .?4  ?Lewis_H._Redner,__O_Little
+thing1  Drum/*  .  DrumTrack
 DrumMap:
 Kick . 127 64 . . Kick
 Lyric:
@@ -206,5 +206,5 @@ Event:
 13.1.29   4f^64
 EndTrack 1 #ev=174
 1         !Tmpo=120
-1         !KSig=F
+1         !KSig=Fm
 EndTrack 2 #ev=2

@@ -1,19 +1,19 @@
 /home/sh/_/pianocheetah/4_queue/found/VGame_vgmusic.com_nGamecube_AnimalCrossing_Title/a.mid
 tempo=10000
 transpose=0
-learn=d
+learn=a
 info={
 bars   36
-prac   LH RH Drum REC_LH REC_RH REC_HT 
+prac   LH RH 
 ksig   Bb 
 tsig   3/4 3/4 2/4 +1
 tempo  118 
 lyric  0
 }
 Track:
-rokn88  Piano_AcousticGrand  .?4  Animal_Crossing_-_Title_Screen#Piano_AcousticGrand.000032
-rokn88  Piano_AcousticGrand  +?3  
-drumz  Drum/*  .  DrumTrack#Drum/*
+thing1  Piano_AcousticGrand  .?4  Animal_Crossing_-_Title_Screen#Piano_AcousticGrand.000032
+thing1  Piano_AcousticGrand  +?3  
+thing1  Drum/*  .  DrumTrack#Drum/*
 DrumMap:
 Kik2 . 127 64 . . Kik2
 SStk . 127 64 . . SStk

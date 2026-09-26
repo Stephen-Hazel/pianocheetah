@@ -10,15 +10,15 @@ tempo  80 80 80 +90
 lyric  0
 }
 Track:
-rk88  Piano_AcousticBright  .S  Piano#Piano_AcousticBright
-drumz  Drum/*  .  DrumTrack#Drum/*
+thing1  Piano_AcousticBright  .S  Piano#Piano_AcousticBright
+thing1  Drum/*  .  DrumTrack#Drum/*
 DrumMap:
 Kick . 127 64 . . Kick
 Lyric:
 Event:
-1         !cc7=102
 1         !cc7=110
 1         !cc7=101
+1         !cc7=102
 1         !cc10=64
 1         !rp3=12
 1         !rp3=12

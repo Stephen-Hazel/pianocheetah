@@ -1,10 +1,10 @@
 /home/sh/_/z/pianocheetah/4_queue/Christmas/christmas_Silent-Night/orig.mid
-learn=d
+learn=a
 tempo=10000
 transpose=0
 info={
 bars   19
-prac   LH RH Drum REC_RH REC_HT 
+prac   RH 
 ksig   C 
 tempo  120 
 lyric  2
@@ -12,7 +12,7 @@ lyric  2
 Track:
 syn  Piano_AcousticGrand_aria  .?4  ?RH
 syn  Piano_AcousticGrand_aria  .3  ?LH_Franz_Gruber,__Silent_Nigh
-drumz  Drum/*  .  DrumTrack
+thing1  Drum/*  .  DrumTrack
 DrumMap:
 Kick . 127 64 . . Kick
 Lyric:

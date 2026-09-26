@@ -1,17 +1,17 @@
 /home/sh/_/z/pianocheetah/4_queue/Christmas/christmas_Away-in-a-Manger/orig.mid
-learn=d
+learn=a
 tempo=10000
 transpose=0
 info={
 bars   10
-prac   RH Drum REC_RH REC_HT 
+prac   RH 
 ksig   G 
 tempo  120 
 lyric  2
 }
 Track:
-rokn88  Piano_AcousticGrand  .?4  ?traditional_German_carol
-drumz  Drum/*  .  DrumTrack
+thing1  Piano_AcousticGrand  .?4  ?traditional_German_carol
+thing1  Drum/*  .  DrumTrack
 DrumMap:
 Kick . 127 64 . . Kick
 Lyric:

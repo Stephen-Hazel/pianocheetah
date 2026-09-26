@@ -1,18 +1,18 @@
 /home/sh/_/z/pianocheetah/4_queue/Christmas/christmas_God-Rest-You-Merry-Gentlemen/orig.mid
-learn=d
+learn=a
 tempo=10000
 transpose=0
 info={
 bars   16
-prac   LH RH Drum REC_RH REC_HT 
-ksig   G 
+prac   RH 
+ksig   Gm 
 tempo  120 
 lyric  2
 }
 Track:
-rokn88  Piano_AcousticGrand  .?4  ?RH_H
-rokn88  Piano_AcousticGrand  .3  ?LH_H
-drumz  Drum/*  .  DrumTrack
+thing1  Piano_AcousticGrand  .?4  ?RH_H
+thing1  Piano_AcousticGrand  .3  ?LH_H
+thing1  Drum/*  .  DrumTrack
 DrumMap:
 Kick . 127 64 . . Kick
 Lyric:
@@ -226,5 +226,5 @@ EndTrack 1 #ev=134
 15.1.149  3g^64
 EndTrack 2 #ev=60
 1         !Tmpo=120
-1         !KSig=G
+1         !KSig=Gm
 EndTrack 3 #ev=2

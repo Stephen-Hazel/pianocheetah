@@ -1,10 +1,10 @@
 /home/sh/_/pianocheetah/4_queue/_demo/ZeldaOcarina/TempleOfTime/a.mid
 tempo=10000
 transpose=0
-learn=d
+learn=a
 info={
 bars   20
-prac   RH Drum REC_RH REC_HT 
+prac   RH 
 ksig   C 
 tsig   4/4/4 
 tempo  90 

@@ -1,19 +1,19 @@
 /home/sh/_/z/pianocheetah/4_queue/Christmas/christmas_Joy-to-the-World/orig.mid
-learn=d
+learn=a
 tempo=10000
 transpose=0
 ezhop=n
 info={
 bars   15
-prac   RH Drum REC_RH REC_HT 
+prac   RH 
 ksig   C 
 tempo  120 
 lyric  2
 }
 Track:
-rokn88  Piano_AcousticGrand  .?4  ?George_F._Hendel,__Joy_to_t
-rokn88  Piano_AcousticGrand  +?4  
-drumz  Drum/*  +  DrumTrack
+thing1  Piano_AcousticGrand  .?4  ?George_F._Hendel,__Joy_to_t
+thing1  Piano_AcousticGrand  +?4  
+thing1  Drum/*  +  DrumTrack
 DrumMap:
 Kick . 127 64 . . Kick
 Lyric:

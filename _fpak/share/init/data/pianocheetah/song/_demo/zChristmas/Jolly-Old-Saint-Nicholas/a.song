@@ -1,15 +1,15 @@
 /home/sh/_/z/pianocheetah/4_queue/Christmas/christmas_Jolly-Old-Saint-Nicholas/orig.mid
-learn=d
+learn=a
 tempo=10000
 transpose=0
 ezhop=n
 info={
 bars   13
-prac   RH REC_RH REC_HT 
+prac   RH 
 lyric  2
 }
 Track:
-rokn88  Piano_AcousticGrand  .?4  ?traditional_American_carol,
+thing1  Piano_AcousticGrand  .?4  ?traditional_American_carol,
 DrumMap:
 Lyric:
 1         ?/3228[

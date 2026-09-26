@@ -1,18 +1,18 @@
 /home/sh/_/pianocheetah/4_queue/found/__old_done_Gamecube_AnimalCrossing/a.mid
 tempo=10000
 transpose=0
-learn=d
+learn=a
 info={
 bars   36
-prac   RH Drum REC_RH REC_HT 
+prac   RH 
 ksig   Bbm 
 tsig   3/4 3/4 2/4 +1
 tempo  118 
 lyric  2
 }
 Track:
-rokn88  Piano_AcousticGrand  .?4  ?RH_Animal_Crossing#Piano_AcousticGrand
-drumz  Drum/*  .  DrumTrack#Drum/*
+thing1  Piano_AcousticGrand  .?4  ?RH_Animal_Crossing#Piano_AcousticGrand
+thing1  Drum/*  .  DrumTrack#Drum/*
 DrumMap:
 Kik2 . 127 64 . . Kik2
 SStk . 127 64 . . SStk

@@ -1,15 +1,15 @@
 /home/sh/_/z/pianocheetah/4_queue/Christmas/christmas_Angels-We-Have-Heared-on-High/orig.mid
-learn=d
+learn=a
 tempo=10000
 transpose=0
 info={
 bars   17
-prac   LH RH REC_RH REC_HT 
+prac   RH 
 lyric  2
 }
 Track:
-rokn88  Piano_AcousticGrand  .?4  ?RH_traditional_French_carol
-rokn88  Piano_AcousticGrand  .3  ?LH_H
+thing1  Piano_AcousticGrand  .?4  ?RH_traditional_French_carol
+thing1  Piano_AcousticGrand  .3  ?LH_H
 DrumMap:
 Lyric:
 1         ?/3228[

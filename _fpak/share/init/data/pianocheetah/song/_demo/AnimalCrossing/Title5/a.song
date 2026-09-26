@@ -1,26 +1,36 @@
 /home/sh/_/pianocheetah/4_queue/found/_not_rated_130000_Pop_6_19_15_A_Animal_Crossing_-_Title_Screen/a.mid
 tempo=10000
 transpose=0
-learn=d
+learn=a
 info={
 bars   37
-prac   LH RH Drum REC_LH REC_RH REC_HT 
+prac   LH RH 
 ksig   Bb 
 tsig   4/4/4 
 tempo  118 118 117 +61
 lyric  0
 }
 Track:
-rokn88  Piano_AcousticBright  .?4  Piano#Piano_AcousticBright
-rokn88  Piano_AcousticBright  +?3  
-drumz  Drum/*  .  DrumTrack#Drum/*
+thing1  Piano_AcousticBright  .?4  Piano#Piano_AcousticBright
+thing1  Piano_AcousticBright  +?3  
+thing1  Drum/*  .  DrumTrack#Drum/*
 DrumMap:
 x000 . 127 64 . . x000
 Lyric:
+1         ?/3366[
+4.4.191   ?/3367[
+8.4.1     ?/3557[
+12.4.1    ?/3455[
+16.4.153  ?/2439[
+21.4.191  ?/2599[
+24.4.95   ?/3463[
+28.4.1    ?/3557[
+32.4.191  ?/2789[
+36.4      ?/-92[
 Event:
-1         !Vol=102
 1         !Vol=110
 1         !Vol=101
+1         !Vol=102
 1         !Pan=64
 1         !rp3=12
 1         !rp3=12
@@ -28,8 +38,8 @@ Event:
 1         !rp19L=0
 1.1.1     3f_59
 1.1.1     3a_69
-1.1.1     !Vol=102
 1.1.1     !Vol=110
+1.1.1     !Vol=102
 1.1.96    3f^0
 1.1.96    3a^0
 1.2.100   3f_54

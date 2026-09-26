@@ -1,19 +1,19 @@
 /home/sh/_/pianocheetah/4_queue/found/VGame_www.ninsheetmusic.net_Other_AnimalCrossing_Title/a.mid
 tempo=10000
 transpose=0
-learn=d
+learn=a
 info={
 bars   22
-prac   LH RH Drum REC_LH REC_RH REC_HT 
+prac   LH RH 
 ksig   Bb 
 tsig   3/4 
 tempo  120 
 lyric  0
 }
 Track:
-rokn88  Piano_AcousticGrand  .?4  Title#Piano_AcousticGrand
-rokn88  Piano_AcousticGrand  +?3  by_DoKoCo#Piano_AcousticGrand
-drumz  Drum/*  .  DrumTrack#Drum/*
+thing1  Piano_AcousticGrand  .?4  Title#Piano_AcousticGrand
+thing1  Piano_AcousticGrand  +?3  by_DoKoCo#Piano_AcousticGrand
+thing1  Drum/*  .  DrumTrack#Drum/*
 DrumMap:
 Kick . 127 64 . . Kick
 Lyric:

@@ -1,10 +1,10 @@
 /home/sh/_/pianocheetah/4_queue/_demo/ZeldaOcarina/ZeldasLullaby/a.mid
 tempo=10000
 transpose=0
-learn=d
+learn=a
 info={
 bars   39
-prac   LH RH Drum REC_RH REC_HT 
+prac   RH 
 ksig   G 
 tsig   3/4 
 tempo  96 94 95 +96

@@ -1,59 +1,59 @@
 /home/sh/_/z/pianocheetah/4_queue/ToFixUp/Bach_CanonInD/orig.mid
-learn=d
+learn=a
 tempo=10000
 transpose=0
 ez=N
 info={
 bars   49
-prac   LH RH Drum REC_LH REC_RH REC_HT 
+prac   LH RH 
 ksig   Dm 
 tsig   4/4/4 4/4/4 
 tempo  84 83 83 +77
 lyric  29
 }
 Track:
-rokn88  Piano_AcousticGrand  .  
-rokn88  Piano_AcousticGrand  .  
-rokn88  Piano_AcousticGrand  .  
-rokn88  Piano_AcousticGrand  .  
-rokn88  Piano_AcousticGrand  .  
-rokn88  Piano_AcousticGrand  .?4  RH
-rokn88  Piano_AcousticGrand  .?3  LH
+thing1  Piano_AcousticGrand  .  
+thing1  Piano_AcousticGrand  .  
+thing1  Piano_AcousticGrand  .  
+thing1  Piano_AcousticGrand  .  
+thing1  Piano_AcousticGrand  .  
+thing1  Piano_AcousticGrand  .?4  RH
+thing1  Piano_AcousticGrand  .?3  LH
 syn  Drum/*  .  DrumTrack
 DrumMap:
 HHCl . 127 64 . . HHCl
 TriO . 127 64 . . TriO
 Lyric:
 1         ?.repeat_bar_0
-1         $$./HCXSetting_CustomNameSetting_Canon_in_D_by_Johann_Pachelbel
-1         $$./HCXSetting_NameToUseSetting_2
-1         $$./HCXSetting_FollowTrack0Setting_1
-1         $$./HCXSetting_FollowTrack1Setting_2
-1         $$./HCXSetting_DisplayTrack0Setting_1
-1         $$./HCXSetting_DisplayTrack1Setting_2
-1         $$./HCXSetting_UseCustomKeySignatureSetting_1
-1         $$./HCXSetting_CustomKeySignatureSetting_2
-1         $$./HCXSetting_BarNumberingSetting_-2
-1         $$./HCXSetting_TrackCustomNameSetting_2_Pizzicato_Strings
-1         $$./HCXSetting_TrackNameToUseSetting_2_1
-1         $$./HCXSetting_TrackDefaultNameTypeSetting_2_1
-1         $$./HCXSetting_TrackCustomNameSetting_3_Piano_L.H.
-1         $$./HCXSetting_TrackNameToUseSetting_3_1
-1         $$./HCXSetting_TrackDefaultNameTypeSetting_3_1
-1         $$./HCXSetting_TrackAutoQuantized_3_1
-1         $$./HCXSetting_TrackCustomNameSetting_4_Piano_R.H.
-1         $$./HCXSetting_TrackNameToUseSetting_4_1
-1         $$./HCXSetting_TrackDefaultNameTypeSetting_4_1
-1         $$./HCXSetting_TrackAutoQuantized_4_1
-1         $$./HCXSetting_TrackCustomNameSetting_5_Strings_2
-1         $$./HCXSetting_TrackNameToUseSetting_5_1
-1         $$./HCXSetting_TrackDefaultNameTypeSetting_5_1
-1         $$./HCXSetting_TrackCustomNameSetting_6_Strings_1
-1         $$./HCXSetting_TrackNameToUseSetting_6_1
-1         $$./HCXSetting_TrackDefaultNameTypeSetting_6_1
-1         $$./HCXSetting_TrackDefaultNameTypeSetting_10_1
-1         $$./HCXSetting_TrackDefaultNameTypeSetting_13_1
 1         $$./HCXSetting_TrackDefaultNameTypeSetting_14_1
+1         $$./HCXSetting_TrackDefaultNameTypeSetting_13_1
+1         $$./HCXSetting_TrackDefaultNameTypeSetting_10_1
+1         $$./HCXSetting_TrackDefaultNameTypeSetting_6_1
+1         $$./HCXSetting_TrackNameToUseSetting_6_1
+1         $$./HCXSetting_TrackCustomNameSetting_6_Strings_1
+1         $$./HCXSetting_TrackDefaultNameTypeSetting_5_1
+1         $$./HCXSetting_TrackNameToUseSetting_5_1
+1         $$./HCXSetting_TrackCustomNameSetting_5_Strings_2
+1         $$./HCXSetting_TrackAutoQuantized_4_1
+1         $$./HCXSetting_TrackDefaultNameTypeSetting_4_1
+1         $$./HCXSetting_TrackNameToUseSetting_4_1
+1         $$./HCXSetting_TrackCustomNameSetting_4_Piano_R.H.
+1         $$./HCXSetting_TrackAutoQuantized_3_1
+1         $$./HCXSetting_TrackDefaultNameTypeSetting_3_1
+1         $$./HCXSetting_TrackNameToUseSetting_3_1
+1         $$./HCXSetting_TrackCustomNameSetting_3_Piano_L.H.
+1         $$./HCXSetting_TrackDefaultNameTypeSetting_2_1
+1         $$./HCXSetting_TrackNameToUseSetting_2_1
+1         $$./HCXSetting_TrackCustomNameSetting_2_Pizzicato_Strings
+1         $$./HCXSetting_BarNumberingSetting_-2
+1         $$./HCXSetting_CustomKeySignatureSetting_2
+1         $$./HCXSetting_UseCustomKeySignatureSetting_1
+1         $$./HCXSetting_DisplayTrack1Setting_2
+1         $$./HCXSetting_DisplayTrack0Setting_1
+1         $$./HCXSetting_FollowTrack1Setting_2
+1         $$./HCXSetting_FollowTrack0Setting_1
+1         $$./HCXSetting_NameToUseSetting_2
+1         $$./HCXSetting_CustomNameSetting_Canon_in_D_by_Johann_Pachelbel
 3.4.191   ?/3265[
 7.4.191   ?/3361[
 11.4.191  ?/3361[

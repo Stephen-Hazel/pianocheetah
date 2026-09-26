@@ -1,10 +1,10 @@
 /home/sh/_/z/pianocheetah/4_queue/Christmas/christmas_We-Three-Kings-of-Orient-Are/orig.mid
-learn=d
+learn=a
 tempo=10000
 transpose=0
 info={
 bars   19
-prac   LH RH REC_RH REC_HT 
+prac   RH 
 ksig   G 
 tempo  120 
 lyric  2

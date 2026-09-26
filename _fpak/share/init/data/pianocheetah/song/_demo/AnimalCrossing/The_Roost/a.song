@@ -1,19 +1,19 @@
 /home/sh/_/pianocheetah/4_queue/found/_not_rated_130000_Pop_6_19_15_A_Animal_Crossing_Wild_World_-_The_Roost/a.mid
 tempo=10000
 transpose=0
-learn=d
+learn=a
 info={
 bars   38
-prac   RH Drum REC_RH REC_HT 
+prac   RH 
 ksig   C 
 tsig   3/4 
 tempo  100 100 100 +54
 lyric  0
 }
 Track:
-rokn88  Piano_AcousticBright  .?4  Piano#Piano_AcousticBright
-rokn88  Piano_AcousticBright  +?4  
-drumz  Drum/*  +  DrumTrack#Drum/*
+thing1  Piano_AcousticBright  .?4  Piano#Piano_AcousticBright
+thing1  Piano_AcousticBright  +?4  
+thing1  Drum/*  +  DrumTrack#Drum/*
 DrumMap:
 Kick . 127 64 . . Kick
 Lyric:
@@ -33,36 +33,10 @@ Lyric:
 20.3.3    !2
 20.3.191  ?.repeat_bar_3
 21.2.4    !1
-23        !1
-26        !1
-27        !1
-28.2.100  !1
-30.3.97   !1
-31.2.4    !1
-31.3.97   !1
-32        !1
-32.3.97   !1
-33.1.102  !1
-35.2.4    !1
-36        !1
-36.2.4    !1
-36.3.3    !1
-36.3.97   !1
-37        !1
-37.2.4    !1
-37.2.100  !1
-37.3.3    !1
-37.3.97   !1
-38        !1
-38.1.102  !1
-38.2.4    !1
-38.2.100  !1
-38.3.3    !1
-38.3.97   !1
 Event:
-1         !Vol=101
 1         !Vol=102
 1         !Vol=110
+1         !Vol=101
 1         !Pan=64
 1.2.100   4e_54
 1.2.100   5c_68

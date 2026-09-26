@@ -1,18 +1,18 @@
 /home/sh/_/z/pianocheetah/4_queue/Christmas/christmas_Hark-the-Herald-Angels-Sing/orig.mid
-learn=d
+learn=a
 tempo=10000
 transpose=0
 info={
 bars   16
-prac   LH RH Drum REC_RH REC_HT 
-ksig   F 
+prac   RH 
+ksig   Fm 
 tempo  120 
 lyric  2
 }
 Track:
-rokn88  Piano_AcousticGrand  .?4  ?RH_Felix_Mendelssohn,__Hark!
-rokn88  Piano_AcousticGrand  .3  ?LH_H
-drumz  Drum/*  .  DrumTrack
+thing1  Piano_AcousticGrand  .?4  ?RH_Felix_Mendelssohn,__Hark!
+thing1  Piano_AcousticGrand  .3  ?LH_H
+thing1  Drum/*  .  DrumTrack
 DrumMap:
 Kick . 127 64 . . Kick
 Lyric:
@@ -276,5 +276,5 @@ EndTrack 1 #ev=130
 15.2.95   3a^64
 EndTrack 2 #ev=90
 1         !Tmpo=120
-1         !KSig=F
+1         !KSig=Fm
 EndTrack 3 #ev=2
