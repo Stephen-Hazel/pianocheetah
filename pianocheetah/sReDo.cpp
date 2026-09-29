@@ -436,13 +436,13 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
          tr = M_WHOLE/ts->den/ts->sub*3/4;  // 3/4 of a subbt
          c  = 0;                       // count # EXTRA downs in trill (not 1st)
          cu = (xx [dp].dir == '>') ? 1 : 0;      // how many ups altogether
-TStr s3;
-DBG("tm1=`s tr=`d dir=`c", TmSt(s3,tm), tr, xx [dp].dir);
+//TStr s3;
+//DBG("tm1=`s tr=`d dir=`c", TmSt(s3,tm), tr, xx [dp].dir);
          for (p = dp+1;  p < _dn.Ln;  p++)  if (xx [p].pos != 99) {
             if (_dn [p].time < (tm + tr)) {
                c++;   pend = p;   tm = _dn [p].time;
                if (xx [p].dir == '>')  cu++;
-DBG("   + tm=`s dir=`c c=`d cu=`d", TmSt(s3,tm), xx [p].dir, c, cu);
+//DBG("   + tm=`s dir=`c c=`d cu=`d", TmSt(s3,tm), xx [p].dir, c, cu);
             }
             else  break;
          }
@@ -458,13 +458,13 @@ DBG("   + tm=`s dir=`c c=`d cu=`d", TmSt(s3,tm), xx [p].dir, c, cu);
            char dir = (cu > c+1-cu) ? '>' : '<';
             _dn [dp].nt [xx [dp].pos].mrk = dir;      // mark trill start
             tm = _dn [dp].time;
-DBG("   c=`d cu=`d pf=`d dir=`c", c, cu, pf, dir);
+//DBG("   c=`d cu=`d pf=`d dir=`c", c, cu, pf, dir);
 
          // if normal 1st note would cause a wrap (5>1 or 1>5) bump it
             if (dir == '>') {if (pf+c > 4)  pf = (c <= 4) ? (4-c) : 0;}
             else             if (pf   < c)  pf = (c <= 4) ? c     : 4;
             k [1] = 'c' + pf;
-DBG("   pf=`d k=`s", pf, k);
+//DBG("   pf=`d k=`s", pf, k);
             _dn [dp].nt [xx [dp].pos].nt = MKey (k);  // in case it's new
             for (p = dp+1;  p <= pend;  p++)  if (xx [p].pos != 99) {
                if (dir == '<')  {if (pf-- == 0)  pf = 4;}  // but we should

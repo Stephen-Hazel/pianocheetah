@@ -12,10 +12,27 @@ especially magic singable dumb songs
 dup the good rush sounds
 
 
-code____________________________________________________________________________
+doc_____________________________________________________________________________
 
-dbg why scale square is offset
-   somethin weird is goin on w wb whitebump - right nt bein non 11 sets it >0
+all docs to video - site has link n summary txt
+
+shoot ez linux
+   get your data backed up properly - exfat;  make an iso and install it
+
+break outa flatpak
+
+why is piano playin hard
+   how many people should play a song
+   how is guitar better
+
+cleanin up a song
+   name it a.mid in a dir
+   addin/removin lyrics, cues,
+   end of song controls makin it go long - can't auto kill em
+   editing raw .song with text editor
+
+
+code____________________________________________________________________________
 
 fix recSave - s doesn't trigger it but editCtl/4a does
    played velos should be stored in the song notes
@@ -86,27 +103,6 @@ syn
             discrete2  /16 /8 /4 /2 1 *2 *4 *8 *16
             continuous 0-1
       rand (sample and hold / osc follow)
-
-
-doc_____________________________________________________________________________
-
-all docs convert to video
-
-videos on songs hearin/playin; keyCmd; hook up a track volume
-
-shoot ez linux
-   get your data backed up properly - exfat
-   make an iso and install it
-
-why is piano playin hard
-   how many people should play a song
-   how is guitar better
-
-how video   cleanin up a song
-   name it a.mid in a dir
-   addin/removin cues,
-   end of song controls makin it go long - can't auto kill em
-   editing raw .song with text editor
 
 
 later___________________________________________________________________________

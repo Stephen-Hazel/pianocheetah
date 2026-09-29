@@ -1,4 +1,6 @@
 2026Sep
+   fixed "keysig" squares to offset properly
+
 ** release 2026-09-15
    let's release it finally
       to flatpak kde runtime 6.11
