@@ -260,9 +260,10 @@ private:
 
    void  Init (), Quit ();
    void  Wipe ();
-   void  Info (char *msg);             // into lyr area
-   void  Hey  (char *msg);             // pop gui.hey in gui thr
-   void  Die  (char *msg);             // pop gui.hey n croak
+   void  Info (const char *msg);
+   void  Info (      char *msg);             // into lyr area
+   void  Hey  (      char *msg);             // pop gui.hey in gui thr
+   void  Die  (      char *msg);             // pop gui.hey n croak
 
    Timer               *_timer;
    Arr<MInDef,MAX_DEVI> _mi;

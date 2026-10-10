@@ -12,7 +12,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOUIC_SEARCH_PATHS rc)
 
-find_package(Qt6 REQUIRED COMPONENTS Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Widgets Svg)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(PIPEWIRE REQUIRED libpipewire-0.3)
 
@@ -34,7 +34,7 @@ target_include_directories(midicfg PRIVATE
    ${PIPEWIRE_INCLUDE_DIRS})
 target_compile_options(    midicfg PRIVATE
    ${PIPEWIRE_CFLAGS_OTHER})
-target_link_libraries(     midicfg PRIVATE Qt6::Widgets
+target_link_libraries(     midicfg PRIVATE Qt6::Widgets Qt6::Svg
    asound ${PIPEWIRE_LIBRARIES})
 
 install(TARGETS midicfg

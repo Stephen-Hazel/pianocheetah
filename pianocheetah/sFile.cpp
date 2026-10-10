@@ -710,6 +710,7 @@ TRC("actually savin'");
       Now (s);   s [13] = '\0';                  // kill secs n on
       FnName (fnt, _f.fn);   Fn2Name (fnt);      // kill path leavin songdir
       StrFmt (fns, "`s/song/done/`s_`s", App.Path (s2, 'd'), s, fnt);
+      Info (fns);
       dr.Make (fns);
       StrAp (fns, "/a.song");
    }
@@ -772,7 +773,7 @@ DBG("fns=`s", fns);
       f.Put ("Event:\n");
       for (t = 0;  t < _f.trk.Ln;  t++) {
          oct = 99;
-         if ((rec == 'r') && TLrn (t))  oct = (_f.trk [t].ht == 'L') ? 2 : 3;
+         if ((rec == 'r') && TLrn (t))  oct = _f.trk [t].ht - '0';
          for (p = i = 0, e = _f.trk [t].e;  i < _f.trk [t].ne;  i++) {
             f.Put (StrFmt (s, "`<9s ", TmSt (s2, e [i].time)));
             while ((_dn [p].time < e [i].time) && (p+1 < _dn.Ln))  p++;

@@ -74,7 +74,8 @@ TRC("Wipe end");
 }
 
 
-void Song::Info (char *msg)
+void Song::Info (const char *msg)  {Info (CC(msg));}
+void Song::Info (      char *msg)
 { TStr bb, be;
    StrCp (bb, "<span style='font-size: 14pt; font-weight: bold'>");
    StrCp (be, "</span>");

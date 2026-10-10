@@ -496,7 +496,7 @@ TRC("DrawPg `d", pp);
             x1 = (snm[1]-'c')*W_NTW;   w = W_NTW*(snt[1]-snm[1]+1);
             x0 = x1*245/168;   w0 = w*245/168;
 //DBG(" octez x=`d w0=`d nm=`s nm=`s x1=`d w=`d",x, w0, snm, snt, x1, w);
-            Up.cnv.Blt (*Up.oct,      x, 0, w, H_KB,         x0, 0, w0, 75);
+            Up.cnv.Blt (*Up.oct,     x, 0, w, H_KB-2,         x0, 0, w0, 74);
 
          // background stripes down the col
             Up.cnv.Blt (*Up.bg2 [dk], x, H_KB, w, co.h-H_KB, x1, 0, w, 1);
@@ -535,7 +535,7 @@ TRC("DrawPg `d", pp);
             x0 = x1*245/168;   w0 = w*245/168;
 //DBG(" oct=`d nt=`d nd=`d wb=`d   x=`d w=`d x1=`d w=`d",
 //oc, nt, nd, wb,  x, w, x1, w);
-            Up.cnv.Blt (*Up.oct,     x, 0, w, H_KB,         x0, 0, w0, 75);
+            Up.cnv.Blt (*Up.oct,     x, 0, w, H_KB-2,         x0, 0, w0, 74);
 
          // background stripes down the col
             Up.cnv.Blt (*Up.bg [dk], x, H_KB, w, co.h-H_KB, x1, 0, w, 1);
@@ -546,18 +546,11 @@ TRC("DrawPg `d", pp);
             if (nd == 11)  Up.cnv.Text (x+w-tw-3, 13, str);
 
          // draw curr keysig;  if in scale, put step color
-            w2 = 3;
-            if (Cfg.ntCo == 0) {
-               x2 = x;   if (nt)  x2 += wb;
-               for (n2 = oc*12+nt;  n2 <= oc*12+nd;  n2++, x2 += W_NT) {
-//DBG("  x2=`d", x2);
-                  if (ksig [n2 % 12] != ' ') {   // note of ksig
-//DBG("  ksig sq x=`d wb=`d finalx=`d", x, wb, x2+w2);
-                     Up.cnv.RectF (x2 + w2, 5, W_NT-w2*2, W_NT-w2*2-2,
-                                   CScl [1][((n2 % 12) + 12 - key) % 12]);
-                  }
-               }
-            }
+            w2 = 3;   x2 = x;   if (nt)  x2 += wb;
+            for (n2 = oc*12+nt;  n2 <= oc*12+nd;  n2++, x2 += W_NT)
+               if (ksig [n2 % 12] != ' ')
+                  Up.cnv.RectF (x2 + w2, 5, W_NT-w2*2, W_NT-w2*2-2,
+                                CScl [1][((n2 % 12) + 12 - key) % 12]);
          }
 
       // octaves at edges

@@ -19,6 +19,7 @@ echo "...compile/install\n";
               "/home/sh/src/pianocheetah/.$fb/cache $app");
       system ("$f install --reinstall --user --assumeyes ".
               "/home/sh/src/pianocheetah/.$fb/cache $app".".Debug");
+      system ("rm -fr _build .$fb");   // wipe
       system ("echo x >/home/sh/.var/app/$app/config/dbg.txt");
    // cant remember gdb commands to save my life
       echo "

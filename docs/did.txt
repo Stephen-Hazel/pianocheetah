@@ -1,3 +1,7 @@
+2026Oct
+   in save, show done song filename
+
+
 2026Sep
    fixed "keysig" squares to offset properly
 

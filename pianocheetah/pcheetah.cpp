@@ -265,7 +265,7 @@ TRC("dvt=`d name=`s", Up.trk [r].dvt, Up.dvt [Up.trk [r].dvt].Name ());
 void PCheetah::TrClk ()
 { ubyt2 r = _tr.CurRow ();
   ubyte c = _tr.CurCol ();
-TRC("TrClk(L) r=`d c=`d", r, c);
+TRC("TrClkL r=`d c=`d", r, c);
    Up.eTrk = (ubyte)r;
    if      (c == 0)  emit sgCmd ("prac");
    else if (c == 1)  emit sgCmd ("htype x");
@@ -591,7 +591,7 @@ TRC(" song init");
 TRC(" tr,nt control init");
    _tr.Init (ui->tr,
       "+Lrn\0"
-     "*_Hand\0"
+     "+_Hand\0"
       "_Track\0"
       "_SnGrp\0"
       "_Sound\0"
