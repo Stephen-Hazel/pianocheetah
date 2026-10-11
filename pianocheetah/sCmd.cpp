@@ -39,6 +39,7 @@ DBG("Cmd='`s'", c);
    else if (! StrCm (c, CC("mute")))      EdLrn (6);
    else if (! StrCm (c, CC("prac")))      EdLrn (7);
    else if (! StrCm (c, CC("dump")))      Dump (true);
+   else if (! StrCm (c, CC("theme")))     {Draw ('a');   ReTrk ();}
    else if (! StrCm (c, CC("quan")))      {SetDn ('q');   ReDo ();}
    else if (! StrCm (c, CC("showAll")))   ShowAll ();
    else if (! MemCm (c, CC("tran "), 5))

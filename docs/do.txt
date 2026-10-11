@@ -18,20 +18,20 @@ all docs to video - site has link n summary txt
 
 shoot ez linux
    get an old pc and usb stick
-   download kubuntu .iso
+   download kubuntu .iso    (wait sigh)
    download,install,run balena etcher
       put in your usb stick and remember it's name
-      write the .iso to it (wait sigh)
+      write the .iso to it  (wait sigh)
    look at the pc's barcode sticker and google the model of pc with bios key
-   bios menus work best with wired keyboards and mice
+      bios menus work best with wired keyboards and mice
       or a wireless usb to bluetooth stub keyboard or mouse works too.
    reboot the pc while holding the bios key
-      turn off fast boot and secure boot (ideally)
+      you may need to turn off fast boot and secure boot
       pick boot order - your usb stick goes first (remember it's name?)
       save and exit
-   now you wait for the .iso on the usb stick to boot and then
+   now the .iso on the usb stick boots  (wait sigh)
       double click "install kubuntu"
-      now you answer the installer questions
+      now you answer the installer questions then (wait sigh)
       it'll say "time to reboot", hit ok
       it'll remind you to take out the usb stick
    now you configure linux
@@ -50,10 +50,6 @@ cleanin up a song
 
 
 code____________________________________________________________________________
-
-make cue area align to top of kbd, bot bar line and have rounded corners
-   don't name cues,chds
-   dark mode bg pattern looks wrong?
 
 hear your recording needs to be stoppable
    un/re marking play track fixes it
@@ -125,13 +121,6 @@ syn
 later___________________________________________________________________________
 
 bugs should only show on trill note 1, not 2+
-
-dark/light mode flip - pcheetah
-   flip to light - time area bg ok but fg still white from dark mode
-                   and time still lite/dark without red pause showing
-   lyr bg doesnt change but fg prob does?
-   notes need a redraw
-   track table doesn't redraw but midicfg's is ok
 
 FLst - search on 2nd char within queue,learn,etc
 

@@ -1,6 +1,7 @@
 // pcheetah.cpp - PianoCheetah - Steve's weird midi sequencer
 
 #include "pcheetah.h"
+#include <QToolTip>
 
 TStr Kick;
 
@@ -419,7 +420,8 @@ void PCheetah::changeEvent (QEvent *ev)
    if (ev->type () == QEvent::ApplicationPaletteChange ||
        ev->type () == QEvent::PaletteChange) {
 DBG("dark/light change");
-      Gui.ReIco ();   _tb.ReDo ();   _nt->update ();
+      Gui.ReIco ();   _tb.ReDo ();   Upd ("time");
+      emit sgCmd ("theme");
 DBG("dark/light done");
    }
 }
@@ -573,7 +575,8 @@ TRC(" song init");
    Up.cnv.SetFont ("Noto Sans", 12);   Up.tcnv.SetFont ("Noto Sans", 12);
    Up.txH = Up.cnv.FontH ();
 
-   Gui.A ()->setStyleSheet ("QToolTip {font: 15pt monospace;}");
+   QToolTip::setFont (QFont ("monospace", 15));  // NOT app stylesheet -
+                                       // it blocks dark/light palette flip
 
    SetPix ();
 

@@ -1,5 +1,6 @@
 2026Oct
    in save, show done song filename
+   theme change fiiiinally works properly - praise god for ai cuz qt is rough
 
 
 2026Sep

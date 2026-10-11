@@ -640,11 +640,9 @@ TRC("DrawPg `d", pp);
      ubyt2 ve = 0, ch = 0, br = 0;
      bool  sw = true;
    // cue,chd bg lt yellow default bg (ch,ve on top)
-      y = Tm2Y (tMn, & co);
-      Up.cnv.RectF (qx, y, qw, co.h-y, CTnt [dk][3]);
+      Up.cnv.RectF (qx, 0, qw, co.h+2, CTnt [dk][3]);
 
    // FIRST (v/c/b/etc rect hilites so underneath-est (text later)
-      Up.cnv.TextVC (nx-W_Q, 0, CC("Cues"), Color ("fg"));
       for (ne = _f.cue.Ln, p = 0;  p < ne;  p++)
          if (* (StrCp (str, _f.cue [p].s)) == '(') {
             t1 = _f.cue [p].time;   t2 = Bar2Tm (9999);
@@ -654,7 +652,8 @@ TRC("DrawPg `d", pp);
             if ((t2 >= tMn) && (t1 < tMx)) {
                if (t1 <  tMn)  t1 = tMn;
                if (t2 >= tMx)  t2 = tMx-1;
-               y  = Tm2Y (t1, & co);   y2 = Tm2Y (t2, & co);
+               y  = (t1 == tMn  ) ? 0        : Tm2Y (t1, & co);
+               y2 = (t2 == tMx-1) ? (co.h+2) : Tm2Y (t2, & co);
                if      (! StrCm (str, CC("(verse")))   cno = 0;
                else if (! StrCm (str, CC("(chorus")))  cno = 1;
                else if (  StrSt (str, CC("(break")))   cno = 2;
@@ -724,7 +723,6 @@ TRC("DrawPg `d", pp);
 
    // chords (in their own column)
       if (_lrn.chd) {
-         Up.cnv.TextVC (qx, 0, CC("Chds"), Color ("fg"));
          for (ne = _f.chd.Ln, p = 0;
                  (p < ne) && (_f.chd [p].time < tMn);  p++)  sw = (! sw);
          for (;  (p < ne) && (_f.chd [p].time < tMx);  p++) {sw = (! sw);
