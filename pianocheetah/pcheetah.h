@@ -30,15 +30,16 @@ namespace Ui { class DlgFL;    class DlgCfg;
 QT_END_NAMESPACE
 
 
-class DlgFL: public QDialog {
+class DlgFL: public Dlg {
    Q_OBJECT
 public:
-   explicit DlgFL (QWidget *parent = nullptr): QDialog (parent)
+   explicit DlgFL (QWidget *parent = nullptr): Dlg (parent, "DlgFL")
    {  ui = new Ui::DlgFL;   ui->setupUi (this);  }
   ~DlgFL ()         {delete ui;}
 
-   void Init (), Quit (), Open (), Shut ();
-   void closeEvent (QCloseEvent */*e*/)  {Shut ();}
+   void Init () override;
+   void Open () override;
+   void Shut () override;
 
 public slots:
    void ReDo ();
@@ -58,16 +59,16 @@ private:
 };
 
 
-class DlgCfg: public QDialog {
+class DlgCfg: public Dlg {
    Q_OBJECT
 public:
-   explicit DlgCfg (QWidget *parent = nullptr)
-   : QDialog (parent)
+   explicit DlgCfg (QWidget *parent = nullptr): Dlg (parent, "DlgCfg")
    {  ui = new Ui::DlgCfg;   ui->setupUi (this);  }
   ~DlgCfg ()         {delete ui;}
 
-   void Init (), Quit (), Open (), Shut ();
-   void closeEvent (QCloseEvent */*e*/)  {Shut ();}
+   void Init () override;
+   void Open () override;
+   void Shut () override;
 
 signals:
    void sgCmd (char *s);
@@ -77,16 +78,15 @@ private:
 };
 
 
-class DlgTDr: public QDialog {
+class DlgTDr: public Dlg {
    Q_OBJECT
 public:
-   explicit DlgTDr (QWidget *parent = nullptr)
-   : QDialog (parent)
+   explicit DlgTDr (QWidget *parent = nullptr): Dlg (parent, "DlgTDr")
    {  ui = new Ui::DlgTDr;   ui->setupUi (this);  }
   ~DlgTDr ()         {delete ui;}
 
-   void Init (), Quit (), Open (), Shut ();
-   void closeEvent (QCloseEvent */*e*/)  {Shut ();}
+   void Init () override;
+   void Open () override;
 
 public slots:
    void Cmd ();
@@ -100,16 +100,15 @@ private:
 };
 
 
-class DlgCue: public QDialog {
+class DlgCue: public Dlg {
    Q_OBJECT
 public:
-   explicit DlgCue (QWidget *parent = nullptr)
-   : QDialog (parent)
+   explicit DlgCue (QWidget *parent = nullptr): Dlg (parent, "DlgCue")
    {  ui = new Ui::DlgCue;   ui->setupUi (this);  }
   ~DlgCue ()         {delete ui;}
 
-   void Init (), Quit (), Open (), Shut ();
-   void closeEvent (QCloseEvent */*e*/)  {Shut ();}
+   void Init () override;
+   void Open () override;
 
 public slots:
    void Set (const char *s);
@@ -122,16 +121,15 @@ private:
 };
 
 
-class DlgQua: public QDialog {
+class DlgQua: public Dlg {
    Q_OBJECT
 public:
-   explicit DlgQua (QWidget *parent = nullptr)
-   : QDialog (parent)
+   explicit DlgQua (QWidget *parent = nullptr): Dlg (parent, "DlgQua")
    {  ui = new Ui::DlgQua;   ui->setupUi (this);  }
   ~DlgQua ()         {delete ui;}
 
-   void Init (), Quit (), Open (), Shut ();
-   void closeEvent (QCloseEvent */*e*/)  {Shut ();}
+   void Init () override;
+   void Open () override;
 
 public slots:
    void Set (char f);
@@ -145,16 +143,16 @@ private:
 };
 
 
-class DlgChd: public QDialog {
+class DlgChd: public Dlg {
    Q_OBJECT
 public:
-   explicit DlgChd (QWidget *parent = nullptr)
-   : QDialog (parent)
+   explicit DlgChd (QWidget *parent = nullptr): Dlg (parent, "DlgChd")
    {  ui = new Ui::DlgChd;   ui->setupUi (this);  }
   ~DlgChd ()         {delete ui;}
 
-   void Init (), Quit (), Open (), Shut ();
-   void closeEvent (QCloseEvent */*e*/)  {Shut ();}
+   void Init () override;
+   void Open () override;
+   void Shut () override;
 
 public slots:
    void Cmd (char *s);
@@ -173,16 +171,16 @@ private:
 };
 
 
-class DlgCtl: public QDialog {
+class DlgCtl: public Dlg {
    Q_OBJECT
 public:
-   explicit DlgCtl (QWidget *parent = nullptr)
-   : QDialog (parent)
+   explicit DlgCtl (QWidget *parent = nullptr): Dlg (parent, "DlgCtl")
    {  ui = new Ui::DlgCtl;   ui->setupUi (this);  }
   ~DlgCtl ()         {delete ui;}
 
-   void Init (), Quit (), Open (), Shut ();
-   void closeEvent (QCloseEvent */*e*/)  {Shut ();}
+   void Init () override;
+   void Open () override;
+   void Shut () override;
 
 public slots:
    void Upd ();
@@ -196,16 +194,15 @@ private:
 };
 
 
-class DlgTpo: public QDialog {
+class DlgTpo: public Dlg {
    Q_OBJECT
 public:
-   explicit DlgTpo (QWidget *parent = nullptr)
-   : QDialog (parent)
+   explicit DlgTpo (QWidget *parent = nullptr): Dlg (parent, "DlgTpo")
    {  ui = new Ui::DlgTpo;   ui->setupUi (this);  }
   ~DlgTpo ()         {delete ui;}
 
-   void Init (), Quit (), Open (), Shut ();
-   void closeEvent (QCloseEvent */*e*/)  {Shut ();}
+   void Open () override;
+   void Shut () override;
 
 signals:
    void sgCmd (char *s);
@@ -216,16 +213,15 @@ private:
 };
 
 
-class DlgTSg: public QDialog {
+class DlgTSg: public Dlg {
    Q_OBJECT
 public:
-   explicit DlgTSg (QWidget *parent = nullptr)
-   : QDialog (parent)
+   explicit DlgTSg (QWidget *parent = nullptr): Dlg (parent, "DlgTSg")
    {  ui = new Ui::DlgTSg;   ui->setupUi (this);  }
   ~DlgTSg ()         {delete ui;}
 
-   void Init (), Quit (), Open (), Shut ();
-   void closeEvent (QCloseEvent */*e*/)  {Shut ();}
+   void Open () override;
+   void Shut () override;
 
 signals:
    void sgCmd (char *s);
@@ -236,16 +232,16 @@ private:
 };
 
 
-class DlgKSg: public QDialog {
+class DlgKSg: public Dlg {
    Q_OBJECT
 public:
-   explicit DlgKSg (QWidget *parent = nullptr)
-   : QDialog (parent)
+   explicit DlgKSg (QWidget *parent = nullptr): Dlg (parent, "DlgKSg")
    {  ui = new Ui::DlgKSg;   ui->setupUi (this);  }
   ~DlgKSg ()         {delete ui;}
 
-   void Init (), Quit (), Open (), Shut ();
-   void closeEvent (QCloseEvent */*e*/)  {Shut ();}
+   void Init () override;
+   void Open () override;
+   void Shut () override;
 
 signals:
    void sgCmd (char *s);
@@ -256,32 +252,32 @@ private:
 };
 
 
-class DlgMov: public QDialog {
+class DlgMov: public Dlg {
    Q_OBJECT
 public:
-   explicit DlgMov (QWidget *parent = nullptr)
-   : QDialog (parent)
+   explicit DlgMov (QWidget *parent = nullptr): Dlg (parent, "DlgMov")
    {  ui = new Ui::DlgMov;   ui->setupUi (this);  }
   ~DlgMov ()         {delete ui;}
 
-   void Init (), Quit (), Open (), Shut ();
-   void closeEvent (QCloseEvent */*e*/)  {Shut ();}
+   void Init () override;
+   void Open () override;
 
 private:
    Ui::DlgMov *ui;
 };
 
 
-class DlgHlp: public QDialog {
+class DlgHlp: public Dlg {
    Q_OBJECT
 public:
-   explicit DlgHlp (QWidget *parent = nullptr)
-   : QDialog (parent)
+   explicit DlgHlp (QWidget *parent = nullptr): Dlg (parent, "DlgHlp")
    {  ui = new Ui::DlgHlp;   ui->setupUi (this);  }
   ~DlgHlp ()         {delete ui;}
 
-   void Init (), Quit (), Open (), Shut ();
-   void closeEvent (QCloseEvent */*e*/)  {Shut ();}
+   void Init () override;
+   void Quit () override;
+   void Open () override;
+   void Shut () override;
 
 private:
    Ui::DlgHlp *ui;

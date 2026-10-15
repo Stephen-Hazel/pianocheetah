@@ -50,7 +50,7 @@ TRC("DlgCfg::Open");
   CtlChek b  (ui->barCl), t (ui->trc);
    tr.Set (Cfg.tran);
    b.Set  (Cfg.barCl);   t.Set (App.trc);
-   show ();   raise ();   activateWindow ();
+   Dlg::Open ();
 }
 
 void DlgCfg::Shut ()                   // set em n save em
@@ -61,15 +61,14 @@ TRC("DlgCfg.Shut");
    Cfg.tran  = tr.Get ();
    Cfg.barCl = b.Get ();   App.TrcPut (t.Get ());
    Cfg.Save ();                        // in case we die early :/
-   done (true);   lower ();   hide ();
+   Dlg::Shut ();
 }
 
 void DlgCfg::Init ()
-{  Cfg.Load ();        Gui.DlgLoad (this, "DlgCfg");
+{  Cfg.Load ();        Dlg::Init ();
    connect (ui->quan, & QPushButton::clicked,
             this, [this]() { emit sgCmd (CC("quan")); });
 }
-void DlgCfg::Quit ()  {Gui.DlgSave (this, "DlgCfg");}
 
 
 //______________________________________________________________________________
@@ -150,23 +149,23 @@ void DlgChd::UnDo ()
 
 //______________________________________________________________________________
 void DlgChd::Init ()
-{  Gui.DlgLoad (this, "DlgChd");
-  CtlTBar tb;
-   tb.Init (this, "chd");
-   tb.Btn (0, "guess chords\n"
+{  Dlg::Init ();
+   _tb.Init (this, "chd");
+   _tb.Btn (0, "guess chords\n"
               "   calculate whole song's chords\n"
               "   using notes of selected practice tracks");
-   tb.Btn (1, "pop chords\n"
+   _tb.Btn (1, "pop chords\n"
               "   plop some random happy pop chords into this section");
-   tb.Btn (2, "delete all chords  (be carefulll)");
-   connect (tb.Act (0), & QAction::triggered,  this, [this]() {Cmd (CC("?"));});
-   connect (tb.Act (1), & QAction::triggered,  this, [this]() {Cmd (CC("+"));});
-   connect (tb.Act (2), & QAction::triggered,  this, [this]() {Cmd (CC("x"));});
+   _tb.Btn (2, "delete all chords  (be carefulll)");
+   connect (_tb.Act (0), & QAction::triggered, this, [this]() {Cmd (CC("?"));});
+   connect (_tb.Act (1), & QAction::triggered, this, [this]() {Cmd (CC("+"));});
+   connect (_tb.Act (2), & QAction::triggered, this, [this]() {Cmd (CC("x"));});
    connect (ui->shhh, & QPushButton::clicked,
                                   this, [this]() {emit sgCmd (CC("timePoz"));});
    connect (ui->undo, & QPushButton::clicked,  this, [this]() {UnDo ();});
    connect (ui->pop,  QOverload<int>::of(& QComboBox::currentIndexChanged),
                                                this, [this]() {Pop  ();});
+   _tb.ReDo ();
 }
 
 
@@ -176,7 +175,7 @@ void DlgChd::Open ()
   TStr  *btw, s, it, t, ch, ch1, ch2;
   char  *c;
 TRC("DlgChd::Open");
-   show ();   raise ();   activateWindow ();
+   Dlg::Open ();
    _got = Up.pos.got ? true : false;
    _cp = Up.pos.cp;   _tm = Up.pos.tm;   _tm1 = Up.pos.tmBt;
    StrCp (ch1, Up.d [0][0]);   StrCp (ch2, Up.d [0][1]);
@@ -221,11 +220,10 @@ TRC("} DlgChd::Open");
 void DlgChd::Shut ()
 { TStr x;
    Cmd (StrFmt (x, "@`d", _tm));
-   done (true);   lower ();   hide ();
+   Dlg::Shut ();
 }
 
 
-void DlgChd::Quit ()  {Gui.DlgSave (this, "DlgChd");}
 
 
 //______________________________________________________________________________
@@ -256,7 +254,7 @@ void DlgCtl::Init ()
    for (i = 0;  i < NMCC;  i++)  if (! StrCm (MCC [i].s, "keyCmd"))  break;
    while (i < NMCC)  ZZApS (MLst, MCC [i++].s);
 
-   Gui.DlgLoad (this, "DlgCtl");
+   Dlg::Init ();
    _t.Init (ui->t, "Device\0DeviceControl\0_SongControl\0Show?\0", "", CtlPop);
    connect (ui->t, & QTableWidget::itemClicked, this, & DlgCtl::Upd);
 }
@@ -267,7 +265,7 @@ void DlgCtl::Open ()
   CtlChek ch (ui->chk);
    ch.Set (Up.d [Up.nR][0][0] == 'Y');
    ro [4] = nullptr;
-   show ();   raise ();   activateWindow ();
+   Dlg::Open ();
    _t.Open ();
    for (r = 0;  r < Up.nR;  r++) {
       for (c = 0;  c < 4;  c++)  ro [c] = Up.d [r][c];
@@ -284,10 +282,9 @@ void DlgCtl::Shut ()
    for (ubyte r = 0;  r < Up.nR;  r++)
       {StrCp (Up.d [r][2], _t.Get (r,2));   StrCp (Up.d [r][3], _t.Get (r,3));}
    emit sgCmd (CC("ctl"));
-   done (true);   lower ();   hide ();
+   Dlg::Shut ();
 }
 
-void DlgCtl::Quit ()  {Gui.DlgSave (this, "DlgCtl");}
 
 
 //______________________________________________________________________________
@@ -306,75 +303,73 @@ void DlgCue::Set (const char *s)
 void DlgCue::Open ()
 { CtlLine l (ui->str);
    l.Set (Up.pos.str);
-   show ();   raise ();   activateWindow ();
+   Dlg::Open ();
    Gui.DlgMv (this, Up.gp, "tL");
 }
 
-void DlgCue::Shut ()  {done (true);   lower ();   hide ();}
 
 void DlgCue::Init ()
-{  Gui.DlgLoad (this, "DlgCue");
-  CtlTBar tb;
-   tb.Init (this, "cue");
-   tb.Btn (0, "redo loops and erase all bug history");
-   tb.Btn (1, "delete this cue");
-   connect (tb.Act (0), & QAction::triggered,
+{  Dlg::Init ();
+   _tb.Init (this, "cue");
+   _tb.Btn (0, "redo loops and erase all bug history");
+   _tb.Btn (1, "delete this cue");
+   connect (_tb.Act (0), & QAction::triggered,
                         this, [this]() {Set ("loopInit");});
-   connect (tb.Act (1), & QAction::triggered,
+   connect (_tb.Act (1), & QAction::triggered,
                         this, [this]() {Set ("");});
-   tb.Sep (2);
+   _tb.Sep (2);
 
-   tb.Btn (3, "text / non repeating section", "d");
-   tb.Btn (4, "verse section", "d");
-   tb.Btn (5, "chorus section", "d");
-   tb.Btn (6, "break section", "d");
-   connect (tb.Act (3), & QAction::triggered,
+   _tb.Btn (3, "text / non repeating section", "d");
+   _tb.Btn (4, "verse section", "d");
+   _tb.Btn (5, "chorus section", "d");
+   _tb.Btn (6, "break section", "d");
+   connect (_tb.Act (3), & QAction::triggered,
                         this, [this]() {Set ("```");});
-   connect (tb.Act (4), & QAction::triggered,
+   connect (_tb.Act (4), & QAction::triggered,
                         this, [this]() {Set ("(verse");});
-   connect (tb.Act (5), & QAction::triggered,
+   connect (_tb.Act (5), & QAction::triggered,
                         this, [this]() {Set ("(chorus");});
-   connect (tb.Act (6), & QAction::triggered,
+   connect (_tb.Act (6), & QAction::triggered,
                         this, [this]() {Set ("(break");});
-   tb.Sep (7);
+   _tb.Sep (7);
 
-   tb.Btn ( 8, "crescendo");
-   tb.Btn ( 9, "decrescendo");
-   tb.Btn (10, "fermata");
-   tb.Btn (11, "tremelo");
-   tb.Btn (12, "star");
-   tb.Btn (13, "happy");
-   tb.Btn (14, "sad");
-   tb.Btn (15, "mad");
-   tb.Btn (16, "piano x3",    "*ppp");
-   tb.Btn (17, "piano x2",    "*pp");
-   tb.Btn (18, "piano",       "*p");
-   tb.Btn (19, "mezzo piano", "*mp");
-   tb.Btn (20, "mezzo forte", "*mf");
-   tb.Btn (21, "forte",       "*f");
-   tb.Btn (22, "forte x2",    "*ff");
-   tb.Btn (23, "forte x3",    "*fff");
-   tb.Btn (24, "forzando",    "*Fz");
-   connect (tb.Act ( 8), & QAction::triggered,  this, [this]() {Set ("<");});
-   connect (tb.Act ( 9), & QAction::triggered,  this, [this]() {Set (">");});
-   connect (tb.Act (10), & QAction::triggered,  this, [this]() {Set ("`fer");});
-   connect (tb.Act (11), & QAction::triggered,  this, [this]() {Set ("`tre");});
-   connect (tb.Act (12), & QAction::triggered,  this, [this]() {Set ("`sta");});
-   connect (tb.Act (13), & QAction::triggered,  this, [this]() {Set ("`hap");});
-   connect (tb.Act (14), & QAction::triggered,  this, [this]() {Set ("`sad");});
-   connect (tb.Act (15), & QAction::triggered,  this, [this]() {Set ("`mad");});
-   connect (tb.Act (16), & QAction::triggered,  this, [this]() {Set ("ppp");});
-   connect (tb.Act (17), & QAction::triggered,  this, [this]() {Set ("pp");});
-   connect (tb.Act (18), & QAction::triggered,  this, [this]() {Set ("p");});
-   connect (tb.Act (19), & QAction::triggered,  this, [this]() {Set ("mp");});
-   connect (tb.Act (20), & QAction::triggered,  this, [this]() {Set ("mf");});
-   connect (tb.Act (21), & QAction::triggered,  this, [this]() {Set ("f");});
-   connect (tb.Act (22), & QAction::triggered,  this, [this]() {Set ("ff");});
-   connect (tb.Act (23), & QAction::triggered,  this, [this]() {Set ("fff");});
-   connect (tb.Act (24), & QAction::triggered,  this, [this]() {Set ("Fz");});
+   _tb.Btn ( 8, "crescendo");
+   _tb.Btn ( 9, "decrescendo");
+   _tb.Btn (10, "fermata");
+   _tb.Btn (11, "tremelo");
+   _tb.Btn (12, "star");
+   _tb.Btn (13, "happy");
+   _tb.Btn (14, "sad");
+   _tb.Btn (15, "mad");
+   _tb.Btn (16, "piano x3",    "*ppp");
+   _tb.Btn (17, "piano x2",    "*pp");
+   _tb.Btn (18, "piano",       "*p");
+   _tb.Btn (19, "mezzo piano", "*mp");
+   _tb.Btn (20, "mezzo forte", "*mf");
+   _tb.Btn (21, "forte",       "*f");
+   _tb.Btn (22, "forte x2",    "*ff");
+   _tb.Btn (23, "forte x3",    "*fff");
+   _tb.Btn (24, "forzando",    "*Fz");
+   connect (_tb.Act ( 8), & QAction::triggered, this, [this]() {Set ("<");});
+   connect (_tb.Act ( 9), & QAction::triggered, this, [this]() {Set (">");});
+   connect (_tb.Act (10), & QAction::triggered, this, [this]() {Set ("`fer");});
+   connect (_tb.Act (11), & QAction::triggered, this, [this]() {Set ("`tre");});
+   connect (_tb.Act (12), & QAction::triggered, this, [this]() {Set ("`sta");});
+   connect (_tb.Act (13), & QAction::triggered, this, [this]() {Set ("`hap");});
+   connect (_tb.Act (14), & QAction::triggered, this, [this]() {Set ("`sad");});
+   connect (_tb.Act (15), & QAction::triggered, this, [this]() {Set ("`mad");});
+   connect (_tb.Act (16), & QAction::triggered, this, [this]() {Set ("ppp");});
+   connect (_tb.Act (17), & QAction::triggered, this, [this]() {Set ("pp");});
+   connect (_tb.Act (18), & QAction::triggered, this, [this]() {Set ("p");});
+   connect (_tb.Act (19), & QAction::triggered, this, [this]() {Set ("mp");});
+   connect (_tb.Act (20), & QAction::triggered, this, [this]() {Set ("mf");});
+   connect (_tb.Act (21), & QAction::triggered, this, [this]() {Set ("f");});
+   connect (_tb.Act (22), & QAction::triggered, this, [this]() {Set ("ff");});
+   connect (_tb.Act (23), & QAction::triggered, this, [this]() {Set ("fff");});
+   connect (_tb.Act (24), & QAction::triggered, this, [this]() {Set ("Fz");});
+   _tb.ReDo ();
 }
 
-void DlgCue::Quit ()  {Gui.DlgSave (this, "DlgCue");}
 
 
 //______________________________________________________________________________
@@ -691,52 +686,51 @@ void DlgFL::Brow ()  { TStr d;   App.Open (App.Path (d, 'd'));  }
 
 
 //______________________________________________________________________________
-void DlgFL::Open ()  {ReDo ();   show ();   raise ();   activateWindow ();}
+void DlgFL::Open ()  {ReDo ();   Dlg::Open ();}
 
 void DlgFL::Shut ()
-{   FL.pos = _t.CurRow ();   done (true);   lower ();   hide ();  }
+{   FL.pos = _t.CurRow ();   Dlg::Shut ();  }
 
 void DlgFL::Init ()
-{  Gui.DlgLoad (this, "DlgFL");
+{  Dlg::Init ();
    FL.Load ();
-  CtlTBar tb;
-   tb.Init (this, "flst");
-   tb.Btn (0, "Up\n"
+   _tb.Init (this, "flst");
+   _tb.Btn (0, "Up\n"
                  "Scoot song up in the list");
-   tb.Btn (1, "Down\n"
+   _tb.Btn (1, "Down\n"
                  "Scoot song down in the list");
-   tb.Btn (2, "Search\n"
+   _tb.Btn (2, "Search\n"
                  "Search a big midi file dir for matching search strings\n"
                  "   fill in the search box below THEN click me");
-   tb.Btn (3, "MidiImport\n"
+   _tb.Btn (3, "MidiImport\n"
                  "Pick a dir tree with midi files to convert to songs\n"
                  "in the song dir");
-   tb.Btn (4, "Song2Wav\n"
+   _tb.Btn (4, "Song2Wav\n"
                  "Render .song to a .wav file");
-   tb.Btn (5, "Sfz2Syn\n"
+   _tb.Btn (5, "Sfz2Syn\n"
                  "Pick a dir with .sfz files to add to a Syn sound bank");
-   tb.Btn (6, "Mod2Song\n"
+   _tb.Btn (6, "Mod2Song\n"
                  "Pick a .mod file to convert to\n"
                  "a .song and a Syn sound bank");
-   tb.Btn (7, "Browse\n"
+   _tb.Btn (7, "Browse\n"
                  "Open file browser in PianoCheetah/device directory\n"
                  "   to delete/rename/etc");
-   connect (tb.Act (0), & QAction::triggered,  this, & DlgFL::Up);
-   connect (tb.Act (1), & QAction::triggered,  this, & DlgFL::Dn);
-   connect (tb.Act (2), & QAction::triggered,  this, & DlgFL::Find);
-   connect (tb.Act (3), & QAction::triggered,  this, & DlgFL::MidImp);
-   connect (tb.Act (4), & QAction::triggered,  this, & DlgFL::Song2Wav);
-   connect (tb.Act (5), & QAction::triggered,  this, & DlgFL::Sfz2Syn);
-   connect (tb.Act (6), & QAction::triggered,  this, & DlgFL::Mod2Song);
-   connect (tb.Act (7), & QAction::triggered,  this, & DlgFL::Brow);
+   connect (_tb.Act (0), & QAction::triggered,  this, & DlgFL::Up);
+   connect (_tb.Act (1), & QAction::triggered,  this, & DlgFL::Dn);
+   connect (_tb.Act (2), & QAction::triggered,  this, & DlgFL::Find);
+   connect (_tb.Act (3), & QAction::triggered,  this, & DlgFL::MidImp);
+   connect (_tb.Act (4), & QAction::triggered,  this, & DlgFL::Song2Wav);
+   connect (_tb.Act (5), & QAction::triggered,  this, & DlgFL::Sfz2Syn);
+   connect (_tb.Act (6), & QAction::triggered,  this, & DlgFL::Mod2Song);
+   connect (_tb.Act (7), & QAction::triggered,  this, & DlgFL::Brow);
 
    _t.Init (ui->fLst, "Song\0", "", nullptr, "single", "row");
    connect (ui->fLst, &QTableWidget::itemClicked,       this, & DlgFL::Pik);
    connect (ui->fLst, &QTableWidget::itemDoubleClicked, this, & DlgFL::Shut);
    _t.SetColElide (0, 'c');
+   _tb.ReDo ();
 }
 
-void DlgFL::Quit ()  {Gui.DlgSave (this, "DlgFL");}
 
 
 //______________________________________________________________________________
@@ -754,19 +748,17 @@ void DlgQua::Open ()
   TStr s;
    qp.Set (StrFmt (s, "quantPrev: `s", Up.pos.stp));
    qn.Set (StrFmt (s, "quantNext: `s", Up.pos.stn));
-   show ();   raise ();   activateWindow ();
+   Dlg::Open ();
    Gui.DlgMv (this, Up.gp, "Tc");
 }
 
-void DlgQua::Shut ()  {done (true);   lower ();   hide ();}
 
 void DlgQua::Init ()
-{  Gui.DlgLoad (this, "DlgQua");
+{  Dlg::Init ();
    connect (ui->qp, & QPushButton::clicked, this, [this]() {Set ('p');});
    connect (ui->qn, & QPushButton::clicked, this, [this]() {Set ('n');});
 }
 
-void DlgQua::Quit ()  {Gui.DlgSave (this, "DlgQua");}
 
 
 //______________________________________________________________________________
@@ -786,14 +778,13 @@ void DlgHlp::Open ()
 /* don't steal focus activateWindow (); */  }
 
 void DlgHlp::Shut ()
-{  Gui.DlgSave (this, "DlgHlp");
-   done (true);   lower ();   hide ();
+{  Dlg::Quit ();   Dlg::Shut ();
 }
 
 void DlgHlp::Init ()
 { char *ro [10];
    ro [4] = nullptr;
-   Gui.DlgLoad (this, "DlgHlp");
+   Dlg::Init ();
    setAttribute (Qt::WA_ShowWithoutActivating, true);
    setWindowFlags (windowFlags () |
       Qt::Tool |
@@ -839,7 +830,7 @@ static char *Ma = CC(
 "Ab  (7b  also G# above)\0");
 
 void DlgKSg::Open ()
-{  show ();   raise ();   activateWindow ();
+{  Dlg::Open ();
    StrCp (_s, Up.pos.etc);
   TStr s;
    StrCp (s, Up.pos.str);
@@ -860,11 +851,11 @@ void DlgKSg::Shut ()
    if (maj.Get ())  StrAp (s, "m");
    StrAp (_s, s);
    emit sgCmd (_s);
-   done (true);   lower ();   hide ();
+   Dlg::Shut ();
 }
 
 void DlgKSg::Init ()
-{  Gui.DlgLoad (this, "DlgKSg");
+{  Dlg::Init ();
    connect (ui->maj, QOverload<int>::of(&QComboBox::currentIndexChanged),
             this, [this]() {
      ubyt2   p =  ui->key->currentIndex ();
@@ -873,21 +864,19 @@ void DlgKSg::Init ()
    });
 }
 
-void DlgKSg::Quit ()  {Gui.DlgSave (this, "DlgKSg");}
 
 
 //______________________________________________________________________________
 // dlgMov - what ta do with our rect o notes
 
 void DlgMov::Open ()
-{  show ();   raise ();   activateWindow ();
+{  Dlg::Open ();
    Gui.DlgMv (this, Up.gp, "Tc");
 }
 
-void DlgMov::Shut ()  {done (true);   lower ();   hide ();}
 
 void DlgMov::Init ()
-{  Gui.DlgLoad (this, "DlgMov");
+{  Dlg::Init ();
    connect (ui->h2r, & QPushButton::pressed,
             this, [this]() {StrCp (Up.pos.str, ">");   Shut ();});
    connect (ui->h2l, & QPushButton::pressed,
@@ -898,7 +887,6 @@ void DlgMov::Init ()
             this, [this]() {StrCp (Up.pos.str, "x");   Shut ();});
 }
 
-void DlgMov::Quit ()  {Gui.DlgSave (this, "DlgMov");}
 
 
 //______________________________________________________________________________
@@ -924,7 +912,7 @@ void DlgTDr::Init ()
 { TStr s, fn;
   BStr b;
   StrArr sa;
-   Gui.DlgLoad (this, "DlgTDr");
+   Dlg::Init ();
    StrFmt (fn, "`s/clip/drum/main", App.Path (s, 'd'));
    sa.GetDir (fn, 'f', 1024, 'x');
    sa.SetZZ (b);
@@ -946,7 +934,7 @@ void DlgTDr::Open ()
       Gui.Hey ("...oops!  Add some Cues!\n" "(for verse/chorus/etc)");
       return;
    }
-   show ();   raise ();   activateWindow ();
+   Dlg::Open ();
    ro [4] = nullptr;
    _t.Open ();
    for (r = 0;  r < Up.nR;  r++) {
@@ -957,15 +945,13 @@ void DlgTDr::Open ()
 }
 
 
-void DlgTDr::Shut ()  {done (true);   lower ();   hide ();}
-void DlgTDr::Quit ()  {Gui.DlgSave (this, "DlgTDr");}
 
 
 //______________________________________________________________________________
 // dlgTpo - edit tempo
 
 void DlgTpo::Open ()
-{  show ();   raise ();   activateWindow ();
+{  Dlg::Open ();
    StrCp (_s, Up.pos.etc);
   CtlSpin sp (ui->num, 1, 960);
 TRC("DltTpo::Open in=`s etc=`s", Up.pos.str, _s);
@@ -978,18 +964,16 @@ void DlgTpo::Shut ()
    StrAp (_s, Int2Str (ui->num->value (), s));
 TRC("DltTpo::Shut done=`s", _s);
    emit sgCmd (_s);
-   done (true);   lower ();   hide ();
+   Dlg::Shut ();
 }
 
-void DlgTpo::Init ()  {Gui.DlgLoad (this, "DlgTpo");}
-void DlgTpo::Quit ()  {Gui.DlgSave (this, "DlgTpo");}
 
 
 //______________________________________________________________________________
 // dlgTSg - edit timesig
 
 void DlgTSg::Open ()
-{  show ();   raise ();   activateWindow ();
+{  Dlg::Open ();
    StrCp (_s, Up.pos.etc);
 TRC("DlgTSg::Open in=`s etc=`s", Up.pos.str, _s);
   TStr  n;
@@ -1016,8 +1000,6 @@ void DlgTSg::Shut ()
    StrFmt (_s, "`d/`d", num.Get (), den.Get ());
    if (sub.Get ())  StrAp (_s, StrFmt (s, "/`d", sub.Get ()));
    emit sgCmd (_s);
-   done (true);   lower ();   hide ();
+   Dlg::Shut ();
 }
 
-void DlgTSg::Init ()  {Gui.DlgLoad (this, "DlgTSg");}
-void DlgTSg::Quit ()  {Gui.DlgSave (this, "DlgTSg");}
