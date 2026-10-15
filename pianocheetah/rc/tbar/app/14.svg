@@ -3,15 +3,9 @@
   <defs>
     <style>
       .cls-1 {
-        fill: #fffe8a;
-      }
-
-      .cls-2 {
         fill: #7f83fa;
       }
     </style>
   </defs>
-  <polygon class="cls-2" points="6.55 98.09 6.55 1.91 89.84 50 6.55 98.09"/>
-  <polygon class="cls-1" points="18.88 80.22 14.29 17.82 71.23 52.07 18.88 80.22"/>
-  <polygon class="cls-2" points="26.29 37.46 25.2 66.03 54.22 51.75 26.29 37.46"/>
+  <path class="cls-1" d="M94.62,45.49S26.18,24.17,5.38,1.24l15.47,97.52s53.42-44.19,73.76-53.27Z"/>
 </svg>

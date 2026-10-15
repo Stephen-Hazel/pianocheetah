@@ -86,9 +86,9 @@ void PCheetah::Trak ()
 //DBG("sz0=`d sz1=`d w=`d wt=`d", sz[0], sz[1], w, wt);
    if (sz [0])
         {Gui.FullSc (true);   sp->setSizes (QList<int>() << 0  <<  w    );
-         _tb.Set (0, 1);}
+         _tb.Set (29, 1);}
    else {Gui.FullSc (false);  sp->setSizes (QList<int>() << wt << (w-wt));
-         _tb.Set (0, 0);}
+         _tb.Set (29, 0);}
 }
 
 void PCheetah::GCfg ()  {_dCfg->Open ();}
@@ -327,7 +327,7 @@ void PCheetah::Upd (QString upd)
 
    if (! StrCm (u, "bye"))  {Bye = true;   return;}   // song got done closin'
 
-   if (! StrCm (u, "ttl"))  _tb.Act (29)->setText (Up.ttl);
+   if (! StrCm (u, "ttl"))  _tb.Act (28)->setText (Up.ttl);
 
    if (! StrCm (u, "FLdn")) {if (FL.pos < FL.lst.Ln-1)
                                           {++FL.pos;   _dFL->ReDo ();}}
@@ -364,8 +364,8 @@ void PCheetah::Upd (QString upd)
    if (! StrCm (u, "tmpo"))  { CtlLabl l (ui->tmpo);   l.Set (Up.tmpo);}
    if (! StrCm (u, "tsig"))  { CtlLabl l (ui->tSig);   l.Set (Up.tsig);}
    if (! StrCm (u, "lyr"))   { CtlLabl l (ui->lyr );   l.Set (Up.lyr );}
-   if (! StrCm (u, "tbPoz"))  _tb.Set (14, Up.uPoz ? 1 : 0);
-   if (! StrCm (u, "tbLrn"))  _tb.Set (9,  PLAY ? 1 : (PRAC ? 2 : 0));
+   if (! StrCm (u, "tbPoz"))  _tb.Set (13, Up.uPoz ? 1 : 0);
+   if (! StrCm (u, "tbLrn"))  _tb.Set (8,  PLAY ? 1 : (PRAC ? 2 : 0));
 
    if (! StrCm (u, "trk")) {
      char *rp [32];
@@ -449,94 +449,97 @@ void PCheetah::SetTBar ()              // toolbars take some messin with
 TRC(" tbar init");
 
 // global-y
-   _tb.Btn (0, UCmdS ("fullScr"));
-   _tb.Ico (0, 1);
-   _tb.Btn (1, "configure midi devices");
-   _tb.Btn (2, "settings and junk");
-   connect (_tb.Act (0), & QAction::triggered,  this, & PCheetah::Trak);
-   connect (_tb.Act (1), & QAction::triggered,  this, & PCheetah::MCfg);
-   connect (_tb.Act (2), & QAction::triggered,  this, & PCheetah::GCfg);
-   _tb.Sep (3);
+   _tb.Btn (0, "configure midi devices");
+   _tb.Btn (1, "settings and junk");
+   connect (_tb.Act (0), & QAction::triggered,  this, & PCheetah::MCfg);
+   connect (_tb.Act (1), & QAction::triggered,  this, & PCheetah::GCfg);
+   _tb.Sep (2);
 
 // song pickin
-   _tb.Btn (4, "pick from song list");
-   _tb.Btn (5, UCmdS ("song<"));
-   _tb.Btn (6, UCmdS ("song>"));
-   _tb.Btn (7, UCmdS ("songRand"));
-   connect (_tb.Act (4), & QAction::triggered,  this, & PCheetah::Load);
-   connect (_tb.Act (5), & QAction::triggered,  this, & PCheetah::SongPrv);
-   connect (_tb.Act (6), & QAction::triggered,  this, & PCheetah::SongNxt);
-   connect (_tb.Act (7), & QAction::triggered,  this, & PCheetah::SongRand);
-   _tb.Sep (8);
+   _tb.Btn (3, "pick from song list");
+   _tb.Btn (4, UCmdS ("song<"));
+   _tb.Btn (5, UCmdS ("song>"));
+   _tb.Btn (6, UCmdS ("songRand"));
+   connect (_tb.Act (3), & QAction::triggered,  this, & PCheetah::Load);
+   connect (_tb.Act (4), & QAction::triggered,  this, & PCheetah::SongPrv);
+   connect (_tb.Act (5), & QAction::triggered,  this, & PCheetah::SongNxt);
+   connect (_tb.Act (6), & QAction::triggered,  this, & PCheetah::SongRand);
+   _tb.Sep (7);
 
 // learn mode
-   _tb.Btn (9, UCmdS ("learn"));
-   _tb.Ico (9, 1);
-   _tb.Ico (9, 2);
-   connect (_tb.Act (9), & QAction::triggered,
+   _tb.Btn (8, UCmdS ("learn"));
+   _tb.Ico (8, 1);
+   _tb.Ico (8, 2);
+   connect (_tb.Act (8), & QAction::triggered,
                          this, [this]() {emit sgCmd ("learn");});
-   _tb.Sep (10);
+   _tb.Sep (9);
 
 // transport - play/pause/etc
-   _tb.Btn (11, UCmdS ("timeBar1"));
-   _tb.Btn (12, UCmdS ("time<<"));
-   _tb.Btn (13, UCmdS ("time<"));
-   _tb.Btn (14, UCmdS ("timePoz"));
-   _tb.Ico (14, 1);
-   _tb.Btn (15, UCmdS ("time>"));
-   _tb.Btn (16, UCmdS ("time>>"));
-   connect (_tb.Act (11), & QAction::triggered,
+   _tb.Btn (10, UCmdS ("timeBar1"));
+   _tb.Btn (11, UCmdS ("time<<"));
+   _tb.Btn (12, UCmdS ("time<"));
+   _tb.Btn (13, UCmdS ("timePoz"));
+   _tb.Ico (13, 1);
+   _tb.Btn (14, UCmdS ("time>"));
+   _tb.Btn (15, UCmdS ("time>>"));
+   connect (_tb.Act (10), & QAction::triggered,
                           this, [this]() {emit sgCmd ("timeBar1");});
-   connect (_tb.Act (12), & QAction::triggered,
+   connect (_tb.Act (11), & QAction::triggered,
                           this, [this]() {emit sgCmd ("time<<"  );});
-   connect (_tb.Act (13), & QAction::triggered,
+   connect (_tb.Act (12), & QAction::triggered,
                           this, [this]() {emit sgCmd ("time<"   );});
-   connect (_tb.Act (14), & QAction::triggered,
+   connect (_tb.Act (13), & QAction::triggered,
                           this, [this]() {emit sgCmd ("timePoz" );});
-   connect (_tb.Act (15), & QAction::triggered,
+   connect (_tb.Act (14), & QAction::triggered,
                           this, [this]() {emit sgCmd ("time>"   );});
-   connect (_tb.Act (16), & QAction::triggered,
+   connect (_tb.Act (15), & QAction::triggered,
                           this, [this]() {emit sgCmd ("time>>"  );});
-   _tb.Sep (17);
+   _tb.Sep (16);
 
 // tempo
-   _tb.Btn (18, UCmdS ("tempo<"  ));
-   _tb.Btn (19, UCmdS ("tempoHop"));
-   _tb.Btn (20, UCmdS ("tempo>"  ));
-   connect (_tb.Act (18), & QAction::triggered,
+   _tb.Btn (17, UCmdS ("tempo<"  ));
+   _tb.Btn (18, UCmdS ("tempoHop"));
+   _tb.Btn (19, UCmdS ("tempo>"  ));
+   connect (_tb.Act (17), & QAction::triggered,
                           this, [this]() {emit sgCmd ("tempo<"  );});
-   connect (_tb.Act (19), & QAction::triggered,
+   connect (_tb.Act (18), & QAction::triggered,
                           this, [this]() {emit sgCmd ("tempoHop");});
-   connect (_tb.Act (20), & QAction::triggered,
+   connect (_tb.Act (19), & QAction::triggered,
                           this, [this]() {emit sgCmd ("tempo>"  );});
-   _tb.Sep (21);
+   _tb.Sep (20);
 
 // editing stuff
-   _tb.Btn (22, "scoot track up");
-   _tb.Btn (23, "scoot track down");
-   _tb.Btn (24, "insert track");
-   _tb.Btn (25, "delete track");
-   _tb.Btn (26, "split the learn track (3E and below) into new LH track");
-   _tb.Btn (27, "make drum track from clips");
+   _tb.Btn (21, "scoot track up");
+   _tb.Btn (22, "scoot track down");
+   _tb.Btn (23, "insert track");
+   _tb.Btn (24, "delete track");
+   _tb.Btn (25, "split the learn track (3E and below) into new LH track");
+   _tb.Btn (26, "make drum track from clips");
 // "time scaling - for { to } => } scales to ^"
 //    this, [this]() {emit sgCmd ("trkEd *");});
 // "time offsetting - for { to end => { moves to ^"
 //    this, [this]() {emit sgCmd ("trkEd -");});
-   connect (_tb.Act (22), & QAction::triggered,
+   connect (_tb.Act (21), & QAction::triggered,
                           this, [this]() {emit sgCmd ("trkEd u");});
-   connect (_tb.Act (23), & QAction::triggered,
+   connect (_tb.Act (22), & QAction::triggered,
                           this, [this]() {emit sgCmd ("trkEd d");});
-   connect (_tb.Act (24), & QAction::triggered,
+   connect (_tb.Act (23), & QAction::triggered,
                           this, [this]() {emit sgCmd ("trkEd +");});
-   connect (_tb.Act (25), & QAction::triggered,
+   connect (_tb.Act (24), & QAction::triggered,
                           this, [this]() {emit sgCmd ("trkEd x");});
-   connect (_tb.Act (26), & QAction::triggered,
+   connect (_tb.Act (25), & QAction::triggered,
                           this, [this]() {emit sgCmd ("trkEd sp");});
-   connect (_tb.Act (27), & QAction::triggered,
+   connect (_tb.Act (26), & QAction::triggered,
                           this, [this]() {emit sgCmd ("preTDr");});
-   _tb.Sep (28);
+   _tb.Sep (27);
 
-   _tb.Btn (29, "(I just show the song filename in fullscreen)", "*...");
+   _tb.Btn (28, "(I just show the song filename in fullscreen)", "*...");
+   connect (_tb.Act (28), & QAction::triggered,  this, & PCheetah::Trak);
+
+// app ico way over on the right
+   _tb.Spc ();
+   _tb.Btn (29, UCmdS ("fullScr"));
+   _tb.Ico (29, 1);
    connect (_tb.Act (29), & QAction::triggered,  this, & PCheetah::Trak);
 }
 
