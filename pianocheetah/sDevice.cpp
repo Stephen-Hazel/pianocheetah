@@ -3,9 +3,9 @@
 #include "song.h"
 
 // MidiIn stuph
-char *MInDef::CcRec (char *buf, ubyt2 len, ubyt4 pos, void *ptr)
+char *MInDef::CcRec (char *buf, ubyt2 /*len*/, ubyt4 pos, void *ptr)
 // parse a record of the ccin.txt file
-{ MInDef *m = (MInDef *)ptr;   (void)len;
+{ MInDef *m = (MInDef *)ptr;
 // outa room?
    if (pos >= 128) {
       DBG("MInDef::CcRec ccin.txt for `s is > 128 lines", m->mi->Type ());

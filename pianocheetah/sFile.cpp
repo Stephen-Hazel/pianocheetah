@@ -359,12 +359,11 @@ DBG("killin `d dup CCs on same track=`d time=`d", nk, t, e [p].time);
 }
 
 
-char *SongRec (char *buf, ubyt2 len, ubyt4 pos, void *ptr)
+char *SongRec (char *buf, ubyt2 /*len*/, ubyt4 pos, void *ptr)
 { static ubyte TB;                     // parse a record of the .song file
   static TStr  Msg;
   STable *s = (STable *)ptr;
   ubyte   i, nc;
-   (void)len;   (void)ptr;
    if (pos == 0)  TB = TB_DSC;         // always start in descrip section
    if ((*buf == '-') || (*buf == '\0'))  return NULL;      // skip comment/empty
    for (ubyte t = 0;  t < TB_MAX;  t++)     // new section/table ?

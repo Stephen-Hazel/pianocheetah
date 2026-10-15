@@ -49,9 +49,8 @@ void CtlNt::mouseReleaseEvent (QMouseEvent *e)
 
 
 //______________________________________________________________________________
-void CtlNt::paintEvent (QPaintEvent *e)
-{  (void)e;
-   if (Up.pm == nullptr)  {DBG("no pm");   return;}
+void CtlNt::paintEvent (QPaintEvent */*e*/)
+{  if (Up.pm == nullptr)  {DBG("no pm");   return;}
   Canvas c (this);
 //DBG("CtlNt::paintEvent w=`d h=`d  tx=`d ty=`d tw=`d th=`d",
 //Up.w, Up.h, Up.tpos.left(), Up.tpos.top(), Up.tpos.width(), Up.tpos.height());

@@ -576,14 +576,13 @@ void DoFile (char *ifn)
 
 
 //------------------------------------------------------------------------------
-char *DoLine (char *b, ubyt2 l, ubyt4 line, void *ptr)
+char *DoLine (char *b, ubyt2 l, ubyt4 line, void */*ptr*/)
 // else do note clusters (sep'd by commas) n bump Time
 { ubyte i;
   bool  time1 = true, comma;
   ubyt4 dur1, n;
   char *m, *p;
   static ubyte unr = 0;
-   (void)ptr;
    ErrLine = line;
 //DBG("FN=`s line=`d NE=`d Time=`d", ErrFN, ErrLine, NE, Time);
    if (! StrCm (b, "unroll"))  {unr = 1;  return nullptr;}

@@ -1,32 +1,40 @@
 {
-   "app-id":  "app.shaz.pianocheetah",
-   "command": "pianocheetah",
-   "sdk":     "org.kde.Sdk",
-   "runtime": "org.kde.Platform",
-   "runtime-version":          "6.11",
-   "finish-args": [
-      "--filesystem=xdg-run/pipewire-0",
-      "--share=ipc",
-      "--device=dri",
-      "--socket=wayland",
-      "--socket=fallback-x11",
-      "--socket=pulseaudio"
+ "app-id":  "app.shaz.pianocheetah",
+ "command": "pianocheetah",
+ "sdk":     "org.kde.Sdk",
+ "runtime": "org.kde.Platform",
+ "runtime-version":          "6.11",
+ "finish-args": [
+  "--filesystem=xdg-run/pipewire-0",
+  "--share=ipc",
+  "--device=dri",
+  "--socket=wayland",
+  "--socket=fallback-x11",
+  "--socket=pulseaudio"
+ ],
+ "build-options" : {
+  "cflags": "-O2 -g",
+  "cxxflags": "-O2 -g",
+  "env": {
+   "V": "1"
+  },
+  "arch": {
+   "x86_64": {
+    "cflags": "-O3 -g"
+   }
+  }
+ },
+ "modules": [
+  {
+   "name": "pianocheetah",
+   "buildsystem": "simple",
+   "build-commands": [
+      "_fpak/fp-build.sh"
    ],
-   "build-options" : {
-      "strip": true,
-      "no-debuginfo": true
-   },
-   "modules": [
-      {
-         "name": "pianocheetah",
-         "buildsystem": "simple",
-         "build-commands": [
-            "_fpak/fp-build.sh Release"
-         ],
-         "sources": [
-            {"type": "dir", "path": "."},
-            {"type": "dir", "path": "../stv", "dest": "stv"}
-         ]
-      }
+   "sources": [
+    {"type": "dir", "path": "."},
+    {"type": "dir", "path": "../stv", "dest": "stv"}
    ]
+  }
+ ]
 }

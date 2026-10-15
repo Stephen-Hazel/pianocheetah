@@ -10,11 +10,10 @@
 
 #include "song.h"
 
-char *DevTyp::SnRec (char *buf, ubyt2 len, ubyt4 pos, void *ptr)
+char *DevTyp::SnRec (char *buf, ubyt2 /*len*/, ubyt4 pos, void *ptr)
 // parse a record of the sound.txt file
 { static TStr Msg;
   DevTyp     *d = (DevTyp *)ptr;
-   (void)len;
    if (*buf == '#')  return NULL;      // comment?
 
   ColSep ss (buf, 4);                  // got all the cols we need?
@@ -38,11 +37,10 @@ char *DevTyp::SnRec (char *buf, ubyt2 len, ubyt4 pos, void *ptr)
 }
 
 
-char *DevTyp::CcRec (char *buf, ubyt2 len, ubyt4 pos, void *ptr)
+char *DevTyp::CcRec (char *buf, ubyt2 /*len*/, ubyt4 pos, void *ptr)
 // parse a record of the ccout.txt file
 { static TStr Msg;
   DevTyp     *d = (DevTyp *)ptr;
-   (void)len;
 // outa room?
    if (pos >= d->_cc.Mx) {
       StrFmt (Msg, "ccout.txt for `s is > `d lines", d->_name, d->_cc.Mx);

@@ -38,7 +38,7 @@ public:
   ~DlgFL ()         {delete ui;}
 
    void Init (), Quit (), Open (), Shut ();
-   void closeEvent (QCloseEvent *e)  {(void)e;   Shut ();}
+   void closeEvent (QCloseEvent */*e*/)  {Shut ();}
 
 public slots:
    void ReDo ();
@@ -67,7 +67,7 @@ public:
   ~DlgCfg ()         {delete ui;}
 
    void Init (), Quit (), Open (), Shut ();
-   void closeEvent (QCloseEvent *e)  {(void)e;   Shut ();}
+   void closeEvent (QCloseEvent */*e*/)  {Shut ();}
 
 signals:
    void sgCmd (char *s);
@@ -86,7 +86,7 @@ public:
   ~DlgTDr ()         {delete ui;}
 
    void Init (), Quit (), Open (), Shut ();
-   void closeEvent (QCloseEvent *e)  {(void)e;   Shut ();}
+   void closeEvent (QCloseEvent */*e*/)  {Shut ();}
 
 public slots:
    void Cmd ();
@@ -109,7 +109,7 @@ public:
   ~DlgCue ()         {delete ui;}
 
    void Init (), Quit (), Open (), Shut ();
-   void closeEvent (QCloseEvent *e)  {(void)e;   Shut ();}
+   void closeEvent (QCloseEvent */*e*/)  {Shut ();}
 
 public slots:
    void Set (const char *s);
@@ -131,7 +131,7 @@ public:
   ~DlgQua ()         {delete ui;}
 
    void Init (), Quit (), Open (), Shut ();
-   void closeEvent (QCloseEvent *e)  {(void)e;   Shut ();}
+   void closeEvent (QCloseEvent */*e*/)  {Shut ();}
 
 public slots:
    void Set (char f);
@@ -154,7 +154,7 @@ public:
   ~DlgChd ()         {delete ui;}
 
    void Init (), Quit (), Open (), Shut ();
-   void closeEvent (QCloseEvent *e)  {(void)e;   Shut ();}
+   void closeEvent (QCloseEvent */*e*/)  {Shut ();}
 
 public slots:
    void Cmd (char *s);
@@ -182,7 +182,7 @@ public:
   ~DlgCtl ()         {delete ui;}
 
    void Init (), Quit (), Open (), Shut ();
-   void closeEvent (QCloseEvent *e)  {(void)e;   Shut ();}
+   void closeEvent (QCloseEvent */*e*/)  {Shut ();}
 
 public slots:
    void Upd ();
@@ -205,7 +205,7 @@ public:
   ~DlgTpo ()         {delete ui;}
 
    void Init (), Quit (), Open (), Shut ();
-   void closeEvent (QCloseEvent *e)  {(void)e;   Shut ();}
+   void closeEvent (QCloseEvent */*e*/)  {Shut ();}
 
 signals:
    void sgCmd (char *s);
@@ -225,7 +225,7 @@ public:
   ~DlgTSg ()         {delete ui;}
 
    void Init (), Quit (), Open (), Shut ();
-   void closeEvent (QCloseEvent *e)  {(void)e;   Shut ();}
+   void closeEvent (QCloseEvent */*e*/)  {Shut ();}
 
 signals:
    void sgCmd (char *s);
@@ -245,7 +245,7 @@ public:
   ~DlgKSg ()         {delete ui;}
 
    void Init (), Quit (), Open (), Shut ();
-   void closeEvent (QCloseEvent *e)  {(void)e;   Shut ();}
+   void closeEvent (QCloseEvent */*e*/)  {Shut ();}
 
 signals:
    void sgCmd (char *s);
@@ -265,7 +265,7 @@ public:
   ~DlgMov ()         {delete ui;}
 
    void Init (), Quit (), Open (), Shut ();
-   void closeEvent (QCloseEvent *e)  {(void)e;   Shut ();}
+   void closeEvent (QCloseEvent */*e*/)  {Shut ();}
 
 private:
    Ui::DlgMov *ui;
@@ -281,7 +281,7 @@ public:
   ~DlgHlp ()         {delete ui;}
 
    void Init (), Quit (), Open (), Shut ();
-   void closeEvent (QCloseEvent *e)  {(void)e;   Shut ();}
+   void closeEvent (QCloseEvent */*e*/)  {Shut ();}
 
 private:
    Ui::DlgHlp *ui;

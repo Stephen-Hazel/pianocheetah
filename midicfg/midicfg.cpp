@@ -371,6 +371,7 @@ DBGTH("MidiCfg");
 DBG("bgn");
    qRegisterMetaType<ubyte>("ubyte");
    qRegisterMetaType<Qt::MouseButtons>("Qt::MouseButtons");
+   QApplication::setDesktopFileName ("app.shaz.pianocheetah.midicfg");
    App.Init ();   Gui.Init (& app, & win, "MidiCfg");   win.Init ();
   int rc = Gui.Loop ();                                 win.Quit ();
    App.Spinoff ("pianocheetah");

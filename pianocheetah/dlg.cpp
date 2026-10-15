@@ -233,9 +233,8 @@ void DlgChd::Quit ()  {Gui.DlgSave (this, "DlgChd");}
 
 static BStr MLst;
 
-static char CtlPop (char *ls, ubyt2 r, ubyte c)
-{  (void)r;   ZZCp (ls, MLst);   return (c == 2) ? 'l' : '\0';
-}
+static char CtlPop (char *ls, ubyt2 /*r*/, ubyte c)
+{  ZZCp (ls, MLst);   return (c == 2) ? 'l' : '\0';  }
 
 void DlgCtl::Upd ()
 { ubyt2 r = _t.CurRow ();
@@ -549,9 +548,9 @@ void DlgFL::ReDo ()                    // FL.lst/FL.pos => gui tbl
 //______________________________________________________________________________
 /*ubyte FindBuf [2*1024*1024];*/
 
-static char *FLFind (char *fn, ubyt2 len, ubyt4 pos, void *ptr)
+static char *FLFind (char *fn, ubyt2 /*len*/, ubyt4 /*pos*/, void */*ptr*/)
 // find cached mid files matchin search Col[NCol] - count,make found.txt
-{ ubyte i;                     (void)len; (void)pos; (void)ptr;
+{ ubyte i;
    for (i = 0;  i < NCol;  i++)  if (! StrSt (fn, Col [i]))  return nullptr;
 /* searchin strings inside .mid doesn't seem worth it
 **ubyt4 sz;
@@ -569,9 +568,9 @@ static char *FLFind (char *fn, ubyt2 len, ubyt4 pos, void *ptr)
 }
 
 
-static char *FLCopy (char *fr, ubyt2 len, ubyt4 pos, void *ptr)
+static char *FLCopy (char *fr, ubyt2 /*len*/, ubyt4 pos, void */*ptr*/)
 // copy and Mid2Song found mids (limit to 500)
-{ ubyte i;                     (void)len;            (void)ptr;
+{ ubyte i;
   BStr  to, frP, toP, cmd;
   File  f;
    if (pos >= 500)  return CC("enough, pal!");
@@ -907,8 +906,8 @@ void DlgMov::Quit ()  {Gui.DlgSave (this, "DlgMov");}
 
 static BStr ALst, BLst, FLst;
 
-static char TDrPop (char *ls, ubyt2 r, ubyte c)
-{  (void)r;   ZZCp (ls, (c==1) ? ALst : ((c==2) ? BLst : FLst));  return 'l';}
+static char TDrPop (char *ls, ubyt2 /*r*/, ubyte c)
+{  ZZCp (ls, (c==1) ? ALst : ((c==2) ? BLst : FLst));  return 'l';}
 
 
 void DlgTDr::Cmd ()

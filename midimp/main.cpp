@@ -24,12 +24,11 @@ void FixFn (char *s)
 }
 
 
-char *Move (char *fn, ubyt2 len, ubyt4 pos, void *ptr)
+char *Move (char *fn, ubyt2 /*len*/, ubyt4 /*pos*/, void */*ptr*/)
 // move and Mid2Song each mid.  renamin non .mid to .mid
 { TStr fr, to, fnx, c;
   bool mod = false;
   File f;
-   (void)len;   (void)pos;   (void)ptr;
 // take off .ext, FixFn does merge check
    if (! StrCm (& fn [StrLn (fn)-4], ".mod"))  mod = true;
    StrCp (fnx, fn);   StrAp (fnx, "", 4);   FixFn (fnx);
@@ -43,11 +42,10 @@ char *Move (char *fn, ubyt2 len, ubyt4 pos, void *ptr)
 }
 
 
-char *Wipe (char *fn, ubyt2 len, ubyt4 pos, void *ptr)
+char *Wipe (char *fn, ubyt2 /*len*/, ubyt4 /*pos*/, void */*ptr*/)
 { ubyte i;
   TStr  fr, to, fnx;
   File  f;                             // move flattened fn to _junk dir
-   (void)len;   (void)pos;   (void)ptr;
    Did = true;                         // settin this leave junk dir there
    StrCp (fnx, fn);
    for (i = 0;  i < StrLn (fnx);  i++)  if (fnx [i] == '/')  fnx [i] = '_';
@@ -58,10 +56,10 @@ char *Wipe (char *fn, ubyt2 len, ubyt4 pos, void *ptr)
 }
 
 
-int main (int argc, char *argv [])
+int main (int /*argc*/, char *argv [])
 { TStr ds, c, s;
   File f;
-  Path d;  (void)argc;   (void)argv;
+  Path d;
 DBGTH("MidImp");
 TRC("bgn");
    App.Init ();

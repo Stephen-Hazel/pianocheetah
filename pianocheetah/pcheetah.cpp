@@ -272,8 +272,8 @@ TRC("TrClkL r=`d c=`d", r, c);
    else if (c == 1)  emit sgCmd ("htype x");
 }
 
-void PCheetah::TrClkR (const QPoint &pos)
-{ ubyt2 r = _tr.CurRow ();   (void)pos;
+void PCheetah::TrClkR (const QPoint &/*pos*/)
+{ ubyt2 r = _tr.CurRow ();
   ubyte c = _tr.CurCol ();
 TRC("TrClkR r=`d c=`d", r, c);
    Up.eTrk = (ubyte)r;
@@ -683,6 +683,7 @@ int main (int argc, char *argv [])
   QApplication app (argc, argv);
   PCheetah     win;
    App.Init ();
+   QApplication::setDesktopFileName ("app.shaz.pianocheetah");
    Gui.Init (& app, & win, "PianoCheetah");   win.Init ();   RandInit ();
    qRegisterMetaType<ubyte>("ubyte");
    qRegisterMetaType<sbyt2>("sbyt2");
