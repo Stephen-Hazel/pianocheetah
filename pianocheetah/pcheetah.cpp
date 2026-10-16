@@ -336,6 +336,7 @@ void PCheetah::Upd (QString upd)
    if (! StrCm (u, "FLex")) {_dFL->Shut ();   Gui.Quit ();}
 
    if (! StrCm (u, "nt"))     _nt->update ();
+   if (! StrCm (u, "now"))    _nt->UpdNow ();
    if (! StrCm (u, "ntCur"))  _nt->Cur ();
    if (! StrCm (u, "dTDr"))   _dTDr->Open ();
    if (! StrCm (u, "dCue"))   _dCue->Open ();
@@ -533,7 +534,7 @@ TRC(" tbar init");
                           this, [this]() {emit sgCmd ("preTDr");});
    _tb.Sep (27);
 
-   _tb.Btn (28, "(I just show the song filename in fullscreen)", "*...");
+   _tb.Btn (28, "(just to show song filename)", "*...");
    connect (_tb.Act (28), & QAction::triggered,  this, & PCheetah::Trak);
 
 // app ico way over on the right

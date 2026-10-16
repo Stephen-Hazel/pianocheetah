@@ -22,6 +22,8 @@ public:
    {  Up.w = w;   Up.h = h;   RePM ();   emit sgReSz ();  }
 
    void Cur ();
+   void UpdNow ()                      // repaint old / new now strip only
+   {  update (_tDrw.united (Up.tpos));  }
 
 signals:
    void sgReSz ();
@@ -42,4 +44,6 @@ protected:                             // our main bg pixmap is in Up.pm
 // void mouseDoubleClickEvent (QMouseEvent *e);
 // setMouseTracking(true) to get mousemoves even while no button held
 // underMouse to see if mouse is over me
+private:
+   QRegion _tDrw;                      // where tpm is on screen right now
 };

@@ -1043,7 +1043,9 @@ TRC("DrawNow _pg=`d", _pg);
    Up.tpos.setWidth (co.w);   Up.tpos.setHeight (H_T);
 //TRC("DrawNow end");
    Up.cnv.end ();   Up.tcnv.end ();
-   emit sgUpd ("nt");
+   if (_drFul || (c != _drCol))  emit sgUpd ("nt");   // whole widget
+   else                          emit sgUpd ("now");  // just now strip
+   _drFul = false;   _drCol = c;
 }
 
 
@@ -1074,6 +1076,7 @@ TRC(" no pages: _pg=1 _tr=0");
    t = ((p+1 < np) && (n >= Bar2Tm (pg [p+1].col [0].blk [0].bar-1))) ? 1:0;
    if (all || (p+1 != _pg) || (t != _tr)) {
 TRC(" new pg,tr: _pg=`d _tr=`d p=`d t=`d", _pg, _tr, p, t);
+      _drFul = true;                   // pm changed all over
       if (all || (p+1 != _pg))  {_pg = p+1;   DrawPg (p);}
       if (t) {                         // trans - draw next pg, last bar on top
          MemCp (& co, & pg [p].col [pg [p].nCol-1], sizeof (co));

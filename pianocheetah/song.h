@@ -95,6 +95,7 @@ public:
    Song ()                             // prep for 1st Wipe()
    {  _ed = 0;   _gv = 0;   *_f.fn = '\0';   _f.ev = nullptr;   _nt = nullptr;
       Up.pos.at = Up.pos.drg = '\0';
+      _drCol = 0;   _drFul = true;
    }
 
 private:
@@ -293,7 +294,8 @@ private:
    ubyt4                _pDn;
 
    ubyt4  _pg;   ubyte _tr;   QRect _rc;    // ...notation junk
-   Arr<PagDef,200   >  _pag;                // page and transitioning?
+   ubyt4  _drCol;   bool _drFul;       // DrawNow's last col, need full upd?
+   Arr<PagDef,200   >  _pag;           // page and transitioning
    Arr<ColDef,500   >  _col;
    Arr<BlkDef,9999  >  _blk;
    Arr<SymDef,131584>  _sym;

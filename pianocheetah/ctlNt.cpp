@@ -49,14 +49,18 @@ void CtlNt::mouseReleaseEvent (QMouseEvent *e)
 
 
 //______________________________________________________________________________
-void CtlNt::paintEvent (QPaintEvent */*e*/)
+void CtlNt::paintEvent (QPaintEvent *e)
 {  if (Up.pm == nullptr)  {DBG("no pm");   return;}
-  Canvas c (this);
+  Canvas  c (this);
+  QRegion rg = e->region ();
+  QRect   r  = e->rect (),  t = Up.tpos;    // copy tpos once (song thread)
 //DBG("CtlNt::paintEvent w=`d h=`d  tx=`d ty=`d tw=`d th=`d",
 //Up.w, Up.h, Up.tpos.left(), Up.tpos.top(), Up.tpos.width(), Up.tpos.height());
-   c.Blt (*Up.pm,   0, 0,  0, 0,  Up.w, Up.h);
-   c.Blt (*Up.tpm,  Up.tpos.left (),  Up.tpos.top (),  0, 0,
-                    Up.tpos.width (), Up.tpos.height ());
+   c.Blt (*Up.pm,  r.left (), r.top (),  r.left (), r.top (),
+                   r.width (), r.height ());
+   if (t.intersects (r))
+      c.Blt (*Up.tpm, t.left (), t.top (),  0, 0,  t.width (), t.height ());
+   _tDrw = _tDrw.subtracted (rg).united (rg.intersected (t));
    if (Up.drag.width ()) {
      QPainter *p = c.Painter ();
       p->setCompositionMode (QPainter::RasterOp_SourceXorDestination);
@@ -69,11 +73,11 @@ void CtlNt::Cur ()
 { Qt::CursorShape c;
 //DBG("ntCur `c", Up.ntCur);
    switch (Up.ntCur) {
-   case '|': c = Qt::SizeVerCursor;    break;
-   case 'X': c = Qt::SizeAllCursor;    break;
-   case '+': c = Qt::CrossCursor;      break;
-   case 'H': c = Qt::OpenHandCursor;   break;
-   default:  c = Qt::ArrowCursor;
+      case '|': c = Qt::SizeVerCursor;    break;
+      case 'X': c = Qt::SizeAllCursor;    break;
+      case '+': c = Qt::CrossCursor;      break;
+      case 'H': c = Qt::OpenHandCursor;   break;
+      default:  c = Qt::ArrowCursor;
    }
    setCursor (c);
 }
