@@ -60,7 +60,7 @@ txt2song and step entry
 
 code____________________________________________________________________________
 
-dragdrop for midicfg, track, FLst
+ddr in dlgfl isn't preserved
 
 changing device always pickin chan 1
 

@@ -207,6 +207,26 @@ void MidiCfg::Dn ()  {Mv ('d');}
 void MidiCfg::Up ()  {Mv ('u');}
 
 
+void MidiCfg::MvTo (char io, ubyt2 fr, ubyt2 to)
+// tbl row got dragged => scoot fr'th io dev of Midi._lst to to'th
+{ ubyte r, n;
+   for (n = 0, r = 0;  r < Midi._len;  r++)
+      if (io == Midi._lst [r].io)  {if (n == fr)  break;   n++;}
+   if (r >= Midi._len)  return;
+   for (;  fr < to;  fr++)
+      r = (ubyte)RecMv (Midi._lst, Midi._len, sizeof (Midi._lst [0]), r, 'd');
+   for (;  fr > to;  fr--)
+      r = (ubyte)RecMv (Midi._lst, Midi._len, sizeof (Midi._lst [0]), r, 'u');
+   _io = io;
+   Save ();
+}
+
+static MidiCfg *MC;                    // so TiMov,ToMov can get to us
+
+static void TiMov (ubyt2 fr, ubyt2 to)  {MC->MvTo ('i', fr, to);}
+static void ToMov (ubyt2 fr, ubyt2 to)  {MC->MvTo ('o', fr, to);}
+
+
 void MidiCfg::Updt ()
 {  if ((_io != 'i') && (_io != 'o'))  {Gui.Hey ("Click a row, dude");   return;}
   CtlTabl *t = ((_io == 'i') ? & _ti : & _to);
@@ -335,16 +355,17 @@ DBG("Init");
    connect (_tb.Act (0), & QAction::triggered,  this, & MidiCfg::RedoMIn);
    connect (_tb.Act (1), & QAction::triggered,  this, & MidiCfg::Up);
    connect (_tb.Act (2), & QAction::triggered,  this, & MidiCfg::Dn);
+   MC = this;
    _ti.Init  (ui->tblI,
       "_input device\0"
       "_type\0"
       "driver description\0",
-      "", TPop);
+      "", TiMov, TPop);
    _to.Init  (ui->tblO,
       "_output device\0"
       "_type\0"
       "driver description\0",
-      "", TPop);
+      "", ToMov, TPop);
    connect (ui->tblI, & QTableWidget::itemChanged, this, & MidiCfg::Updt);
    connect (ui->tblO, & QTableWidget::itemChanged, this, & MidiCfg::Updt);
    connect (ui->tblO, & QTableWidget::itemClicked, this, & MidiCfg::TestO);

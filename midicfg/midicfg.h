@@ -21,7 +21,7 @@ private:
    ubyte  _nMI;
    CtlTBar _tb;
    char    _io;
-   CtlTabl _ti, _to;
+   CtlTablDDr _ti, _to;
 
    void Save (),  Mv (char du);
 
@@ -39,6 +39,7 @@ public:
    void InitDevType ();
    void ShutMIn (), RedoMIn ();
    void TestI (ubyte mi, MidiEv e);
+   void MvTo  (char io, ubyt2 fr, ubyt2 to);
 
 signals:
    void Reload ();
