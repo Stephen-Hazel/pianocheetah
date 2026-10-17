@@ -685,6 +685,14 @@ void DlgFL::Mod2Song ()
 void DlgFL::Brow ()  { TStr d;   App.Open (App.Path (d, 'd'));  }
 
 
+static void FLMov (ubyt2 fr, ubyt2 to)  // tbl row got dragged => FL.lst
+{ ubyt4 p;
+   if (fr < to)  for (p = fr;  p < to;  p++)  FL.lst.MvDn (p);
+   else          for (p = fr;  p > to;  p--)  FL.lst.MvUp (p);
+   FL.pos = to;   FL.Save ();
+}
+
+
 //______________________________________________________________________________
 void DlgFL::Open ()  {ReDo ();   Dlg::Open ();}
 
@@ -724,7 +732,7 @@ void DlgFL::Init ()
    connect (_tb.Act (6), & QAction::triggered,  this, & DlgFL::Mod2Song);
    connect (_tb.Act (7), & QAction::triggered,  this, & DlgFL::Brow);
 
-   _t.Init (ui->fLst, "Song\0", "", nullptr, "single", "row");
+   _t.Init (ui->fLst, "Song\0", "", FLMov);
    connect (ui->fLst, &QTableWidget::itemClicked,       this, & DlgFL::Pik);
    connect (ui->fLst, &QTableWidget::itemDoubleClicked, this, & DlgFL::Shut);
    _t.SetColElide (0, 'c');

@@ -54,8 +54,8 @@ public slots:
    void Brow     ();
 
 private:
-   Ui::DlgFL *ui;
-   CtlTabl   _t;
+   Ui::DlgFL  *ui;
+   CtlTablDDr _t;
 };
 
 
