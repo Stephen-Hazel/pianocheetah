@@ -60,8 +60,6 @@ txt2song and step entry
 
 code____________________________________________________________________________
 
-ddr in dlgfl isn't preserved
-
 changing device always pickin chan 1
 
 can repRpt make ez tracks repeat rhythms on same keys

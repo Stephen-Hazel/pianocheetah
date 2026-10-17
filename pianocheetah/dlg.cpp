@@ -438,7 +438,7 @@ void FLstDef::Save ()
    App.Path (fn, 'c');   StrAp (fn, "/songlist.txt");
    if (! f.Open (fn, "w"))  DBG("FL.Save  couldn't write songlist");
    for (ubyt4 r = 0;  r < FL.lst.Ln;  r++)
-      f.Put (FL.lst [r]);  f.Put ("\n");
+      {f.Put (FL.lst [r]);   f.Put ("\n");}
    f.Shut ();
 }
 
