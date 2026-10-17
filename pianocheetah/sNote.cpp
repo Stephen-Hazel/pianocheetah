@@ -661,6 +661,15 @@ TRC("DrawPg `d", pp);
                Up.cnv.RectF (qx, y, qw, y2-y+1, CTnt [dk][cno]);
             }
          }
+   // round-ish corners like col border vline (bg over corner pixels)
+     QColor cbg = Color ("bg");
+      for (y = 0;  y < 4;  y++) {
+         w = 4 - y;
+         Up.cnv.RectF (qx,      y,        w, 1, cbg);
+         Up.cnv.RectF (qx+qw-w, y,        w, 1, cbg);
+         Up.cnv.RectF (qx,      co.h+1-y, w, 1, cbg);
+         Up.cnv.RectF (qx+qw-w, co.h+1-y, w, 1, cbg);
+      }
    // THEN < or >
       for (p = 0;  p < ne;  p++)
          if ( _f.cue [p].tend &&
