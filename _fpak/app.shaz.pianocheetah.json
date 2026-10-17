@@ -13,8 +13,16 @@
       "--socket=pulseaudio"
    ],
    "build-options" : {
-      "strip": true,
-      "no-debuginfo": true
+      "cflags": "-O2 -g",
+      "cxxflags": "-O2 -g",
+      "env": {
+         "V": "1"
+      },
+      "arch": {
+         "x86_64": {
+            "cflags": "-O3 -g"
+         }
+      }
    },
    "modules": [
       {

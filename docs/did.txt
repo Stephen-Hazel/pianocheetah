@@ -1,6 +1,8 @@
 2026Oct
    in save, show done song filename
    theme change fiiiinally works properly - praise god for ai cuz qt is rough
+   was doin full page updates every tick - now JUST the now portion of notes
+   filelist dialog can do drag and drop now
 
 
 2026Sep
