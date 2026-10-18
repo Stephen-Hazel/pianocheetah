@@ -244,15 +244,8 @@ void Song::SetDn (char qu)             // qu from DlgCfg quantize button ONLY
   TrkEv *e;
   ubyt4 ne;
   TStr  k, st;
-  struct {ubyte pos;   char dir, key;   ubyt2 bar;   ubyt4 ofs;}
-        xx [64*1024];                  // more _dn info
+  struct {ubyte pos;   char dir, key;} xx [64*1024];  // more _dn info
   struct {ubyte t;   ubyt4 p;} on [2][128];
-  struct {ubyt4 bgn, end, n, mt;   ubyte fng;   bool man;}
-        br [4096];                     // bars of an oct's dns
-  ubyt4 nb, bi, a, b, pa, pb, i;
-  sbyt4 of, mn, mx, fi;
-  ubyte fc;
-  bool  same;
 TRC("SetDn qu=`c", qu);
 
 //TODO kill meee
@@ -371,12 +364,6 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
       }
    }
 
-// bar n time offset in bar of each dn (fer matchin repeated bar contours)
-   for (dp = 0;  dp < _dn.Ln;  dp++) {
-      xx [dp].bar = Tm2Bar (_dn [dp].time);
-      xx [dp].ofs = _dn [dp].time - Bar2Tm (xx [dp].bar, 1);
-   }
-
 // melodic notes - max o one note o five per dn time for oc's tr's nts
    for (oc = '1';  oc <= '7';  oc++) {      // gather tracks w my ht
       k [0] = oc;   k [2] = '\0';      // oct of key
@@ -436,70 +423,14 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
 //dp, xx [dp].key, _f.cue [p].s, xx [dp].pos);
          }
 
-   // split my oct's dns into bars.  match each bar's contour (dn time offsets
-   // n dirs after its 1st dn) to an earlier bar so repeats get same fingers.
-   // .mt is bar ta take fingers from (self if 1st time).  .man bars have
-   // manual .ezpos cues so we leave em alone
-      nb = 0;
-      for (dp = 0;  dp < _dn.Ln;  dp++)  if (xx [dp].pos != 99) {
-         if (nb && (xx [dp].bar == xx [br [nb-1].bgn].bar))
-            {br [nb-1].end = dp;   br [nb-1].n++;}
-         else {
-            if (nb >= BITS (br))  break;
-            br [nb].bgn = br [nb].end = dp;   br [nb].n = 1;
-            br [nb].mt  = nb;   br [nb].fng = 5;   br [nb].man = false;
-            nb++;
-         }
-         if (xx [dp].dir == '!')  br [nb-1].man = true;
-      }
-      for (b = 0;  b < nb;  b++)  if (! br [b].man)
-         for (a = 0;  a < b;  a++)
-            if ((br [a].mt == a) && (! br [a].man) && (br [a].n == br [b].n)) {
-               same = true;
-               for (pa = br [a].bgn, pb = br [b].bgn, i = 0;  i < br [a].n;
-                    i++, pa++, pb++) {
-                  while (xx [pa].pos == 99)  pa++;
-                  while (xx [pb].pos == 99)  pb++;
-                  if ( (xx [pa].ofs != xx [pb].ofs) ||
-                       (i && (xx [pa].dir != xx [pb].dir)) )
-                     {same = false;   break;}
-               }
-               if (same)  {br [b].mt = a;   break;}
-            }
-
    // ok!  time for final fingerin'
    // check for rolled chord/trill - time diff of < 32nd
    //    else follow < > !
      ulong pend, tr;                   // end of trill pos, trill trigger dur
      ubyte cu;
      TSgRow *ts;
-      pf = 0;   bi = 0;
+      pf = 0;
       for (dp = 0;  dp < _dn.Ln;  dp++)  if (xx [dp].pos != 99) {
-      // at a bar's 1st dn, force the finger its contour got (if any)
-         fc = 99;
-         while ((bi < nb) && (br [bi].bgn < dp))  bi++;
-         if ((bi < nb) && (br [bi].bgn == dp) && (! br [bi].man)) {
-            b = br [bi].mt;
-            if (br [b].fng == 5) {     // 1st time fer this contour - fit it
-               fi = pf;                // where we'd go normally
-               if      (xx [dp].dir == '<')  fi = fi ? fi-1 : 4;
-               else if (xx [dp].dir == '>')  fi = (fi == 4) ? 0 : fi+1;
-               of = mn = mx = 0;
-               for (p = dp+1;  p <= br [bi].end;  p++)
-                  if (xx [p].pos != 99) {
-                     if      (xx [p].dir == '<')  of--;
-                     else if (xx [p].dir == '>')  of++;
-                     if (of < mn)  mn = of;
-                     if (of > mx)  mx = of;
-                  }
-               if (mx - mn <= 4) {     // fits - so no wrap.  start nearest
-                  if (fi < -mn)   fi = -mn;
-                  if (fi > 4-mx)  fi = 4-mx;
-               }
-               br [b].fng = (ubyte)fi;
-            }
-            fc = br [b].fng;
-         }
          tm = _dn [dp].time;           // max is actually min for LH
          ts = TSig (tm);
          tr = M_WHOLE/ts->den/ts->sub*3/4;  // 3/4 of a subbt
@@ -517,8 +448,7 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
          }
 
       // do either our only or our 1st note
-         if      (fc != 99)            pf = fc;
-         else if (xx [dp].dir == '!')  pf = xx [dp].key - 'c';
+         if      (xx [dp].dir == '!')  pf = xx [dp].key - 'c';
          else if (xx [dp].dir == '<')  {if (pf-- == 0)  pf = 4;}
          else if (xx [dp].dir == '>')  {if (pf++ == 4)  pf = 0;}
          k [1] = 'c' + pf;
