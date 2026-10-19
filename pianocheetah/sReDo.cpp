@@ -243,8 +243,8 @@ void Song::SetDn (char qu)             // qu from DlgCfg quantize button ONLY
   char  oc, ht, ch;
   TrkEv *e;
   ubyt4 ne;
-  TStr  k, st;
-  struct {ubyte pos;   char dir, key;} xx [64*1024];  // more _dn info
+  TStr  k;
+  struct {ubyte pos;   char dir;} xx [64*1024];  // more _dn info
   struct {ubyte t;   ubyt4 p;} on [2][128];
 TRC("SetDn qu=`c", qu);
 
@@ -411,21 +411,9 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
          }
       }
 
-   // now collect manually picked note restarts in _f.cue[] for my oct/trk
-      StrFmt (st, ".ezpos `c", k [0]);
-      for (p = 0;  p < _f.cue.Ln;  p++)
-                                     if (! MemCm (_f.cue [p].s, st, StrLn (st)))
-         for (dp = 0;  dp < _dn.Ln;  dp++)
-                                         if (_dn [dp].time == _f.cue [p].time) {
-            xx [dp].dir = '!';
-            xx [dp].key = _f.cue [p].s [8];
-//DBG(" xx[`d].key=`c s=`s (.pos=`d)",
-//dp, xx [dp].key, _f.cue [p].s, xx [dp].pos);
-         }
-
    // ok!  time for final fingerin'
    // check for rolled chord/trill - time diff of < 32nd
-   //    else follow < > !
+   //    else follow < >
      ulong pend, tr;                   // end of trill pos, trill trigger dur
      ubyte cu;
      TSgRow *ts;
@@ -448,8 +436,7 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
          }
 
       // do either our only or our 1st note
-         if      (xx [dp].dir == '!')  pf = xx [dp].key - 'c';
-         else if (xx [dp].dir == '<')  {if (pf-- == 0)  pf = 4;}
+         if      (xx [dp].dir == '<')  {if (pf-- == 0)  pf = 4;}
          else if (xx [dp].dir == '>')  {if (pf++ == 4)  pf = 0;}
          k [1] = 'c' + pf;
          _dn [dp].nt [xx [dp].pos].nt = MKey (k);

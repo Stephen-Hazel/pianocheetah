@@ -60,6 +60,8 @@ txt2song and step entry
 
 code____________________________________________________________________________
 
+check out ez improvement code change
+
 changing device always pickin chan 1
 
 can repRpt make ez tracks repeat rhythms on same keys
