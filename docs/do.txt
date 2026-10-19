@@ -60,7 +60,7 @@ txt2song and step entry
 
 code____________________________________________________________________________
 
-check out ez improvement code change
+look at practice loops;  test fingering of repeat blocks
 
 changing device always pickin chan 1
 

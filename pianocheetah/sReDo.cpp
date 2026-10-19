@@ -244,7 +244,10 @@ void Song::SetDn (char qu)             // qu from DlgCfg quantize button ONLY
   TrkEv *e;
   ubyt4 ne;
   TStr  k;
-  struct {ubyte pos;   char dir;} xx [64*1024];  // more _dn info
+  struct {ubyte pos;   char dir;   ubyt4 rp;   ubyte fg;}
+        xx [64*1024];                  // more _dn info
+  ubyt4 *ix, nix, i, j, m, bj, bm;     // pattern repeat checkin
+  TSgRow *ts;
   struct {ubyte t;   ubyt4 p;} on [2][128];
 TRC("SetDn qu=`c", qu);
 
@@ -365,6 +368,7 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
    }
 
 // melodic notes - max o one note o five per dn time for oc's tr's nts
+   ix = new ubyt4 [_dn.Ln ? _dn.Ln : 1];
    for (oc = '1';  oc <= '7';  oc++) {      // gather tracks w my ht
       k [0] = oc;   k [2] = '\0';      // oct of key
 //DBG("oc=`c", k[0]);
@@ -411,14 +415,48 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
          }
       }
 
+   // find repeats of dn dir n dur;  .rp gets dp of original pattern.
+   // use longest orig pattern n require 6+ dns n dur>bar
+      for (dp = 0;  dp < _dn.Ln;  dp++)  xx [dp].rp = NONE;
+      for (nix = 0, dp = 0;  dp < _dn.Ln;  dp++)  if (xx [dp].pos != 99)
+                                                     ix [nix++] = dp;
+      for (i = 1;  i < nix;) {
+         bm = bj = 0;
+         for (j = 0;  j < i;  j++) {
+            for (m = 1;  (i+m < nix) && (j+m < i) &&
+                          (xx  [ix [j+m]].dir == xx  [ix [i+m]].dir) &&
+                          (_dn [ix [j+m]].time - _dn [ix [j+m-1]].time ==
+                           _dn [ix [i+m]].time - _dn [ix [i+m-1]].time);
+                 m++)  ;
+            if (m > bm)  {bm = m;   bj = j;}     // new best :)
+         }
+         ts = TSig (_dn [ix [i]].time);
+        ulong t = (i+bm < nix) ? (i+bm) : (i+bm-1);
+         if ((bm >= 6) && ((_dn [ix [t]].time - _dn [ix [i]].time) >
+                           (M_WHOLE * ts->num / ts->den))) {
+            for (t = 0;  t < bm;  t++)  xx [ix [i+t]].rp = ix [bj+t];
+//TStr d1, d2;
+//DBG("rpt oct=`c orig=`s len=`d at=`s", oc,
+//TmSt (d1, _dn [ix [bj]].time), bm, TmSt (d2, _dn [ix [i]].time));
+            i += bm;
+         }
+         else  i++;
+      }
+
    // ok!  time for final fingerin'
-   // check for rolled chord/trill - time diff of < 32nd
-   //    else follow < >
+   // n check for rolled chord/trill - time diff of < 32nd
+   // else follow < >
      ulong pend, tr;                   // end of trill pos, trill trigger dur
      ubyte cu;
-     TSgRow *ts;
       pf = 0;
       for (dp = 0;  dp < _dn.Ln;  dp++)  if (xx [dp].pos != 99) {
+         if (xx [dp].rp != NONE) {     // repeat - same eznote as orig
+           ulong t = xx [dp].rp;
+            _dn [dp].nt [xx [dp].pos].nt  = _dn [t].nt [xx [t].pos].nt;
+            _dn [dp].nt [xx [dp].pos].mrk = _dn [t].nt [xx [t].pos].mrk;
+            pf = xx [dp].fg = xx [t].fg;
+            continue;
+         }
          tm = _dn [dp].time;           // max is actually min for LH
          ts = TSig (tm);
          tr = M_WHOLE/ts->den/ts->sub*3/4;  // 3/4 of a subbt
@@ -427,6 +465,7 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
 //TStr s3;
 //DBG("tm1=`s tr=`d dir=`c", TmSt(s3,tm), tr, xx [dp].dir);
          for (p = dp+1;  p < _dn.Ln;  p++)  if (xx [p].pos != 99) {
+            if (xx [p].rp != NONE)  break;     // don't trill into a repeat
             if (_dn [p].time < (tm + tr)) {
                c++;   pend = p;   tm = _dn [p].time;
                if (xx [p].dir == '>')  cu++;
@@ -438,7 +477,7 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
       // do either our only or our 1st note
          if      (xx [dp].dir == '<')  {if (pf-- == 0)  pf = 4;}
          else if (xx [dp].dir == '>')  {if (pf++ == 4)  pf = 0;}
-         k [1] = 'c' + pf;
+         k [1] = 'c' + pf;   xx [dp].fg = pf;
          _dn [dp].nt [xx [dp].pos].nt = MKey (k);
 
          if (c) {                      // do rolled chord/trill
@@ -450,19 +489,20 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
          // if normal 1st note would cause a wrap (5>1 or 1>5) bump it
             if (dir == '>') {if (pf+c > 4)  pf = (c <= 4) ? (4-c) : 0;}
             else             if (pf   < c)  pf = (c <= 4) ? c     : 4;
-            k [1] = 'c' + pf;
+            k [1] = 'c' + pf;   xx [dp].fg = pf;
 //DBG("   pf=`d k=`s", pf, k);
             _dn [dp].nt [xx [dp].pos].nt = MKey (k);  // in case it's new
             for (p = dp+1;  p <= pend;  p++)  if (xx [p].pos != 99) {
                if (dir == '<')  {if (pf-- == 0)  pf = 4;}  // but we should
                else             {if (pf++ == 4)  pf = 0;}  // never wrap
-               k [1] = 'c' + pf;
+               k [1] = 'c' + pf;   xx [p].fg = pf;
                _dn [p].nt [xx [p].pos].nt = MKey (k);
             }
             dp = pend;
          }
       }
    }
+   delete [] ix;
 
 // always need dn[pdn].time >= _now so add a dummy at time=0 if none yet
    if ( (! _dn.Ln) || _dn [0].time )
