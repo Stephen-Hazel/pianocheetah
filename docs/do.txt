@@ -60,13 +60,15 @@ txt2song and step entry
 
 code____________________________________________________________________________
 
-look at practice loops;  test fingering of repeat blocks
+study repeats more - esp to zanarkand;  look at practice loops
+   test fingering of repeat blocks
+   check red dots for repeats
+
+app toolbar on dark mode flip still
 
 changing device always pickin chan 1
 
-can repRpt make ez tracks repeat rhythms on same keys
-hear recording - make stoppable
-keep rec tempo (on a masterpiece:)
+hear recording - make stoppable;  reset tempo from recording
 
 syn - env, chorus
 

@@ -3,6 +3,7 @@
    theme change fiiiinally works properly - praise god for ai cuz qt is rough
    was doin full page updates every tick - now JUST the now portion of notes
    filelist dialog and midicfg can do drag and drop now
+   rand was broke and causing a core in chord dialog - fixed
 
 
 2026Sep
