@@ -712,7 +712,7 @@ TRC("DrawPg `d", pp);
             y = Tm2Y (t1, & co);
             Up.cnv.TextVC (nx-W_Q, y+4, str, Color ("fg"));
 
-            *str = '(';             // sorry !!
+            *str = '(';                // sorry !!
          }
          if (StrCh (CC("[(<>"), *str))  continue;
 

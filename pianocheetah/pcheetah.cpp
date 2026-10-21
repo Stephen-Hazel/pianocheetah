@@ -433,9 +433,9 @@ void PCheetah::SetPix ()               // all dem bitmaps
    Up.bug     = new QPixmap (":/note/bug");
    Up.trillL  = new QPixmap (":/note/trilll");
    Up.trillR  = new QPixmap (":/note/trillr");
-   Up.cue [0] = SvgIcon (":/note/cuedot");
-   for (ubyte i = 1;  i < 7;  i++)
-      Up.cue [i] = SvgIcon (StrFmt (s, ":/tbar/cue/`d", 9+i));
+   Up.cue [0] =     SvgIcon (":/note/cuedot");
+   for (ubyte i = 1;  i < 7;  i++)  Up.cue [i] =
+                    SvgIcon (StrFmt (s, ":/tbar/cue/`d", 9+i));
    Up.dot     = new QPixmap (":/note/dot");
    Up.fade    = new QPixmap (":/note/fade");
    Up.now     = new QPixmap (":/note/now");

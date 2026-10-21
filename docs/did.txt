@@ -4,6 +4,9 @@
    was doin full page updates every tick - now JUST the now portion of notes
    filelist dialog and midicfg can do drag and drop now
    rand was broke and causing a core in chord dialog - fixed
+   a better oct.svg that's a little more rounded
+   improved flatpak build time doing all async
+   fixed cues to use toolbar .svg instead of a dup'd png to blt from
 
 
 2026Sep
