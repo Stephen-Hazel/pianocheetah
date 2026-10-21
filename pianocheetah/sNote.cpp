@@ -717,16 +717,15 @@ TRC("DrawPg `d", pp);
          if (StrCh (CC("[(<>"), *str))  continue;
 
          y = Tm2Y (_f.cue [p].time, & co);
-         x = 0;
-         if      (        *str == '.'     )   {x =   1;   w =  7;}   // 2px over
-         else if (! StrCm (str, CC("`fer")))  {x =  24;   w = 24;}
-         else if (! StrCm (str, CC("`tre")))  {x =  48;   w = 17;}
-         else if (! StrCm (str, CC("`sta")))  {x =  65;   w = 23;}
-         else if (! StrCm (str, CC("`hap")))  {x =  88;   w = 25;}
-         else if (! StrCm (str, CC("`sad")))  {x = 113;   w = 23;}
-         else if (! StrCm (str, CC("`mad")))  {x = 136;   w = 24;}
-         if (x)  Up.cnv.Blt (*Up.cue, (ubyt2)nx-W_Q, y, x, 0,
-                                                        w, Up.cue->height ());
+         x = 0;   w = W_Q;             // x is Up.cue[] index+1
+         if      (        *str == '.'     )   {x = 1;   w = 5;}
+         else if (! StrCm (str, CC("`fer")))   x = 2;
+         else if (! StrCm (str, CC("`tre")))   x = 3;
+         else if (! StrCm (str, CC("`sta")))   x = 4;
+         else if (! StrCm (str, CC("`hap")))   x = 5;
+         else if (! StrCm (str, CC("`sad")))   x = 6;
+         else if (! StrCm (str, CC("`mad")))   x = 7;
+         if (x)  Up.cue [x-1].paint (& Up.cnv, nx-W_Q, y, w, w);
          else    Up.cnv.TextVC (nx-W_Q, y, str, Color ("fg"));
       }
 
