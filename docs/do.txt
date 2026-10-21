@@ -64,9 +64,6 @@ study repeats more - esp to zanarkand;  look at practice loops
    test fingering of repeat blocks
    check red dots for repeats
 
-app toolbar on dark mode flip still
-   midicfg too
-
 changing device always pickin chan 1
 
 hear recording - make stoppable;  reset tempo from recording
