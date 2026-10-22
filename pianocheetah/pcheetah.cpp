@@ -429,7 +429,7 @@ DBG("dark/light done");
 
 
 void PCheetah::SetPix ()               // all dem bitmaps
-{ TStr  s;
+{ TStr s;
    Up.bug     = new QPixmap (":/note/bug");
    Up.trillL  = new QPixmap (":/note/trilll");
    Up.trillR  = new QPixmap (":/note/trillr");
@@ -439,12 +439,12 @@ void PCheetah::SetPix ()               // all dem bitmaps
    Up.dot     = new QPixmap (":/note/dot");
    Up.fade    = new QPixmap (":/note/fade");
    Up.now     = new QPixmap (":/note/now");
-   Up.oct     = new QPixmap (":/note/oct");
+   Up.oct     =     SvgPix  (":/note/oct.svg", 12*W_NT, H_KB-2);
    Up.bg  [0] = new QPixmap (":/note/bg");
    Up.bg  [1] = new QPixmap (":/note/bg_d");
    Up.bg2 [0] = new QPixmap (":/note/bg2");
    Up.bg2 [1] = new QPixmap (":/note/bg2_d");
-   Up.tpm = new QPixmap ((32+88)*W_NT, M_WHOLE*4);
+   Up.tpm     = new QPixmap ((32+88)*W_NT, M_WHOLE*4);     // tmp pixmap "now"
 }
 
 
