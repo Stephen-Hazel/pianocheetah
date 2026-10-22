@@ -1,12 +1,14 @@
 2026Oct
-   in save, show done song filename
-   theme change fiiiinally works properly - praise god for ai cuz qt is rough
-   was doin full page updates every tick - now JUST the now portion of notes
+   was doin full page redraws every tick - now JUST the "now" portion redraws
+   icon redesign COMPLETE !!
+      Sophia Arguelles  https://www.sophiaarguelles.com
+      theme change fiiiinally works properly - praise god for ai cuz qt is rough
+      a better oct.svg that's a little more rounded
+      fixed cues to use toolbar .svg instead of a dup'd svg to blt from
    filelist dialog and midicfg can do drag and drop now
+   in save, show done song filename
    rand was broke and causing a core in chord dialog - fixed
-   a better oct.svg that's a little more rounded
    improved flatpak build time doing all async
-   fixed cues to use toolbar .svg instead of a dup'd png to blt from
 
 
 2026Sep
