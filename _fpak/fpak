@@ -32,8 +32,8 @@
       "_fpak/fp-build.sh"
    ],
    "sources": [
-    {"type": "dir", "path": "."},
-    {"type": "dir", "path": "../stv", "dest": "stv"}
+    {"type": "dir", "path": ".."},
+    {"type": "dir", "path": "../../stv", "dest": "stv"}
    ]
   }
  ]

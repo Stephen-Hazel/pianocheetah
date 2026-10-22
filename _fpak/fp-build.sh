@@ -12,7 +12,7 @@ done
 
 # build all apps at once via _fpak/CMakeLists.txt
 cmake -G Ninja -S _fpak -B _b --log-level=WARNING \
-      -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_MESSAGE=NEVER \
+      -DCMAKE_BUILD_TYPE=${1:-Debug} -DCMAKE_INSTALL_MESSAGE=NEVER \
                                -DCMAKE_INSTALL_PREFIX=/app &&
 cmake --build   _b  &&
 cmake --install _b        || exit 1

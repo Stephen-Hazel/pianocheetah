@@ -10,7 +10,7 @@ echo "...uninstall old one\n";
 
 echo "...compile/install\n";           // always Debug build
    system ("mkdir _build");
-   system ("$fb --user --force-clean --install _build fpak", $rc);
+   system ("$fb --user --force-clean --install _build _fpak/fpak", $rc);
    system ("$f install --reinstall --user --assumeyes ".
            "/home/sh/src/pianocheetah/.$fb/cache $app");
    system ("$f install --reinstall --user --assumeyes ".
