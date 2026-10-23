@@ -6,6 +6,8 @@
       a better oct.svg that's a little more rounded
       fixed cues to use toolbar .svg instead of a dup'd svg to blt from
    hear recording mode turns off properly during pause, learn mode buttons now
+   new tempoSet command to clear all tempo events and
+      set one to currently picked tempo at start of song (back to perfect time)
    filelist dialog and midicfg can do drag and drop now
    in save, show done song filename
    rand was broke and causing a core in chord dialog - fixed

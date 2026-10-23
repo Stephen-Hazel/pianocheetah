@@ -7,9 +7,10 @@ exit     3d#  esc
 tempoHop 3e   t
 tempo<   3f   f02
 tempo>   3f#  f03
+tempoSet 3g   f05
 tran<    .    f11
 tran>    .    f12
-fullscr  3g   v
+fullscr  3a   v
 timeBar1 4c   1
 time<    4c#  2
 time>    4d   3

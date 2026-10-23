@@ -22,15 +22,16 @@ DBG("Cmd='`s'", c);
       case 13:  EdTmpo (0);  break;         // tempoHop
       case 14:  EdTmpo (1);  break;         // tempo<
       case 15:  EdTmpo (2);  break;         // tempo>
-      case 16:  EdTmpo (3);  break;         // tran<
-      case 17:  EdTmpo (4);  break;         // tran>
+      case 16:  EdTmpo (3);  break;         // tempoSet
+      case 17:  EdTmpo (4);  break;         // tran<
+      case 18:  EdTmpo (5);  break;         // tran>
 
-      case 18:  EdLrn  (0);  break;         // learn
-      case 19:  RecWipe ();  break;         // recWipe
-      case 20:  Save ('r');  break;         // recSave
-      case 21:  EdLrn  (3);  break;         // color
-      case 22:  EdLrn  (5);  break;         // hearRec
-      case 23:  EdLrn  (4);  break;         // hearLoop
+      case 19:  EdLrn  (0);  break;         // learn
+      case 20:  RecWipe ();  break;         // recWipe
+      case 21:  Save ('r');  break;         // recSave
+      case 22:  EdLrn  (3);  break;         // color
+      case 23:  EdLrn  (5);  break;         // hearRec
+      case 24:  EdLrn  (4);  break;         // hearLoop
    }
    else if (! StrCm (c, CC("init")))      Init ();
    else if (! StrCm (c, CC("quit")))     {Quit ();   return;}
@@ -167,9 +168,24 @@ DBG("EdTmpo `d  _f.tmpo=`d/`d tmpoSto=`d tmpoAct=`d",
 ofs, _f.tmpo, FIX1, tt, tp);
       DscSave ();   PutTp (tt);   ReTrk ();
    }
-   else if (ofs <= 4) {                // transpose, actually :/
+   else if (ofs == 3) {                // tempoSet - 1 tempo ev at 0 of cur act
+     ubyte t, cc = CtlEv (CC("tmpo"));
+     ubyt4 p;
+      NotesOff ();
+      tp = _timer->Tempo ();
+      for (t = 0;  t < _f.trk.Ln;  t++)     // kill tmpo evs in ALL trks
+         for (p = 0;  p < _f.trk [t].ne;)
+            {if (_f.trk [t].e [p].ctrl == cc)  EvDel (t, p);   else p++;}
+      _f.tpo.Ln = 0;   _f.tpo.Ins ();       // just the one tpo at 0
+      _f.tpo [0].time = 0;   _f.tpo [0].val = (ubyt2)tp;
+      _f.tmpo = FIX1;                       // stored is now actual so 100%
+      TmpoPik ('l');                        // put it in 1st drum trk
+      DscSave ();   PutTp ((ubyt2)tp);   ReDo ();
+      StrFmt (ts, "tempo set to `d", tp);   Hey (ts);
+   }
+   else if (ofs <= 5) {                // transpose, actually :/
       NotesOff ();                     // SHUSH !
-      if (ofs == 3) {if (_f.tran > (sbyte)-12) _f.tran--;}
+      if (ofs == 4) {if (_f.tran > (sbyte)-12) _f.tran--;}
       else          {if (_f.tran < (sbyte) 12) _f.tran++;}
       DscSave ();   StrFmt (ts, "transpose=`d", _f.tran);   Hey (ts);
    }

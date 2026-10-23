@@ -24,14 +24,15 @@ UCmdDef UCmd [] = {
    {"tempoHop",  "tempo",      "hop tempo:  60% / 80% / 100%"},
    {"tempo<",    "",           "decrease tempo"},
    {"tempo>",    "",           "increase tempo"},                    // 15
+   {"tempoSet",  "",           "set tempo:  one tempo at time 0"},
    {"tran<",     "transpose",  "transpose down"},
    {"tran>",     "",           "transpose up"},
    {"learn",     "recording",  "learn:  hear / play / practice"},
-   {"recWipe",   "",           "wipe recording  (be careful:)"},
-   {"recSave",   "",           "save recording"},                    // 20
+   {"recWipe",   "",           "wipe recording  (be careful:)"},     // 20
+   {"recSave",   "",           "save recording"},
    {"color",     "",           "color:  scale / velocity / track"},
    {"hearRec",   "",           "Hear your recording"},
-   {"hearLoop",  "",           "Hear the notes to learn"}            // 23
+   {"hearLoop",  "",           "Hear the notes to learn"}            // 24
 };
 ubyte NUCmd = BITS (UCmd);
 
