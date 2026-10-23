@@ -191,9 +191,11 @@ ubyte Song::PickChn (char *dv)
    nc = StrCm (dv, CC("syn")) ? 16 : 128;
    MemSet (cmap, '.', nc);   cmap [9] = 'x';   cmap [nc] = '\0';
    for (t = 0;  t < _f.trk.Ln;  t++)
-      if (! StrCm (Up.dev [_f.trk [t].dev].mo->Name (), dv))
-                     cmap [_f.trk [t].chn] = 'x';
-   for (t = 0;  t < nc;  t++)  if (t != 'x')  break;
+      if ( (_f.trk [t].dev < Up.dev.Ln) && Up.dev [_f.trk [t].dev].mo &&
+           (! StrCm (Up.dev [_f.trk [t].dev].mo->Name (), dv)) &&
+           (_f.trk [t].chn < nc) )
+         cmap [_f.trk [t].chn] = 'x';
+   for (t = 0;  t < nc;  t++)  if (cmap [t] == '.')  break;
    if (t == nc)  t = 255;
    return t;
 }
