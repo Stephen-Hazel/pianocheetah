@@ -806,7 +806,8 @@ void DlgHlp::Init ()
    _t.Open ();
    for (ubyte i = 0;  i < NUCmd;  i++) {
       ro [0] = CC(UCmd [i].grp);   ro [1] =    UCmd [i].nt;
-      ro [2] =    UCmd [i].ky;     ro [3] = CC(UCmd [i].desc);
+      ro [2] = StrCm (UCmd [i].ky, CC(" ")) ? UCmd [i].ky : CC("spc");
+      ro [3] = CC(UCmd [i].desc);
       _t.Put (ro);
    }
    _t.Shut ();

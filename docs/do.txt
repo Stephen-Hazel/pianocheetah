@@ -64,9 +64,7 @@ study repeats more - esp to zanarkand;  look at practice loops
    test fingering of repeat blocks
    check red dots for repeats
 
-changing device always pickin chan 1
-
-hear recording - make stoppable;  reset tempo from recording
+WipeTmpo - reset to only picked tempo at song start and wipe rest
 
 syn - env, chorus
 

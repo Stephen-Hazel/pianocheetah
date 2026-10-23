@@ -90,9 +90,11 @@ void Song::EdTime (char ofs)           // edit song time
    bar = (ubyt2)Str2Int (str, & s);   bt = (ubyt2)Str2Int (s+1);
 
    switch (ofs) {
-   case 0:  NotesOff ();               // toggle timer's pause state
+   case 0:  if (_lrn.pLrn)  TmHop (_now);   // hearX off, stay put
+            NotesOff ();               // toggle timer's pause state
             Up.uPoz = Up.uPoz ? false : true;   Poz (Up.uPoz);
             emit sgUpd ("tbPoz");
+            if (! Up.uPoz)  Put ();    // restart schedulin (as after hop)
             return;
 
    case 1:  if (PRAC || _lrn.pLrn)  {SetLp ('i');   return;}    // prac instead!
@@ -180,6 +182,7 @@ void Song::EdLrn (char ofs)            // this has gotten pretty hairy :(
   char  c;
   static ubyt4 nowSave = 0;
    if      (ofs == 0) {                // learn - toggle _f.lrn
+      if (_lrn.pLrn)  TmHop (_now);    // hearX off => back to pLrn
       for (t = 0;  t < _f.trk.Ln;  t++)  if (TLrn (t))  break;
       if (t >= _f.trk.Ln) {
          Up.lrn = LHEAR;
