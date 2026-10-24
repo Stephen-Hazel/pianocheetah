@@ -62,12 +62,12 @@
   <content_rating type="oars-1.0" />
 
   <releases>
-    <release version="2026-10" date="2026-10-24">
+    <release version="2026.10" date="2026-10-24">
       <description>
         <p>
           was doin full page redraws every tick - now JUST the "now" portion redraws.
           icon redesign COMPLETE !!
-            Sophia Arguelles  https://www.sophiaarguelles.com
+            Sophia Arguelles  sophiaarguelles.com
             better icons, keyboard, etc;  theme changing works properly.
             fixed cues to use toolbar .svg instead of a dup'd svg to blt from.
           hear recording mode turns off properly during pause, learn mode buttons.
@@ -79,6 +79,7 @@
           improved flatpak build time doing all async.
         </p>
       </description>
+    </release>
     <release version="2026.09" date="2026-09-15">
       <description>
         <p>
