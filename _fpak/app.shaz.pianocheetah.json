@@ -35,15 +35,15 @@
             {
                "type":   "git",
                "url":    "https://github.com/Stephen-Hazel/pianocheetah.git",
-               "tag":    "2026-09-15",
-               "commit": "2a9158203674b2b0b16efac6f9d4689df3a54247"
+               "tag":    "release-2026-10-24b",
+               "commit": "f6f7790bb0899b90bea0e4644da9dba5041cde5d"
             },
             {
                "type":   "git",
                "dest":   "stv",
                "url":    "https://github.com/Stephen-Hazel/stv.git",
-               "tag":    "2026-09-15",
-               "commit": "d51e11fa124495bbaf2afdac0a406ce55a0b0faf"
+               "tag":    "release-2026-10-24",
+               "commit": "7e01da264e2720b5f7058708688d8bb5c31d2c45"
             }
          ]
       }
