@@ -64,8 +64,6 @@ study repeats more - esp to zanarkand;  look at practice loops
    test fingering of repeat blocks
    check red dots for repeats
 
-WipeTmpo - reset to only picked tempo at song start and wipe rest
-
 syn - env, chorus
 
 
