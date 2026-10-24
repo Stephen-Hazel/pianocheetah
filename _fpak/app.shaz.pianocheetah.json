@@ -29,7 +29,7 @@
          "name": "pianocheetah",
          "buildsystem": "simple",
          "build-commands": [
-            "sh _fpak/fp-build.sh Release"
+            "sh _fpak/fp-build.sh"
          ],
          "sources": [
             {
