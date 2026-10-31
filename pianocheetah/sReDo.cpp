@@ -234,6 +234,43 @@ static int DrCmp (void *p1, void *p2)
    return n1 - n2;
 }
 
+ubyte Song::DnPos (ubyt4 dp, ubyte o)
+// pos in _dn[dp].nt[] of oct o's (ez) note (0=drum) or 99 if none
+{ ubyte x, t;
+   for (x = 0;  x < _dn [dp].nNt;  x++) {
+      t = _dn [dp].nt [x].t;
+      if (TDrm (t) ? (o == 0) : (_f.trk [t].ht == (char)('0'+o)))  return x;
+   }
+   return 99;
+}
+
+bool Song::BarCm (ubyt2 a, ubyt2 b, ubyt4 *bd, char *dr)
+// does bar b match bar a?  same bar dur, same dn times in bar, same octs
+// per dn, same drum nt, same dir per oct (but ignore each oct's 1st dn)
+// bd[] is 1st dp of each bar;  dr[] is dir per dp*8+oct
+{ ubyt4 pa, pb, ta, tb;
+  ubyte o, xa, xb;
+  bool  fst [8];
+   if ((bd [a+1] - bd [a]) != (bd [b+1] - bd [b]))   return false;
+   ta = Bar2Tm (a);   tb = Bar2Tm (b);
+   if ((Bar2Tm (a+1) - ta) != (Bar2Tm (b+1) - tb))  return false;
+   for (o = 0;  o < 8;  o++)  fst [o] = true;
+   for (pa = bd [a], pb = bd [b];  pa < bd [a+1];  pa++, pb++) {
+      if ((_dn [pa].time - ta) != (_dn [pb].time - tb))  return false;
+      xa = DnPos (pa, 0);   xb = DnPos (pb, 0);
+      if ((xa == 99) != (xb == 99))  return false;
+      if ((xa != 99) && (_dn [pa].nt [xa].nt != _dn [pb].nt [xb].nt))
+         return false;
+      for (o = 1;  o < 8;  o++) {
+         if ((dr [pa*8+o] == '\0') != (dr [pb*8+o] == '\0'))  return false;
+         if (dr [pa*8+o] == '\0')  continue;
+         if (fst [o])  fst [o] = false;
+         else if (dr [pa*8+o] != dr [pb*8+o])  return false;
+      }
+   }
+   return true;
+}
+
 void Song::SetDn (char qu)             // qu from DlgCfg quantize button ONLY
 // calc notesets by time - all ntDns across lrn tracks => _dn[]
 { ubyte t, c, d, nn, x, pf, nt, nmin, nmax, pnt, f;
@@ -244,22 +281,29 @@ void Song::SetDn (char qu)             // qu from DlgCfg quantize button ONLY
   TrkEv *e;
   ubyt4 ne;
   TStr  k;
-  struct {ubyte pos;   char dir;   ubyt4 rp;   ubyte fg;}
-        xx [64*1024];                  // more _dn info
-  ubyt4 *ix, nix, i, j, m, bj, bm;     // pattern repeat checkin
+  struct {ubyte pos;   char dir;}  xx [64*1024];
+  char   *dr;                          // dir per dn per oct (dp*8+oct)
   TSgRow *ts;
-  struct {ubyte t;   ubyt4 p;} on [2][128];
+  struct {ubyte t;   ubyt4 p;}  on [2][128];
+  struct OVRow {ubyt4 time;   ubyte velo [8];} *vel;
+  ubyt4 nvel, pvel;
 TRC("SetDn qu=`c", qu);
 
-//TODO kill meee
-// kill existing `tre cues
+// kill existing .repeat bar n trill cues (rebuilt below)
    for (p = 0;  p < _f.cue.Ln;) {
-      if (_f.cue [p].tend)  p++;
-      else {
-         if (StrCm (_f.cue [p].s, "-/") && StrCm (_f.cue [p].s, "-\\"))  p++;
-         else  _f.cue.Del (p);
-      }
+      if ((! MemCm (_f.cue [p].s, ".repeat bar ", 12)) ||
+          (! StrCm (_f.cue [p].s, "-/")) ||
+          (! StrCm (_f.cue [p].s, "-\\")))  _f.cue.Del (p);
+      else  p++;
    }
+
+// save played velos - restored by time/oct below
+   pvel = 0;   nvel = _dn.Ln;   vel = new OVRow [nvel ? nvel : 1];
+   for (p = 0;  p < nvel;  p++) {
+      vel [p].time = _dn [p].time;
+      MemCp (vel [p].velo, _dn [p].velo, sizeof (vel [0].velo));
+   }
+   pvel = 0;
 
    _pDn = 0;   _dn.Ln = 0;   didq = false;
    MemSet (tpos, 0, sizeof (tpos));
@@ -325,6 +369,9 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
          _dn [dp].time = tm;   _dn [dp].msec = 0;   _dn [dp].tmpo = 0;
                                                     _dn [dp].clip = '\0';
          MemSet (_dn [dp].velo, 0, sizeof (_dn[0].velo));
+         while ((pvel < nvel) && (vel [pvel].time < tm))  pvel++;
+         if    ((pvel < nvel) && (vel [pvel].time == tm))
+            MemCp (_dn [dp].velo, vel [pvel].velo, sizeof (_dn[0].velo));
          for (nn = d = 0;  d < 2;  d++)  for (c = 0;  c < 128;  c++)
             if (on [d][c].t && (nn < BITS (_dn [0].nt))) {
                _dn [dp].nt [nn].t   = on [d][c].t - 1;
@@ -336,11 +383,13 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
          _dn [dp].nNt = nn;   _dn.Ln++;
       }
    }
+   delete [] vel;
+
 // OK!  we have all real notes by dnTime/trk/nt
 // now loop thru each oct/ht we got and make ONE ez note per dn per oct/ht
 // drum oct/ht is 0, oct1=>1 .. 7=>7
 
-// drum dns first.  melo nts later
+// drum dns first.
    for (dp = 0;  dp < _dn.Ln;  dp++) {
       c = d = 128;   nn = 0;
       for (x = 0;  x < _dn [dp].nNt;  x++)
@@ -368,7 +417,8 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
    }
 
 // melodic notes - max o one note o five per dn time for oc's tr's nts
-   ix = new ubyt4 [_dn.Ln ? _dn.Ln : 1];
+   dr = new char [_dn.Ln ? (_dn.Ln*8) : 8];
+   MemSet (dr, 0, (_dn.Ln ? (_dn.Ln*8) : 8));
    for (oc = '1';  oc <= '7';  oc++) {      // gather tracks w my ht
       k [0] = oc;   k [2] = '\0';      // oct of key
 //DBG("oc=`c", k[0]);
@@ -396,6 +446,7 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
             else if (ntrm < pntrm)  ch = '<';
             else                    ch = '=';
             xx [dp].dir = fst ? '=' : ch;
+            dr [dp*8 + oc-'0'] = xx [dp].dir;
             fst = false;
 //TStr xd;
 //DBG(" `s dp=`d nn=`d nsum=`d nt=`d ntrm=`d pnt=`d pntrm=`d ch=`c",
@@ -415,48 +466,13 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
          }
       }
 
-   // find repeats of dn dir n dur;  .rp gets dp of original pattern.
-   // use longest orig pattern n require 6+ dns n dur>bar
-      for (dp = 0;  dp < _dn.Ln;  dp++)  xx [dp].rp = NONE;
-      for (nix = 0, dp = 0;  dp < _dn.Ln;  dp++)  if (xx [dp].pos != 99)
-                                                     ix [nix++] = dp;
-      for (i = 1;  i < nix;) {
-         bm = bj = 0;
-         for (j = 0;  j < i;  j++) {
-            for (m = 1;  (i+m < nix) && (j+m < i) &&
-                          (xx  [ix [j+m]].dir == xx  [ix [i+m]].dir) &&
-                          (_dn [ix [j+m]].time - _dn [ix [j+m-1]].time ==
-                           _dn [ix [i+m]].time - _dn [ix [i+m-1]].time);
-                 m++)  ;
-            if (m > bm)  {bm = m;   bj = j;}     // new best :)
-         }
-         ts = TSig (_dn [ix [i]].time);
-        ulong t = (i+bm < nix) ? (i+bm) : (i+bm-1);
-         if ((bm >= 6) && ((_dn [ix [t]].time - _dn [ix [i]].time) >
-                           (M_WHOLE * ts->num / ts->den))) {
-            for (t = 0;  t < bm;  t++)  xx [ix [i+t]].rp = ix [bj+t];
-//TStr d1, d2;
-//DBG("rpt oct=`c orig=`s len=`d at=`s", oc,
-//TmSt (d1, _dn [ix [bj]].time), bm, TmSt (d2, _dn [ix [i]].time));
-            i += bm;
-         }
-         else  i++;
-      }
-
-   // ok!  time for final fingerin'
+   // ok!  time for final fingerin'  (repeat bars get fixed up after)
    // n check for rolled chord/trill - time diff of < 32nd
    // else follow < >
      ulong pend, tr;                   // end of trill pos, trill trigger dur
      ubyte cu;
       pf = 0;
       for (dp = 0;  dp < _dn.Ln;  dp++)  if (xx [dp].pos != 99) {
-         if (xx [dp].rp != NONE) {     // repeat - same eznote as orig
-           ulong t = xx [dp].rp;
-            _dn [dp].nt [xx [dp].pos].nt  = _dn [t].nt [xx [t].pos].nt;
-            _dn [dp].nt [xx [dp].pos].mrk = _dn [t].nt [xx [t].pos].mrk;
-            pf = xx [dp].fg = xx [t].fg;
-            continue;
-         }
          tm = _dn [dp].time;           // max is actually min for LH
          ts = TSig (tm);
          tr = M_WHOLE/ts->den/ts->sub*3/4;  // 3/4 of a subbt
@@ -465,7 +481,6 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
 //TStr s3;
 //DBG("tm1=`s tr=`d dir=`c", TmSt(s3,tm), tr, xx [dp].dir);
          for (p = dp+1;  p < _dn.Ln;  p++)  if (xx [p].pos != 99) {
-            if (xx [p].rp != NONE)  break;     // don't trill into a repeat
             if (_dn [p].time < (tm + tr)) {
                c++;   pend = p;   tm = _dn [p].time;
                if (xx [p].dir == '>')  cu++;
@@ -477,7 +492,7 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
       // do either our only or our 1st note
          if      (xx [dp].dir == '<')  {if (pf-- == 0)  pf = 4;}
          else if (xx [dp].dir == '>')  {if (pf++ == 4)  pf = 0;}
-         k [1] = 'c' + pf;   xx [dp].fg = pf;
+         k [1] = 'c' + pf;
          _dn [dp].nt [xx [dp].pos].nt = MKey (k);
 
          if (c) {                      // do rolled chord/trill
@@ -489,20 +504,70 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
          // if normal 1st note would cause a wrap (5>1 or 1>5) bump it
             if (dir == '>') {if (pf+c > 4)  pf = (c <= 4) ? (4-c) : 0;}
             else             if (pf   < c)  pf = (c <= 4) ? c     : 4;
-            k [1] = 'c' + pf;   xx [dp].fg = pf;
+            k [1] = 'c' + pf;
 //DBG("   pf=`d k=`s", pf, k);
             _dn [dp].nt [xx [dp].pos].nt = MKey (k);  // in case it's new
             for (p = dp+1;  p <= pend;  p++)  if (xx [p].pos != 99) {
                if (dir == '<')  {if (pf-- == 0)  pf = 4;}  // but we should
                else             {if (pf++ == 4)  pf = 0;}  // never wrap
-               k [1] = 'c' + pf;   xx [p].fg = pf;
+               k [1] = 'c' + pf;
                _dn [p].nt [xx [p].pos].nt = MKey (k);
             }
             dp = pend;
          }
       }
    }
-   delete [] ix;
+
+// now bar by bar across all octs - if a bar matches an earlier bar
+// (ignorin each oct's 1st dn's dir) it gets the orig bar's ez notes
+// so the pattern's fingerin' stays the same.  1st nt can jump
+   if (_bEnd) {
+     ubyt2  a, b, *mt = new ubyt2 [_bEnd+2];   // bar matched, 0 if none
+     ubyt4  pa, pb, *bd = new ubyt4 [_bEnd+2]; // 1st dp of bar
+     ubyte  o, xa, xb, n [8];
+      for (dp = 0, b = 1;  b <= _bEnd+1;  b++) {
+         for (tm = Bar2Tm (b);  (dp < _dn.Ln) && (_dn [dp].time < tm);
+              dp++)  ;
+         bd [b] = dp;
+      }
+      for (b = 1;  b <= _bEnd;  b++) {
+         mt [b] = 0;
+      // need an oct w 2+ dns in bar else nothin worth matchin
+         MemSet (n, 0, sizeof (n));
+         for (pb = bd [b];  pb < bd [b+1];  pb++)  for (o = 1;  o < 8;  o++)
+            if (dr [pb*8+o])  n [o]++;
+         for (o = 1;  o < 8;  o++)  if (n [o] > 1)  break;
+         if (o >= 8)  continue;
+
+      // continue prev bar's run if we can, else earliest match
+         if ((b > 1) && mt [b-1] && BarCm (mt [b-1]+1, b, bd, dr))
+            a = mt [b-1]+1;
+         else
+            for (a = 1;  a < b;  a++)  if (BarCm (a, b, bd, dr))  break;
+         if (a >= b)  continue;
+
+         mt [b] = a;
+//DBG("bar `d = bar `d", b, a);
+         for (pa = bd [a], pb = bd [b];  pa < bd [a+1];  pa++, pb++)
+            for (o = 1;  o < 8;  o++)  if (dr [pa*8+o]) {
+               xa = DnPos (pa, o);   xb = DnPos (pb, o);
+               _dn [pb].nt [xb].nt  = _dn [pa].nt [xa].nt;
+               _dn [pb].nt [xb].mrk = _dn [pa].nt [xa].mrk;
+            }
+      }
+   // a .repeat bar cue w /dur per run of repeated bars (LoopInit skips em)
+      for (b = 1;  b <= _bEnd;) {
+         if (! mt [b])  {b++;   continue;}
+         for (a = b;  (a < _bEnd) && mt [a+1] && (mt [a+1] == mt [a]+1);
+              a++)  ;
+         tm = Bar2Tm (b);   if (tm)  tm--;
+         TxtIns (tm, StrFmt (k, "/`d.repeat bar `d", Bar2Tm (a+1)-1 - tm,
+                                mt [b]), & _f.cue, 'c');
+         b = a+1;
+      }
+      delete [] mt;   delete [] bd;
+   }
+   delete [] dr;
 
 // always need dn[pdn].time >= _now so add a dummy at time=0 if none yet
    if ( (! _dn.Ln) || _dn [0].time )

@@ -270,23 +270,30 @@ void Song::MsMv (Qt::MouseButtons b, sbyt2 x, sbyt2 y)
         bool        dr = TDrm (tr);
 //DBG("pg=`d co=`d sy=`d", Up.pos.pg, Up.pos.co, Up.pos.sy);
         ubyt4  tm, te;
-        TrkEv *ev = nullptr;
+        ubyte  vl = 0;
          if (RCRD) {                   // cuz ez has no actual note
             tm = te =   co.sym [Up.pos.sy].tm;   // SetSym set me
             nt = (ubyte)co.sym [Up.pos.sy].nt;   // not p !
             te += (M_WHOLE/8*3/4);
+         // ez velo is what we played (in _dn[].velo[oct]) - 0 if not yet
+            for (ubyt4 d = 0;  d < _dn.Ln;  d++) {
+               if (_dn [d].time >  tm)  break;
+               if (_dn [d].time == tm)
+                  {vl = _dn [d].velo [dr ? 0 : (_f.trk [tr].ht - '0')];
+                   break;}
+            }
 //DBG("ez      tr=`d nt=`d tm=`d te=`d", tr, nt, tm, te);
          }
          else {
            TrkNt *n = & _f.trk [tr].n [co.sym [Up.pos.sy].nt];
             tm = n->tm;   te = n->te;   nt = n->nt;
-            if (n->dn != NONE)  ev = & _f.trk [tr].e [n->dn];
+            if (n->dn != NONE)  vl = _f.trk [tr].e [n->dn].valu & 0x7F;
 //DBG("dr/real tr=`d nt=`d tm=`d te=`d", tr, nt, tm, te);
          }
          TmSt           (s , tm);    StrAp (s, CC("-"));
          StrAp (s, TmSt (s2, te));   StrAp (s, CC(" "));
          StrAp (s, dr ? MDrm2Str (s2, nt) : MKey2Str (s2, nt));
-         StrAp (s, ev ? StrFmt (s2, "_`d ", ev->valu & 0x007F) : CC(" "));
+         StrAp (s, vl ? StrFmt (s2, "_`d ", vl) : CC(" "));
          if (! dr)  {StrAp (s, SndName (tr));   StrAp (s, CC(" "));}
          StrAp (s, DevName (tr));
          if (! dr)  StrAp (s, StrFmt (s2, ".`d #`d `s",

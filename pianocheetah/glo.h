@@ -24,6 +24,7 @@ const ubyt4 MAX_RCRD = 32000;          // max events for recording in btw saves
 // MAX_DEV used as max midiout devices for song
 const ubyt2 MAX_CCH  = 512;            //     controllers to chase
 const ubyt2 MAX_SIG  = 4096;           //     time,keysigs
+const ubyt2 MAX_BAR  = 800;            // max bars for LoopInit
 
 const ubyte PRG_NONE = 255;            // prg value for "no program"
 

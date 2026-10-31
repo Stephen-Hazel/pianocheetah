@@ -181,13 +181,13 @@ ofs, _f.tmpo, FIX1, tt, tp);
       _f.tmpo = FIX1;                       // stored is now actual so 100%
       TmpoPik ('l');                        // put it in 1st drum trk
       DscSave ();   PutTp ((ubyt2)tp);   ReDo ();
-      StrFmt (ts, "tempo set to `d", tp);   Hey (ts);
+      StrFmt (ts, "tempo=`d", tp);   Info (ts);
    }
    else if (ofs <= 5) {                // transpose, actually :/
       NotesOff ();                     // SHUSH !
       if (ofs == 4) {if (_f.tran > (sbyte)-12) _f.tran--;}
       else          {if (_f.tran < (sbyte) 12) _f.tran++;}
-      DscSave ();   StrFmt (ts, "transpose=`d", _f.tran);   Hey (ts);
+      DscSave ();   StrFmt (ts, "transpose=`d", _f.tran);   Info (ts);
    }
 }
 

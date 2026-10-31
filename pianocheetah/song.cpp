@@ -52,7 +52,7 @@ TRC(" del ctl");
    _f.lyr.Ln = _f.cue.Ln = _f.chd.Ln = _f.bug.Ln = 0;
    _pLyr = _pChd = 0;   _hLyr = 2;
 TRC(" del ev,nt");
-   _recM.Ln = _recD.Ln = 0;
+   _recM.Ln = _recD.Ln = 0;   _dn.Ln = 0;     // so SetDn won't keep velos
    *_st.dur = '\0';   _st.artc = 2;   _st.oct = 4;   _st.nt = 'c';   _st.sh = 0;
    if (_f.ev)  delete [] _f.ev;
    _f.nEv = _f.maxEv = 0;   _f.ev = nullptr;

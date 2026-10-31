@@ -239,6 +239,8 @@ private:
    void  ReTrk  ();                    // give gui _trk info ta draw
    ubyt4 ReEv   (bool tpo = false);    // redo _tpo,_tSg,_kSg,_tEnd,etccccc
    void  BarH   (ubyt2 *h, ubyte *sb, ubyt2 b);
+   ubyte DnPos  (ubyt4 dp, ubyte o);   // _dn[dp].nt[] pos of oct o
+   bool  BarCm  (ubyt2 a, ubyt2 b, ubyt4 *bd, char *dr);
    void  SetDn  (char q = '\0'),       // default to no quantize
          SetLp  (char dir),
          SetNt  (),
