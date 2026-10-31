@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>237</width>
-    <height>234</height>
+    <width>210</width>
+    <height>121</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <item>
       <widget class="QLabel" name="lTran">
        <property name="text">
-        <string>transpose</string>
+        <string>transpose:</string>
        </property>
       </widget>
      </item>
@@ -33,38 +33,6 @@
     </layout>
    </item>
    <item>
-    <layout class="QVBoxLayout" name="v1">
-     <item>
-      <widget class="QLabel" name="lSVol">
-       <property name="text">
-        <string>syn volume</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QSlider" name="sVol">
-       <property name="orientation">
-        <enum>Qt::Orientation::Horizontal</enum>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <widget class="QCheckBox" name="barCl">
-     <property name="text">
-      <string>bar to clipbd for lyrics</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QCheckBox" name="trc">
-     <property name="text">
-      <string>trace to dbg.txt</string>
-     </property>
-    </widget>
-   </item>
-   <item>
     <widget class="QPushButton" name="quan">
      <property name="maximumSize">
       <size>
@@ -74,6 +42,20 @@
      </property>
      <property name="text">
       <string>quantize</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="barCl">
+     <property name="text">
+      <string>bar# to clipboard for lyrics</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="trc">
+     <property name="text">
+      <string>debug to dbg.txt</string>
      </property>
     </widget>
    </item>

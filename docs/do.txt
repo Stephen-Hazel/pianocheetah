@@ -96,8 +96,6 @@ txt2song and step entry
 
 code____________________________________________________________________________
 
-does config - syn volume work?
-
 FLst - split find (on char within song) and search midi dir
 
 syn - env, chorus
