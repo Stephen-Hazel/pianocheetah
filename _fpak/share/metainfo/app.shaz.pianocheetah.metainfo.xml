@@ -1,169 +1,189 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-   
+
   <id>app.shaz.pianocheetah</id>
   <replaces>
     <id>app.pianocheetah.pianocheetah</id>
   </replaces>
-   
-  <name>pianocheetah</name>
-   
-  <summary>Piano for mere mortals</summary>
-  
+
+  <name>PianoCheetah</name>
+
+  <summary>Learn songs on piano with simplified notes</summary>
+
   <metadata_license>MIT</metadata_license>
   <project_license>MIT</project_license>
-   
+
   <url type="homepage">https://pianocheetah.app</url>
+  <url type="help">https://pianocheetah.app/doc</url>
+  <url type="bugtracker">https://github.com/Stephen-Hazel/pianocheetah/issues</url>
+  <url type="vcs-browser">https://github.com/Stephen-Hazel/pianocheetah</url>
   <url type="contact">https://shaz.app</url>
   <developer id="app.shaz">
     <name>Stephen Hazel</name>
   </developer>
-  
+
   <description>
     <p>
-      Play and practice a pop song on piano and drums.
-      In a &quot;pianoroll&quot; format that&apos;s kinda fancy.
+      Piano for mere mortals. PianoCheetah turns any MIDI file into a song
+      you can practice and play on your piano keyboard, with the rest of the
+      band playing along.
     </p>
     <p>
-      You practice the piano parts and the background tracks sync to your tempo.
-      Our aim is to get a simplified song into our head and fingers.
-
-      The real notes of the song are simplifed down to one note per hand max.
-      And your hands stay in one position.
-       
-      Tracks in any midi file can become a song for you to practice and play.
-
-      More description / install docs / screenshots on the website (see Links).
+      A MIDI keyboard is needed to play along.
     </p>
+    <ul>
+      <li>Backing tracks follow your tempo as you practice</li>
+      <li>EZ notes simplify the real notes down to one note per hand, and
+        your hands stay in one position</li>
+      <li>Notes scroll by in a pianoroll view, with velocity shown on each
+        note</li>
+      <li>Practice piano and drum parts</li>
+      <li>Any track of any MIDI file can become a song to learn</li>
+      <li>Built in synthesizer, so no extra sound setup is needed</li>
+      <li>Record yourself and save your performances</li>
+    </ul>
   </description>
-  
+
   <launchable type="desktop-id">app.shaz.pianocheetah.desktop</launchable>
-   
+
   <screenshots>
     <screenshot type="default">
-      <caption>Playing a song in easy mode - 1 note max per hand</caption>
+      <caption>Playing a song with EZ notes, one note per hand</caption>
       <image>https://pianocheetah.app/doc/img/screen_ez.png</image>
-    </screenshot>
-    <screenshot>
-      <caption>PianoCheetah toolbar</caption>
-      <image>https://pianocheetah.app/doc/img/toolbar.png</image>
     </screenshot>
     <screenshot>
       <caption>Playing the full notes of a song</caption>
       <image>https://pianocheetah.app/doc/img/screen.png</image>
     </screenshot>
   </screenshots>
-   
+
+  <keywords>
+    <keyword>piano</keyword>
+    <keyword>midi</keyword>
+    <keyword>learn</keyword>
+    <keyword>practice</keyword>
+    <keyword>keyboard</keyword>
+    <keyword>drums</keyword>
+    <keyword>music</keyword>
+    <keyword>pianoroll</keyword>
+  </keywords>
+
   <branding>
     <color type="primary" scheme_preference="light">#ffffcb</color>
     <color type="primary" scheme_preference="dark">#121212</color>
   </branding>
-   
+
   <content_rating type="oars-1.0" />
 
   <releases>
     <release version="2026.10" date="2026-10-24">
       <description>
-        <p>
-          was doin full page redraws every tick - now JUST the "now" portion redraws.
-          icon redesign COMPLETE !!
-            Sophia Arguelles  sophiaarguelles.com
-            better icons, keyboard, etc;  theme changing works properly.
-            fixed cues to use toolbar .svg instead of a dup'd svg to blt from.
-          hear recording mode turns off properly during pause, learn mode buttons.
-          new tempoSet command to clear all tempo events and
-          set one to currently picked tempo at start of song (back to perfect time)
-          filelist dialog and midicfg can do drag and drop.
-          in save, show done song filename.
-          rand was broke and causing a core in chord dialog - fixed.
-          improved flatpak build time doing all async.
-        </p>
+        <p>New look, with icons by Sophia Arguelles (sophiaarguelles.com).</p>
+        <ul>
+          <li>Redesigned icons, keyboard and toolbar</li>
+          <li>Theme changing works properly</li>
+          <li>Smoother playback: only the "now" area of the screen redraws
+            instead of the whole page</li>
+          <li>New tempoSet command resets a song to one steady tempo</li>
+          <li>Drag and drop in the song list and in midicfg</li>
+          <li>Saving shows the finished song's filename</li>
+          <li>Hear recording mode turns off properly when paused</li>
+          <li>Fixed a crash in the chord dialog</li>
+        </ul>
       </description>
     </release>
     <release version="2026.09" date="2026-09-15">
       <description>
         <p>
-          Will rename app.pianocheetah prefix to app.shaz like my main website.
-          Please rename your pianocheetah directory - things have changed a lot.
-          Audio engine moved to pipewire from alsa to share audio out.
-          Easy note algorithm makes far better note arrangements.
-          Note velocity shown with a grey bar on the note symbol.
-          New step entry mode (that I'll explain in videos soon.)
-          Found a good graphical designer (in work, please be patient:)
+          The app id changed to app.shaz.pianocheetah. Please rename your
+          pianocheetah directory, since a lot has changed.
         </p>
+        <ul>
+          <li>Audio now goes through PipeWire, so it can share audio output
+            with other apps</li>
+          <li>Much better EZ note arrangements</li>
+          <li>Note velocity shown as a grey bar on each note</li>
+          <li>New step entry mode</li>
+        </ul>
       </description>
     </release>
     <release version="2025.05b" date="2025-05-11">
       <description>
-        <p>
-          table columns are sized properly.
-          song files are listed properly.
-          Testers needed - please help - sh@shaz.app .
-        </p>
+        <ul>
+          <li>Table columns are sized properly</li>
+          <li>Song files are listed properly</li>
+          <li>Testers wanted, email sh@shaz.app</li>
+        </ul>
       </description>
     </release>
     <release version="2025.05" date="2025-05-02">
       <description>
-        <p>
-          Doesn't core anymore - last release had broken link :/
-          Testers needed - please help - sh@shaz.app .
-          Command keys on piano work properly.
-          Syn does glide (portamento).
-          Syn has envelopes (including LFOs done as an envelope).
-          New record live in hear mode.
-        </p>
+        <ul>
+          <li>Fixed a crash on startup caused by a broken link</li>
+          <li>Command keys on the piano work properly</li>
+          <li>Synthesizer does glide (portamento)</li>
+          <li>Synthesizer has envelopes, including LFOs</li>
+          <li>Record live in hear mode</li>
+          <li>Testers wanted, email sh@shaz.app</li>
+        </ul>
       </description>
     </release>
     <release version="2024.12" date="2024-12-19">
       <description>
-        <p>
-          Always EZ notes now (in play and practice).
-          Tracks have tooltips with #notes, #controls, first 3 of each detailed.
-          Tracks can be combined on a given playing octave now.
-          Testers needed - please help - sh@shaz.app .
-        </p>
+        <ul>
+          <li>EZ notes are always used in play and practice modes</li>
+          <li>Track tooltips show note and control counts, with the first
+            few of each</li>
+          <li>Tracks can be combined onto one playing octave</li>
+          <li>Testers wanted, email sh@shaz.app</li>
+        </ul>
       </description>
     </release>
     <release version="2024.10" date="2024-10-18">
       <description>
-        <p>
-          Fixed bad bug that wan't refreshing screen.   
-          Recordings are now properly saved in 3_done directory with recSave command.  
-          Cue editing is fixed.  
-          EZ mode makes a new note upon any chord change.  
-          You can hop to a random song in your midi dir now.  
-        </p>
+        <ul>
+          <li>Fixed a bug where the screen wasn't refreshing</li>
+          <li>Recordings are saved to the 3_done directory with
+            recSave</li>
+          <li>Cue editing is fixed</li>
+          <li>EZ mode makes a new note on every chord change</li>
+          <li>Hop to a random song in your MIDI directory</li>
+        </ul>
       </description>
     </release>
     <release version="2024.08" date="2024-08-08">
       <description>
-        <p>
-          syn plays all sounds properly.  
-          new song2wav to render .wav for a song.
-          it, sfz2syn, mod2song, midimp now have GUIs (in Song List dialog).
-          improved docs on my website.
-        </p>
+        <ul>
+          <li>Synthesizer plays all sounds properly</li>
+          <li>New song2wav tool renders a song to .wav</li>
+          <li>song2wav, sfz2syn, mod2song and midimp have GUIs in the Song
+            List dialog</li>
+          <li>Improved docs on the website</li>
+        </ul>
       </description>
     </release>
     <release version="2024.04" date="2024-04-29">
       <description>
-        <p>
-          find song crash fixed.  open text editor properly.  txt2song crash fixed.  
-          txt2song now shows errors in a dialog.  fixed note chopping across columns.
-          songkill would fail due to old dirs.  
-          limited song filename width to prevent horiz scrolling.
-        </p>
+        <ul>
+          <li>Fixed crashes in find song and txt2song</li>
+          <li>txt2song shows errors in a dialog</li>
+          <li>Text editor opens properly</li>
+          <li>Fixed notes being chopped across columns</li>
+          <li>Fixed songkill failing on old directories</li>
+          <li>Song filenames no longer cause horizontal scrolling</li>
+        </ul>
       </description>
     </release>
     <release version="1.0" date="2024-03-20">
       <description>
-        <p>Initial release on flathub.</p>
+        <p>Initial release on Flathub.</p>
       </description>
     </release>
   </releases>
-  <requires>
+
+  <recommends>
     <display_length compare="ge">1920</display_length>
     <control>keyboard</control>
     <control>pointing</control>
-  </requires>
-</component> 
+  </recommends>
+</component>

@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Name=pianocheetah
-Comment=piano for mere mortals
-Exec=pianocheetah %F
+Name=PianoCheetah
+Comment=Learn songs on piano with simplified notes
+Exec=pianocheetah
 Icon=app.shaz.pianocheetah
-Categories=AudioVideo;Audio;Midi;
-MimeType=inode/directory;
+Categories=AudioVideo;Audio;Midi;Music;
+Keywords=piano;midi;learn;practice;keyboard;drums;
 Terminal=false
