@@ -481,6 +481,8 @@ bool FLstDef::DoFN (char *fn)          // just do ma dir
 
 
 //______________________________________________________________________________
+static ubyt4 fNum, fMap [100000];      // filtered tbl row => FL.lst pos
+
 void DlgFL::Pik ()
 { sbyt2 p;
   TStr  fn, s, bars, tmpo, tsig, ksig, prac, lyr;
@@ -489,7 +491,7 @@ void DlgFL::Pik ()
    StrCp (bars, "0");   StrCp (tmpo, "120");   StrCp (tsig, "4/4");
    StrCp (ksig, "C");   StrCp (prac, "");      StrCp (lyr,  "0");
 
-   if ((p = _t.CurRow ()) >= 0)  FL.pos = p;
+   if (((p = _t.CurRow ()) >= 0) && ((ubyt4)p < fNum))  FL.pos = fMap [p];
    FL.ext = false;
 
 // git the .song fn, load for infoz
@@ -526,16 +528,25 @@ void DlgFL::Pik ()
 
 void DlgFL::ReDo ()                    // FL.lst/FL.pos => gui tbl
 { char *ro [10];                       // if lst is huge, learn may not show :/
-  TStr  ts;
-  ubyt4 i, ln, p;
-   _t.Open ();
+  TStr  ts, flt;
+  ubyt4 i, j, ln, p, r;
+  CtlLine l (ui->srch);
+   StrCp (flt, l.Get ());
+  ColSep ss (flt, 8);                  // filter words must ALL be in fn
+   _t.Open ();   fNum = 0;
    if (! (ln = FL.lst.Ln))  {_t.Shut ();   return;}
 
    App.Path (ts, 'd');   p = StrLn (ts) + 6;     // past /song/
-   ro [0] = ts;   ro [1] = nullptr;
-   for (i = 0;  i < ln;  i++)  {StrCp (ts, & FL.lst [i][p]);   _t.Put (ro);}
+   ro [0] = ts;   ro [1] = nullptr;   r = NONE;
+   for (i = 0;  i < ln;  i++) {
+      StrCp (ts, & FL.lst [i][p]);
+      for (j = 0;  j < ss.Len;  j++)  if (! StrSt (ts, ss.Col [j]))  break;
+      if (j < ss.Len)  continue;
+      if (i == FL.pos)  r = fNum;
+      fMap [fNum++] = i;   _t.Put (ro);
+   }
    _t.Shut ();
-   _t.HopTo (FL.pos, 0);
+   if (r != NONE)  _t.HopTo (r, 0);
    Pik ();
 }
 
@@ -630,16 +641,22 @@ DBG("found `d", NFnd);
 }
 
 
-void DlgFL::Up ()
-{ ubyt4 p = FL.pos;
-   if (p == 0)  return;
-   FL.lst.MvUp (p);   FL.pos--;   FL.Save ();   ReDo ();
+void DlgFL::Up ()                      // scoot past prev shown song
+{ sbyt2 r = _t.CurRow ();
+  ubyt4 p, q;
+   if ((r <= 0) || ((ubyt4)r >= fNum))  return;
+   p = fMap [r];   q = fMap [r-1];
+   while (p > q)  FL.lst.MvUp (p--);
+   FL.pos = q;   FL.Save ();   ReDo ();
 }
 
-void DlgFL::Dn ()
-{ ubyt4 p = FL.pos;
-   if (p >= FL.lst.Ln-1)  return;
-   FL.lst.MvDn (p);   FL.pos++;   FL.Save ();   ReDo ();
+void DlgFL::Dn ()                      // scoot past next shown song
+{ sbyt2 r = _t.CurRow ();
+  ubyt4 p, q;
+   if ((r < 0) || ((ubyt4)r+1 >= fNum))  return;
+   p = fMap [r];   q = fMap [r+1];
+   while (p < q)  FL.lst.MvDn (p++);
+   FL.pos = q;   FL.Save ();   ReDo ();
 }
 
 void DlgFL::MidImp ()
@@ -686,10 +703,12 @@ void DlgFL::Brow ()  { TStr d;   App.Open (App.Path (d, 'd'));  }
 
 
 static void FLMov (ubyt2 fr, ubyt2 to)  // tbl row got dragged => FL.lst
-{ ubyt4 p;
-   if (fr < to)  for (p = fr;  p < to;  p++)  FL.lst.MvDn (p);
-   else          for (p = fr;  p > to;  p--)  FL.lst.MvUp (p);
-   FL.pos = to;   FL.Save ();
+{ ubyt4 p = fMap [fr], t = fMap [to], r;
+   if (fr < to) {for (;  p < t;  p++)  FL.lst.MvDn (p);
+                 for (r = fr;  r < to;  r++)  fMap [r] = fMap [r+1] - 1;}
+   else         {for (;  p > t;  p--)  FL.lst.MvUp (p);
+                 for (r = fr;  r > to;  r--)  fMap [r] = fMap [r-1] + 1;}
+   fMap [to] = t;   FL.pos = t;   FL.Save ();
 }
 
 
@@ -697,7 +716,10 @@ static void FLMov (ubyt2 fr, ubyt2 to)  // tbl row got dragged => FL.lst
 void DlgFL::Open ()  {ReDo ();   Dlg::Open ();}
 
 void DlgFL::Shut ()
-{   FL.pos = _t.CurRow ();   Dlg::Shut ();  }
+{ sbyt2 r = _t.CurRow ();
+   if ((r >= 0) && ((ubyt4)r < fNum))  FL.pos = fMap [r];
+   Dlg::Shut ();
+}
 
 void DlgFL::Init ()
 {  Dlg::Init ();
@@ -709,7 +731,7 @@ void DlgFL::Init ()
                  "Scoot song down in the list");
    _tb.Btn (2, "Search\n"
                  "Search a big midi file dir for matching search strings\n"
-                 "   fill in the search box below THEN click me");
+                 "   fill in the filter box below THEN click me");
    _tb.Btn (3, "MidiImport\n"
                  "Pick a dir tree with midi files to convert to songs\n"
                  "in the song dir");
@@ -735,6 +757,7 @@ void DlgFL::Init ()
    _t.Init (ui->fLst, "Song\0", "", FLMov);
    connect (ui->fLst, &QTableWidget::itemClicked,       this, & DlgFL::Pik);
    connect (ui->fLst, &QTableWidget::itemDoubleClicked, this, & DlgFL::Shut);
+   connect (ui->srch, &QLineEdit::textChanged,          this, & DlgFL::ReDo);
    _t.SetColElide (0, 'c');
    _tb.ReDo ();
 }

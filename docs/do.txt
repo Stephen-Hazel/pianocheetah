@@ -26,24 +26,19 @@ all docs to video - site has link n summary txt only
   - Make thumbnails and title cards (SVG to PNG).
 
 
-what is a pianocheetah ??
-
 install linux
-   get an old pc and usb stick
-      (fb marketplace n ebay)
-      show usb stick on ama
-   download kubuntu 26.10 iso
-      kubuntu.org/download   3 mins
-   download,install,run balena etcher
-      etcher.balena.io
-      put in your usb stick and remember it's name
-      write the .iso to it  (wait sigh)
-   look at the pc's barcode sticker and google the model of pc with bios key
+   get an old pc and usb stick - fb marketplace n ebay; show usb stick on ama
+   get any data onto an external usb drive
+   download iso - 3 mins
+   download,install,run balena etcher.balena.io - old version :(
+      remember usb stick name
+      how long?
+   look at the pc's barcode sticker and google it with "bios key"
       bios menus work best with wired keyboards and mice
       or a wireless usb to bluetooth stub keyboard or mouse works too.
-   reboot the pc while holding the bios key
-      you may need to turn off fast boot and secure boot
-      pick boot order - your usb stick goes first  (remember it's name?)
+   reboot the pc holding the bios key
+      may want to turn off fast boot, secure boot
+      set boot order - with usb stick name
       save and exit
    now the .iso on the usb stick boots  (time it)
       double click "install kubuntu"
@@ -53,20 +48,20 @@ install linux
    now you configure kde
 
 configuring kde
-settings
-  disp mon - set size orien
-  scr edge - top left sq - NO AC
-start - settings - discov - add to fav
-  settings - flpak backend
-st menu - restart
-start-discov-settings
-   make fpak default
-install chrome
-theme
-desktop pic - elarun
-text & fonts - make em bigger
-screen locking - never
-session - no confirmation, start empty
+   settings
+     disp mon - set size orien
+     scr edge - top left sq - NO AC
+   start - settings - discov - add to fav
+     settings - flpak backend
+   st menu - restart
+   start-discov-settings
+      make fpak default
+   install chrome
+   theme
+   desktop pic - elarun
+   text & fonts - make em bigger
+   screen locking - never
+   session - no confirmation, start empty
 
 trying out pianocheetah
    go over pc.app/doc and write somethin up
@@ -93,12 +88,22 @@ txt2song and step entry
    note  3c    d      e    f     g         a        4c-b
          oct-- oct++  sh-- sh++  keepnote  advance  nt
 
+find cheapest - weighted keyboard to chop  (roland rd64 too spendy)
+   smallest keyboard - prob my akai
+
 
 code____________________________________________________________________________
 
-FLst - split find (on char within song) and search midi dir
+FLst - just sort filenames by default, no drag/drop, sort dirs properly
 
-syn - env, chorus
+Pik and CurRow use sbyt2 for
+  the row, so with more than 32767 songs the row number overflows
+
+pan draws weird lines off to the right on screen
+
+if tsig is n/d/*,   /4 shows _ e & a    /3 shows _ & a
+
+syn - env, chorus;  neatening up code changes in parallel
 
 
 spec____________________________________________________________________________
@@ -141,22 +146,9 @@ syn
 
 later___________________________________________________________________________
 
-bugs should only show on trill note 1, not 2+
-
-if tsig is n/d/*, show _ e & a for /4  or _ & a for /3
-
-pan draws weird lines off to the right on screen
-
-find cheapest - weighted keyboard to chop  (roland rd64 too spendy)
-   smallest keyboard - prob my akai
-
 solo a track?  (mute all others)
 
-Info() doesn't seem to work..
-
 put sounds with banks in a tooltip (strip *,bank)
-
-how is recorded tempo somehow bein saved to learn .song ?
 
 hearmode rec - show notes/ctrls as played;  in poz, step recording
 
@@ -168,11 +160,6 @@ limit note editing in RCRD to only what makes sense
 
 EvIns - do i ALWAYS keep trk[].e in order throughout .song lifetime?
 
-control picker should show if control is used in song
-   map cc zone1 to somethin how?
-   hover should show track# etc
-   pick all ctrls used in song
-
 StrArr::Add,Ins callers need to USE new bool return code :/
 
 set resolved drum sounds for syn
@@ -181,6 +168,11 @@ set resolved drum sounds for syn
 DrMap list should combine all devices' devtypes' drum.txt's
    unknown drum turns into x128
    should include orig drum in list
+
+control picker should show if control is used in song
+   map cc zone1 to somethin how?
+   hover should show track# etc
+   pick all ctrls used in song
 
 ctrl list
    show #events in song.  0 sorted to bottom

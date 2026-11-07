@@ -28,7 +28,7 @@
      <item>
       <widget class="QLabel" name="lSrch">
        <property name="text">
-        <string>Search</string>
+        <string>Filter</string>
        </property>
       </widget>
      </item>
