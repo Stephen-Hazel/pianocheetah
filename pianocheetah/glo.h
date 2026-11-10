@@ -188,7 +188,8 @@ struct FLstDef {
    const ubyt4      MAX = 100000;      // sigh
    const ubyte      X = sizeof (TStr)-1;
    Arr<TStr,100000> lst;               // last byte flags rand already picked
-   ubyt4            pos,  xLen, xPos;
+   ubyt4            pos,  xLen, xPos,
+                    top;               // lst [0..top-1] in song/ (no subdir)
    TStr                   xFn;
    bool             ext;
    void Load (), Save ();

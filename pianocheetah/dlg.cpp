@@ -392,52 +392,77 @@ static bool SongOK (void *ptr, char dfx, char *fn)
    return false;
 }
 
+static int FLCmp (void *p1, void *p2)
+// dirs before songs at each level, then case sensitive (A before a)
+{ char *s1 = *((char **)p1), *s2 = *((char **)p2), *e1, *e2, c1, c2;
+   for (;;) {
+      e1 = StrCh (s1, '/');   e2 = StrCh (s2, '/');
+      if (e1 && (! e2))  return -1;
+      if (e2 && (! e1))  return  1;
+      for (;  (*s1 == *s2) && *s1 && (*s1 != '/');  s1++, s2++)  ;
+      if (*s1 != *s2) {
+         c1 = (*s1 == '/') ? '\0' : *s1;
+         c2 = (*s2 == '/') ? '\0' : *s2;
+         return (ubyte)c1 - (ubyte)c2;
+      }
+      if (! *s1)  return 0;
+      s1++;   s2++;
+   }
+}
+
 void FLstDef::Load ()
-// load last FLst[];  add new files we got;  del gone files
-{ ubyt4 i, j, ins1;
-  TStr  dr, fn, c;
+// top level songs in songlist.txt order (new ones at end) then
+// subdir songs sorted dirs first, A before a
+{ ubyt4 i, j, p;
+  TStr  dr, fn;
   File  f;
   StrArr t ("FL.Load", FL.MAX, FL.MAX*sizeof (TStr)/2);
-// load prev songlist.txt in cfg dir w order of songs
+   App.Path (dr, 'd');   StrAp (dr, "/song/");   p = StrLn (dr);
+
+// load prev songlist.txt in cfg dir w order of top level songs
    App.Path (fn, 'c');   StrAp (fn, "/songlist.txt");   t.Load (fn);
-   FL.pos = 0;   FL.lst.Ln = t.num;
-   for (ubyt4 i = 0;  i < t.num;  i++)
-      {StrCp (FL.lst [i], t.str [i]);   FL.lst [i][FL.X] = 'n';}
-//DBG("songlist.txt:");for (i=0;i<FL.lst.Ln;i++) DBG("`d `s", i, FL.lst [i]);
+   FL.pos = 0;   FL.lst.Ln = 0;
+   for (i = 0;  i < t.num;  i++)
+      if ((StrLn (t.str [i]) > p) && (! MemCm (t.str [i], dr, p)) &&
+          (! StrCh (& t.str [i][p], '/')) && (! FL.lst.Full ())) {
+         j = FL.lst.Ln++;
+         StrCp (FL.lst [j], t.str [i]);   FL.lst [j][FL.X] = 'n';
+      }
 
 // reinit t n list every a.song file in Pianocheetah dir
-   App.Path (dr, 'd');
    t.Init ("lstS", FL.MAX, FL.MAX*sizeof (TStr)/2);
-   StrFmt (fn, "`s/song", dr);   f.DoDir (fn, & t, SongOK);
-   t.Sort ();
-//TRC("num 1 pc songs=`d", t.num);  t.Dump ();
+   dr [p-1] = '\0';   f.DoDir (dr, & t, SongOK);
+   t.Sort (FLCmp);
 
-// upd FL keepin prev order if file still exists (w flag n=>y)
-   for (i = 0;  i < t.num;  i++) {
+// upd top keepin prev order if file still exists (w flag n=>y)
+   for (i = 0;  i < t.num;  i++)  if (! StrCh (& t.str [i][p], '/')) {
       for (j = 0;  j < FL.lst.Ln;  j++)     // in songlist?  break early
          if (! StrCm (t.str [i], FL.lst [j]))  break;
-      if (j >= FL.lst.Ln)  if (! FL.lst.Full ()) {    // new - append ta songlst
-         FL.lst.Ins (j);
-         StrCp (FL.lst [j], t.str [i]);
+      if (j >= FL.lst.Ln) {                 // new - append ta top
+         if (FL.lst.Full ())  continue;
+         FL.lst.Ln++;   StrCp (FL.lst [j], t.str [i]);
       }
       FL.lst [j][FL.X] = 'y';
    }
    for (j = 0;  j < FL.lst.Ln;)        // del gone ones (still n)
       {if (FL.lst [j][FL.X] == 'n')  FL.lst.Del (j);   else  j++;}
+   FL.top = FL.lst.Ln;
 
+// then subdir songs in sorted order
+   for (i = 0;  i < t.num;  i++)
+      if (StrCh (& t.str [i][p], '/') && (! FL.lst.Full ()))
+         StrCp (FL.lst [FL.lst.Ln++], t.str [i]);
    Save ();
-//TRC("FL::Load ln=`d", FL.lst.Ln);
-//for(i=0;i<FL.lst.Ln;i++)DBG("`d `s `c", i, FL.lst[i], FL.lst[i][FL.X]);
 }
 
 
 void FLstDef::Save ()
-// just dump Learn (with manual sort) of FLst[] in cfg/songlist.txt
+// dump manual order of top level songs in cfg/songlist.txt
 { TStr fn;
   File f;
    App.Path (fn, 'c');   StrAp (fn, "/songlist.txt");
    if (! f.Open (fn, "w"))  DBG("FL.Save  couldn't write songlist");
-   for (ubyt4 r = 0;  r < FL.lst.Ln;  r++)
+   for (ubyt4 r = 0;  r < FL.top;  r++)
       {f.Put (FL.lst [r]);   f.Put ("\n");}
    f.Shut ();
 }
@@ -641,20 +666,22 @@ DBG("found `d", NFnd);
 }
 
 
-void DlgFL::Up ()                      // scoot past prev shown song
+void DlgFL::Up ()                      // scoot past prev shown top song
 { sbyt2 r = _t.CurRow ();
   ubyt4 p, q;
    if ((r <= 0) || ((ubyt4)r >= fNum))  return;
    p = fMap [r];   q = fMap [r-1];
+   if (p >= FL.top)  return;           // subdir songs stay sorted
    while (p > q)  FL.lst.MvUp (p--);
    FL.pos = q;   FL.Save ();   ReDo ();
 }
 
-void DlgFL::Dn ()                      // scoot past next shown song
+void DlgFL::Dn ()                      // scoot past next shown top song
 { sbyt2 r = _t.CurRow ();
   ubyt4 p, q;
    if ((r < 0) || ((ubyt4)r+1 >= fNum))  return;
    p = fMap [r];   q = fMap [r+1];
+   if (q >= FL.top)  return;           // subdir songs stay sorted
    while (p < q)  FL.lst.MvDn (p++);
    FL.pos = q;   FL.Save ();   ReDo ();
 }
@@ -702,8 +729,14 @@ void DlgFL::Mod2Song ()
 void DlgFL::Brow ()  { TStr d;   App.Open (App.Path (d, 'd'));  }
 
 
+static DlgFL *FLDlg;                   // so FLMov can ReDo a bad drop
+
 static void FLMov (ubyt2 fr, ubyt2 to)  // tbl row got dragged => FL.lst
 { ubyt4 p = fMap [fr], t = fMap [to], r;
+   if ((p >= FL.top) || (t >= FL.top)) {    // only top level songs move
+      QTimer::singleShot (0, FLDlg, & DlgFL::ReDo);   // so undo tbl move
+      return;
+   }
    if (fr < to) {for (;  p < t;  p++)  FL.lst.MvDn (p);
                  for (r = fr;  r < to;  r++)  fMap [r] = fMap [r+1] - 1;}
    else         {for (;  p > t;  p--)  FL.lst.MvUp (p);
@@ -726,9 +759,11 @@ void DlgFL::Init ()
    FL.Load ();
    _tb.Init (this, "flst");
    _tb.Btn (0, "Up\n"
-                 "Scoot song up in the list");
+                 "Scoot song up in the list\n"
+                 "   (only songs not in a subdir)");
    _tb.Btn (1, "Down\n"
-                 "Scoot song down in the list");
+                 "Scoot song down in the list\n"
+                 "   (only songs not in a subdir)");
    _tb.Btn (2, "Search\n"
                  "Search a big midi file dir for matching search strings\n"
                  "   fill in the filter box below THEN click me");
@@ -754,6 +789,7 @@ void DlgFL::Init ()
    connect (_tb.Act (6), & QAction::triggered,  this, & DlgFL::Mod2Song);
    connect (_tb.Act (7), & QAction::triggered,  this, & DlgFL::Brow);
 
+   FLDlg = this;
    _t.Init (ui->fLst, "Song\0", "", FLMov);
    connect (ui->fLst, &QTableWidget::itemClicked,       this, & DlgFL::Pik);
    connect (ui->fLst, &QTableWidget::itemDoubleClicked, this, & DlgFL::Shut);
