@@ -94,11 +94,6 @@ find cheapest - weighted keyboard to chop  (roland rd64 too spendy)
 
 code____________________________________________________________________________
 
-FLst - just sort filenames by default, no drag/drop, sort dirs properly
-
-Pik and CurRow use sbyt2 for
-  the row, so with more than 32767 songs the row number overflows
-
 pan draws weird lines off to the right on screen
 
 if tsig is n/d/*,   /4 shows _ e & a    /3 shows _ & a

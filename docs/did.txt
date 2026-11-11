@@ -1,3 +1,14 @@
+2026Nov
+
+** release 2026-11-10
+   Song list filter box to quickly find a song
+   Arrange your songs in any order (up/down or drag);
+      songs in subfolders are listed below
+   Better EZ notes: smarter pattern matching and loops
+   Synth volume slider removed - use the system volume
+      for PianoCheetah instead
+
+
 2026Oct
 
 ** release 2026-10-24

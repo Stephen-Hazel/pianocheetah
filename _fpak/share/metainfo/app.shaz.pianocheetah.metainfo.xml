@@ -76,6 +76,19 @@
   <content_rating type="oars-1.0" />
 
   <releases>
+  <release version="2026.11" date="2026-11-10">
+      <description>
+        <ul>
+          <li>Song list filter box to quickly find a song</li>
+          <li>Arrange your songs in any order (up/down or drag);
+            songs in subfolders are listed below</li>
+          <li>Better EZ notes: smarter pattern matching and
+            loops</li>
+          <li>Synth volume slider removed - use the system volume
+            for PianoCheetah instead</li>
+        </ul>
+      </description>
+    </release>
     <release version="2026.10" date="2026-10-24">
       <description>
         <p>New look, with icons by Sophia Arguelles (sophiaarguelles.com).</p>
