@@ -202,7 +202,7 @@
   </releases>
 
   <recommends>
-    <display_length compare="ge">1920</display_length>
+    <display_length compare="ge">1280</display_length>
     <control>keyboard</control>
     <control>pointing</control>
   </recommends>
