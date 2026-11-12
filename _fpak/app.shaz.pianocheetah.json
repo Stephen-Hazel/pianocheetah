@@ -35,8 +35,8 @@
             {
                "type":   "git",
                "url":    "https://github.com/Stephen-Hazel/pianocheetah.git",
-               "tag":    "release-2026-11-10",
-               "commit": "40db2832412c263e275a46459ed3e37524ec8087"
+               "tag":    "release-2026-11-10b",
+               "commit": "70c30c3d2a749788bb28724490f7c0c4de064f03"
             },
             {
                "type":   "git",
