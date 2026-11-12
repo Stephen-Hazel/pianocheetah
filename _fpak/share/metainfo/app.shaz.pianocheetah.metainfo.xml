@@ -49,11 +49,18 @@
   <screenshots>
     <screenshot type="default">
       <caption>Playing a song with EZ notes, one note per hand</caption>
-      <image>https://pianocheetah.app/doc/img/screen_ez.png</image>
+      <image width="1570" height="940"
+        >https://pianocheetah.app/doc/img/screen_ez_2026.11.png</image>
     </screenshot>
     <screenshot>
       <caption>Playing the full notes of a song</caption>
-      <image>https://pianocheetah.app/doc/img/screen.png</image>
+      <image width="1570" height="940"
+        >https://pianocheetah.app/doc/img/screen_2026.11.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>MidiCfg: setting up MIDI input and output devices</caption>
+      <image width="890" height="722"
+        >https://pianocheetah.app/doc/img/midicfg_2026.11.png</image>
     </screenshot>
   </screenshots>
 
