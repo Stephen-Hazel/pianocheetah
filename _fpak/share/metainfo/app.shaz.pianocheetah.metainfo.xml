@@ -8,7 +8,7 @@
 
   <name>PianoCheetah</name>
 
-  <summary>Learn songs on piano with simplified notes</summary>
+  <summary>Learn piano songs with easy notes</summary>
 
   <metadata_license>MIT</metadata_license>
   <project_license>MIT</project_license>
@@ -76,8 +76,8 @@
   </keywords>
 
   <branding>
-    <color type="primary" scheme_preference="light">#ffffcb</color>
-    <color type="primary" scheme_preference="dark">#121212</color>
+    <color type="primary" scheme_preference="light">#c8f0dc</color>
+    <color type="primary" scheme_preference="dark">#1f4e5a</color>
   </branding>
 
   <content_rating type="oars-1.0" />
