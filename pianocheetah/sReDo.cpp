@@ -283,7 +283,6 @@ void Song::SetDn (char qu)             // qu from DlgCfg quantize button ONLY
   TStr  k;
   struct {ubyte pos;   char dir;}  xx [64*1024];
   char   *dr;                          // dir per dn per oct (dp*8+oct)
-  TSgRow *ts;
   struct {ubyte t;   ubyt4 p;}  on [2][128];
   struct OVRow {ubyt4 time;   ubyte velo [8];} *vel;
   ubyt4 nvel, pvel;
@@ -419,9 +418,9 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
 // melodic notes - max o one note o five per dn time for oc's tr's nts
    dr = new char [_dn.Ln ? (_dn.Ln*8) : 8];
    MemSet (dr, 0, (_dn.Ln ? (_dn.Ln*8) : 8));
-   for (oc = '1';  oc <= '7';  oc++) {      // gather tracks w my ht
+   for (oc = '1';  oc <= '7';  oc++) { // gather tracks w my ht
       k [0] = oc;   k [2] = '\0';      // oct of key
-//DBG("oc=`c", k[0]);
+DBG("oc=`c", k[0]);
       ht = (*k < '4') ? 'L' : 'R';
 
    // first we calc all the directions usin' nmin/nmax in dn n prev dn
@@ -448,9 +447,9 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
             xx [dp].dir = fst ? '=' : ch;
             dr [dp*8 + oc-'0'] = xx [dp].dir;
             fst = false;
-//TStr xd;
-//DBG(" `s dp=`d nn=`d nsum=`d nt=`d ntrm=`d pnt=`d pntrm=`d ch=`c",
-//TmS(xd,_dn [dp].time), dp, nn, nsum, nt, ntrm, pnt, pntrm, xx [dp].dir);
+TStr xd;
+DBG(" `s dp=`d nn=`d nsum=`d nt=`d ntrm=`d pnt=`d pntrm=`d ch=`c",
+TmS(xd,_dn [dp].time), dp, nn, nsum, nt, ntrm, pnt, pntrm, xx [dp].dir);
             _dn [dp].nt [c].p  = 0;    // NO P FO EZ !
             _dn [dp].nt [c].nt = ((ht == 'L') ? nmin : nmax);
             pnt = nt;   pntrm = ntrm;
@@ -474,17 +473,17 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
       pf = 0;
       for (dp = 0;  dp < _dn.Ln;  dp++)  if (xx [dp].pos != 99) {
          tm = _dn [dp].time;           // max is actually min for LH
-         ts = TSig (tm);
-         tr = M_WHOLE/ts->den/ts->sub*3/4;  // 3/4 of a subbt
+         tr = M_WHOLE/32*3/4;          // 3/4 of a 32nd
          c  = 0;                       // count # EXTRA downs in trill (not 1st)
          cu = (xx [dp].dir == '>') ? 1 : 0;      // how many ups altogether
-//TStr s3;
-//DBG("tm1=`s tr=`d dir=`c", TmSt(s3,tm), tr, xx [dp].dir);
+TStr s3;
+DBG("tm1=`s tr=`d dir=`c", TmSt(s3,tm), tr, xx [dp].dir);
+      // window is from 1st nt (no slidin) n max 5 nts so no wrap
          for (p = dp+1;  p < _dn.Ln;  p++)  if (xx [p].pos != 99) {
-            if (_dn [p].time < (tm + tr)) {
-               c++;   pend = p;   tm = _dn [p].time;
+            if ((_dn [p].time < (tm + tr)) && (c < 4)) {
+               c++;   pend = p;
                if (xx [p].dir == '>')  cu++;
-//DBG("   + tm=`s dir=`c c=`d cu=`d", TmSt(s3,tm), xx [p].dir, c, cu);
+DBG("   + tm=`s dir=`c c=`d cu=`d", TmSt(s3,tm), xx [p].dir, c, cu);
             }
             else  break;
          }
@@ -499,13 +498,13 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
            char dir = (cu > c+1-cu) ? '>' : '<';
             _dn [dp].nt [xx [dp].pos].mrk = dir;      // mark trill start
             tm = _dn [dp].time;
-//DBG("   c=`d cu=`d pf=`d dir=`c", c, cu, pf, dir);
+DBG("   c=`d cu=`d pf=`d dir=`c", c, cu, pf, dir);
 
          // if normal 1st note would cause a wrap (5>1 or 1>5) bump it
             if (dir == '>') {if (pf+c > 4)  pf = (c <= 4) ? (4-c) : 0;}
             else             if (pf   < c)  pf = (c <= 4) ? c     : 4;
             k [1] = 'c' + pf;
-//DBG("   pf=`d k=`s", pf, k);
+DBG("   pf=`d k=`s", pf, k);
             _dn [dp].nt [xx [dp].pos].nt = MKey (k);  // in case it's new
             for (p = dp+1;  p <= pend;  p++)  if (xx [p].pos != 99) {
                if (dir == '<')  {if (pf-- == 0)  pf = 4;}  // but we should
@@ -547,7 +546,7 @@ t, q-1, ne, MKey2Str (s3, e [q-1].ctrl), TmSt(s1,e [q-1].time),
          if (a >= b)  continue;
 
          mt [b] = a;
-//DBG("bar `d = bar `d", b, a);
+DBG("bar `d = bar `d", b, a);
          for (pa = bd [a], pb = bd [b];  pa < bd [a+1];  pa++, pb++)
             for (o = 1;  o < 8;  o++)  if (dr [pa*8+o]) {
                xa = DnPos (pa, o);   xb = DnPos (pb, o);

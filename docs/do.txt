@@ -14,24 +14,17 @@ dup the good rush sounds
 
 doc_____________________________________________________________________________
 
-all docs to video - site has link n summary txt only
- Editing and post (via ffmpeg and friends, from here)
-  - Trim, concatenate takes, cut dead air, normalize audio, crop/zoom to a
-    region of the screen, speed up boring parts (like the install progress
-    bar).
-  - Burn in or attach subtitles: turn the script into an .srt, or transcribe
-    your voiceover with Whisper if it's installed.
-  - Pull frames out of a recording and look at them to check for clutter,
-    unreadable text, notifications popping up, etc.
-  - Make thumbnails and title cards (SVG to PNG).
+cards of [topic thumbnail]
 
+song and finger videos
 
-install linux
+install linux  YEP!!
    get an old pc and usb stick - fb marketplace n ebay; show usb stick on ama
    get any data onto an external usb drive
    download iso - 3 mins
    download,install,run balena etcher.balena.io - old version :(
       remember usb stick name
+
       how long?
    look at the pc's barcode sticker and google it with "bios key"
       bios menus work best with wired keyboards and mice
@@ -63,7 +56,7 @@ configuring kde
    screen locking - never
    session - no confirmation, start empty
 
-trying out pianocheetah
+get and try out pianocheetah
    go over pc.app/doc and write somethin up
 
 break out of flatpak and making the synthesizer sound better
@@ -79,6 +72,64 @@ why is piano playin hard
    how many people should play a song
    how is guitar better
 
+find cheapest - weighted keyboard to chop  (roland rd64 too spendy)
+   smallest keyboard - prob my akai
+
+
+
+shorty is my van piano.
+
+music is a big thing and I'm not talking about all of it.
+   I'm here to play the music.  Not compose or mixdown, etc
+   To learn the notes, play them in time, adjust the tempo as i play,
+   and hit the volumes of eeeach note at to make the music swell and ebb.
+      To give it feel.
+   I'm talking about playing for an audience
+      so no slow parts or fumbling or places where I'm not in control.
+      The beat must be kept and the listeners won't need to give me that
+         "oh, you did pretty good" look.
+   I'm expecting the same smile I felt when picking the song.
+   I'm here to make the piano and drums do what my voice does - really sing.
+
+   But I'm also not here to become a proper piano player.
+      I don't care about reading sheet music or playing scales.
+      I don't wanna play the whole song by memory - hitting every key perfectly.
+      I wanna play a song without grinding my teeth.
+         And maybe even sing along as I play.
+      You know who's good at hitting every note perfectly?  A computer.
+         But they're no good at swells and ebbs and feel.
+         Computers like playing every note at exactly the same volume.
+         duuumb.
+
+      So I want to play in a less demanding way.
+         But with all of the feels.
+         That feel can be different from one day to the next.
+         My feelings change.  There's more than one way to play a song.
+
+being face to face with your lover or child or neice or grandchild
+   right in their face smiling crazily
+   telling stories - everyone locked on the teller's face
+
+music's most important component is time - rhythm.
+   it locks you and the other people together
+   you're already close and now you're sync'd in time too.
+   and you have the same story going through your heads instant by instant
+   and the story even rhymes
+   sound and pitch and percussion are the other things in music.
+   they work like a voice or lots of voices singing like we do.
+   music is right up there at the top in the list of good things in life
+
+life in the 70s had
+   church with singing and instruments and
+   radio that girls actually sang along to
+   there was a piano in my house
+   there were piano lessons in school and
+   music class to analyze rock music structure
+      (boston boston and jesus christ superstar)
+   my neices played piano and my nephew composes with a daw
+
+
+
 txt2song and step entry
    instead of outline, just create/move the note (keep it when, del when)
    regular keys too?
@@ -88,11 +139,10 @@ txt2song and step entry
    note  3c    d      e    f     g         a        4c-b
          oct-- oct++  sh-- sh++  keepnote  advance  nt
 
-find cheapest - weighted keyboard to chop  (roland rd64 too spendy)
-   smallest keyboard - prob my akai
-
 
 code____________________________________________________________________________
+
+ez notes are def broke - check claire
 
 pan draws weird lines off to the right on screen
 
